@@ -32,10 +32,10 @@ You can easily download them through your Bash/Terminal:<br>
 ## Extracting & Linking:
 ### Prerequisites (Native & Cross-Compiler):
 - Update your environment `sudo apt-get update && dist-upgrade`
-- Build-essential gawk, texinfo, git, bison `sudo apt install build-essential gawk git texinfo bison`
+- Build-essential gawk, textinfo, git, bison `sudo apt install build-essential gawk git textinfo bison`
 
 ### Extracting  (Native & Cross-Compiler):
-Extract files using: `tar xf <filename e.g gcc-6.3.0-rpi.tar.bz2>`
+Extract files using cmd: `tar xf <filename e.g gcc-6.3.0-rpi.tar.bz2>`
 
 ### Linking  (Native & Cross-Compiler):
 - Move files to its correct location (ie `/opt`) using cmd: `sudo mv <extracted folder-name e.g gcc-6.3.0> /opt`
