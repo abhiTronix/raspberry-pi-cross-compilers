@@ -2,8 +2,8 @@
 ## Update 02, September, 2018
 
 ### Current Binaries: 
-- 8.2.0 (Ubuntu Cross-Compiled & Raspberry Pi Native)
-- 6.3.0 (Ubuntu Cross-Compiled only)
+- 8.2.0 (Cross-Compiler & Native)
+- 6.3.0 (Cross-Compiler only)
 
 ### Supported Raspberry Pi:
 Raspberry Pi 2/3 any version/model (Zero and 1 are not currently supported) 
