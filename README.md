@@ -65,7 +65,7 @@ Extract files using cmd: `tar xf <filename e.g gcc-6.3.0-rpi.tar.bz2>`
  `arm-linux-gnueabihf-ldd -v`<br>
  
  
-# Contributing and licenses
+## Contributing and licenses
 The original compiled GCC files source is licensed under the [GNU v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) license. However, This Project is licensed under the [Apache 2.0](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/LICENSE) license.
 
 You are welcome to contribute with suggestions or pull requests. To contact me, send an email.
