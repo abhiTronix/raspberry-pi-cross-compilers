@@ -6,7 +6,7 @@
 - 6.3.0 (Cross-Compiler only)
 
 ### Supported Raspberry Pi:
-Raspberry Pi 2/3 any version/model (Zero and 1 are not currently supported) 
+Raspberry Pi Zero/2/3 any version/model (Performance may vary)
 
 ### Supported Languages(full functionality):
 - C++
