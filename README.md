@@ -10,7 +10,7 @@
 - 6.3.0 (Cross-Compiler only)
 
 ### Supported Raspberry Pi:
-Raspberry Pi Zero/2/3 any version/model (Performance may vary)
+Raspberry Pi Zero/2/3 any version/model (Performance may vary)<t>[![GitHub](https://img.shields.io/badge/Raspberry%20Pi%20Zero-Not%20Tested-red.svg)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)
 
 ### Supported Languages(full functionality):
 - C++
