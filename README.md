@@ -37,7 +37,7 @@ This project contains the Latest Set of Precompiled Raspberry pi GCC Cross-Compi
 ## Binaries Download:
 Compressed Binary Files are already available in this repo.
 You can easily download them through your Bash/Terminal:<br>
-`wget https://media.githubusercontent.com/media/abhiTronix/raspberry-pi-cross-compilers/master/<filename e.g gcc-6.3.0-rpi.tar.bz2>`
+`wget https://media.githubusercontent.com/media/abhiTronix/raspberry-pi-cross-compilers/master/<filename e.g gcc-8.2.0.tar.bz2>`
 
 ## Extracting & Linking:
 ### Prerequisites (Native & Cross-Compiler):
@@ -45,13 +45,13 @@ You can easily download them through your Bash/Terminal:<br>
 - Build-essential gawk, textinfo, git, bison `sudo apt install build-essential gawk git textinfo bison`
 
 ### Extracting  (Native & Cross-Compiler):
-Extract files using cmd: `tar xf <filename e.g gcc-6.3.0-rpi.tar.bz2>`
+Extract files using cmd: `tar xf <filename e.g gcc-8.2.0.tar.bz2>`
 
 ### Linking  (Native & Cross-Compiler):
-- Move files to its correct location (ie `/opt`) using cmd: `sudo mv <extracted folder-name e.g gcc-6.3.0> /opt`
+- Move files to its correct location (ie `/opt`) using cmd: `sudo mv <extracted folder-name e.g gcc-8.2.0> /opt`
 - Properly configure paths as below(Permanently by adding it to your `.bashrc`):<br>
-`echo 'export PATH=/opt/<extracted folder-name e.g gcc-6.3.0>/bin:$PATH' >> .bashrc`<br>
-`echo 'export LD_LIBRARY_PATH=/opt/<extracted folder-name e.g gcc-6.3.0>/lib:$LD_LIBRARY_PATH' >> .bashrc`<br>
+`echo 'export PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/bin:$PATH' >> .bashrc`<br>
+`echo 'export LD_LIBRARY_PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/lib:$LD_LIBRARY_PATH' >> .bashrc`<br>
 
  - **Manage Links as below:(Native Compiler Only)**<br>
  `source .bashrc` <br>
