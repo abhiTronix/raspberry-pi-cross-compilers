@@ -1,4 +1,4 @@
-# Latest Set of Precompiled Raspberry Pi GCC Cross-Compilers/Native Binaries (Easiest Method)
+# Latest Set of Precompiled Raspberry Pi GCC Cross-Compilers/Native Binaries(Fastest & Easiest Method)
 ## Update 02, September, 2018
 
 ### Current Binaries: 
@@ -25,7 +25,7 @@ This project contains the Latest Set of Precompiled Raspberry pi GCC Cross-Compi
 ### Binaries Description:
 - `gcc-6.3.0-rpi.tar.bz2` - GCC Raspberry Pi Cross-Compilier version 6.3.0, works with Ubuntu x64(or other Linux x64)
 - `gcc-8.2.0-rpi.tar.bz2` - GCC Raspberry Pi Cross-Compilier version 8.2.0, works with Ubuntu x64(or other Linux x64)
-- `gcc-8.2.0.tar.bz2` - GCC Native Raspberry Pi version 8.2.0, works with Raspberry Pi 2/3 any Model.
+- `gcc-8.2.0.tar.bz2` - GCC Native Raspberry Pi version 8.2.0, works with Raspberry Pi 2/3 any Model(Zero not tested)
 
 ### Side Note: 
 *Building GCC 8.2.0 with the given cross compiler took about 35 minutes on my Ubuntu machine on all cores. Compare this with the straight 4~6 hours needed to build GCC 8.2.0 directly on Pi 3B+(+10 hours on Rpi2) at full CPU Load plus memory swapping needed and you will see the advantage of having a cross compiler on your main machine.*
