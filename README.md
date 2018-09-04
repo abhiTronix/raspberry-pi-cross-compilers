@@ -48,7 +48,8 @@ Extract files using cmd: `tar xf <filename e.g gcc-6.3.0-rpi.tar.bz2>`
 - Properly configure paths as below(Permanently by adding it to your `.bashrc`):<br>
 `echo 'export PATH=/opt/<extracted folder-name e.g gcc-6.3.0>/bin:$PATH' >> .bashrc`<br>
 `echo 'export LD_LIBRARY_PATH=/opt/<extracted folder-name e.g gcc-6.3.0>/lib:$LD_LIBRARY_PATH' >> .bashrc`<br>
- - Manage Links as below:<br>
+
+ - **Manage Links as below:(Native Compiler Only)**<br>
  `source .bashrc` <br>
  `sudo ln -s /usr/include/arm-linux-gnueabihf/sys /usr/include/sys` <br>
  `sudo ln -s /usr/include/arm-linux-gnueabihf/bits /usr/include/bits` <br>
