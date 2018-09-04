@@ -13,6 +13,12 @@ Raspberry Pi Zero/2/3 any version/model (Performance may vary)
 - Fortan
 - C
 
+### Advantages:
+- C++17 support(Native Raspberrypi GCC 6.3.0 lacks it)
+- Fastest inbuilt optimization flags(Raspberry optimized GCC)
+- Rediculously low installation time(few mins)
+- Benchmarking Results: https://www.phoronix.com/scan.php?page=article&item=gcc-81-benchmarks&num=1
+
 ## Summary:
 This project contains the Latest Set of Precompiled Raspberry pi GCC Cross-Compilers(*i.e. 8.2.0*), saving your tons of time(*No compiling or Error Handling needed whatsoever*). Just Extract, Link & Enjoy full GCC(*Raspberry Pi*) functionality in your Machine. You can use it as native compiler for raspberry pi(*Can be used besides old & slow 6.3.0 GCC with full C++17 support*), Or use it as Cross-Compiler in any Linux Machine(*Tested on Latest Ubuntu/bionic x64*) to compile programs for your Raspberry Pi (*Both Latest 8.2.0 & Current 6.3.0 binaries available*).
 
