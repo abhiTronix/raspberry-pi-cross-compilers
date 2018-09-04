@@ -1,7 +1,7 @@
 # Latest Set of Precompiled Raspberry Pi GCC Cross-Compilers/Native Binaries(Fastest & Easiest Method)
 ## Update 02, September, 2018
 
-[![GitHub](https://img.shields.io/badge/version-GCC%20v8.2.0-orange.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)<br>
+[![GitHub](https://img.shields.io/badge/GCC-v8.2.0-orange.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)<br>
 [![GitHub](https://img.shields.io/badge/Platform-Raspberry%20Pi%202%2F3%20%7C%20Linux%20(x32%2Fx64)-yellow.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)<br>
 [![GitHub](https://img.shields.io/badge/Build-Passing-green.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)<br>
 
