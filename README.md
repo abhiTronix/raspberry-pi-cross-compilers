@@ -2,7 +2,8 @@
 ## Update 02, September, 2018
 
 [![GitHub](https://img.shields.io/badge/version-GCC%20v8.2.0-orange.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)<br>
-[![GitHub](https://img.shields.io/badge/license-Apache%20v2.0-green.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)<br>[![GitHub](https://img.shields.io/badge/Platform-Raspberry%20Pi%202%2F3%20%7C%20Linux%20(x32%2Fx64)-blue.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)
+[![GitHub](https://img.shields.io/badge/Platform-Raspberry%20Pi%202%2F3%20%7C%20Linux%20(x32%2Fx64)-yellow.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)<br>
+[![GitHub](https://img.shields.io/badge/Build-Passing-green.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)<br>
 
 ### Current Binaries: 
 - 8.2.0 (Cross-Compiler & Native)
