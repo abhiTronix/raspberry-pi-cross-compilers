@@ -34,7 +34,7 @@ You can easily download them from Sourceforge:(_Links Below_)
 
 
 
-## Extracting & Linking:
+## Extracting & Linking: (Read & Execute Carefully)
 ### Prerequisites (Native & Cross-Compiler):
 - Update your environment `sudo apt-get update && dist-upgrade`
 - Build-essential gawk, textinfo, git, bison `sudo apt install build-essential gawk git textinfo bison`
@@ -58,7 +58,7 @@ Extract files using cmd: `tar xf <filename e.g gcc-8.2.0.tar.bz2>`
  `sudo ln -s /usr/lib/arm-linux-gnueabihf/crt1.o /usr/lib/crt1.o`   
  `sudo ln -s /usr/lib/arm-linux-gnueabihf/crtn.o /usr/lib/crtn.o`   
  
-### Extra step to use Cross-Compiler Binaries with Cmake: 
+### Extra step to use Cross-Compiler Binaries with Cmake: (Cross-Compiler Only)
 (Refer Issue:[#3](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/3#issuecomment-453117354))  
 
 **Enable CMake's implicit directory feature by injecting the following lines into toolchain file:**
