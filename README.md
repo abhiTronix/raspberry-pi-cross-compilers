@@ -59,7 +59,8 @@ Extract files using cmd: `tar xf <filename e.g gcc-8.2.0.tar.bz2>`
  `sudo ln -s /usr/lib/arm-linux-gnueabihf/crtn.o /usr/lib/crtn.o`   
  
 ### Extra step to use Cross-Compiler Binaries with Cmake: 
-(Refer Issue: #3)
+(Refer Issue:[#3](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/3#issuecomment-453117354))  
+
 **Enable CMake's implicit directory feature by injecting the following lines into toolchain file:**
 ```
 unset(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES)
