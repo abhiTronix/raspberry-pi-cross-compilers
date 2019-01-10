@@ -1,20 +1,15 @@
 # Latest Set of Precompiled Raspberry Pi GCC Cross-Compilers/Native Binaries - v2.0(Fastest & Easiest Method)
-### Update 31, October, 2018
-### Fixed Cmake issue  
+**09 January, 2018: Fixed Cmake issue**    
 [![Download Raspberry-pi-cross-compilers](https://sourceforge.net/sflogo.php?type=16&group_id=3021982)](https://sourceforge.net/p/raspberry-pi-cross-compilers/)  
 [![GitHub](https://img.shields.io/badge/GCC-v8.2.0-orange.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
 [![GitHub](https://img.shields.io/badge/Platform-Raspberry%20Pi%202%2F3%20%7C%20Linux%20(x32%2Fx64)-yellow.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
-[![GitHub](https://img.shields.io/badge/FileStatus-Available-green.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
-
-### Current Binaries: (Up-to-Date)
-- 8.2.0 (Cross-Compiler & Native)
-- 6.3.0 (Cross-Compiler only)
-
-### Supported Raspberry Pi:
-Raspberry Pi Zero/2/3 any version/model (Performance may vary) <t>[![GitHub](https://img.shields.io/badge/Raspberry%20Pi%20Zero-Not%20Tested-red.svg)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
+[![GitHub](https://img.shields.io/badge/FileStatus-Available-green.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)   
   
 ## Summary:
 This project contains the Latest Set of Precompiled Raspberry pi GCC Cross-Compilers(*i.e. 8.2.0*), saving your tons of time(*No compiling or Error Handling needed whatsoever*). Just Extract, Link & Enjoy full GCC(*Raspberry Pi*) functionality in your Machine. You can use it as native compiler for raspberry pi(*Can be used besides old & slow 6.3.0 GCC with full C++17 support*), Or use it as Cross-Compiler in any Linux Machine(*Tested on Latest Ubuntu/bionic x64*) to compile programs for your Raspberry Pi (*Both Latest 8.2.0 & Current 6.3.0 binaries available*).
+
+### Supported Raspberry Pi:
+Raspberry Pi Zero/2/3 any version/model (Performance may vary) <t>[![GitHub](https://img.shields.io/badge/Raspberry%20Pi%20Zero-Not%20Tested-red.svg)](https://github.com/abhiTronix/raspberry-pi-cross-compilers) 
 
 ## Binaries Description: (Read Carefully)
 - `gcc-6.3.0-rpi.tar.bz2` - GCC Raspberry Pi Cross-Compilier version 6.3.0, works with Ubuntu(or other Linux distro)
@@ -32,7 +27,7 @@ You can easily download them from Sourceforge:(_Links Below_)
 ## Extracting & Linking: (Read & Execute Carefully)
 * **Prerequisites (Native & Cross-Compiler):**
    * Update your environment `sudo apt-get update && dist-upgrade`
-   * Build-essential gawk, textinfo, git, bison `sudo apt install build-essential gawk git textinfo bison`
+   * Install Build-essential gawk, textinfo, git, bison `sudo apt install build-essential gawk git textinfo bison`
 
 * **Extracting  (Native & Cross-Compiler):**
    * Extract files using cmd: `tar xf <filename e.g gcc-8.2.0.tar.bz2>`
