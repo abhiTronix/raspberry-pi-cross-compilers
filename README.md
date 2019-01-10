@@ -54,11 +54,13 @@ You can easily download them from Sourceforge:(_Links Below_)
    `sudo ln -s /usr/lib/arm-linux-gnueabihf/crtn.o /usr/lib/crtn.o`   
  
 * **Extra step to use Cross-Compiler Binaries with Cmake: (Cross-Compiler Only)** 
-  Enable CMake's implicit directory feature by injecting the following lines into toolchain file: (Refer Issue:[#3](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/3#issuecomment-453117354)) 
-  ```
-  unset(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES)
-  unset(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
-   ```
+
+
+   Enable CMake's implicit directory feature by injecting the following lines into toolchain file: (Refer Issue:[#3](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/3#issuecomment-453117354)) 
+     ```
+     unset(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES)
+     unset(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
+     ```
  
 **That's it, Enjoy ;)**
  
@@ -89,8 +91,6 @@ You can easily download them from Sourceforge:(_Links Below_)
 
 ### Side Note: 
 *Building GCC 8.2.0 with the given cross compiler took about 35 minutes on my Ubuntu machine on all cores. Compare this with the straight 4~6 hours needed to build GCC 8.2.0 directly on Pi 3B+(+10 hours on Rpi2) at full CPU Load plus memory swapping needed and you will see the advantage of having a cross compiler on your main machine.*
-
----
 
 ## Contributing and licenses
 The original compiled GCC files source is licensed under the [GNU v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) license. However, This Project is licensed under the [Apache 2.0](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/LICENSE) license.
