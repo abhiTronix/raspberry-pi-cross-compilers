@@ -27,7 +27,7 @@ You can easily download them from Sourceforge:(_Links Below_)
 ## Extracting & Linking: (Read & Execute Carefully)
 * **Prerequisites (Native & Cross-Compiler):**
    * Update your environment `sudo apt-get update && dist-upgrade`
-   * Install Build-essential gawk, textinfo, git, bison `sudo apt install build-essential gawk git textinfo bison`
+   * Install Build-essential gawk, texinfo, git, bison `sudo apt install build-essential gawk git textinfo bison`
 
 * **Extracting  (Native & Cross-Compiler):**
    * Extract files using cmd: `tar xf <filename e.g gcc-8.2.0.tar.bz2>`
