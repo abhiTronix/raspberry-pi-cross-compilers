@@ -50,11 +50,13 @@ You can easily download them from Sourceforge:(_Links Below_)
  
 * **Manage Links as below:(Cross-Compiler Compiler Only)**
 
-Temporary fix Hardcoded paths in binaries: [#4](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/4#issue-403285170)
+   Temporary fix Hardcoded paths in binaries: [#4](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/4#issue-403285170)
 
-   `sudo ln -s  /opt/<extracted folder-name e.g gcc-8.2.0>/arm-linux-gnueabihf/lib/libpthread.so  /opt/cross-pi-gcc-8.2.0/arm-linux-gnueabihf/lib/libpthread.so`
+   ```
+   sudo ln -s  /opt/<extracted folder-name e.g gcc-8.2.0>/arm-linux-gnueabihf/lib/libpthread.so  /opt/cross-pi-gcc-8.2.0/arm-linux-gnueabihf/lib/libpthread.so
    
-   `sudo ln -s  /opt/<extracted folder-name e.g gcc-8.2.0>/arm-linux-gnueabihf/lib/libc.so  /opt/cross-pi-gcc-8.2.0/arm-linux-gnueabihf/lib/libc.so`
+   sudo ln -s  /opt/<extracted folder-name e.g gcc-8.2.0>/arm-linux-gnueabihf/lib/libc.so  /opt/cross-pi-gcc-8.2.0/arm-linux-gnueabihf/lib/libc.so
+   ```
  
 * **Extra step to use Cross-Compiler Binaries with Cmake: (Cross-Compiler Only)** 
 
