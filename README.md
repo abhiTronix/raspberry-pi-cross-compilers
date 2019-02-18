@@ -1,5 +1,5 @@
 # Latest Set of Precompiled Raspberry Pi GCC Cross-Compilers/Native Binaries - v2.0(Fastest & Easiest Method)
-**09 January, 2018: Fixed Cmake issue**    
+**18 Febraury, 2019: Various Fixes**    
 [![Download Raspberry-pi-cross-compilers](https://sourceforge.net/sflogo.php?type=16&group_id=3021982)](https://sourceforge.net/p/raspberry-pi-cross-compilers/)  
 [![GitHub](https://img.shields.io/badge/GCC-v8.2.0-orange.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
 [![GitHub](https://img.shields.io/badge/Platform-Raspberry%20Pi%202%2F3%20%7C%20Linux%20(x32%2Fx64)-yellow.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
@@ -46,7 +46,15 @@ You can easily download them from Sourceforge:(_Links Below_)
    `sudo ln -s /usr/include/arm-linux-gnueabihf/asm /usr/include/asm`   
    `sudo ln -s /usr/lib/arm-linux-gnueabihf/crti.o /usr/lib/crti.o`   
    `sudo ln -s /usr/lib/arm-linux-gnueabihf/crt1.o /usr/lib/crt1.o`   
-   `sudo ln -s /usr/lib/arm-linux-gnueabihf/crtn.o /usr/lib/crtn.o`   
+   `sudo ln -s /usr/lib/arm-linux-gnueabihf/crtn.o /usr/lib/crtn.o` 
+ 
+* **Manage Links as below:(Cross-Compiler Compiler Only)**
+
+Temporary fix Hardcoded paths in binaries: [#4](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/4#issue-403285170)
+
+   `sudo ln -s  /opt/<extracted folder-name e.g gcc-8.2.0>/arm-linux-gnueabihf/lib/libpthread.so  /opt/cross-pi-gcc-8.2.0/arm-linux-gnueabihf/lib/libpthread.so`
+   
+   `sudo ln -s  /opt/<extracted folder-name e.g gcc-8.2.0>/arm-linux-gnueabihf/lib/libc.so  /opt/cross-pi-gcc-8.2.0/arm-linux-gnueabihf/lib/libc.so`
  
 * **Extra step to use Cross-Compiler Binaries with Cmake: (Cross-Compiler Only)** 
 
