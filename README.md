@@ -48,7 +48,7 @@ You can easily download them from Sourceforge:(_Links Below_)
    `sudo ln -s /usr/lib/arm-linux-gnueabihf/crt1.o /usr/lib/crt1.o`   
    `sudo ln -s /usr/lib/arm-linux-gnueabihf/crtn.o /usr/lib/crtn.o` 
  
-* **Manage Links as below:(Cross-Compiler Compiler Only)**
+* **Manage Links as below:(Cross-Compiler Only)**
 
    Temporary fix Hardcoded paths in binaries: [#4](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/4#issue-403285170)
 
