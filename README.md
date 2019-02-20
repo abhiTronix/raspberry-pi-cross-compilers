@@ -25,20 +25,20 @@ You can easily download them from Sourceforge:(_Links Below_)
 ---
 
 ## Extracting & Linking: (Read & Execute Carefully)
-1. **Prerequisites (Native & Cross-Compiler):**
+**1. Prerequisites (Native & Cross-Compiler):**
    * Update your environment `sudo apt-get update && dist-upgrade`
    * Install Build-essential gawk, texinfo, git, bison `sudo apt install build-essential gawk git texinfo bison`
 
-2. **Extracting  (Native & Cross-Compiler):**
+**2. Extracting  (Native & Cross-Compiler):**
    * Extract files using cmd: `tar xf <filename e.g gcc-8.2.0.tar.bz2>`
 
-3. **Linking  (Native & Cross-Compiler):**
+**3. Linking  (Native & Cross-Compiler):**
   * Move files to its correct location (ie `/opt`) using cmd: `sudo mv <extracted folder-name e.g gcc-8.2.0> /opt`
   * Properly configure paths as below(Permanently by adding it to your `.bashrc`):  
     `echo 'export PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/bin:$PATH' >> .bashrc`  
     `echo 'export LD_LIBRARY_PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/lib:$LD_LIBRARY_PATH' >> .bashrc`  
 
- 4. **Manage Links as below:(Native Compiler Only)**  
+ **4. Manage Links as below:(Native Compiler Only)**  
    `source .bashrc`   
    `sudo ln -s /usr/include/arm-linux-gnueabihf/sys /usr/include/sys`   
    `sudo ln -s /usr/include/arm-linux-gnueabihf/bits /usr/include/bits`   
@@ -48,7 +48,7 @@ You can easily download them from Sourceforge:(_Links Below_)
    `sudo ln -s /usr/lib/arm-linux-gnueabihf/crt1.o /usr/lib/crt1.o`   
    `sudo ln -s /usr/lib/arm-linux-gnueabihf/crtn.o /usr/lib/crtn.o` 
  
- 5. **Manage Links as below:(Cross-Compiler Only)**
+ **5. Manage Links as below:(Cross-Compiler Only)**
 
    Temporary fix Hardcoded paths in binaries: [#4](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/4#issue-403285170)
 
@@ -58,7 +58,7 @@ You can easily download them from Sourceforge:(_Links Below_)
    sudo ln -s  /opt/<extracted folder-name e.g gcc-8.2.0>/arm-linux-gnueabihf/lib/libc.so  /opt/cross-pi-gcc-8.2.0/arm-linux-gnueabihf/lib/libc.so
    ```
    
- 6. **Extra step If you want to completely replace previous `gcc-6.3.0` with latest `gcc-8.2.0`[Proceed with caution!]: (Native Compiler Only)**
+ **6. Extra step If you want to completely replace previous `gcc-6.3.0` with latest `gcc-8.2.0`[Proceed with caution!]: (Native Compiler Only)**
   * Download this script [experimental_6-3_w_8-2.sh](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Tools/experimental_6-3_w_8-2.sh)(_right click and "Save As"_) and execute following commands:
 
    ```
@@ -74,7 +74,7 @@ You can easily download them from Sourceforge:(_Links Below_)
    ```
    
  
- 7. **Extra step to use Cross-Compiler Binaries with Cmake: (Cross-Compiler Only)** 
+ **7. Extra step to use Cross-Compiler Binaries with Cmake: (Cross-Compiler Only)** 
 
 
    Enable CMake's implicit directory feature by injecting the following lines into toolchain file: (Refer Issue:[#3](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/3#issuecomment-453117354)) 
