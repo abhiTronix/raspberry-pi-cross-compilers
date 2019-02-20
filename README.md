@@ -106,15 +106,18 @@ You can easily download them from Sourceforge:(_Links Below_)
    `arm-linux-gnueabihf-g++ --version`
    
    `arm-linux-gnueabihf-gfortran --version`
-   
-   
-### Important: To restore old configration(Only, if you followed step-6), download this script [Restore_old_6.3.sh](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Tools/Restore_old_6.3.sh)(_right click and "Save As"_) and execute:
+
+---
+
+### Important: 
+To restore old configration(Only, if you followed step-6), download this script [Restore_old_6.3.sh](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Tools/Restore_old_6.3.sh)(_right click and "Save As"_) and execute:
 
    ```
    chmod +x Restore_old_6.3.sh
    ./Restore_old_6.3.sh
    ```
 
+---
  
 ## Supported Languages(full functionality):
 - C++
