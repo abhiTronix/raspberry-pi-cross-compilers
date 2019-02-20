@@ -1,5 +1,5 @@
 # Latest Set of Precompiled Raspberry Pi GCC Cross-Compilers/Native Binaries - v2.0(Fastest & Easiest Method)
-**18 Febraury, 2019: Various Fixes**    
+**20 Febraury, 2019: Major NAtive Compiler Fixes**    
 [![Download Raspberry-pi-cross-compilers](https://sourceforge.net/sflogo.php?type=16&group_id=3021982)](https://sourceforge.net/p/raspberry-pi-cross-compilers/)  
 [![GitHub](https://img.shields.io/badge/GCC-v8.2.0-orange.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
 [![GitHub](https://img.shields.io/badge/Platform-Raspberry%20Pi%202%2F3%20%7C%20Linux%20(x32%2Fx64)-yellow.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
@@ -25,20 +25,20 @@ You can easily download them from Sourceforge:(_Links Below_)
 ---
 
 ## Extracting & Linking: (Read & Execute Carefully)
-* **Prerequisites (Native & Cross-Compiler):**
+1. **Prerequisites (Native & Cross-Compiler):**
    * Update your environment `sudo apt-get update && dist-upgrade`
    * Install Build-essential gawk, texinfo, git, bison `sudo apt install build-essential gawk git texinfo bison`
 
-* **Extracting  (Native & Cross-Compiler):**
+2. **Extracting  (Native & Cross-Compiler):**
    * Extract files using cmd: `tar xf <filename e.g gcc-8.2.0.tar.bz2>`
 
-* **Linking  (Native & Cross-Compiler):**
+3. **Linking  (Native & Cross-Compiler):**
   * Move files to its correct location (ie `/opt`) using cmd: `sudo mv <extracted folder-name e.g gcc-8.2.0> /opt`
   * Properly configure paths as below(Permanently by adding it to your `.bashrc`):  
     `echo 'export PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/bin:$PATH' >> .bashrc`  
     `echo 'export LD_LIBRARY_PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/lib:$LD_LIBRARY_PATH' >> .bashrc`  
 
- * **Manage Links as below:(Native Compiler Only)**  
+ 4. **Manage Links as below:(Native Compiler Only)**  
    `source .bashrc`   
    `sudo ln -s /usr/include/arm-linux-gnueabihf/sys /usr/include/sys`   
    `sudo ln -s /usr/include/arm-linux-gnueabihf/bits /usr/include/bits`   
@@ -48,7 +48,7 @@ You can easily download them from Sourceforge:(_Links Below_)
    `sudo ln -s /usr/lib/arm-linux-gnueabihf/crt1.o /usr/lib/crt1.o`   
    `sudo ln -s /usr/lib/arm-linux-gnueabihf/crtn.o /usr/lib/crtn.o` 
  
-* **Manage Links as below:(Cross-Compiler Only)**
+ 5. **Manage Links as below:(Cross-Compiler Only)**
 
    Temporary fix Hardcoded paths in binaries: [#4](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/4#issue-403285170)
 
@@ -57,8 +57,24 @@ You can easily download them from Sourceforge:(_Links Below_)
    
    sudo ln -s  /opt/<extracted folder-name e.g gcc-8.2.0>/arm-linux-gnueabihf/lib/libc.so  /opt/cross-pi-gcc-8.2.0/arm-linux-gnueabihf/lib/libc.so
    ```
+   
+ 6. **Extra step If you want to completely replace previous `gcc-6.3.0` with latest `gcc-8.2.0`[Proceed with caution!]: (Native Compiler Only)**
+  * Download this script [experimental_6-3_w_8-2.sh]() and execute following commands:
+
+   ```
+   chmod +x experimental_6-3_w_8-2.sh
+   ./experimental_6-3_w_8-2.sh
+   ```
+
+  * [Failsafe] To restore old configration download this script [Restore_old_6.3.sh]() and execute:
+
+   ```
+   chmod +x Restore_old_6.3.sh
+   ./Restore_old_6.3.sh
+   ```
+   
  
-* **Extra step to use Cross-Compiler Binaries with Cmake: (Cross-Compiler Only)** 
+ 7. **Extra step to use Cross-Compiler Binaries with Cmake: (Cross-Compiler Only)** 
 
 
    Enable CMake's implicit directory feature by injecting the following lines into toolchain file: (Refer Issue:[#3](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/3#issuecomment-453117354)) 
@@ -75,18 +91,27 @@ You can easily download them from Sourceforge:(_Links Below_)
 
  ## Testing: (Post Linking)
  You can check Installed versions as below:
- * Native Compiler(Raspberry pi):  
-   `gcc --version`  
-   `ld -v`  
-   `ldd -v`  
- * Cross- Compiler (Ubuntu x64):  
+ * Native Compiler Temporary[if you don't followed step-6] (Raspberry pi):  
+   `arm-linux-gnueabihf-gcc-8.2.0 --version`
+   `arm-linux-gnueabihf-g++-8.2.0 --version`
+   `arm-linux-gnueabihf-gfortran-8.2.0 --version`
+
+
+ * Native Compiler Permanent[if you followed step-6] (Raspberry pi):  
+   `gcc --version`
+   `g++ --version`
+   `gfortran --version`
+   
+
+ 
+ * Cross- Compiler (Ubuntu x64 Tested):  
    `arm-linux-gnueabihf-gcc --version`  
-   `arm-linux-gnueabihf-ld -v`  
-   `arm-linux-gnueabihf-ldd -v`  
+   `arm-linux-gnueabihf-g++ --version`
+   `arm-linux-gnueabihf-gfortran --version`
  
 ## Supported Languages(full functionality):
 - C++
-- Fortan
+- Fortran
 - C
 - Ask for other Language support.
 
