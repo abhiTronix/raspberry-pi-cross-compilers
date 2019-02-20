@@ -13,7 +13,7 @@ if [ -e "$file" ]; then
   echo "Do not run this script multiple times!"
   exit 1
 else
-  sudo echo "VALID" >> $file
+  echo 'VALID' | sudo tee $file
 fi
 
 echo 'Making necessary backups...'
