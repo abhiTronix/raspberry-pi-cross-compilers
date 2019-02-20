@@ -1,5 +1,5 @@
 # Latest Set of Precompiled Raspberry Pi GCC Cross-Compilers/Native Binaries - v2.0(Fastest & Easiest Method)
-**20 Febraury, 2019: Major NAtive Compiler Fixes**    
+**20 Febraury, 2019: Major Native Compiler Fixes**    
 [![Download Raspberry-pi-cross-compilers](https://sourceforge.net/sflogo.php?type=16&group_id=3021982)](https://sourceforge.net/p/raspberry-pi-cross-compilers/)  
 [![GitHub](https://img.shields.io/badge/GCC-v8.2.0-orange.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
 [![GitHub](https://img.shields.io/badge/Platform-Raspberry%20Pi%202%2F3%20%7C%20Linux%20(x32%2Fx64)-yellow.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
@@ -59,14 +59,14 @@ You can easily download them from Sourceforge:(_Links Below_)
    ```
    
  6. **Extra step If you want to completely replace previous `gcc-6.3.0` with latest `gcc-8.2.0`[Proceed with caution!]: (Native Compiler Only)**
-  * Download this script [experimental_6-3_w_8-2.sh](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Tools/experimental_6-3_w_8-2.sh) and execute following commands:
+  * Download this script [experimental_6-3_w_8-2.sh](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Tools/experimental_6-3_w_8-2.sh)(_right click and "Save As"_) and execute following commands:
 
    ```
    chmod +x experimental_6-3_w_8-2.sh
    ./experimental_6-3_w_8-2.sh
    ```
 
-  * [Failsafe] To restore old configration download this script [Restore_old_6.3.sh](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Tools/Restore_old_6.3.sh) and execute:
+  * **[Failsafe]** To restore old configration download this script [Restore_old_6.3.sh](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Tools/Restore_old_6.3.sh)(_right click and "Save As"_) and execute:
 
    ```
    chmod +x Restore_old_6.3.sh
