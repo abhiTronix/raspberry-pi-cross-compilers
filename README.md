@@ -91,7 +91,7 @@ You can easily download them from Sourceforge:(_Links Below_)
 
  ## Testing: (Post Linking)
  You can check Installed versions as below:
- * Native Compiler Temporary[if you don't followed step-6] (Raspberry pi):  
+ * Native Compiler Temporary[***if you DON'T followed step-6***] (Raspberry pi):  
    `arm-linux-gnueabihf-gcc-8.2.0 --version`
    
    `arm-linux-gnueabihf-g++-8.2.0 --version`
@@ -99,7 +99,7 @@ You can easily download them from Sourceforge:(_Links Below_)
    `arm-linux-gnueabihf-gfortran-8.2.0 --version`
 
 
- * Native Compiler Permanent[if you followed step-6] (Raspberry pi):  
+ * Native Compiler Permanent[***if you followed step-6***] (Raspberry pi):  
    `gcc --version`
    
    `g++ --version`
