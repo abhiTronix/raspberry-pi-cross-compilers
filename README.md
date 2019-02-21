@@ -58,7 +58,10 @@ You can easily download them from Sourceforge:(_Links Below_)
    sudo ln -s  /opt/<extracted folder-name e.g gcc-8.2.0>/arm-linux-gnueabihf/lib/libc.so  /opt/cross-pi-gcc-8.2.0/arm-linux-gnueabihf/lib/libc.so
    ```
    
- **6. Extra step If you want to completely replace previous `gcc-6.3.0` with latest `gcc-8.2.0`[Proceed with caution!]: (Native Compiler Only)**
+ **6. Extra step If you want to completely replace previous `gcc-6.3.0` with latest `gcc-8.2.0`: (Native Compiler Only)**
+ 
+ ***MADE FOR RASPBERRY-PI/RASPBIAN-OS ONLY, DO NOT RUN THIS SCRIPT ON ANY OTHER LINUX MACHINE/OS !*** 
+ 
   * Download this script [experimental_6-3_w_8-2.sh](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Tools/experimental_6-3_w_8-2.sh)(_right click and "Save As"_) and execute following commands:
 
    ```
@@ -83,7 +86,7 @@ You can easily download them from Sourceforge:(_Links Below_)
 
  ## Testing: (Post Linking)
  You can check Installed versions as below:
- * Native Compiler Temporary[***if you DON'T followed step-6***] (Raspberry pi):  
+ * Native Compiler[***if you DON'T followed step-6***] (Raspberry pi only):  
    `arm-linux-gnueabihf-gcc-8.2.0 --version`
    
    `arm-linux-gnueabihf-g++-8.2.0 --version`
@@ -91,7 +94,7 @@ You can easily download them from Sourceforge:(_Links Below_)
    `arm-linux-gnueabihf-gfortran-8.2.0 --version`
 
 
- * Native Compiler Permanent[***if you followed step-6***] (Raspberry pi):  
+ * Native Compiler[***if you followed step-6***] (Raspberry pi only):  
    `gcc --version`
    
    `g++ --version`
