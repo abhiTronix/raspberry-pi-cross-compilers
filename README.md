@@ -55,7 +55,6 @@ You can easily download them from Sourceforge:(_Links Below_)
 
    ```
    sudo ln -s  /opt/<extracted folder-name e.g gcc-8.2.0>/arm-linux-gnueabihf/lib/libpthread.so  /opt/cross-pi-gcc-8.2.0/arm-linux-gnueabihf/lib/libpthread.so
-   
    sudo ln -s  /opt/<extracted folder-name e.g gcc-8.2.0>/arm-linux-gnueabihf/lib/libc.so  /opt/cross-pi-gcc-8.2.0/arm-linux-gnueabihf/lib/libc.so
    ```
    
