@@ -60,7 +60,7 @@ You can easily download them from Sourceforge:(_Links Below_)
    
  **6. Extra step If you want to completely replace previous `gcc-6.3.0` with latest `gcc-8.2.0`: (Native Compiler Only)**
  
- ***MADE FOR RASPBERRY-PI/RASPBIAN-OS ONLY, DO NOT RUN THIS SCRIPT ON ANY OTHER LINUX MACHINE/OS !*** 
+ <p style='color:red'>MADE FOR RASPBERRY-PI/RASPBIAN-OS ONLY, DO NOT RUN THIS SCRIPT ON ANY OTHER LINUX MACHINE/OS !</p>
  
   * Download this script [experimental_6-3_w_8-2.sh](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Tools/experimental_6-3_w_8-2.sh)(_right click and "Save As"_) and execute following commands:
 
