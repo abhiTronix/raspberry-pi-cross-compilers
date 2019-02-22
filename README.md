@@ -61,7 +61,7 @@ You can easily download them from Sourceforge:(_Links Below_)
    
  **6. Extra step If you want to completely replace previous `gcc-6.3.0` with latest `gcc-8.2.0`: (Native Compiler Only)**
  
- <p style='color:red'>MADE FOR RASPBERRY-PI/RASPBIAN-OS ONLY, DO NOT RUN THIS SCRIPT ON ANY OTHER LINUX MACHINE/OS !</p>
+ <p style='color:yellow'>MADE FOR RASPBERRY-PI/RASPBIAN-OS ONLY, DO NOT RUN THIS SCRIPT ON ANY OTHER LINUX MACHINE/OS !</p>
  
   * Download this script [experimental_6-3_w_8-2.sh](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Tools/experimental_6-3_w_8-2.sh)(_right click and "Save As"_) and execute following commands:
 
@@ -69,6 +69,7 @@ You can easily download them from Sourceforge:(_Links Below_)
    chmod +x experimental_6-3_w_8-2.sh
    ./experimental_6-3_w_8-2.sh
    ```
+   To revert to old GCC-6.3.0 anytime, Do [this](https://github.com/abhiTronix/raspberry-pi-cross-compilers#important).
  
  **7. Extra step to use Cross-Compiler Binaries with Cmake: (Cross-Compiler Only)** 
 
