@@ -34,10 +34,11 @@ You can easily download them from Sourceforge:(_Links Below_)
 
 **3. Linking  (Native & Cross-Compiler):**
   * Move files to its correct location (ie `/opt`) using cmd: `sudo mv <extracted folder-name e.g gcc-8.2.0> /opt`
-  * Properly configure paths as below(Permanently by adding it to your `.bashrc`):  
-    `echo 'export PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/bin:$PATH' >> .bashrc`  
-    `echo 'export LD_LIBRARY_PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/lib:$LD_LIBRARY_PATH' >> .bashrc`  
-
+  * Properly configure paths as below(Permanently by adding it to your `.bashrc`): 
+  ```
+    echo 'export PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/bin:$PATH' >> .bashrc  
+    echo 'export LD_LIBRARY_PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/lib:$LD_LIBRARY_PATH' >> .bashrc  
+  ```
  **4. Manage Links as below:(Native Compiler Only)**  
    `source .bashrc`   
    `sudo ln -s /usr/include/arm-linux-gnueabihf/sys /usr/include/sys`   
