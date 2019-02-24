@@ -37,10 +37,11 @@ You can easily download them from Sourceforge:(_Links Below_)
   * Properly configure paths as below(Permanently by adding it to your `.bashrc`): 
   ```
     echo 'export PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/bin:$PATH' >> .bashrc  
-    echo 'export LD_LIBRARY_PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/lib:$LD_LIBRARY_PATH' >> .bashrc  
+    echo 'export LD_LIBRARY_PATH=/opt/<extracted folder-name e.g gcc-8.2.0>/lib:$LD_LIBRARY_PATH' >> .bashrc
+    source .bashrc
   ```
  **4. Manage Links as below:(Native Compiler Only)**  
-   `source .bashrc`   
+     
    `sudo ln -s /usr/include/arm-linux-gnueabihf/sys /usr/include/sys`   
    `sudo ln -s /usr/include/arm-linux-gnueabihf/bits /usr/include/bits`   
    `sudo ln -s /usr/include/arm-linux-gnueabihf/gnu /usr/include/gnu`   
