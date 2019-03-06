@@ -18,6 +18,10 @@ This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross &
 - All Raspberry Pi versions/models are currently supported. 
 - Any other ARM Devices with similar Hardware configurations, may also work.
 
+### Supported Environments:
+- Cross-Compiler: All Linux Distros (x32/x64) are currently supported.
+- Native-Compiler: All Raspberry Pi version/model with Raspbian OS is supported. Other OS may/maynot work.
+
 ## Binaries Description:
 ![](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Images/Binaries.png)
 
