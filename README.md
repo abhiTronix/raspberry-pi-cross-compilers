@@ -1,4 +1,4 @@
-# Latest Set of Precompiled GCC Cross & Native Compiler Binaries for Raspberry Pi - v2.5 (Stable-Release)
+# Latest Set of Precompiled GCC Cross & Native Compiler Binaries/Toolchains for Raspberry Pi - v2.5 (Stable-Release)
 
 ***Update 06 March, 2019: Major Native Compiler Fixes***
  
@@ -6,7 +6,7 @@
 [![GitHub](https://img.shields.io/badge/FileStatus-Available-green.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)   
   
 ## Summary:
-This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross & Native Compilers Binaries**, saving your tons of time(*No compiling or Error Handling needed whatsoever*). Just Extract, Link & Enjoy complete GCC(*Raspberry Pi*) functionality in your Machine. You can use its native compilers for Raspberry Pi(*Can be used along with old & slow 6.3.0 GCC*), Or use the Cross-Compiler in any Linux Machine(*Tested on Latest Ubuntu/bionic x64*) to compile programs for your Raspberry Pi. All these compilers binaries are Raspberry Pi hardware optimized for enhanced overall performance.
+This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross & Native Compilers Binaries/Toolchains**, saving your tons of time(*No compiling or Error Handling needed whatsoever*). Just Extract, Link & Enjoy complete GCC(*Raspberry Pi*) functionality in your Machine. You can use its native compilers for Raspberry Pi(*Can be used along with old & slow 6.3.0 GCC*), Or use the Cross-Compiler in any Linux Machine(*Tested on Latest Ubuntu/bionic x64*) to compile programs for your Raspberry Pi. All these compilers binaries are Raspberry Pi hardware optimized for enhanced overall performance.
 
 ### Supported GCC Versions:
 - GCC 6.3.0
