@@ -14,7 +14,7 @@ This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross &
 - GCC 8.2.0
 - GCC 8.3.0
 
-### Supported Hardwares:
+### Supported Raspberry Pis:
 - All Raspberry Pi versions/models are currently supported. 
 - Any other ARM Devices with similar Hardware configurations, may also work.
 
