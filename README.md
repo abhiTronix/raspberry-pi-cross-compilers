@@ -6,7 +6,7 @@
 [![GitHub](https://img.shields.io/badge/FileStatus-Available-green.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)   
   
 ## Summary:
-This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross & Native Compilers Binaries/Toolchains**, saving your tons of time(*No compiling or Error Handling needed whatsoever*). Just Extract, Link & Enjoy complete GCC(*Raspberry Pi*) functionality in your Machine. You can use its native compilers for Raspberry Pi(*Can be used along with old & slow 6.3.0 GCC*), Or use the Cross-Compiler in any Linux Machine(*Tested on Latest Ubuntu/bionic x64*) to compile programs for your Raspberry Pi. All these compilers binaries are Raspberry Pi hardware optimized for enhanced overall performance.
+This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross & Native Compilers Binaries/Toolchains**, saving your tons of time(*No compiling or Error Handling needed whatsoever*). Just Extract, Link & Enjoy complete GCC(*Raspberry Pi*) functionality in your Machine. You can use its native compilers for Raspberry Pi(*Can be used along with old & slow 6.3.0 GCC*), Or use the Cross-Compiler in any Linux Machine(*Tested on Latest Ubuntu/bionic x64*) to compile programs for your Raspberry Pi. All these compilers binaries are Raspberry Pi hardware optimized for enhanced overall performance. 
 
 ### Supported GCC Versions:
 - GCC 6.3.0
@@ -124,7 +124,7 @@ You can donate money to the project through given PayPal account. There is no mi
 - C++17 support (Default Raspberry pi GCC 6.3.0 lacks it) and Other [Major Changes](https://www.gnu.org/software/gcc/gcc-8/changes.html)
 - Fastest inbuilt optimization flags(Raspberry optimized GCC)
 - Ridiculously low installation time(few mins)
-
+- Best Cross-Compiler Cmake Compatibility
 
 ## Contributing and licenses:
 The original compiled GCC files source is licensed under the [GNU v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) license. However, This Project is licensed under the [Apache 2.0](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/LICENSE) license.
