@@ -23,7 +23,6 @@ This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross &
 
 ### Available Binaries Reference Tree:
 ```
-
 Raspberry Pi GCC Cross & Native Compilers
 ├── Raspberry Pi GCC Cross-Compilers
 │   ├── GCC 6.3.0
@@ -78,7 +77,6 @@ Raspberry Pi GCC Cross & Native Compilers
             └── native-gcc-8.3.0-pi_3+.tar.gz
 
 30 directories, 21 files
-
 
 ```
 
