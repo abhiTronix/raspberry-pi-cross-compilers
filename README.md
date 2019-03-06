@@ -19,7 +19,7 @@ This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross &
 - Any other ARM Devices with similar Hardware configurations, may also work.
 
 ## Binaries Description:
-![]()
+![](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Images/Binaries.png)
 
 ### Available Binaries Reference Tree:
 ```
@@ -112,15 +112,9 @@ Compressed Precompiled Binary Files are available. You can easily download them 
 
 If this project help you reduce time to develop, you can give me a cup of coffee :)
 
-
 You can donate money to the project through given PayPal account. There is no minimal amount for your donation.
 
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick" />
-<input type="hidden" name="hosted_button_id" value="S5A54TFCVBSTQ" />
-<input type="image" src="https://static1.squarespace.com/static/52658c2fe4b0b063c472d9e6/t/5be1e4c4cd8366bcec4619d4/1544462643232/Donate-Box_goodwill.png" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-<img alt="" border="0" src="https://www.paypal.com/en_IN/i/scr/pixel.gif" width="1" height="1" />
-</form>
+[Donate with PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S5A54TFCVBSTQ&source=url)
 
 
 ## Advantages:
