@@ -112,13 +112,11 @@ Compressed Precompiled Binary Files are available. You can easily download them 
 
 ---
 
-## Support This Project:
+## Support This Project :heart: :
 
 If this project help you reduce time to develop, you can give me a cup of coffee :)
 
-You can donate money to the project through given PayPal account. There is no minimal amount for your donation.
-
-[**Donate with PayPal**](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S5A54TFCVBSTQ&source=url)
+[**Donate with PayPal**](https://paypal.me/AbhiTronix?locale.x=en_GB) :blush:
 
 ---
 
