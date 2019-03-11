@@ -102,6 +102,8 @@ Compressed Precompiled Binary Files are available. You can easily download them 
 
 ## Extracting & Linking & Testing: (Read & Execute Carefully)
 
+### **TO AVOID UNDESIRED ERRORS & COMPATIBITY ISSUES, STRICTLY FOLLOW THE STEPS GIVEN BELOW!** 
+
 - [For Native Compilers](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Native-Compiler:-Linking-&-Testing-Instructions)
 
 - [For Cross Compilers](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Cross-Compiler:-Linking-&-Testing-Instructions)
