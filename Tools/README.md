@@ -1,4 +1,6 @@
-# Experimental Scripts Version - 0.1 [Not Supported]
+# Experimental Scripts Version - 0.1 [Deprecated in v2.5]
+
+### THESE SCRIPTS ARE CURRENTLY NOT SUPPORTED AND PLEASE REFRAIN FROM USING THEM!
 
 ### Scripts Description:
 
