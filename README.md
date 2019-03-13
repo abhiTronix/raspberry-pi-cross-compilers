@@ -18,6 +18,15 @@ This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross &
 - All Raspberry Pi versions/models are currently supported. 
 - Any other ARM Devices with similar Hardware configurations, may also work.
 
+### Optimation Flags Involved:
+These gcc compilers can optimize code by taking advantage of CPU specific features. 
+
+|Board|Optimation Flags|
+|---|---|
+|Raspberry Pi - **Zero/ Zero W/ Zero WH & 1 Model A/B/A+/B+**|`-march=armv6 -mfloat-abi=hard -mfpu=vfp`|
+|Raspberry Pi - **2&3 Model A/B**|`-march=armv7-a -mfloat-abi=hard -mfpu=neon-vfpv4`|
+|Raspberry Pi - **3 Model A+/B+**|`-march=armv8-a -mfloat-abi=hard -mfpu=neon-fp-armv8`|
+
 ### Supported Environments:
 - Cross-Compiler: All Linux Distros (x32/x64) are currently supported.
 - Native-Compiler: All Raspberry Pi version/model with Raspbian OS is supported. Other OS may/maynot work.
