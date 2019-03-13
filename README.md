@@ -126,7 +126,7 @@ If this project help you reduce time to develop, you can give me a cup of coffee
 ## Advantages:
 - Fully Raspberry Pi Optimized and Improved Performance [Benchmarking Result](https://www.phoronix.com/scan.php?page=article&item=gcc-81-benchmarks&num=1)
 - C++17 support (Default Raspberry pi GCC 6.3.0 lacks it) and Other [Major Changes](https://www.gnu.org/software/gcc/gcc-8/changes.html)
-- Fastest inbuilt optimization flags(Raspberry optimized GCC)
+- Fastest inbuilt **LTO-Link-Time-Optimizations**(*Raspberry pi hardware optimized GCC*)
 - Ridiculously low installation time(few mins)
 - Best Cross-Compiler Cmake Compatibility
 
