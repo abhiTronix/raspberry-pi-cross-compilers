@@ -28,8 +28,8 @@ These gcc compilers can optimize code by taking advantage of CPU specific featur
 |Raspberry Pi - **3 Model A+/B+**|`-march=armv8-a -mfloat-abi=hard -mfpu=neon-fp-armv8`|
 
 ### Supported Environments:
-- Cross-Compiler: All Linux Distros (x32/x64) are currently supported.
-- Native-Compiler: All Raspberry Pi version/model with Raspbian OS is supported. Other OS may/maynot work.
+- **Cross-Compiler:** All Linux Distros (x32/x64) are currently supported.
+- **Native-Compiler:** All Raspberry Pi version/model with Raspbian OS is supported. Other OS may/maynot work.
 
 ## Binaries Description:
 ![](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Images/Binaries.png)
