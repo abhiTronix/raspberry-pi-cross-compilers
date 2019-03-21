@@ -2,7 +2,7 @@
 
 ***Update 06 March, 2019: Bump to Version 8.3.0 and Major enhancements including separately optimized binaries for all Raspberry Pi Models.***
  
-[![GitHub](https://img.shields.io/badge/Platform-Raspberry%20Pi%202%2F3%20%7C%20Linux%20(x32%2Fx64)-yellow.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
+[![GitHub](https://img.shields.io/badge/Environments-Raspberry%20Pi%20%7C%20Linux%20(x32%2Fx64)-yellow.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)  
 [![GitHub](https://img.shields.io/badge/FileStatus-Available-green.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)   
   
 ## Summary:
@@ -16,7 +16,7 @@ This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross &
 
 ### Supported Raspberry Pis:
 - All Raspberry Pi versions/models are currently supported. 
-- Any other ARM Devices with similar Hardware configurations, may also work.
+- Any other ARM Devices with similar Hardware configurations may also work.
 
 ### Optimation Flags Involved:
 These gcc compilers can optimize code by taking advantage of CPU specific features. 
