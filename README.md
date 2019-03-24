@@ -36,7 +36,7 @@ These gcc compilers can optimize code by taking advantage of CPU specific featur
 ![](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/Images/Binaries.png)
 
 ### Available Binaries Reference Tree:
-```
+```shell
 Raspberry Pi GCC Cross & Native Compilers
 ├── Raspberry Pi GCC Cross-Compilers
 │   ├── GCC 6.3.0
