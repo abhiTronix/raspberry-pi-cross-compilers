@@ -1,8 +1,8 @@
-# ARM/Raspberry-Pi Cross & Native Compilers
+<h1 align="center"><img alt="Main Logo" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/CCNC.png"></h1>
 
-### Latest Set of Precompiled GCC Cross & Native Compiler Binaries/Toolchains for Raspberry Pi - v2.5 (Stable-Release) 
+<h3 align="center">Latest Set of Precompiled GCC Cross & Native Compiler Binaries/Toolchains for Raspberry Pi</h3> 
 
-**Update 06 March 2019:** ***Bump to Version 8.3.0 and Major enhancements including separately optimized binaries for all Raspberry Pi Models.***
+**Update 06 March 2019[v2.5 (Stable-Release)]:** ***Bump to Version 8.3.0 and Major enhancements including separately optimized binaries for all Raspberry Pi Models.***
 
 [![GitHub](https://img.shields.io/badge/FileStatus-Available-green.svg?style=for-the-badge)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)
   
@@ -101,16 +101,9 @@ Raspberry Pi GCC Cross & Native Compilers
 - C
 - Ask for other Language support.
 
-
-## Binaries Download:
-[![Download Raspberry-pi-cross-compilers](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/)
-
-Compressed Precompiled Binary Files are available. You can easily download them from Sourceforge:(_Links Below_)  
-### Files https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/  
-
 ---
 
-# Extracting & Linking & Testing: (Read & Execute Carefully)
+## Extracting & Linking & Testing: (Read & Execute Carefully)
 
 ### **TO AVOID UNDESIRED ERRORS & COMPATIBITY ISSUES, STRICTLY FOLLOW THE STEPS GIVEN BELOW:** 
 
@@ -121,6 +114,14 @@ Compressed Precompiled Binary Files are available. You can easily download them 
 **That's it, Enjoy ;)**  
 
 ***Don't forget to Share, drop a :star:***
+
+---
+## Binaries Download:
+
+### Compressed Precompiled Binary Files are available. You can easily download them from **Sourceforge**: 
+<h3 align=center href=https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/><img alt="Download Raspberry-pi-cross-compilers" src="https://a.fsdn.com/con/app/sf-download-button"></h3>
+
+### Files https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/  
 
 ---
 
