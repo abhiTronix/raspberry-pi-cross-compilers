@@ -33,7 +33,6 @@ This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross &
 - C
 - Ask for other Language support.
 
----
 
 ## Extracting & Linking & Testing: (Read & Execute Carefully)
 
@@ -44,8 +43,6 @@ This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross &
 - [For Cross Compilers](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Cross-Compiler:-Linking-&-Testing-Instructions)
 
 ***Don't forget to Share, drop a :star:***
-
----
 
 ## Binaries Download:
 
@@ -127,9 +124,9 @@ These gcc compilers can optimize code by taking advantage of CPU specific featur
 
 ### Support This Project :heart: :
 
-If this project help you reduce time to develop, you can give me a cup of coffee :)
+If this project help you reduce time to develop, you can donate me a cup of coffee :)
 
-[**Donate with PayPal**](https://paypal.me/AbhiTronix?locale.x=en_GB) :blush:
+[**Donate here**](https://paypal.me/AbhiTronix?locale.x=en_GB)
 
 
 ### Contributing and licenses:
