@@ -3,8 +3,13 @@
 <img alt="Main Logo" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/CCNC.png">
 
 <a href="https://sourceforge.net/p/raspberry-pi-cross-compilers/"><img alt="Download Raspberry Pi GCC Cross & Native Compiler" src="https://sourceforge.net/sflogo.php?type=17&group_id=3021982" width=200></a> [![Download Raspberry Pi GCC Cross & Native Compiler](https://img.shields.io/sourceforge/dm/raspberry-pi-cross-compilers.svg)](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/latest/download) 
+
+&nbsp; 
+
 ## Summary:
 This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross & Native Compilers Binaries/Toolchains**, saving your tons of time(*No compiling or Error Handling needed whatsoever*). Just Extract, Link & Enjoy complete GCC(*Raspberry Pi*) functionality in your Machine. You can use its native compilers for Raspberry Pi(*Can be used along with old & slow 6.3.0 GCC*), Or use the Cross-Compiler in any Linux Machine(*Tested on Latest Ubuntu/bionic x64*) to compile programs for your Raspberry Pi. All these compilers binaries are Raspberry Pi hardware optimized for enhanced overall performance. 
+
+&nbsp; 
 
 ### Features:
 - Fully Raspberry Pi Optimized and Improved Performance [Benchmarking Result](https://www.phoronix.com/scan.php?page=article&item=gcc-81-benchmarks&num=1)
@@ -12,6 +17,8 @@ This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross &
 - Fastest inbuilt **LTO-Link-Time-Optimizations**(*Raspberry pi hardware optimized GCC*)
 - Ridiculously low installation time(few mins)
 - Best Cross-Compiler Cmake Compatibility
+
+&nbsp; 
 
 ### Supported GCC Versions:
 - GCC 6.3.0
@@ -33,6 +40,7 @@ This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross &
 - C
 - Ask for other Language support.
 
+&nbsp; 
 
 ## Extracting & Linking & Testing: (Read & Execute Carefully)
 
@@ -43,6 +51,8 @@ This project contains the UpToDate set of **Precompiled Raspberry pi GCC Cross &
 - [For Cross Compilers](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Cross-Compiler:-Linking-&-Testing-Instructions)
 
 ***Don't forget to Share, drop a :star:***
+
+&nbsp; 
 
 ## Binaries Download:
 
@@ -113,6 +123,8 @@ Raspberry Pi GCC Cross & Native Compilers
 ```
 ---
 
+&nbsp; 
+
 ### Optimation Flags Involved:
 These gcc compilers can optimize code by taking advantage of CPU specific features. 
 
@@ -122,11 +134,15 @@ These gcc compilers can optimize code by taking advantage of CPU specific featur
 |Raspberry Pi - **2&3 Model A/B**|`-march=armv7-a -mfloat-abi=hard -mfpu=neon-vfpv4`|
 |Raspberry Pi - **3 Model A+/B+**|`-march=armv8-a -mfloat-abi=hard -mfpu=neon-fp-armv8`|
 
+&nbsp; 
+
 ### Support This Project :heart: :
 
 If this project help you reduce time to develop, you can donate me a cup of coffee :)
 
 [**Donate here**](https://paypal.me/AbhiTronix?locale.x=en_GB)
+
+&nbsp; 
 
 
 ### Contributing and licenses:
