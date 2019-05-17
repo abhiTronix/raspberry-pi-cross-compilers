@@ -41,11 +41,13 @@
 <h3 align=center><a href="https://sourceforge.net/projects/raspberry-pi-cross-compilers/files">
 <img alt="Download Raspberry-pi-cross-compilers" src="https://a.fsdn.com/con/app/sf-download-button" height="40%"/></a></h3>
 
+<h3><img src="http://www.animatedimages.org/data/media/81/animated-hand-image-0021.gif" width="25" height="20"/> To get an idea of each Toolchain Compiler Binaries, you can check out <a href = https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree>this reference tree</a></h3>
+
 
 &nbsp;
 
 
-## Toolchain Installation <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/configure.gif" height="7%"/>
+## Toolchain Installation <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/configure.gif" width="5%"/>
 
 <h3><img src="http://www.animatedimages.org/data/media/81/animated-hand-image-0021.gif" width="25" height="20"/> You can find Complete Installation, Testing and Other Useful Instructions in <a href = https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki>WIKI-SECTION</a></h3>
 
