@@ -23,11 +23,11 @@
 - *Separate binaries and [flags](https://github.com/abhiTronix/raspberry-pi-cross-compilers/tree/dev#supported-optimization-flags) for each Raspberry Pi Model(including Compute Module)*
 - *Ridiculously low installation time(few mins)*
 - *Latest [GCC 9.1.0](https://gcc.gnu.org/gcc-9/) binary available*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
-- *Support for both 32-Bit(Arm) & 64-Bit(Aarch64) Raspberry Pi OS flavors*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
+- *Exclusive **AArch64** Binaries for Raspberry Pi 64-Bit OS flavors*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 - *Inbuilt [latest GDB Debugger](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) for Cross Compilers*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 - *Best Cross-Compiler CMAKE Compatibility*
-- *OpenMP 5, C++2A, C2X, C++17 standard support (Default Raspberry pi GCC 6.3.0 lacks it) and other [latest changes](https://www.phoronix.com/scan.php?page=news_item&px=GCC-9.1-Compiler-Released)*
-- *Improved Performance [Benchmarks](https://www.phoronix.com/scan.php?page=article&item=gcc9-eoy-2018&num=1)*
+- *OpenMP 5, C++2A, C2X, C++17 standard support (Default Raspberry pi GCC 6.3.0 lacks it) and other [latest changes](https://www.phoronix.com/scan.php?page=news_item&px=GCC-9.1-Compiler-Released)* <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
+- *Improved Performance [Benchmarks](https://www.phoronix.com/scan.php?page=article&item=gcc9-eoy-2018&num=1)* <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 
 &nbsp;
 
@@ -44,9 +44,9 @@
 &nbsp;
 
 
-## Toolchain Installation <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/configure.gif" height="10%"/>
+## Toolchain Installation <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/configure.gif" height="7%"/>
 
-<h3><img src="http://www.animatedimages.org/data/media/81/animated-hand-image-0021.gif" width="25" height="20"/> To Avoid Undesired Errors & Compatibility Issues, Strictly Follow The Steps Given here in <a href = https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki>WIKI-SECTION</a></h3>
+<h3><img src="http://www.animatedimages.org/data/media/81/animated-hand-image-0021.gif" width="25" height="20"/> You can find Complete Installation, Testing and Other Useful Instructions in <a href = https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki>WIKI-SECTION</a></h3>
 
 &nbsp; 
 
