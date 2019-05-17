@@ -24,7 +24,7 @@
 - *Ridiculously low installation time(few mins)*
 - *Latest [GCC 9.1.0](https://gcc.gnu.org/gcc-9/) binary available*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 - *Support for both 32-Bit(Arm) & 64-Bit(Aarch64) Raspberry Pi OS flavors*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
-- *Inbuilt latest GDB Debugger*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
+- *Inbuilt [latest GDB Debugger](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) for Cross Compilers*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 - *Best Cross-Compiler CMAKE Compatibility*
 - *OpenMP 5, C++2A, C2X, C++17 standard support (Default Raspberry pi GCC 6.3.0 lacks it) and other [latest changes](https://www.phoronix.com/scan.php?page=news_item&px=GCC-9.1-Compiler-Released)*
 - *Improved Performance [Benchmarks](https://www.phoronix.com/scan.php?page=article&item=gcc9-eoy-2018&num=1)*
