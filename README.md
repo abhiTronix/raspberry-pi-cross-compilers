@@ -9,7 +9,7 @@
 </td></tr></table>
 
 * This project contains **UpToDate PreBuilt Raspberry pi optimized GCC Cross & Native Compilers Standalone Toolchains** that can save you tons of time and energy(*no compiling and error handling required whatsoever*) & thereby helps you get quickly started with Pi development.
-* Enjoy latest GCC complete functionality on your Raspberry Pi machine in just three easy steps - [**Download, Extract and Link**](https://github.com/abhiTronix/raspberry-pi-cross-compilers/tree/dev#toolchain-configuration-and-documentation). Ideal for immediate use by developers. 
+* Enjoy latest GCC complete functionality on your Raspberry Pi machine in just three easy steps - [**Download, Extract and Link**](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki#a-toolchains-installation-instructions-). Ideal for immediate use by developers. 
 * Available Raspberry Pi GCC compilers binaries are as follows:
   * **Native GCC Compilers:** can be used with any Raspberry Pi OS flavors(*32-bit/64-bit*). It can be use beside old default Raspbian GCC 6.3.0 that lacks some major features(*such as C++17 support*).
   * **Cross GCC Compilers:** can be used with any Linux Distributions(*32-bit/64-bit*) for cross-compiling programs for your Raspberry Pi machine. 
@@ -22,7 +22,7 @@
 - *Raspberry pi hardware optimized GCC standalone ARM Binaries*
 - *Separate binaries and [flags](https://github.com/abhiTronix/raspberry-pi-cross-compilers/tree/dev#supported-optimization-flags) for each Raspberry Pi Model(including Compute Module)*
 - *Ridiculously low installation time(few mins)*
-- *Latest [GCC 9.1.0](https://gcc.gnu.org/gcc-9/) binary available*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
+- *Latest [**GCC 9.1.0**](https://gcc.gnu.org/gcc-9/) binary available*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 - *Exclusive **AArch64** Binaries for Raspberry Pi 64-Bit OS flavors*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 - *Inbuilt [latest GDB Debugger](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) for Cross Compilers*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 - *Best Cross-Compiler CMAKE Compatibility*
@@ -52,7 +52,7 @@
 
 ## Support This Project :smiley:
 
-* *If this project help you reduce time to develop, could  you please donate me a cup of coffee? [**Donate me with Paypal**](https://paypal.me/AbhiTronix?locale.x=en_GB)*
+* *If this project help you reduce time to develop, could you please donate me a cup of coffee? [**Donate me with Paypal**](https://paypal.me/AbhiTronix?locale.x=en_GB)*
 * *Or just [**say thanks**](https://saythanks.io/to/abhiTronix)!*
 * *Also, don't forget to share a [**Review**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) & drop a :star:*
 
