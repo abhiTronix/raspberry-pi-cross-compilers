@@ -9,7 +9,7 @@
 </td></tr></table>
 
 * This project contains **UpToDate PreBuilt Raspberry pi optimized GCC Cross & Native Compilers Standalone Toolchains** that can save you tons of time and energy(*no compiling and error handling required whatsoever*) & thereby helps you get quickly started with Pi development.
-* Enjoy latest GCC complete functionality on your Raspberry Pi machine in just three easy steps - [**Download, Extract and Link**](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/dev/README.md#toolchain-installation-extracting--linking--testing-). Ideal for immediate use by developers. 
+* Enjoy latest GCC complete functionality on your Raspberry Pi machine in just three easy steps - [**Download, Extract and Link**](https://github.com/abhiTronix/raspberry-pi-cross-compilers#toolchain-installation-extracting--linking--testing-). Ideal for immediate use by developers. 
 * Available Raspberry Pi GCC compilers binaries are as follows:
   * **Native GCC Compilers:** can be used with any Raspberry Pi OS flavors(*32-bit/64-bit*). It can be use beside old default Raspbian GCC 6.3.0 that lacks some major features(*such as C++17 support*).
   * **Cross GCC Compilers:** can be used with any Linux Distributions(*32-bit/64-bit*) for cross-compiling programs for your Raspberry Pi machine. 
