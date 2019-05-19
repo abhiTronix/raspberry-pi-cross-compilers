@@ -56,9 +56,9 @@
 
 ## Support This Project :smiley:
 
-* *If this project help you reduce time to develop, could you please donate me a cup of coffee? [**Donate me with Paypal**](https://paypal.me/AbhiTronix?locale.x=en_GB)*
-* *Or just [**say thanks**](https://saythanks.io/to/abhiTronix)!*
-* *Also, don't forget to share a [**Review**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) & drop a :star:*
+* If this project helped you big time, show some support here: [**Donate with Paypal**](https://paypal.me/AbhiTronix?locale.x=en_GB)
+* Or you could [**say thanks**](https://saythanks.io/to/abhiTronix)!
+* Also, don't forget to share your [**views**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) & drop a :star:
 
 &nbsp; 
 
