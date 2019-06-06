@@ -61,9 +61,9 @@
 
 ## Support This Project :smiley:
 
-* If this project helped you big time, show some support here: [**Donate with Paypal**](https://paypal.me/AbhiTronix?locale.x=en_GB)
-* Or you could [**say thanks**](https://saythanks.io/to/abhiTronix)!
-* Also, don't forget to share your [**views**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) & drop a :star:
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W8WTYO)
+
+_Also, don't forget to share your [**views**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) & drop a :star:_
 
 &nbsp; 
 
