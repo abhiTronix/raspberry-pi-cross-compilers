@@ -11,13 +11,13 @@
 * This project contains **UpToDate PreBuilt Raspberry pi optimized GCC Cross & Native Compilers Toolchains** that can save you tons of time and energy(*no compiling and error handling required whatsoever*) & thereby helps you get quickly started with Pi development.
 * **Enjoy latest GCC complete functionality on your Raspberry Pi machine in just three easy steps - [Download, Extract and Link](https://github.com/abhiTronix/raspberry-pi-cross-compilers#toolchain-installation-extracting--linking--testing-).** Ideal for immediate use by developers.
 
-* This repository provides **Free-Standing Standalone Cross-Compiler Toolchains** that gives a common setup for everyone, the same standardized headers with **no hardcoded paths**, and therefore same solutions for everyone.
+* This repository provides a similar standardized headers **Hardcoded paths Free Standalone Compiler Toolchains (Both Native & Cross)**, and therefore same solutions for everyone.
 
 * Available Raspberry Pi GCC compilers binaries are as follows:
   * **Native GCC Compilers:** can be used with any Raspberry Pi OS flavors(*32-bit/64-bit*). It can be use beside old default Raspbian GCC 6.3.0 that lacks some major features(*such as C++17 support*).
   * **Cross GCC Compilers:** can be used with any Linux Distributions(*32-bit/64-bit*) for cross-compiling programs for your Raspberry Pi machine. 
   
-* **ARM64 (*aka AArch64*)** is a popular platform that is currently experiencing growth in developer mind-share. This project now provides exclusive [64-bit ARM64 Raspberry Pi GCC Toolchains](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki#bonus-64-bit-arm64-gcc-compilers-toolchains).
+* The **ARM64 (*aka AArch64*)** is a popular platform that is currently experiencing growth in developer mind-share. This project now provides exclusive [64-bit ARM64 Raspberry Pi GCC Toolchains](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki#bonus-64-bit-arm64-gcc-compilers-toolchains).
 * All these compilers binaries are Raspberry Pi hardware-optimized that enhances overall performance. 
 
 &nbsp; 
@@ -25,13 +25,13 @@
 ## Features
 #### What makes these Raspberry Pi GCC Toolchains special?
 - *Raspberry pi hardware-optimized GCC Standalone ARM Binaries*
-- *Hardcoded paths free Cross-Compiler, just use directly* <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
+- *Hardcoded paths free Cross & Native Compilers, just use directly* <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 - *Separate binaries for each Raspberry Pi Model(including Compute modules)*
 - *Ridiculously low installation time(few mins)*
-- *Tar Compressed*
+- *Small-Sized Tar Compressed binaries with maximum possible compression level*
 - *Latest [**GCC 9.1.0**](https://gcc.gnu.org/gcc-9/) binary available*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 - *Exclusive **AArch64/ARM64** Binaries for Raspberry Pi 64-Bit OS flavors*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
-- *Inbuilt [latest GDB Debugger](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) for Cross Compilers*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
+- *Inbuilt [latest GDB Debugger](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) for both Cross & Native Compilers*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 - *Excellent Cross-Compiler CMAKE Compatibility*
 - *Link-time-optimization (LTO) enabled*
 - *OpenMP 5, C++2A, C2X, C++17 standard support (Default Raspberry pi GCC 6.3.0 lacks it) and other [latest changes](https://www.phoronix.com/scan.php?page=news_item&px=GCC-9.1-Compiler-Released)* <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
