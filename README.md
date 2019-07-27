@@ -41,7 +41,7 @@
 
 ## Toolchain Installation (Extracting & Linking & Testing) <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/configure.gif" width="5%"/> 
 
-### :point_right: You can find Complete Installation, Testing and Other Useful Instructions in <a href = https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki>WIKI-SECTION</a></h3> Guide.
+### [:point_right: Wiki-Documentation (en-english)](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki)
 
 &nbsp; 
 
@@ -55,7 +55,7 @@
 <h3 align=center><a href="https://sourceforge.net/projects/raspberry-pi-cross-compilers/files">
 <img alt="Download Raspberry-pi-cross-compilers" src="https://a.fsdn.com/con/app/sf-download-button" height="40%"/></a></h3>
 
-<h3><img src="http://www.animatedimages.org/data/media/81/animated-hand-image-0021.gif" width="25" height="20"/> To get an idea/location of each Toolchain Compiler Binary, you can also check out <a href = https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree>this Reference Tree</a></h3>
+***To get an idea/location of each Toolchain Compiler Binary, you can also check out <a href = https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree>this Reference Tree</a>***
 
 
 &nbsp;
@@ -64,7 +64,7 @@
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W8WTYO)
 
-_Also, don't forget to share your [**views**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) & drop a :star:_
+***Also, don't forget to share your [**views**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) & drop a :star:***
 
 &nbsp; 
 
@@ -81,7 +81,7 @@ _Also, don't forget to share your [**views**](https://sourceforge.net/projects/r
 
 ### Supported ARM devuces:
 - All Raspberry Pi hardware/versions/models are currently supported. 
-- Any other ARM Device(such as android, iot) with similar Hardware architecture(see [Optimization Flags](#supported-optimization-flags)) should also work.
+- Any other ARM Device(such as android, iot) with similar Hardware architecture(see [Optimization Flags](#optimization-flags-involved)) should also work.
 
 ### Supported Languages(full functionality):
 - C++
@@ -103,7 +103,7 @@ These GCC toolchains can optimize code by taking advantage of your CPU specific 
 
 ## Contributing
 
-You are welcome to contribute with *[suggestions, feature requests](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues).*
+You are welcome to contribute with *[bug reports, suggestions and additional feature requests](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues).*
 
 
 ### License
