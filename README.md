@@ -26,7 +26,7 @@
 #### What makes these Raspberry Pi GCC Toolchains special?
 - *Raspberry pi hardware-optimized GCC Standalone ARM Binaries*
 - *Hardcoded paths free Cross & Native Compilers, just use directly* <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
-- *Separate binaries for each Raspberry Pi Model(including Compute modules and [Raspberry Pi 4]())*
+- *Separate binaries for each Raspberry Pi Model(including latest Compute modules and [Raspberry Pi 4](#optimization-flags-involved))*
 - *Ridiculously low installation time(few mins)*
 - *Small-Sized Tar Compressed binaries with maximum possible compression level*
 - *Latest [**GCC 9.1.0**](https://gcc.gnu.org/gcc-9/) binary available*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
