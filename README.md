@@ -26,7 +26,7 @@
 #### What makes these Raspberry Pi GCC Toolchains special?
 - *Raspberry pi hardware-optimized GCC Standalone ARM Binaries*
 - *Hardcoded paths free Cross & Native Compilers, just use directly* <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
-- *Separate binaries for each Raspberry Pi Model(including Compute modules)*
+- *Separate binaries for each Raspberry Pi Model(including Compute modules and [Raspberry Pi 4]())*
 - *Ridiculously low installation time(few mins)*
 - *Small-Sized Tar Compressed binaries with maximum possible compression level*
 - *Latest [**GCC 9.1.0**](https://gcc.gnu.org/gcc-9/) binary available*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
@@ -79,7 +79,7 @@
   * GCC 8.3.0
   * GCC 9.1.0 <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
 
-### Supported ARM devuces:
+### Supported ARM Devices:
 - All Raspberry Pi hardware/versions/models are currently supported. 
 - Any other ARM Device(such as android, iot) with similar Hardware architecture(see [Optimization Flags](#optimization-flags-involved)) should also work.
 
@@ -92,12 +92,14 @@
 ### Optimization Flags Involved:
 These GCC toolchains can optimize code by taking advantage of your CPU specific features with these LTO flags:
 
+**Important Note: :bulb: The latest Raspberry Pi 4 also have armv8-a architecture similiar to Raspberry Pi 3B+, therefore it is also officially supported!**
+
 |Board|Optimation Flags|
 |---|---|
 |Raspberry Pi - **Zero/W/WH & 1 Model A/B/A+/B+**|`-march=armv6 -mfloat-abi=hard -mfpu=vfp`|
 |Raspberry Pi - **2&3 Model A/B**|`-march=armv7-a -mfloat-abi=hard -mfpu=neon-vfpv4`|
-|Raspberry Pi - **3 Model A+/B+ & Compute 3/3-lite/3+(32-Bit)**|`-march=armv8-a -mfloat-abi=hard -mfpu=neon-fp-armv8`|
-|Raspberry Pi - **3 Model A+/B+ & Compute 3/3-lite/3+(64-Bit)**|`-march=armv8-a+fp+simd`|
+|Raspberry Pi - **3/4 Model A+/B+ & Compute 3/3-lite/3+(32-Bit)**|`-march=armv8-a -mfloat-abi=hard -mfpu=neon-fp-armv8`|
+|Raspberry Pi - **3/4 Model A+/B+ & Compute 3/3-lite/3+(64-Bit)**|`-march=armv8-a+fp+simd`|
 
 &nbsp; 
 
