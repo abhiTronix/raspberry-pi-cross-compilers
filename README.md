@@ -90,7 +90,7 @@ Here's a reference table for various available Toolchains in this project target
 | **Native Compiler Toolchains** | Raspbian Stretch OS (Debian Version 9) only | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 8.3.0, 9.1.0, 9.2.0 |
 | **64-bit Cross-Compiler Toolchains** | any x64/x86 Linux machine | any x64 Raspberry Pi OS(like Pi64) | Stable/Production | 6.3.0, 8.3.0, 9.1.0, 9.2.0 |
 | **64-bit Native-Compiler Toolchains** | any x64 Raspberry Pi OS(like Pi64) | any x64 Raspbian OS(like Pi64) | Stable/Production | 8.3.0, 9.1.0, 9.2.0 |
-| **Exclusive Toolchains  (Cross-Compiler)** |  any x64/x86 Linux machine | Raspbian Stretch OS (Debian Version 10) only | Beta/Testing/Experimental | 8.3.0 |  
+| **Exclusive Toolchains  (Cross-Compiler)** |  any x64/x86 Linux machine | Raspbian Buster OS (Debian Version 10) only | Beta/Testing/Experimental | 8.3.0 |  
 | **Obsolete Compiler Toolchains** | Not supported | Not supported | No longer supported | 7.4.0, 8.2.0 |
 
 
