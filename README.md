@@ -138,8 +138,9 @@ The toolchains setup require just three easy steps - **Downloading, Extracting a
 
 
 ## Support this Project
+***If these binaries helped you big time, please consider supporting it through any size donations. Thank you :heart:.***
 
-If this repository helped you big time, please consider supporting it. Thank you.
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S5A54TFCVBSTQ)
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W8WTYO)
 
