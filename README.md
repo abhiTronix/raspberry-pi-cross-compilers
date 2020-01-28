@@ -140,9 +140,7 @@ The toolchains setup require just three easy steps - **Downloading, Extracting a
 ## Support this Project
 ***If these binaries helped you big time, please consider supporting it through any size donations. Thank you :heart:.***
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S5A54TFCVBSTQ)
-
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W8WTYO)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)&nbsp;
 
 ***You can also share your [**reviews**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or drop a [:star:](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers) or just say [thank you](https://saythanks.io/to/abhiTronix)!***
 
@@ -201,7 +199,7 @@ These toolchains are built with following LTO flags, thereby you can take advant
 
 **Copyright © 2019 AbhiTronix**
 
-The original compiled GCC source code is licensed under the [**GNU v3.0**](https://www.gnu.org/licenses/gpl-3.0.en.html) license. However, This Project and its binaries are licensed under the [**Apache 2.0**](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/LICENSE) license.
+This Project and its binaries are licensed under the [**GNU v3.0**](https://www.gnu.org/licenses/gpl-3.0.en.html) license license.
 
 &nbsp; 
  
@@ -209,4 +207,3 @@ The original compiled GCC source code is licensed under the [**GNU v3.0**](https
 - https://gcc.gnu.org/ for providing the latest source code.   
 - https://www.raspberrypi.org/ for providing the latest kernel and docs.  
 - https://sourceforge.net for allowing me to publish these binaries.
-- http://preshing.com/20141119/how-to-build-a-gcc-cross-compiler/ for an inspiring tutorial.
