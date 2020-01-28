@@ -197,7 +197,7 @@ These toolchains are built with following LTO flags, thereby you can take advant
 
 ## License
 
-**Copyright © 2019 AbhiTronix**
+**Copyright © 2020 abhiTronix**
 
 This Project and its binaries are licensed under the [**GNU v3.0**](https://www.gnu.org/licenses/gpl-3.0.en.html) license license.
 
