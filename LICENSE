@@ -632,9 +632,8 @@ state the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
     Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project 
-    provides Up-To-Date automated build-scripts along with precompiled 
-    latest GCC Cross & Native Compiler ARM/ARM64 Toolchain binaries
-    for Raspberry Pi.
+    provides latest automated GCC Cross Compiler & Native (ARM & ARM64) 
+    build-scripts and precompiled standalone toolchains for Raspberry Pi.
     
     Copyright (C) 2020 Abhishek Thakur(@abhiTronix) <abhi.una12@gmail.com>
 
