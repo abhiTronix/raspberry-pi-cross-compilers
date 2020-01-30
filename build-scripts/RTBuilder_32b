@@ -129,11 +129,13 @@ if [ "$BUILDDIR" = "" ]; then exit 1 ; fi
 if [ "$LANGUAGES" = "" ]; then exit 1 ; fi
 
 
-echo ""
-echo ""
-figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi Toolchains Builder"
-echo ""
-echo ""
+if [ "$CI" != "true" ]; then
+	echo ""
+	echo ""
+	figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi Toolchains Builder"
+	echo ""
+	echo ""
+fi
 
 #download binaries if not found
 echo "Downloading and Setting up build directories"
@@ -206,7 +208,7 @@ unset LD_LIBRARY_PATH #patch
 echo "Building Kernel Headers..."
 cd "$DOWNLOADDIR"/linux || exit
 KERNEL=$KERNEL
-make ARCH=arm INSTALL_HDR_PATH="$SYSROOTDIR"/usr headers_install
+make -s ARCH=arm INSTALL_HDR_PATH="$SYSROOTDIR"/usr headers_install
 mkdir -p "$SYSROOTDIR"/usr/lib
 
 
@@ -214,8 +216,8 @@ echo "Building binutils..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build || exit
 ../configure --target=$TARGET --prefix= --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --disable-multilib
-make -j$(nproc)
-make install DESTDIR="$INSTALLDIR"
+make -s -j$(nproc)
+make -s install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 
 
@@ -223,34 +225,34 @@ echo "Building Cross GCC $GCCBASE_VERSION Binaries..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build || exit
 ../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --disable-multilib
-make -j$(nproc) all-gcc
-make install-gcc DESTDIR="$INSTALLDIR"
+make -s -j$(nproc) all-gcc
+make -s install-gcc DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
 ../configure --prefix=/usr --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --with-headers="$SYSROOTDIR"/usr/include --with-lib="$SYSROOTDIR"/usr/lib --disable-multilib libc_cv_forced_unwind=yes
-make install-bootstrap-headers=yes install-headers DESTDIR="$SYSROOTDIR"
-make -j$(nproc) csu/subdir_lib
+make -s install-bootstrap-headers=yes install-headers DESTDIR="$SYSROOTDIR"
+make -s -j$(nproc) csu/subdir_lib
 install csu/crt1.o csu/crti.o csu/crtn.o "$SYSROOTDIR"/usr/lib
 $TARGET-gcc -nostdlib -nostartfiles -shared -x c /dev/null -o "$SYSROOTDIR"/usr/lib/libc.so
 touch "$SYSROOTDIR"/usr/include/gnu/stubs.h "$SYSROOTDIR"/usr/include/bits/stdio_lim.h
 cd "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build || exit
-make -j$(nproc) all-target-libgcc
-make install-target-libgcc DESTDIR="$INSTALLDIR"
+make -s -j$(nproc) all-target-libgcc
+make -s install-target-libgcc DESTDIR="$INSTALLDIR"
 cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
-make -j$(nproc)
-make install DESTDIR="$SYSROOTDIR"
+make -s -j$(nproc)
+make -s install DESTDIR="$SYSROOTDIR"
 cd "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
-make -j$(nproc)
-make install DESTDIR="$INSTALLDIR"
+make -s -j$(nproc)
+make -s install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build/*; fi
 
 if [ "$GCC_VERSION" != "$GCCBASE_VERSION" ]; then
 	cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build || exit
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 	../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard  --disable-multilib
-	make -j$(nproc)
-	make install DESTDIR="$INSTALLDIR"
+	make -s -j$(nproc)
+	make -s install DESTDIR="$INSTALLDIR"
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 
 	echo "Building GCC Native GCC $GCC_VERSION Binaries..."
@@ -258,8 +260,8 @@ if [ "$GCC_VERSION" != "$GCCBASE_VERSION" ]; then
 	cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build || exit
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 	../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --enable-languages=$LANGUAGES --with-arch=$ARCH   --with-fpu=$FPU  --with-float=hard --disable-multilib --program-suffix=-"$GCC_VERSION"
-	make -j$(nproc)
-	make install-strip DESTDIR="$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+	make -s -j$(nproc)
+	make -s install-strip DESTDIR="$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 	cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION" || exit
 	cat gcc/limitx.h gcc/glimits.h gcc/limity.h > "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION/lib/gcc/$TARGET/"$GCC_VERSION"/include-fixed/limits.h
@@ -268,8 +270,8 @@ if [ "$GCC_VERSION" != "$GCCBASE_VERSION" ]; then
 	cd "$DOWNLOADDIR"/gdb-$GDB_VERSION/build || exit
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
 	../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH --with-fpu=$FPU --with-float=hard  --program-suffix=-"$GCC_VERSION"
-	make -j$(nproc)
-	make install DESTDIR="$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+	make -s -j$(nproc)
+	make -s install DESTDIR="$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
 	echo "Done Building Native GDB Binaries..."
 
@@ -288,8 +290,8 @@ echo "Building Cross GDB Binaries..."
 cd "$DOWNLOADDIR"/gdb-$GDB_VERSION/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi #cleanup
 ../configure --prefix= --target=$TARGET --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard
-make -j$(nproc)
-make install DESTDIR="$INSTALLDIR"
+make -s -j$(nproc)
+make -s install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi #cleanup
 echo "Done Building Cross GDB Binaries..."
 
