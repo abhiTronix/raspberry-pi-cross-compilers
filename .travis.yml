@@ -101,8 +101,8 @@ script:
 - bash build-scripts/RTBuilder_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE;
 - bash build-scripts/RTBuilder_64b -g $GCC_VERSION;
 after_success:
-- bash patches/curl_stfp_patcher;
-- bash tools/SF_deployer;
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash patches/curl_stfp_patcher; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash tools/SF_deployer; fi
 cache:
 - ccache: true
 branches:
