@@ -111,6 +111,7 @@ _These are user-friendly scripts that auto-generates Compressed Cross & Native G
 		    ``` 
 
 
+
 	  	* **Usage:** Just pass _targeted [GCC version](#supported-gcc-versions)_ to `-g` parameter,  _targeted raspberry pi type_ to `-r` parameter, and _targeted raspberry pi OS type_ to `-o` parameter of this script:
 
 	  		***:warning: You cannot compile GCC version less than GCC 8.3.0 for Buster OS, otherwise script will automatically switch for Stretch OS.***
@@ -121,7 +122,7 @@ _These are user-friendly scripts that auto-generates Compressed Cross & Native G
 
 	        ```
 
-	    	*This will take some time _(approximately 55mins)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_64.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_{}.tar.gz` at your `$HOME` directory.*
+	    	*This will take some time _(approximately 55mins)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` at your `$HOME` directory.*
 
 
 

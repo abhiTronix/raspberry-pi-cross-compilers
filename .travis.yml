@@ -24,60 +24,60 @@
 
 os: linux
 dist: bionic
-language: minimal
+language: cpp
 matrix:
   include:
   - name: "GCC-9.2.0 32-bit Buster Pi[0-1]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=0-1
-    language: minimal
+    language: cpp
   - name: "GCC-9.2.0 32-bit Buster Pi[2-3]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=2-3
-    language: minimal
+    language: cpp
   - name: "GCC-9.2.0 32-bit Buster Pi[3+]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=3+
-    language: minimal
+    language: cpp
   - name: "GCC-9.2.0 32-bit Stretch Pi[0-1]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
-    language: minimal
+    language: cpp
   - name: "GCC-9.2.0 32-bit Stretch Pi[2-3]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
-    language: minimal
+    language: cpp
   - name: "GCC-9.2.0 32-bit Stretch Pi[3+]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=3+
-    language: minimal
+    language: cpp
   - name: "GCC-8.3.0 32-bit Buster Pi[0-1]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=0-1
-    language: minimal
+    language: cpp
   - name: "GCC-8.3.0 32-bit Buster Pi[2-3]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=2-3
-    language: minimal
+    language: cpp
   - name: "GCC-8.3.0 32-bit Buster Pi[3+]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=3+
-    language: minimal
+    language: cpp
   - name: "GCC-8.3.0 32-bit Stretch Pi[0-1]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
-    language: minimal
+    language: cpp
   - name: "GCC-8.3.0 32-bit Stretch Pi[2-3]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
-    language: minimal
+    language: cpp
   - name: "GCC-8.3.0 32-bit Stretch Pi[3+]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=3+
-    language: minimal
+    language: cpp
   - name: "GCC-6.3.0 32-bit Stretch Pi[0-1]"
     env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
-    language: minimal
+    language: cpp
   - name: "GCC-6.3.0 32-bit Stretch Pi[2-3]"
     env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
-    language: minimal
+    language: cpp
   - name: "GCC-6.3.0 32-bit Stretch Pi[3+]"
     env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=3+
-    language: minimal
+    language: cpp
   - name: "GCC-9.2.0 64-bit"
     env: GCC_VERSION=9.2.0 RPI_TYPE=64
-    language: minimal
+    language: cpp
   - name: "GCC-8.3.0 64-bit"
     env: GCC_VERSION=8.3.0 RPI_TYPE=64
-    language: minimal
+    language: cpp
   - name: "GCC-6.3.0 64-bit"
     env: GCC_VERSION=6.3.0 RPI_TYPE=64
 before_install:
@@ -94,12 +94,11 @@ before_install:
   chmod +x tools/SF_deployer;
 install:
 - sudo apt-get -y install -qq gcc g++ gperf flex texinfo gawk gfortran texinfo bison
-  libncurses-dev autoconf automake ccache tar figlet;
+  libncurses-dev autoconf automake tar figlet;
 script:
 - function keep_alive() { while true; do echo -en "\a"; sleep 60; done }
-- keep_alive &
-- bash build-scripts/RTBuilder_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE;
-- bash build-scripts/RTBuilder_64b -g $GCC_VERSION;
+- if [ "$RPI_TYPE" != "64" ]; keep_alive & bash build-scripts/RTBuilder_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE; fi
+- if [ "$RPI_TYPE" = "64" ]; keep_alive & bash build-scripts/RTBuilder_64b -g $GCC_VERSION; fi
 after_success:
 - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash patches/curl_stfp_patcher; fi
 - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash tools/SF_deployer; fi
