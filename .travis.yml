@@ -27,67 +27,37 @@ dist: bionic
 language: minimal
 matrix:
   include:
-  - name: "GCC-9.2.0 32-bit Buster Pi[0-1]"
-    env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=0-1
+  - name: "BASE GCC-8.3.0 32-bit Buster Pi[0-1]"
+    env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=0-1 BASE=true
     language: minimal
-  - name: "GCC-9.2.0 32-bit Buster Pi[2-3]"
-    env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=2-3
+  - name: "BASE GCC-8.3.0 32-bit Buster Pi[2-3]"
+    env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=2-3 BASE=true
     language: minimal
-  - name: "GCC-9.2.0 32-bit Buster Pi[3+]"
-    env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=3+
+  - name: "BASE GCC-8.3.0 32-bit Buster Pi[3+]"
+    env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=3+ BASE=true
     language: minimal
-  - name: "GCC-9.2.0 32-bit Stretch Pi[0-1]"
-    env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
+  - name: "BASE GCC-6.3.0 32-bit Stretch Pi[0-1]"
+    env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=0-1 BASE=true
     language: minimal
-  - name: "GCC-9.2.0 32-bit Stretch Pi[2-3]"
-    env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
+  - name: "BASE GCC-6.3.0 32-bit Stretch Pi[2-3]"
+    env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=2-3 BASE=true
     language: minimal
-  - name: "GCC-9.2.0 32-bit Stretch Pi[3+]"
-    env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=3+
+  - name: "BASE GCC-6.3.0 32-bit Stretch Pi[3+]"
+    env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=3+ BASE=true
     language: minimal
-  - name: "GCC-8.3.0 32-bit Buster Pi[0-1]"
-    env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=0-1
+  - name: "BASE GCC-8.3.0 64-bit"
+    env: GCC_VERSION=8.3.0 OS_TYPE=2 RPI_TYPE=64 BASE=true
     language: minimal
-  - name: "GCC-8.3.0 32-bit Buster Pi[2-3]"
-    env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=2-3
-    language: minimal
-  - name: "GCC-8.3.0 32-bit Buster Pi[3+]"
-    env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=3+
-    language: minimal
-  - name: "GCC-8.3.0 32-bit Stretch Pi[0-1]"
-    env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
-    language: minimal
-  - name: "GCC-8.3.0 32-bit Stretch Pi[2-3]"
-    env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
-    language: minimal
-  - name: "GCC-8.3.0 32-bit Stretch Pi[3+]"
-    env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=3+
-    language: minimal
-  - name: "GCC-6.3.0 32-bit Stretch Pi[0-1]"
-    env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
-    language: minimal
-  - name: "GCC-6.3.0 32-bit Stretch Pi[2-3]"
-    env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
-    language: minimal
-  - name: "GCC-6.3.0 32-bit Stretch Pi[3+]"
-    env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=3+
-    language: minimal
-  - name: "GCC-9.2.0 64-bit"
-    env: GCC_VERSION=9.2.0 RPI_TYPE=64
-    language: minimal
-  - name: "GCC-8.3.0 64-bit"
-    env: GCC_VERSION=8.3.0 RPI_TYPE=64
-    language: minimal
-  - name: "GCC-6.3.0 64-bit"
-    env: GCC_VERSION=6.3.0 RPI_TYPE=64
+  - name: "BASE GCC-6.3.0 64-bit"
+    env: GCC_VERSION=6.3.0 OS_TYPE=1 RPI_TYPE=64 BASE=true
 before_install:
 - sudo apt-get update -qq; 
   sudo apt-get install -qq unzip wget dos2unix -y; 
   sudo apt-get install -qq build-essential libssh2-1-dev openssl libcurl3 -y; 
-  dos2unix build-scripts/RTBuilder_32b;
-  chmod +x build-scripts/RTBuilder_32b; 
-  dos2unix build-scripts/RTBuilder_64b; 
-  chmod +x build-scripts/RTBuilder_64b; 
+  dos2unix tools/CLIBB_32b;
+  chmod +x tools/CLIBB_32b; 
+  dos2unix tools/CLIBB_64b; 
+  chmod +x tools/CLIBB_64b; 
   dos2unix patches/curl_stfp_patcher;
   chmod +x patches/curl_stfp_patcher;
   dos2unix tools/SF_deployer;
@@ -96,11 +66,11 @@ install:
 - sudo apt-get -y install -qq gcc g++ gperf flex texinfo gawk gfortran texinfo bison
   libncurses-dev autoconf automake tar figlet;
 script:
-- if [ "$RPI_TYPE" != "64" ]; then ( while true; do echo '.'; sleep 60; done ) & bash build-scripts/RTBuilder_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE; fi
-- if [ "$RPI_TYPE" = "64" ]; then ( while true; do echo '.'; sleep 60; done ) &  bash build-scripts/RTBuilder_64b -g $GCC_VERSION; fi
+- if [ "$RPI_TYPE" != "64" ] && [ "$BASE" = "true" ] ; then ( while true; do echo '.'; sleep 60; done ) & bash tools/CLIBB_32b -r $RPI_TYPE -o $RPIOS_TYPE; fi
+- if [ "$RPI_TYPE" = "64" ] && [ "$BASE" = "true" ] ; then ( while true; do echo '.'; sleep 60; done ) &  bash tools/CLIBB_64b -t $GCC_VERSION; fi
 after_success:
-- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash patches/curl_stfp_patcher; fi
-- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash tools/SF_deployer; fi
+- bash patches/curl_stfp_patcher;
+- bash tools/SF_deployer;
 cache:
 - ccache: true
 branches:
