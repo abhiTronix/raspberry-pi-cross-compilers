@@ -53,7 +53,9 @@ matrix:
 before_install:
 - sudo apt-get update -qq; 
   sudo apt-get install -qq unzip wget dos2unix -y; 
-  sudo apt-get install -qq build-essential libssh2-1-dev openssl libcurl3 -y; 
+  sudo apt-get install -qq build-essential libssh2-1-dev openssl libcurl3 -y;
+  sudo apt-get install -qq ccache -y;
+  export PATH="/usr/lib/ccache:$PATH";
   dos2unix tools/CLIBB_32b;
   chmod +x tools/CLIBB_32b; 
   dos2unix tools/CLIBB_64b; 
@@ -63,7 +65,7 @@ before_install:
   dos2unix tools/SF_deployer;
   chmod +x tools/SF_deployer;
 install:
-- sudo apt-get -y install -qq gcc g++ gperf flex texinfo gawk gfortran texinfo bison
+- sudo apt-get -y install -qq gcc g++ gperf flex texinfo ccache gawk gfortran texinfo bison
   libncurses-dev autoconf automake tar figlet;
 script:
 - if [ "$RPI_TYPE" != "64" ] && [ "$BASE" = "true" ] && [ "$BASE" = "true" ] ; then ( while true; do echo '.'; sleep 60; done ) & bash tools/CLIBB_32b -r $RPI_TYPE -o $RPIOS_TYPE; fi
@@ -71,7 +73,9 @@ script:
 after_success:
 - bash patches/curl_stfp_patcher;
 - bash tools/SF_deployer;
-cache: ccache
+cache:
+  directories:
+  - $HOME/.ccache
 branches:
   only:
   - master
