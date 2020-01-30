@@ -36,7 +36,7 @@ echo ""
 
 
 #Deploy Cross-compiler Toolchain binaries
-if [ ! -f "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
+if [ -f "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 	if [ "$RPI_TYPE" = "64" ]; then
 		if [ "$BASE" = "true" ]; then
 			FOLDER="CLI Base/64/GCC $GCC_VERSION"
@@ -84,7 +84,7 @@ fi
 
 
 #Deploy Native-compiler Toolchain binaries
-if [ ! -f "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then 
+if [ -f "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then 
 	if [ "$RPI_TYPE" = "64" ]; then
 		FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/GCC $GCC_VERSION"
 		curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
