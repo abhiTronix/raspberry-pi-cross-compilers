@@ -148,7 +148,7 @@ mkdir -p "$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION"
 cd "$DOWNLOADDIR" || exit
 
 if [ ! -d "linux" ]; then
-	wget https://github.com/$(wget -q https://github.com/raspberrypi/linux/releases/latest -O - | grep -E '/.*/.*/.*.tar.gz' -o)
+	wget -q https://github.com/$(wget -q https://github.com/raspberrypi/linux/releases/latest -O - | grep -E '/.*/.*/.*.tar.gz' -o)
 	tar xf raspberrypi*.tar.gz
 	mv linux* linux
 	rm ./*.tar.*
