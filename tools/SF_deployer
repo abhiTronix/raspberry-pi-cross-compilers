@@ -39,30 +39,30 @@ echo ""
 if [ ! -f "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 	if [ "$RPI_TYPE" = "64" ]; then
 		FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains/GCC $GCC_VERSION" 
-		curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+		curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 	else
 		if [ "$RPIOS_TYPE" = "buster" ]; then
 			FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains/Buster/GCC $GCC_VERSION"
 			if [ "$RPI_TYPE" = "0-1" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 1, Zero/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 1, Zero/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 			if [ "$RPI_TYPE" = "2-3" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 2, 3/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 2, 3/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 			if [ "$RPI_TYPE" = "3+" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 3A+, 3B+, 4/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 3A+, 3B+, 4/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 		fi
 		if [ "$RPIOS_TYPE" = "stretch" ]; then
 			FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains/Stretch/GCC $GCC_VERSION"
 			if [ "$RPI_TYPE" = "0-1" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 1, Zero/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 1, Zero/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 			if [ "$RPI_TYPE" = "2-3" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 2, 3/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 2, 3/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 			if [ "$RPI_TYPE" = "3+" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 3A+, 3B+, 4/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 3A+, 3B+, 4/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi	
 		fi
 	fi
@@ -73,30 +73,30 @@ fi
 if [ ! -f "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then 
 	if [ "$RPI_TYPE" = "64" ]; then
 		FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/GCC $GCC_VERSION"
-		curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+		curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 	else
 		if [ "$RPIOS_TYPE" = "buster" ]; then
 			FOLDER="Raspberry Pi GCC Native-Compiler Toolchains/Buster/GCC $GCC_VERSION"
 			if [ "$RPI_TYPE" = "0-1" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 1, Zero/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 1, Zero/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 			if [ "$RPI_TYPE" = "2-3" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 2, 3/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 2, 3/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 			if [ "$RPI_TYPE" = "3+" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 3A+, 3B+, 4/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 3A+, 3B+, 4/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 		fi
 		if [ "$RPIOS_TYPE" = "stretch" ]; then
 			FOLDER="Raspberry Pi GCC Native-Compiler Toolchains/Stretch/GCC $GCC_VERSION"
 			if [ "$RPI_TYPE" = "0-1" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 1, Zero/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 1, Zero/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 			if [ "$RPI_TYPE" = "2-3" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 2, 3/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 2, 3/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 			if [ "$RPI_TYPE" = "3+" ]; then
-				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 3A+, 3B+, 4/" -u $USER_SFTP:$PASSWORD_SFTP -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
+				curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 3A+, 3B+, 4/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi	
 		fi
 	fi

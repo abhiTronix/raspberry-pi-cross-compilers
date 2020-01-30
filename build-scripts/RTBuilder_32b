@@ -85,7 +85,7 @@ else
 fi
 
 #collect dependencies versions from raspberry pi os
-if [ "$RPIOS_TYPE" = "stretch"] || [ "$GCC_VERSION" /< "8.3.0" ]; then
+if [ "$RPIOS_TYPE" = "stretch" ] || [ "$GCC_VERSION" \< "8.3.0" ]; then
 	GCCBASE_VERSION=6.3.0
 	GLIBC_VERSION=2.24
 	BINUTILS_VERSION=2.28
@@ -148,11 +148,11 @@ mkdir -p "$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION"
 cd "$DOWNLOADDIR" || exit
 
 if [ ! -d "linux" ]; then
-	wget https://github.com/$(wget -q https://github.com/raspberrypi/linux/releases/latest -O - | egrep '/.*/.*/.*.tar.gz' -o)
+	wget https://github.com/$(wget -q https://github.com/raspberrypi/linux/releases/latest -O - | grep -E '/.*/.*/.*.tar.gz' -o)
 	tar xf raspberrypi*.tar.gz
 	mv linux* linux
-	if ! [ -z "$(ls -A /home/abhishek/new/t)" ]; then rm ./*.tar.*
-	cd $OLDPWD
+	rm ./*.tar.*
+	cd "$OLDPWD" || exit
 fi
 if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
 	if [ ! -f "gcc-$GCCBASE_VERSION.tar.gz" ]; then wget -q https://ftpmirror.gnu.org/gcc/gcc-$GCCBASE_VERSION/gcc-$GCCBASE_VERSION.tar.gz; fi
@@ -161,40 +161,40 @@ if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
 	mkdir -p build
 	sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
 	contrib/download_prerequisites
-	if ! [ -z "$(ls -A /home/abhishek/new/t)" ]; then rm ./*.tar.*
+	rm ./*.tar.*
 	if [ "$GCCBASE_VERSION" == "6.3.0" ]; then sed -i "1474s/.*/      || xloc.file[0] == '\\\0' || xloc.file[0] == '\\\xff'/" ./gcc/ubsan.c; fi #apply patch
-	cd $OLDPWD
+	cd "$OLDPWD" || exit
 fi
 if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
 	if [ ! -f "binutils-$BINUTILS_VERSION.tar.bz2" ]; then wget -q https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.bz2; fi
 	tar xf binutils-$BINUTILS_VERSION.tar.bz2
 	cd binutils-$BINUTILS_VERSION || exit
 	mkdir -p build 
-	cd $OLDPWD
+	cd "$OLDPWD" || exit
 fi
 if [ ! -d "glibc-$GLIBC_VERSION" ]; then
 	if [ ! -f "glibc-$GLIBC_VERSION.tar.bz2" ]; then wget -q https://ftpmirror.gnu.org/glibc/glibc-$GLIBC_VERSION.tar.bz2; fi
 	tar xf  glibc-$GLIBC_VERSION.tar.bz2
 	cd glibc-$GLIBC_VERSION || exit
 	mkdir -p build 
-	cd $OLDPWD
+	cd "$OLDPWD" || exit
 fi
 if [ ! -d "gdb-$GDB_VERSION" ]; then
 	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then wget -q https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz; fi
 	tar xf  gdb-$GDB_VERSION.tar.xz
 	cd gdb-$GDB_VERSION || exit
 	mkdir -p build 
-	cd $OLDPWD
+	cd "$OLDPWD" || exit
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
-	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then wget -q https://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz; fi
-	tar xf gcc-$GCC_VERSION.tar.gz
-	cd gcc-$GCC_VERSION || exit
+	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then wget -q https://ftpmirror.gnu.org/gcc/gcc-"$GCC_VERSION"/gcc-"$GCC_VERSION".tar.gz; fi
+	tar xf gcc-"$GCC_VERSION".tar.gz
+	cd gcc-"$GCC_VERSION" || exit
 	mkdir -p build
 	sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
 	contrib/download_prerequisites
-	if ! [ -z "$(ls -A /home/abhishek/new/t)" ]; then rm ./*.tar.*
-	cd $OLDPWD
+	rm ./*.tar.*
+	cd "$OLDPWD" || exit
 fi
 
 
@@ -212,21 +212,21 @@ mkdir -p "$SYSROOTDIR"/usr/lib
 
 
 echo "Building binutils..."
-if ! [ -z "$(ls -A $DOWNLOADDIR/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/* fi
+if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build || exit
 ../configure --target=$TARGET --prefix= --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --disable-multilib
 make -j$(nproc)
 make install DESTDIR="$INSTALLDIR"
-if ! [ -z "$(ls -A $DOWNLOADDIR/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/* fi
+if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 
 
 echo "Building Cross GCC $GCCBASE_VERSION Binaries..."
-if ! [ -z "$(ls -A $DOWNLOADDIR/gcc-$GCCBASE_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build/* fi
+if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build || exit
 ../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --disable-multilib
 make -j$(nproc) all-gcc
 make install-gcc DESTDIR="$INSTALLDIR"
-if ! [ -z "$(ls -A $DOWNLOADDIR/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/* fi
+if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
 ../configure --prefix=/usr --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --with-headers="$SYSROOTDIR"/usr/include --with-lib="$SYSROOTDIR"/usr/lib --disable-multilib libc_cv_forced_unwind=yes
 make install-bootstrap-headers=yes install-headers DESTDIR="$SYSROOTDIR"
@@ -241,65 +241,65 @@ cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
 make -j$(nproc)
 make install DESTDIR="$SYSROOTDIR"
 cd "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build || exit
-if ! [ -z "$(ls -A $DOWNLOADDIR/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/* fi
+if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
 make -j$(nproc)
 make install DESTDIR="$INSTALLDIR"
-if ! [ -z "$(ls -A $DOWNLOADDIR/gcc-$GCCBASE_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build/* fi
+if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build/*; fi
 
 if [ "$GCC_VERSION" != "$GCCBASE_VERSION" ]; then
-	cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
-	if ! [ -z "$(ls -A $DOWNLOADDIR/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCC_VERSION/build/* fi
+	cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build || exit
+	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 	../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard  --disable-multilib
 	make -j$(nproc)
 	make install DESTDIR="$INSTALLDIR"
-	if ! [ -z "$(ls -A $DOWNLOADDIR/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCC_VERSION/build/* fi
+	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 
 	echo "Building GCC Native GCC $GCC_VERSION Binaries..."
-	mkdir -p "$BUILDDIR"/native-pi-gcc-$GCC_VERSION-$FOLDER_VERSION
-	cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
-	if ! [ -z "$(ls -A $DOWNLOADDIR/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCC_VERSION/build/* fi
-	../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --enable-languages=$LANGUAGES --with-arch=$ARCH   --with-fpu=$FPU  --with-float=hard --disable-multilib --program-suffix=-$GCC_VERSION
+	mkdir -p "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+	cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build || exit
+	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
+	../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --enable-languages=$LANGUAGES --with-arch=$ARCH   --with-fpu=$FPU  --with-float=hard --disable-multilib --program-suffix=-"$GCC_VERSION"
 	make -j$(nproc)
-	make install-strip DESTDIR="$BUILDDIR"/native-pi-gcc-$GCC_VERSION-$FOLDER_VERSION
-	if ! [ -z "$(ls -A $DOWNLOADDIR/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCC_VERSION/build/* fi
-	cd "$DOWNLOADDIR"/gcc-$GCC_VERSION || exit
-	cat gcc/limitx.h gcc/glimits.h gcc/limity.h > "$BUILDDIR"/native-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/lib/gcc/$TARGET/$GCC_VERSION/include-fixed/limits.h
+	make install-strip DESTDIR="$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
+	cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION" || exit
+	cat gcc/limitx.h gcc/glimits.h gcc/limity.h > "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION/lib/gcc/$TARGET/"$GCC_VERSION"/include-fixed/limits.h
 
 	echo "Building Native GDB Binaries..."
 	cd "$DOWNLOADDIR"/gdb-$GDB_VERSION/build || exit
-	if ! [ -z "$(ls -A $DOWNLOADDIR/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/* fi
-	../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH --with-fpu=$FPU --with-float=hard  --program-suffix=-$GCC_VERSION
+	if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
+	../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH --with-fpu=$FPU --with-float=hard  --program-suffix=-"$GCC_VERSION"
 	make -j$(nproc)
-	make install DESTDIR="$BUILDDIR"/native-pi-gcc-$GCC_VERSION-$FOLDER_VERSION
-	if ! [ -z "$(ls -A $DOWNLOADDIR/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/* fi
+	make install DESTDIR="$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+	if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
 	echo "Done Building Native GDB Binaries..."
 
-	mv "$BUILDDIR"/native-pi-gcc-$GCC_VERSION-$FOLDER_VERSION "$HOME"
+	mv "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 	cd "$HOME" || exit
 	#compress with maximum possible compression level.
-	env GZIP=-9 tar cvzf native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz native-pi-gcc-$GCC_VERSION-$FOLDER_VERSION
-	rm -rf "$HOME"/native-pi-gcc-$GCC_VERSION-$FOLDER_VERSION
+	env GZIP=-9 tar cvzf native-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+	rm -rf "$HOME"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 	echo "Done Building Native GCC $GCC_VERSION Binaries..."
 fi
 
-cd  "$DOWNLOADDIR"/gcc-$GCC_VERSION || exit
+cd  "$DOWNLOADDIR"/gcc-"$GCC_VERSION" || exit
 cat gcc/limitx.h gcc/glimits.h gcc/limity.h > $(dirname $($TARGET-gcc -print-libgcc-file-name))/include-fixed/limits.h
 
 echo "Building Cross GDB Binaries..."
 cd "$DOWNLOADDIR"/gdb-$GDB_VERSION/build || exit
-if ! [ -z "$(ls -A $DOWNLOADDIR/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/* fi #cleanup
+if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi #cleanup
 ../configure --prefix= --target=$TARGET --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard
 make -j$(nproc)
 make install DESTDIR="$INSTALLDIR"
-if ! [ -z "$(ls -A $DOWNLOADDIR/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/* fi #cleanup
+if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi #cleanup
 echo "Done Building Cross GDB Binaries..."
 
-mv "$BUILDDIR"/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION "$HOME"
+mv "$BUILDDIR"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-env GZIP=-9 tar cvzf cross-gcc-$GCC_VERSION-pi_"$RPI_TYPE".tar.gz cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION
+env GZIP=-9 tar cvzf cross-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 echo "Done Building Cross GCC $GCC_VERSION Binaries..."
-rm -rf "$HOME"/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION
+rm -rf "$HOME"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 
 #clean path
 PATH=$(echo "$PATH" | sed -e 's;:\?$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/bin;;' -e 's;$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/bin:\?;;')
