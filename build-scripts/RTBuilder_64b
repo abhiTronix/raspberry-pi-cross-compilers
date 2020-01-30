@@ -146,10 +146,14 @@ if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
 	tar xf gcc-$GCCBASE_VERSION.tar.gz
 	cd gcc-$GCCBASE_VERSION || exit
 	mkdir -p build 
-	sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
+	if [ "$GCCBASE_VERSION" = "6.3.0" ]; then
+		sed -i contrib/download_prerequisites -e 's/ftp/http/';
+	else
+		sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/';
+	fi
 	contrib/download_prerequisites
 	rm ./*.tar.*
-	if [ "$GCCBASE_VERSION" == "6.3.0" ]; then sed -i "1474s/.*/      || xloc.file[0] == '\\\0' || xloc.file[0] == '\\\xff'/" ./gcc/ubsan.c; fi #apply patch
+	if [ "$GCCBASE_VERSION" = "6.3.0" ]; then sed -i "1474s/.*/      || xloc.file[0] == '\\\0' || xloc.file[0] == '\\\xff'/" ./gcc/ubsan.c; fi #apply patch
 	cd "$DOWNLOADDIR" || exit
 fi
 if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
