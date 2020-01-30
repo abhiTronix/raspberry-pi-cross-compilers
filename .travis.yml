@@ -96,9 +96,8 @@ install:
 - sudo apt-get -y install -qq gcc g++ gperf flex texinfo gawk gfortran texinfo bison
   libncurses-dev autoconf automake tar figlet;
 script:
-- function keep_alive() { while true; do echo -en "\a"; sleep 60; done };
-- if [ "$RPI_TYPE" != "64" ]; then keep_alive & bash build-scripts/RTBuilder_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE; fi
-- if [ "$RPI_TYPE" = "64" ]; then keep_alive & bash build-scripts/RTBuilder_64b -g $GCC_VERSION; fi
+- if [ "$RPI_TYPE" != "64" ]; then ( while true; do echo '.'; sleep 60; done ) & bash build-scripts/RTBuilder_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE; fi
+- if [ "$RPI_TYPE" = "64" ]; then ( while true; do echo '.'; sleep 60; done ) &  bash build-scripts/RTBuilder_64b -g $GCC_VERSION; fi
 after_success:
 - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash patches/curl_stfp_patcher; fi
 - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash tools/SF_deployer; fi
