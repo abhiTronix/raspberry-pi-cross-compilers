@@ -24,60 +24,60 @@
 
 os: linux
 dist: bionic
-language: cpp
+language: minimal
 matrix:
   include:
   - name: "GCC-9.2.0 32-bit Buster Pi[0-1]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=0-1
-    language: cpp
+    language: minimal
   - name: "GCC-9.2.0 32-bit Buster Pi[2-3]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=2-3
-    language: cpp
+    language: minimal
   - name: "GCC-9.2.0 32-bit Buster Pi[3+]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=3+
-    language: cpp
+    language: minimal
   - name: "GCC-9.2.0 32-bit Stretch Pi[0-1]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
-    language: cpp
+    language: minimal
   - name: "GCC-9.2.0 32-bit Stretch Pi[2-3]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
-    language: cpp
+    language: minimal
   - name: "GCC-9.2.0 32-bit Stretch Pi[3+]"
     env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=3+
-    language: cpp
+    language: minimal
   - name: "GCC-8.3.0 32-bit Buster Pi[0-1]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=0-1
-    language: cpp
+    language: minimal
   - name: "GCC-8.3.0 32-bit Buster Pi[2-3]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=2-3
-    language: cpp
+    language: minimal
   - name: "GCC-8.3.0 32-bit Buster Pi[3+]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=3+
-    language: cpp
+    language: minimal
   - name: "GCC-8.3.0 32-bit Stretch Pi[0-1]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
-    language: cpp
+    language: minimal
   - name: "GCC-8.3.0 32-bit Stretch Pi[2-3]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
-    language: cpp
+    language: minimal
   - name: "GCC-8.3.0 32-bit Stretch Pi[3+]"
     env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=3+
-    language: cpp
+    language: minimal
   - name: "GCC-6.3.0 32-bit Stretch Pi[0-1]"
     env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
-    language: cpp
+    language: minimal
   - name: "GCC-6.3.0 32-bit Stretch Pi[2-3]"
     env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
-    language: cpp
+    language: minimal
   - name: "GCC-6.3.0 32-bit Stretch Pi[3+]"
     env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=3+
-    language: cpp
+    language: minimal
   - name: "GCC-9.2.0 64-bit"
     env: GCC_VERSION=9.2.0 RPI_TYPE=64
-    language: cpp
+    language: minimal
   - name: "GCC-8.3.0 64-bit"
     env: GCC_VERSION=8.3.0 RPI_TYPE=64
-    language: cpp
+    language: minimal
   - name: "GCC-6.3.0 64-bit"
     env: GCC_VERSION=6.3.0 RPI_TYPE=64
 before_install:
