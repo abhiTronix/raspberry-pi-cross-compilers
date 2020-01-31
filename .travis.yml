@@ -101,7 +101,8 @@ install:
 - sudo /usr/sbin/update-ccache-symlinks;
 - echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc;
 - source ~/.bashrc && echo $PATH;
-- ccache -s;
+- which gcc;
+- which g++;
 script:
 - if [ "$RPI_TYPE" != "64" ] && [ "$BASE" = "true" ] && [ "$BASE" = "true" ] ; then ( while true; do echo '.'; sleep 60; done ) & bash tools/CLIBB_32b -r $RPI_TYPE -o $RPIOS_TYPE; fi
 - if [ "$RPI_TYPE" = "64" ] && [ "$BASE" = "true" ] && [ "$BASE" = "true" ] ; then ( while true; do echo '.'; sleep 60; done ) &  bash tools/CLIBB_64b -g $GCC_VERSION -t $OS_TYPE; fi
