@@ -95,10 +95,13 @@ before_install:
   chmod +x patches/curl_stfp_patcher;
   dos2unix tools/SF_deployer;
   chmod +x tools/SF_deployer;
-  echo $PATH;
 install:
 - sudo apt-get -y install -qq gcc g++ gperf flex texinfo ccache gawk gfortran texinfo bison
   libncurses-dev autoconf automake tar figlet;
+- sudo /usr/sbin/update-ccache-symlinks;
+- echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc;
+- source ~/.bashrc && echo $PATH;
+- ccache -s;
 script:
 - if [ "$RPI_TYPE" != "64" ] && [ "$BASE" = "true" ] && [ "$BASE" = "true" ] ; then ( while true; do echo '.'; sleep 60; done ) & bash tools/CLIBB_32b -r $RPI_TYPE -o $RPIOS_TYPE; fi
 - if [ "$RPI_TYPE" = "64" ] && [ "$BASE" = "true" ] && [ "$BASE" = "true" ] ; then ( while true; do echo '.'; sleep 60; done ) &  bash tools/CLIBB_64b -g $GCC_VERSION -t $OS_TYPE; fi
@@ -108,10 +111,6 @@ after_success:
 branches:
   only:
   - master
-cache:
-  ccache: true
-  directories:
-    - $HOME/.ccache
 env:
   global:
   - CURL_VERSION=7.68.0
