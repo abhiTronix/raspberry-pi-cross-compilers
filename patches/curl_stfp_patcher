@@ -37,6 +37,6 @@ wget -q https://curl.haxx.se/download/curl-"$CURL_VERSION".tar.gz
 tar xf curl-7.68.0.tar.gz
 cd curl-7.68.0 || exit
 ./configure --with-libssh2
-make -j$(nproc)
+make -j8
 sudo make install
 sudo ldconfig
