@@ -97,13 +97,15 @@ before_install:
   chmod +x tools/SF_deployer;
 install:
 - sudo apt-get -y install -qq gcc g++ gperf flex texinfo ccache pigz gawk gfortran texinfo bison
-  libncurses-dev autoconf automake tar figlet;
+  libncurses-dev autoconf automake;
 - sudo /usr/sbin/update-ccache-symlinks;
 - echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc;
 - source ~/.bashrc && echo $PATH;
 script:
-- if [ "$RPI_TYPE" != "64" ] && [ "$BASE" = "true" ] && [ "$BASE" = "true" ] ; then ( while true; do echo '.'; sleep 60; done ) & bash tools/CLIBB_32b -r $RPI_TYPE -o $RPIOS_TYPE; fi
-- if [ "$RPI_TYPE" = "64" ] && [ "$BASE" = "true" ] && [ "$BASE" = "true" ] ; then ( while true; do echo '.'; sleep 60; done ) &  bash tools/CLIBB_64b -g $GCC_VERSION -t $OS_TYPE; fi
+- while sleep 60; do echo "=====[ $SECONDS seconds still running ]====="; done &
+- if [ "$RPI_TYPE" != "64" ] && [ "$BASE" = "true" ] && [ "$BASE" = "true" ] ; then bash tools/CLIBB_32b -r $RPI_TYPE -o $RPIOS_TYPE; fi
+- if [ "$RPI_TYPE" = "64" ] && [ "$BASE" = "true" ] && [ "$BASE" = "true" ] ; then bash tools/CLIBB_64b -g $GCC_VERSION -t $OS_TYPE; fi
+- kill %1
 after_success:
 - bash patches/curl_stfp_patcher;
 - bash tools/SF_deployer;

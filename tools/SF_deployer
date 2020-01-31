@@ -28,11 +28,11 @@
 # This script auto-deploys CLI compiled Cross & Native GCC Toolchain binaries to Sourceforge secured server
 
 
-echo ""
-echo ""
-figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi Toolchains Deployer"
-echo ""
-echo ""
+# echo ""
+# echo ""
+# figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi Toolchains Deployer"
+# echo ""
+# echo ""
 
 
 #Deploy Cross-compiler Toolchain binaries
