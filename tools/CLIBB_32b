@@ -201,7 +201,7 @@ echo "Building binutils..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build || exit
 ../configure --target=$TARGET --prefix= --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --disable-multilib
-make -s -j$(getconf _NPROCESSORS_ONLN)
+make -s --j8
 make -s install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 
@@ -210,32 +210,32 @@ echo "Building Cross GCC $GCC_VERSION Binaries..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
 ../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --disable-multilib
-make -s -j$(getconf _NPROCESSORS_ONLN) all-gcc
+make -s --j8 all-gcc
 make -s install-gcc DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
 ../configure --prefix=/usr --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --with-headers="$SYSROOTDIR"/usr/include --with-lib="$SYSROOTDIR"/usr/lib --disable-multilib libc_cv_forced_unwind=yes
 make -s install-bootstrap-headers=yes install-headers DESTDIR="$SYSROOTDIR"
-make -s -j$(getconf _NPROCESSORS_ONLN) csu/subdir_lib
+make -s --j8 csu/subdir_lib
 install csu/crt1.o csu/crti.o csu/crtn.o "$SYSROOTDIR"/usr/lib
 $TARGET-gcc -nostdlib -nostartfiles -shared -x c /dev/null -o "$SYSROOTDIR"/usr/lib/libc.so
 touch "$SYSROOTDIR"/usr/include/gnu/stubs.h "$SYSROOTDIR"/usr/include/bits/stdio_lim.h
 cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
-make -s -j$(getconf _NPROCESSORS_ONLN) all-target-libgcc
+make -s --j8 all-target-libgcc
 make -s install-target-libgcc DESTDIR="$INSTALLDIR"
 cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
-make -s -j$(getconf _NPROCESSORS_ONLN)
+make -s --j8
 make -s install DESTDIR="$SYSROOTDIR"
 cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
-make -s -j$(getconf _NPROCESSORS_ONLN)
+make -s --j8
 make -s install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCC_VERSION/build/*; fi
 
 mv "$BUILDDIR"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 > cross-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz
+tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -4 -p 32 > cross-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz
 echo "Done Building Cross GCC $GCC_VERSION Binaries..."
 rm -rf "$HOME"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 
