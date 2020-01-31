@@ -30,32 +30,63 @@ matrix:
   - name: "BASE GCC-8.3.0 32-bit Buster Pi[0-1]"
     env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=0-1 BASE=true
     language: minimal
+    cache:
+      ccache: true
+      directories:
+        - $HOME/.ccache
   - name: "BASE GCC-8.3.0 32-bit Buster Pi[2-3]"
     env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=2-3 BASE=true
     language: minimal
+    cache:
+      ccache: true
+      directories:
+        - $HOME/.ccache
   - name: "BASE GCC-8.3.0 32-bit Buster Pi[3+]"
     env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=3+ BASE=true
     language: minimal
+    cache:
+      ccache: true
+      directories:
+        - $HOME/.ccache
   - name: "BASE GCC-6.3.0 32-bit Stretch Pi[0-1]"
     env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=0-1 BASE=true
     language: minimal
+    cache:
+      ccache: true
+      directories:
+        - $HOME/.ccache
   - name: "BASE GCC-6.3.0 32-bit Stretch Pi[2-3]"
     env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=2-3 BASE=true
     language: minimal
+    cache:
+      ccache: true
+      directories:
+        - $HOME/.ccache
   - name: "BASE GCC-6.3.0 32-bit Stretch Pi[3+]"
     env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=3+ BASE=true
     language: minimal
+    cache:
+      ccache: true
+      directories:
+        - $HOME/.ccache
   - name: "BASE GCC-8.3.0 64-bit"
     env: GCC_VERSION=8.3.0 OS_TYPE=2 RPI_TYPE=64 BASE=true
     language: minimal
+    cache:
+      ccache: true
+      directories:
+        - $HOME/.ccache
   - name: "BASE GCC-6.3.0 64-bit"
     env: GCC_VERSION=6.3.0 OS_TYPE=1 RPI_TYPE=64 BASE=true
+    language: minimal
+    cache:
+      ccache: true
+      directories:
+        - $HOME/.ccache
 before_install:
 - sudo apt-get update -qq; 
   sudo apt-get install -qq unzip wget dos2unix -y; 
   sudo apt-get install -qq build-essential libssh2-1-dev openssl libcurl3 -y;
-  sudo apt-get install -qq ccache -y;
-  export PATH="/usr/lib/ccache:$PATH";
   dos2unix tools/CLIBB_32b;
   chmod +x tools/CLIBB_32b; 
   dos2unix tools/CLIBB_64b; 
@@ -64,6 +95,7 @@ before_install:
   chmod +x patches/curl_stfp_patcher;
   dos2unix tools/SF_deployer;
   chmod +x tools/SF_deployer;
+  echo $PATH;
 install:
 - sudo apt-get -y install -qq gcc g++ gperf flex texinfo ccache gawk gfortran texinfo bison
   libncurses-dev autoconf automake tar figlet;
@@ -73,14 +105,18 @@ script:
 after_success:
 - bash patches/curl_stfp_patcher;
 - bash tools/SF_deployer;
-cache:
-  directories:
-  - $HOME/.ccache
 branches:
   only:
   - master
+cache:
+  ccache: true
+  directories:
+    - $HOME/.ccache
 env:
   global:
   - CURL_VERSION=7.68.0
+  - CCACHE_TEMPDIR=/tmp/.ccache-temp
+  - CCACHE_COMPRESS=1
+  - CCACHE_DIR=$HOME/.ccache
   - secure: MI97Ig3BiKpwjGL1Bwl/b9UuZ7ZKnz/IviyZnmGXVUNsovciQZRPg0DttZsc6upEFyLi0q8qc8ZKsWQsLA/0FoDRMiDzfpmiz8oy7C1MugY0AfViQP9PLCoUhltVFwEoFZS0MGR7eKmCedg9SVFIWBNwcGi7K8xqvSZlO6Adv+nxUBYU7QPUkqVVjxKslavDIcRlqDUtQfySkZcmFa/JzarwdYyusC1DuL/RTt8tUbp6MChvBFMZV/d+V69G9TRMkY32xKrSJ3GvQ/cuqN5eSi88e8K3PJP9oDfvcMCr+xF+cP7ztXrEMFmuiGvHAJf5TzeAGlfdqaBAYrNZ+mUuL/d50c7LJvF3PMmLLA0MUBVmyggFGb1l/UA7TARgTkV3VblE9vPFu9mDaQyOMGccFJ+4xwcsAxgI3nXNdmESz0M/bMUR47aIl2bGj/qennZZ6qW8GRId8iuceOYo570KGHdCnWAKKr/75Eds7p8D8u1QUdEjKyYO9EBbkgCJPw4Se+v5fp4Qej7bfBWtFgyadlPzxv3qYoq2Hq5VkmKLbY7cnbM2h+hrNjr8dnjNUIMzbrVbqlX08xKQ0qaa6e83Plm0K2nJ9AGrzIYkFj7Sdw1/XfGMm7inAIGOaPMzhy1V+UaSK/OuW77HW7fEgZwdMVOjSESPCU6uY8t0Bj1GeOE=
   - secure: DwYnMsvCduimQQjyOnOj0qTwf2KtILQ+OhFrnKSgnds3fGFoJZp2lMFW6OKHlLkUuvZKDC3O+wxWeRJSU/JCjl/rHduH+10K7U2HhRKW4V876AJ61m+m6u/6v+6YEIB0RBJxKf8p4RdYtCP9Bfqrd46zvZWO8LNb4JzjgvQ1NngqcggTyIS+CVVop0Xz4fty9FHGN82FM5ZU2VwLyQNuOo5bo8Om3uWTXSKw4YfC0CFL2McUmxZaTtuz0653VJsqGAe7IfDYc7HiL4UKBX+K7yPcvpG6MG4ejpzC2Cxovo1BJ1HrWOpYIx5EpDwwRT9slEpuV1opHI3hLWg/dlXrtFn9QJQYyDcV2q6UXKeGSFjFInu1GeqWxD8fv/vm8OcfNgceW+++3AO0C/ZfRimhgLJYc/R4B6In95H8Sqtm1gFmlmtH3aIHIESLaXkhT1eQ8z5gpO9xtNBEqk0M7mZ3uN9ygYGLxMKdhQK4an+jHQQSnumRi3++mY7ST9Ekqq+YmIvGpB93wLyWnt545GkawAxHOrwcHeTLkBRbDDCOUgt4VO0+ng+Tc3u/f9oWZWp8fBMG+PjF1HyZMEU7S7dPWD6KqScbdo7a/zKdU8RZFigb1NMREOlV3v2ku4SO6V/zhegkUOGCWeH1u8F5ddTj74HytK+2qtFc8NUSbCIVtvs=
