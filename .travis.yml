@@ -28,56 +28,56 @@ language: minimal
 matrix:
   include:
   - name: "BASE GCC-8.3.0 32-bit Buster Pi[0-1]"
-    env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=0-1 BASE=true
+    env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=0-1 BASE=true CACHE_NAME=BASE1
     language: minimal
     cache:
       ccache: true
       directories:
         - $HOME/.ccache
   - name: "BASE GCC-8.3.0 32-bit Buster Pi[2-3]"
-    env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=2-3 BASE=true
+    env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=2-3 BASE=true CACHE_NAME=BASE2
     language: minimal
     cache:
       ccache: true
       directories:
         - $HOME/.ccache
   - name: "BASE GCC-8.3.0 32-bit Buster Pi[3+]"
-    env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=3+ BASE=true
+    env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=3+ BASE=true CACHE_NAME=BASE3
     language: minimal
     cache:
       ccache: true
       directories:
         - $HOME/.ccache
   - name: "BASE GCC-6.3.0 32-bit Stretch Pi[0-1]"
-    env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=0-1 BASE=true
+    env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=0-1 BASE=true CACHE_NAME=BASE4
     language: minimal
     cache:
       ccache: true
       directories:
         - $HOME/.ccache
   - name: "BASE GCC-6.3.0 32-bit Stretch Pi[2-3]"
-    env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=2-3 BASE=true
+    env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=2-3 BASE=true CACHE_NAME=BASE5
     language: minimal
     cache:
       ccache: true
       directories:
         - $HOME/.ccache
   - name: "BASE GCC-6.3.0 32-bit Stretch Pi[3+]"
-    env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=3+ BASE=true
+    env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=3+ BASE=true CACHE_NAME=BASE6
     language: minimal
     cache:
       ccache: true
       directories:
         - $HOME/.ccache
   - name: "BASE GCC-8.3.0 64-bit"
-    env: GCC_VERSION=8.3.0 OS_TYPE=2 RPI_TYPE=64 BASE=true
+    env: GCC_VERSION=8.3.0 OS_TYPE=2 RPI_TYPE=64 BASE=true CACHE_NAME=BASE7
     language: minimal
     cache:
       ccache: true
       directories:
         - $HOME/.ccache
   - name: "BASE GCC-6.3.0 64-bit"
-    env: GCC_VERSION=6.3.0 OS_TYPE=1 RPI_TYPE=64 BASE=true
+    env: GCC_VERSION=6.3.0 OS_TYPE=1 RPI_TYPE=64 BASE=true CACHE_NAME=BASE8
     language: minimal
     cache:
       ccache: true

@@ -224,7 +224,7 @@ if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLO
 mv "$BUILDDIR"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-env GZIP=-9 tar cvzf cross-gcc-"$GCC_VERSION"-pi_"$FOLDER_VERSION".tar.gz cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 > cross-gcc-"$GCC_VERSION"-pi_"$FOLDER_VERSION".tar.gz
 echo "Done Building Cross GCC $GCC_VERSION Binaries..."
 rm -rf "$HOME"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 
