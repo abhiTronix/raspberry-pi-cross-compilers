@@ -174,7 +174,7 @@ cd "$DOWNLOADDIR" || exit
 if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
 	if [ ! -f "cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz" ]; then wget -q "${URL}cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz"; fi
 	tar xf cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz
-	mv -v ~/cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION/* INSTALLDIR
+	mv -v cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION/* INSTALLDIR
 	rm -rf cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION
 	rm ./*.tar.*
 fi
