@@ -35,10 +35,18 @@ helpfunction()
 {	
    #helper function that prints custom usage help menu
    echo ""
+   echo ""
+   figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi Toolchains Builder 32-bit"
+   echo ""
+   figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
+   echo ""
+   echo ""
    echo "Usage: $0 -g [GCC version] -r [Target Pi type] -o [Target Pi OS type]"
    echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)"
-   echo -e "\t-r What's yours Raspberry Pi type?: (0-1|2-3|3+)"
-   echo -e "\t-o What's yours Raspberry Pi OS type?: (stretch|buster)"
+   echo -e "\t-r What's yours Target Raspberry Pi type?: (0-1|2-3|3+)"
+   echo -e "\t-o What's yours Target Raspberry Pi OS type?: (stretch|buster)"
+   echo ""
+   echo ""
    exit 1 # Exit script after printing help
 }
 
@@ -57,7 +65,7 @@ done
 #validates parameters and print usage helper function in case parameters are missing
 if [ -z "$GCC_VERSION" ] || [ -z "$RPI_TYPE" ] || [ -z "$RPIOS_TYPE" ]
 then
-   echo "Required parameters are missing!";
+   echo "Error: Required parameters are missing!";
    helpfunction
 fi
 
@@ -128,14 +136,6 @@ if ! [[ "$FPU" =~ ^(vfp|neon-vfpv4|neon-fp-armv8)$ ]]; then exit 1 ; fi
 if [ "$BUILDDIR" = "" ]; then exit 1 ; fi
 if [ "$LANGUAGES" = "" ]; then exit 1 ; fi
 
-
-if [ "$CI" != "true" ]; then
-	echo ""
-	echo ""
-	figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi Toolchains Builder"
-	echo ""
-	echo ""
-fi
 
 #download binaries if not found
 echo "Downloading and Setting up build directories"

@@ -34,9 +34,17 @@ helpfunction()
 {	
    #helper function that prints custom usage help menu
    echo ""
-   echo "Usage: $0 -g [GCC version] -t [OS Type]"
+   echo ""
+   figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi Toolchains Builder 64-bit"
+   echo ""
+   figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
+   echo ""
+   echo ""
+   echo "Usage: $0 -g [GCC version] -t [Target OS type]"
    echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)"
-   echo -e "\t-t What's yours Raspberry Pi OS type?: (1|2) [default:1]"
+   echo -e "\t-t What's yours Target OS type?: (1|2) [default:1]"
+   echo ""
+   echo ""
    exit 1 # Exits script after printing help
 }
 
@@ -53,7 +61,7 @@ do
 done
 #validates parameters and print usage helper function in case parameters are missing
 if [ -z "$GCC_VERSION" ]; then
-   echo "Required parameter is missing!";
+   echo "Error: Required parameter is missing!";
    helpfunction
 elif [ -z "$OS_TYPE" ]; then
 	OS_TYPE=1
@@ -110,15 +118,6 @@ if [ "$ARCH" != "armv8-a+fp+simd" ]; then exit 1 ; fi
 if [ "$FOLDER_VERSION" != "64" ]; then exit 1 ; fi
 if [ "$BUILDDIR" = "" ]; then exit 1 ; fi
 if [ "$LANGUAGES" = "" ]; then exit 1 ; fi
-
-
-if [ "$CI" != "true" ]; then
-	echo ""
-	echo ""
-	figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi Toolchains Builder"
-	echo ""
-	echo ""
-fi
 
 
 echo "Downloading and Setting up build directories"

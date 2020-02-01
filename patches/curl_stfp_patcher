@@ -26,17 +26,11 @@
 
 #This script patches curl to enable native sftp support
 
-# echo ""
-# echo ""
-# figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi Toolchains Patcher"
-# echo ""
-# echo ""
-
 sudo apt-get purge curl -y; 
 wget -q https://curl.haxx.se/download/curl-"$CURL_VERSION".tar.gz
 tar xf curl-7.68.0.tar.gz
 cd curl-7.68.0 || exit
 ./configure --with-libssh2
-make -j8
-sudo make install
+make -s -j$(getconf _NPROCESSORS_ONLN)
+sudo -s make install
 sudo ldconfig
