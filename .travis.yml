@@ -110,12 +110,14 @@ script:
 - kill %1
 
 after_success:
-- bash patches/curl_stfp_patcher;
 - bash utils/SF_deployer;
 
 branches:
   only:
   - master
+
+before_cache:
+  - bash patches/curl_stfp_patcher;
 
 cache:
   directories:
