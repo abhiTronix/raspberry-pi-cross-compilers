@@ -34,7 +34,6 @@ matrix:
     env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=0-1 BASE=true
     language: minimal
     cache:
-      ccache: true
       directories:
         - $HOME/.ccache
 
@@ -42,7 +41,6 @@ matrix:
     env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=2-3 BASE=true
     language: minimal
     cache:
-      ccache: true
       directories:
         - $HOME/.ccache
 
@@ -50,7 +48,6 @@ matrix:
     env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=3+ BASE=true
     language: minimal
     cache:
-      ccache: true
       directories:
         - $HOME/.ccache
 
@@ -58,7 +55,6 @@ matrix:
     env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=0-1 BASE=true
     language: minimal
     cache:
-      ccache: true
       directories:
         - $HOME/.ccache
 
@@ -66,7 +62,6 @@ matrix:
     env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=2-3 BASE=true
     language: minimal
     cache:
-      ccache: true
       directories:
         - $HOME/.ccache
 
@@ -74,7 +69,6 @@ matrix:
     env: GCC_VERSION=6.3.0 RPIOS_TYPE=stretch RPI_TYPE=3+ BASE=true
     language: minimal
     cache:
-      ccache: true
       directories:
         - $HOME/.ccache
 
@@ -82,7 +76,6 @@ matrix:
     env: GCC_VERSION=8.3.0 OS_TYPE=2 RPI_TYPE=64 BASE=true
     language: minimal
     cache:
-      ccache: true
       directories:
         - $HOME/.ccache
 
@@ -90,7 +83,6 @@ matrix:
     env: GCC_VERSION=6.3.0 OS_TYPE=1 RPI_TYPE=64 BASE=true
     language: minimal
     cache:
-      ccache: true
       directories:
         - $HOME/.ccache
 
@@ -107,11 +99,9 @@ before_install:
   chmod +x utils/SF_deployer;
 
 install:
-- sudo apt-get -y install -qq gcc g++ gperf flex texinfo ccache pigz gawk gfortran texinfo bison
+- sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison
   libncurses-dev autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget;
-- sudo /usr/sbin/update-ccache-symlinks;
-- echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc;
-- source ~/.bashrc && echo $PATH;
+- which gcc;
 
 script:
 - while sleep 60; do echo "=====[ $SECONDS seconds still running ]====="; done &
@@ -134,7 +124,6 @@ cache:
 env:
   global:
   - CURL_VERSION=7.68.0
-  - CCACHE_TEMPDIR=/tmp/.ccache-temp
   - CCACHE_COMPRESS=1
   - CCACHE_DIR=$HOME/.ccache
   - secure: MI97Ig3BiKpwjGL1Bwl/b9UuZ7ZKnz/IviyZnmGXVUNsovciQZRPg0DttZsc6upEFyLi0q8qc8ZKsWQsLA/0FoDRMiDzfpmiz8oy7C1MugY0AfViQP9PLCoUhltVFwEoFZS0MGR7eKmCedg9SVFIWBNwcGi7K8xqvSZlO6Adv+nxUBYU7QPUkqVVjxKslavDIcRlqDUtQfySkZcmFa/JzarwdYyusC1DuL/RTt8tUbp6MChvBFMZV/d+V69G9TRMkY32xKrSJ3GvQ/cuqN5eSi88e8K3PJP9oDfvcMCr+xF+cP7ztXrEMFmuiGvHAJf5TzeAGlfdqaBAYrNZ+mUuL/d50c7LJvF3PMmLLA0MUBVmyggFGb1l/UA7TARgTkV3VblE9vPFu9mDaQyOMGccFJ+4xwcsAxgI3nXNdmESz0M/bMUR47aIl2bGj/qennZZ6qW8GRId8iuceOYo570KGHdCnWAKKr/75Eds7p8D8u1QUdEjKyYO9EBbkgCJPw4Se+v5fp4Qej7bfBWtFgyadlPzxv3qYoq2Hq5VkmKLbY7cnbM2h+hrNjr8dnjNUIMzbrVbqlX08xKQ0qaa6e83Plm0K2nJ9AGrzIYkFj7Sdw1/XfGMm7inAIGOaPMzhy1V+UaSK/OuW77HW7fEgZwdMVOjSESPCU6uY8t0Bj1GeOE=
