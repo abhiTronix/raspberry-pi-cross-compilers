@@ -35,7 +35,7 @@ helpfunction()
    #helper function that prints custom usage help menu
    echo ""
    echo ""
-   figlet -t -k -f /usr/share/figlet/standard.flf "CLI Raspberry Pi Cross Toolchains Builder 64-bit"
+   figlet -t -k -f /usr/share/figlet/standard.flf "CLI Raspberry Pi Native Toolchains Builder 64-bit"
    echo ""
    figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
    echo ""
@@ -117,21 +117,14 @@ if [ "$RPI_TYPE" = "64" ]; then URL="$URL/64/GCC%20$GCCBASE_VERSION/"; fi
 echo "Downloading and Setting up build directories"
 #setup paths
 DOWNLOADDIR=$BUILDDIR/build_toolchains
-INSTALLDIR=$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION
-SYSROOTDIR=$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/$TARGET/libc
-
-#make dirs
 mkdir -p "$DOWNLOADDIR"
-mkdir -p "$INSTALLDIR"
 
 cd "$DOWNLOADDIR" || exit
 
 #download binaries if not found
 if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
-	if [ ! -f "cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz" ]; then wget -q "${URL}cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz"; fi
+	if [ ! -f "cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz" ]; then wget -s "${URL}cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz"; fi
 	tar xf cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz
-	mv -v cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION/* $INSTALLDIR
-	rm -rf cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION
 	rm ./*.tar.*
 fi
 if [ ! -d "gdb-$GDB_VERSION" ]; then
@@ -162,34 +155,32 @@ echo "Setting up paths..."
 PATH=$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/bin:$PATH
 unset LD_LIBRARY_PATH #patch
 
+echo "Building GCC Native GCC $GCC_VERSION Binaries..."
+mkdir -p "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build || exit
+if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
+../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --enable-languages=$LANGUAGES --with-arch=$ARCH    --disable-multilib --program-suffix=-"$GCC_VERSION"
+make -s -j$(nproc)
+make -s install-strip DESTDIR="$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
+cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION" || exit
+cat gcc/limitx.h gcc/glimits.h gcc/limity.h > "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION/lib/gcc/$TARGET/"$GCC_VERSION"/include-fixed/limits.h
 
-if [ "$GCC_VERSION" != "$GCCBASE_VERSION" ]; then
-	cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build || exit
-	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
-	../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH   --disable-multilib
-	make -s -j$(nproc)
-	make -s install DESTDIR="$INSTALLDIR"
-	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
-fi
-
-cd  "$DOWNLOADDIR"/gcc-"$GCC_VERSION" || exit
-cat gcc/limitx.h gcc/glimits.h gcc/limity.h > $(dirname $($TARGET-gcc -print-libgcc-file-name))/include-fixed/limits.h
-
-echo "Building Cross GDB Binaries..."
+echo "Building Native GDB Binaries..."
 cd "$DOWNLOADDIR"/gdb-$GDB_VERSION/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
-../configure --prefix= --target=$TARGET --with-arch=$ARCH  --with-float=hard
+../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH  --program-suffix=-"$GCC_VERSION"
 make -s -j$(nproc)
-make -s install DESTDIR="$INSTALLDIR"
+make -s install DESTDIR="$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
-echo "Done Building Cross GDB Binaries..."
+echo "Done Building Native GDB Binaries..."
 
-mv "$BUILDDIR"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
+mv "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-env GZIP=-9 tar cvzf cross-gcc-"$GCC_VERSION"-pi_"$FOLDER_VERSION".tar.gz cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
-echo "Done Building Cross GCC $GCC_VERSION Binaries..."
-rm -rf "$HOME"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+env GZIP=-9 tar cvzf native-gcc-"$GCC_VERSION"-pi_$FOLDER_VERSION.tar.gz native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+rm -rf "$HOME"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+echo "Done Building Native GCC $GCC_VERSION Binaries..."
 
 #clean path
 PATH=$(echo "$PATH" | sed -e 's;:\?$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/bin;;' -e 's;$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/bin:\?;;')

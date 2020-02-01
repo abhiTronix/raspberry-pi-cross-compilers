@@ -128,7 +128,7 @@ SYSROOTDIR=$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/$TARGET/libc
 
 #make dirs
 mkdir -p "$DOWNLOADDIR"
-mkdir -p "$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION"
+mkdir -p "$INSTALLDIR"
 
 cd "$DOWNLOADDIR" || exit
 #download binaries if not found
