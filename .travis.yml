@@ -207,8 +207,7 @@ before_install:
   chmod +x utils/SF_deployer;
 
 install:
-- sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison
-  libncurses-dev autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget;
+- sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget;
 
 script:
 - while sleep 60; do echo "=====[ $SECONDS seconds still running ]====="; done &
