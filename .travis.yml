@@ -30,6 +30,110 @@ language: minimal
 
 matrix:
   include:
+  - name: "GCC-9.2.0 32-bit Buster Pi[0-1]"
+    env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=0-1
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-9.2.0 32-bit Buster Pi[2-3]"
+    env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=2-3
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-9.2.0 32-bit Buster Pi[3+]"
+    env: GCC_VERSION=9.2.0  RPIOS_TYPE=buster RPI_TYPE=3+
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-9.2.0 32-bit Stretch Pi[0-1]"
+    env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-9.2.0 32-bit Stretch Pi[2-3]"
+    env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-9.2.0 32-bit Stretch Pi[3+]"
+    env: GCC_VERSION=9.2.0  RPIOS_TYPE=stretch RPI_TYPE=3+
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-8.3.0 32-bit Buster Pi[0-1]"
+    env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=0-1
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-8.3.0 32-bit Buster Pi[2-3]"
+    env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=2-3
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-8.3.0 32-bit Buster Pi[3+]"
+    env: GCC_VERSION=8.3.0  RPIOS_TYPE=buster RPI_TYPE=3+
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-8.3.0 32-bit Stretch Pi[0-1]"
+    env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-8.3.0 32-bit Stretch Pi[2-3]"
+    env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-8.3.0 32-bit Stretch Pi[3+]"
+    env: GCC_VERSION=8.3.0  RPIOS_TYPE=stretch RPI_TYPE=3+
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-6.3.0 32-bit Stretch Pi[0-1]"
+    env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=0-1
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-6.3.0 32-bit Stretch Pi[2-3]"
+    env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=2-3
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-6.3.0 32-bit Stretch Pi[3+]"
+    env: GCC_VERSION=6.3.0  RPIOS_TYPE=stretch RPI_TYPE=3+
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-9.2.0 64-bit"
+    env: GCC_VERSION=9.2.0 OS_TYPE=2 RPI_TYPE=64
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-8.3.0 64-bit"
+    env: GCC_VERSION=8.3.0 OS_TYPE=1 RPI_TYPE=64
+    language: minimal
+    cache:
+      directories:
+        - $HOME/.ccache
+  - name: "GCC-6.3.0 64-bit"
+    env: GCC_VERSION=6.3.0 RPI_TYPE=64
   - name: "BASE GCC-8.3.0 32-bit Buster Pi[0-1]"
     env: GCC_VERSION=8.3.0 RPIOS_TYPE=buster RPI_TYPE=0-1 BASE=true
     language: minimal
@@ -87,30 +191,34 @@ matrix:
         - $HOME/.ccache
 
 before_install:
-- sudo apt-get update -qq; 
-  sudo apt-get install -qq dos2unix -y; 
-  dos2unix build-scripts/CLI/CLIBB_32b;
-  chmod +x build-scripts/CLI/CLIBB_32b; 
-  dos2unix build-scripts/CLI/CLIBB_64b; 
-  chmod +x build-scripts/CLI/CLIBB_64b; 
-  dos2unix patches/curl_stfp_patcher;
-  chmod +x patches/curl_stfp_patcher;
-  dos2unix utils/SF_deployer;
-  chmod +x utils/SF_deployer;
+  - sudo apt-get update -qq; 
+    sudo apt-get install -qq dos2unix -y; 
+    dos2unix build-scripts/CLI/CLIBB_32b;
+    chmod +x build-scripts/CLI/CLIBB_32b; 
+    dos2unix build-scripts/CLI/CLIBB_64b; 
+    chmod +x build-scripts/CLI/CLIBB_64b;
+    dos2unix build-scripts/CLI/CLITB_32b; 
+    chmod +x build-scripts/CLI/CLITB_32b; 
+    dos2unix build-scripts/CLI/CLITB_64b; 
+    chmod +x build-scripts/CLI/CLITB_64b; 
+    dos2unix patches/curl_stfp_patcher;
+    chmod +x patches/curl_stfp_patcher;
+    dos2unix utils/SF_deployer;
+    chmod +x utils/SF_deployer;
 
 install:
-- sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison
-  libncurses-dev autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget;
-- which gcc;
+  - sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget;
 
 script:
-- while sleep 60; do echo "=====[ $SECONDS seconds still running ]====="; done &
-- if [ "$RPI_TYPE" != "64" ] && [ "$BASE" = "true" ] ; then bash build-scripts/CLI/CLIBB_32b -r $RPI_TYPE -o $RPIOS_TYPE; fi
-- if [ "$RPI_TYPE" = "64" ] && [ "$BASE" = "true" ] ; then bash build-scripts/CLI/CLIBB_64b -g $GCC_VERSION -t $OS_TYPE; fi
-- kill %1
+  - while sleep 60; do echo "=====[ $SECONDS seconds still running ]====="; done &
+  - if [ "$RPI_TYPE" != "64" ] && ( "$BASE" = "true" & "$TRAVIS_PULL_REQUEST_BRANCH" = "base" ); then bash build-scripts/CLI/CLIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE; fi
+  - if [ "$RPI_TYPE" = "64" ] && ( "$BASE" = "true" & "$TRAVIS_PULL_REQUEST_BRANCH" = "base" ); then bash build-scripts/CLI/CLIBB_64b -g $GCC_VERSION -t $OS_TYPE; fi
+  - if [ "$RPI_TYPE" != "64" ]; then bash build-scripts/CLI/CLITB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE; fi
+  - if [ "$RPI_TYPE" = "64" ]; then bash build-scripts/CLI/CLITB_64b -g $GCC_VERSION -t $OS_TYPE; fi
+  - kill %1
 
 after_success:
-- bash utils/SF_deployer;
+  - bash utils/SF_deployer;
 
 branches:
   only:
