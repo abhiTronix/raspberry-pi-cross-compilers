@@ -127,6 +127,7 @@ SYSROOTDIR=$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/$TARGET/libc
 
 #make dirs
 mkdir -p "$DOWNLOADDIR"
+mkdir -p "$INSTALLDIR"
 mkdir -p "$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION"
 
 cd "$DOWNLOADDIR" || exit
@@ -136,7 +137,7 @@ if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
 	if [ ! -f "cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz" ]; then 
 		wget -s "${URL}cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz"; 
 	fi
-	tar xf gcc-$GCCBASE_VERSION.tar.gz
+	tar xf cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz
 	mv -v cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION/* INSTALLDIR
 	rm -rf cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION
 	rm ./*.tar.*
