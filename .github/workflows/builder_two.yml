@@ -21,7 +21,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ===============================================
 
-name: CLI Builder Pi[0-1] 
+name: CLI Builder Pi[3+] 
 
 on:
   # Trigger the workflow on push or pull request,
@@ -46,12 +46,12 @@ env:
 
 jobs:
   builder-buster_0:
-    name: BASE GCC-8.3.0 32-bit Buster Pi[0-1]
+    name: BASE GCC-8.3.0 32-bit Buster Pi[3+]
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 8.3.0  
       RPIOS_TYPE: buster 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+ 
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -85,13 +85,13 @@ jobs:
         shell: bash
         if: success()
   builder-buster_1:
-    name: Cross GCC-9.2.0 32-bit Buster Pi[0-1]
+    name: Cross GCC-9.2.0 32-bit Buster Pi[3+]
     needs: builder-buster_0
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 9.2.0  
       RPIOS_TYPE: buster 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+ 
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -125,13 +125,13 @@ jobs:
         shell: bash
         if: success()
   builder-buster_2:
-    name: Native GCC-9.2.0 32-bit Buster Pi[0-1]
+    name: Native GCC-9.2.0 32-bit Buster Pi[3+]
     needs: [builder-buster_0, builder-buster_1]
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 9.2.0  
       RPIOS_TYPE: buster 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+ 
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -166,12 +166,12 @@ jobs:
         if: success()
 
   builder-stretch_0:
-    name: BASE GCC-6.3.0 32-bit Stretch Pi[0-1]
+    name: BASE GCC-6.3.0 32-bit Stretch Pi[3+]
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 6.3.0  
       RPIOS_TYPE: stretch 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+ 
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -205,13 +205,13 @@ jobs:
         shell: bash
         if: success()
   builder-stretch_1:
-    name: Cross GCC-9.2.0 32-bit Stretch Pi[0-1]
+    name: Cross GCC-9.2.0 32-bit Stretch Pi[3+]
     needs: builder-stretch_0
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 9.2.0  
       RPIOS_TYPE: stretch 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+ 
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -245,13 +245,13 @@ jobs:
         shell: bash
         if: success()
   builder-stretch_2:
-    name: Native GCC-9.2.0 32-bit Stretch Pi[0-1]
+    name: Native GCC-9.2.0 32-bit Stretch Pi[3+]
     needs: [builder-stretch_0, builder-stretch_1]
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 9.2.0  
       RPIOS_TYPE: stretch 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+ 
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -286,7 +286,7 @@ jobs:
         if: success()
         
   builder-64_0:
-    name: BASE GCC-6.3.0 64-bit Pi[0-1]
+    name: BASE GCC-6.3.0 64-bit Pi[3+]
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 6.3.0  
@@ -325,7 +325,7 @@ jobs:
         shell: bash
         if: success()
   builder-64_1:
-    name: Cross GCC-9.2.0 64-bit Pi[0-1]
+    name: Cross GCC-9.2.0 64-bit Pi[3+]
     needs: builder-64_0
     runs-on: ubuntu-latest
     env:
@@ -365,7 +365,7 @@ jobs:
         shell: bash
         if: success()
   builder-64_2:
-    name: Native GCC-9.2.0 64-bit Pi[0-1]
+    name: Native GCC-9.2.0 64-bit Pi[3+]
     needs: [builder-64_0, builder-64_1]
     runs-on: ubuntu-latest
     env:

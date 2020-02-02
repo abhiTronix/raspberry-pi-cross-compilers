@@ -126,8 +126,7 @@ if ! [[ "$FPU" =~ ^(vfp|neon-vfpv4|neon-fp-armv8)$ ]]; then exit 1 ; fi
 if [ "$BUILDDIR" = "" ]; then exit 1 ; fi
 if [ "$LANGUAGES" = "" ]; then exit 1 ; fi
 
-
-URL="https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/CLI%20Base"
+URL="https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains"
 
 if [ "$RPIOS_TYPE" = "buster" ]; then
 	URL="$URL/Buster/GCC%20$GCCBASE_VERSION"

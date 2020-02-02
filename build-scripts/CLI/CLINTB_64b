@@ -111,8 +111,8 @@ if [ "$FOLDER_VERSION" != "64" ]; then exit 1 ; fi
 if [ "$BUILDDIR" = "" ]; then exit 1 ; fi
 if [ "$LANGUAGES" = "" ]; then exit 1 ; fi
 
-URL="https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/CLI%20Base"
-if [ "$RPI_TYPE" = "64" ]; then URL="$URL/64/GCC%20$GCCBASE_VERSION/"; fi
+URL="https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains"
+if [ "$RPI_TYPE" = "64" ]; then URL="$URL/GCC%20$GCCBASE_VERSION/"; fi
 
 echo "Downloading and Setting up build directories"
 #setup paths
