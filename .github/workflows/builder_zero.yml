@@ -326,7 +326,7 @@ jobs:
         if: success()
   builder-64_1:
     name: Cross GCC-9.2.0 64-bit Pi[0-1]
-    needs: builder-stretch_0
+    needs: builder-64_0
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 9.2.0
@@ -366,7 +366,7 @@ jobs:
         if: success()
   builder-64_2:
     name: Native GCC-9.2.0 64-bit Pi[0-1]
-    needs: [builder-stretch_0, builder-stretch_1]
+    needs: [builder-64_0, builder-64_1]
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 9.2.0
