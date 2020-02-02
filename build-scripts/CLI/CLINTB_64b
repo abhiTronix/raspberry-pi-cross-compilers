@@ -178,8 +178,7 @@ echo "Done Building Native GDB Binaries..."
 mv "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-env GZIP=-9 tar cvzf native-gcc-"$GCC_VERSION"-pi_$FOLDER_VERSION.tar.gz native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
-rm -rf "$HOME"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+tar cf - native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 > native-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz
 echo "Done Building Native GCC $GCC_VERSION Binaries..."
 
 #clean path

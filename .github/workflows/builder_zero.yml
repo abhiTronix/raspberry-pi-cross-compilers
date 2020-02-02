@@ -1,0 +1,406 @@
+# ===============================================
+# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project 
+# provides latest automated GCC Cross Compiler & Native (ARM & ARM64) 
+# build-scripts and precompiled standalone toolchains for Raspberry Pi.
+
+
+# Copyright (C) 2020 Abhishek Thakur(@abhiTronix) <abhi.una12@gmail.com>
+
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# ===============================================
+
+name: CLI Builder Pi[0-1] 
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+
+env:
+  CURL_VERSION: 7.68.0
+  CCACHE_COMPRESS: 1
+  CCACHE_DIR: $HOME/.ccache
+  USER_SFTP: ${{ secrets.USER_SFTP }}
+  PASSWORD_SFTP: ${{ secrets.PASSWORD_SFTP }}
+
+jobs:
+  builder-buster_0:
+    name: BASE GCC-8.3.0 32-bit Buster Pi[0-1]
+    runs-on: ubuntu-latest
+    env:
+      GCC_VERSION: 8.3.0  
+      RPIOS_TYPE: buster 
+      RPI_TYPE: 0-1 
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix build-scripts/CLI/CLIBB_32b 
+          chmod +x build-scripts/CLI/CLIBB_32b 
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_deployer
+          chmod +x utils/SF_deployer
+        if: success()
+      - name: install
+         run: |
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: script
+        run: bash build-scripts/CLI/CLIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        shell: bash
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: after_success
+        run: bash utils/SF_deployer
+        shell: bash
+        if: success()
+  builder-buster_1:
+    name: Cross GCC-9.2.0 32-bit Buster Pi[0-1]
+    needs: builder-buster_0
+    runs-on: ubuntu-latest
+    env:
+      GCC_VERSION: 9.2.0  
+      RPIOS_TYPE: buster 
+      RPI_TYPE: 0-1 
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix build-scripts/CLI/CLICTB_32b 
+          chmod +x build-scripts/CLI/CLICTB_32b 
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_deployer
+          chmod +x utils/SF_deployer
+        if: success()
+      - name: install
+         run: |
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: script
+        run: bash build-scripts/CLI/CLICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        shell: bash
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: after_success
+        run: bash utils/SF_deployer
+        shell: bash
+        if: success()
+  builder-buster_2:
+    name: Native GCC-9.2.0 32-bit Buster Pi[0-1]
+    needs: [builder-buster_0, builder-buster_1]
+    runs-on: ubuntu-latest
+    env:
+      GCC_VERSION: 9.2.0  
+      RPIOS_TYPE: buster 
+      RPI_TYPE: 0-1 
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix build-scripts/CLI/CLINTB_32b 
+          chmod +x build-scripts/CLI/CLINTB_32b 
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_deployer
+          chmod +x utils/SF_deployer
+        if: success()
+      - name: install
+         run: |
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: script
+        run: bash build-scripts/CLI/CLICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        shell: bash
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: after_success
+        run: bash utils/SF_deployer
+        shell: bash
+        if: success()
+
+  builder-stretch_0:
+    name: BASE GCC-6.3.0 32-bit Stretch Pi[0-1]
+    runs-on: ubuntu-latest
+    env:
+      GCC_VERSION: 6.3.0  
+      RPIOS_TYPE: stretch 
+      RPI_TYPE: 0-1 
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix build-scripts/CLI/CLIBB_32b 
+          chmod +x build-scripts/CLI/CLIBB_32b 
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_deployer
+          chmod +x utils/SF_deployer
+        if: success()
+      - name: install
+         run: |
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: script
+        run: bash build-scripts/CLI/CLIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        shell: bash
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: after_success
+        run: bash utils/SF_deployer
+        shell: bash
+        if: success()
+  builder-stretch_1:
+    name: Cross GCC-9.2.0 32-bit Stretch Pi[0-1]
+    needs: builder-stretch_0
+    runs-on: ubuntu-latest
+    env:
+      GCC_VERSION: 9.2.0  
+      RPIOS_TYPE: stretch 
+      RPI_TYPE: 0-1 
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix build-scripts/CLI/CLICTB_32b 
+          chmod +x build-scripts/CLI/CLICTB_32b 
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_deployer
+          chmod +x utils/SF_deployer
+        if: success()
+      - name: install
+         run: |
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: script
+        run: bash build-scripts/CLI/CLICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        shell: bash
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: after_success
+        run: bash utils/SF_deployer
+        shell: bash
+        if: success()
+  builder-stretch_2:
+    name: Native GCC-9.2.0 32-bit Stretch Pi[0-1]
+    needs: [builder-stretch_0, builder-stretch_1]
+    runs-on: ubuntu-latest
+    env:
+      GCC_VERSION: 9.2.0  
+      RPIOS_TYPE: stretch 
+      RPI_TYPE: 0-1 
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix build-scripts/CLI/CLINTB_32b 
+          chmod +x build-scripts/CLI/CLINTB_32b 
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_deployer
+          chmod +x utils/SF_deployer
+        if: success()
+      - name: install
+         run: |
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: script
+        run: bash build-scripts/CLI/CLICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        shell: bash
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: after_success
+        run: bash utils/SF_deployer
+        shell: bash
+        if: success()
+        
+  builder-64_0:
+    name: BASE GCC-6.3.0 64-bit Pi[0-1]
+    runs-on: ubuntu-latest
+    env:
+      GCC_VERSION: 6.3.0  
+      RPI_TYPE: 64
+      OS_TYPE: 1
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix build-scripts/CLI/CLIBB_64b 
+          chmod +x build-scripts/CLI/CLIBB_64b 
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_deployer
+          chmod +x utils/SF_deployer
+        if: success()
+      - name: install
+         run: |
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: script
+        run: bash build-scripts/CLI/CLIBB_64b -g $GCC_VERSION -t $OS_TYPE
+        shell: bash
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: after_success
+        run: bash utils/SF_deployer
+        shell: bash
+        if: success()
+  builder-64_1:
+    name: Cross GCC-9.2.0 64-bit Pi[0-1]
+    needs: builder-stretch_0
+    runs-on: ubuntu-latest
+    env:
+      GCC_VERSION: 9.2.0
+      RPI_TYPE: 64
+      OS_TYPE: 1
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix build-scripts/CLI/CLICTB_64b 
+          chmod +x build-scripts/CLI/CLICTB_64b 
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_deployer
+          chmod +x utils/SF_deployer
+        if: success()
+      - name: install
+         run: |
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: script
+        run: bash build-scripts/CLI/CLICTB_64b -g $GCC_VERSION -t $OS_TYPE
+        shell: bash
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: after_success
+        run: bash utils/SF_deployer
+        shell: bash
+        if: success()
+  builder-64_2:
+    name: Native GCC-9.2.0 64-bit Pi[0-1]
+    needs: [builder-stretch_0, builder-stretch_1]
+    runs-on: ubuntu-latest
+    env:
+      GCC_VERSION: 9.2.0
+      RPI_TYPE: 64
+      OS_TYPE: 1
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix build-scripts/CLI/CLINTB_64b 
+          chmod +x build-scripts/CLI/CLINTB_64b 
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_deployer
+          chmod +x utils/SF_deployer
+        if: success()
+      - name: install
+         run: |
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: script
+        run: bash build-scripts/CLI/CLICTB_64b -g $GCC_VERSION -t $OS_TYPE
+        shell: bash
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: after_success
+        run: bash utils/SF_deployer
+        shell: bash
+        if: success()
