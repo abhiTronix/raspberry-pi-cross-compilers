@@ -89,16 +89,6 @@ else
 	exit
 fi
 
-#collect dependencies versions from raspberry pi os
-if [ "$RPIOS_TYPE" = "stretch" ] || [ "$GCC_VERSION" \< "8.3.0" ]; then
-	GCCBASE_VERSION=6.3.0
-elif [ "$RPIOS_TYPE" = "buster" ]; then
-	GCCBASE_VERSION=8.3.0
-else
-	echo "Invalid argument value: $RPIOS_TYPE"
-	exit
-fi
-
 #collect build directory if not defined
 if [ "$BUILDDIR" = "" ]; then
 	#select temp directory as default
@@ -119,7 +109,6 @@ GDB_VERSION=8.3.1
 
 #validate env variables
 if ! [[ "$GCC_VERSION" =~ ^(7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)$ ]]; then exit 1 ; fi
-if ! [[ "$GCCBASE_VERSION" =~ ^(6.3.0|8.3.0)$ ]]; then exit 1 ; fi
 if ! [[ "$FOLDER_VERSION" =~ ^(0|1|2)$ ]]; then exit 1 ; fi
 if ! [[ "$ARCH" =~ ^(armv6|armv7-a|armv8-a)$ ]]; then exit 1 ; fi
 if ! [[ "$FPU" =~ ^(vfp|neon-vfpv4|neon-fp-armv8)$ ]]; then exit 1 ; fi
@@ -129,7 +118,7 @@ if [ "$LANGUAGES" = "" ]; then exit 1 ; fi
 URL="https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains"
 
 if [ "$RPIOS_TYPE" = "buster" ]; then
-	URL="$URL/Buster/GCC%20$GCCBASE_VERSION"
+	URL="$URL/Buster/GCC%20$GCC_VERSION"
 	if [ "$RPI_TYPE" = "0-1" ]; then
 		URL="$URL/Raspberry%20Pi%201%2C%20Zero/"
 	elif [ "$RPI_TYPE" = "2-3" ]; then
@@ -141,7 +130,7 @@ if [ "$RPIOS_TYPE" = "buster" ]; then
 		exit 1;
 	fi
 elif [ "$RPIOS_TYPE" = "stretch" ]; then
-	URL="$URL/Stretch/GCC%20$GCCBASE_VERSION"
+	URL="$URL/Stretch/GCC%20$GCC_VERSION"
 	if [ "$RPI_TYPE" = "0-1" ]; then
 		URL="$URL/Raspberry%20Pi%201%2C%20Zero/"
 	elif [ "$RPI_TYPE" = "2-3" ]; then
@@ -166,9 +155,10 @@ mkdir -p "$DOWNLOADDIR"
 
 cd "$DOWNLOADDIR" || exit
 
-if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
-	if [ ! -f "cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz" ]; then wget -q "${URL}cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz"; fi
-	tar xf cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz
+if [ ! -f "cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then 
+	wget -s "${URL}cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz"
+	tar xf cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz
+	mv cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION $BUILDDIR
 	rm ./*.tar.*
 fi
 if [ ! -d "gdb-$GDB_VERSION" ]; then
