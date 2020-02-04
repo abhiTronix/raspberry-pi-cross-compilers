@@ -1,0 +1,92 @@
+#!/bin/bash
+
+# ===============================================
+# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project 
+# provides latest automated GCC Cross Compiler & Native (ARM & ARM64) 
+# build-scripts and precompiled standalone toolchains for Raspberry Pi.
+
+
+# Copyright (C) 2020 Abhishek Thakur(@abhiTronix) <abhi.una12@gmail.com>
+
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# ===============================================
+
+
+# This script auto-deploys Toolchain specific README.md to Sourceforge secured server
+
+
+# deploy root folder docs
+if [ -f "$HOME/README.md" ] && [ "$BASE" = "true" ]; then
+    FOLDER="CLI Base"
+    curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/README.md" --ftp-create-dirs
+    exit 0
+fi
+
+if [ -f "$HOME/root/README.md" ]; then
+    if [ "$RPI_TYPE" = "64" ]; then
+        FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains"
+        curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/root/README.md" --ftp-create-dirs
+    else
+        if [ "$COMPILER_TYPE" = "CROSS" ]; then
+            FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains"
+            curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/root/README.md" --ftp-create-dirs
+        elif [ "$COMPILER_TYPE" = "NATIVE" ]; then
+            FOLDER="Raspberry Pi GCC Native-Compiler Toolchains"
+            curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/root/README.md" --ftp-create-dirs
+        else
+            exit 0
+        fi
+    fi
+fi
+
+if ! [ -f "$HOME/README.md" ]; then exit 0; fi
+
+# deploy Toolchain specific folder docs
+if [ "$COMPILER_TYPE" = "CROSS" ]; then
+    if [ "$RPI_TYPE" = "64" ]; then
+        FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains"
+
+        if [ "$FOLDER" != "" ]; then
+            curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/README.md" --ftp-create-dirs
+        fi
+    else
+        if [ "$RPIOS_TYPE" = "buster" ]; then
+            FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains/Buster"
+            curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/README.md" --ftp-create-dirs
+        elif [ "$RPIOS_TYPE" = "stretch" ]; then
+            FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains/Stretch"
+            curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/README.md" --ftp-create-dirs
+        else            
+            exit 1
+        fi
+    fi
+elif [ "$COMPILER_TYPE" = "NATIVE" ]; then
+    if [ "$RPI_TYPE" = "64" ]; then
+        FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains"
+        curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/README.md" --ftp-create-dirs
+    else
+        if [ "$RPIOS_TYPE" = "buster" ]; then
+            FOLDER="Raspberry Pi GCC Native-Compiler Toolchains/Buster"
+            curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/README.md" --ftp-create-dirs
+        elif [ "$RPIOS_TYPE" = "stretch" ]; then
+            FOLDER="Raspberry Pi GCC Native-Compiler Toolchains/Stretch"
+            curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/README.md" --ftp-create-dirs
+        else            
+            exit 1
+        fi
+    fi
+else
+    exit 1
+fi

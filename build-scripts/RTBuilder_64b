@@ -280,7 +280,7 @@ if [ "$GCC_VERSION" != "$GCCBASE_VERSION" ]; then
 	mv "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 	cd "$HOME" || exit
 	#compress with maximum possible compression level.
-	env GZIP=-9 tar cvzf native-gcc-"$GCC_VERSION"-pi_$FOLDER_VERSION.tar.gz native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+	tar cf - native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 > native-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz
 	rm -rf "$HOME"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 	echo "Done Building Native GCC $GCC_VERSION Binaries..."
 fi
@@ -300,7 +300,7 @@ echo "Done Building Cross GDB Binaries..."
 mv "$BUILDDIR"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-env GZIP=-9 tar cvzf cross-gcc-"$GCC_VERSION"-pi_"$FOLDER_VERSION".tar.gz cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
+tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 > cross-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz 
 echo "Done Building Cross GCC $GCC_VERSION Binaries..."
 rm -rf "$HOME"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 

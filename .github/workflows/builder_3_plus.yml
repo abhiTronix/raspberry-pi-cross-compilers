@@ -21,7 +21,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ===============================================
 
-name: CLI Builder Pi[0-1] 
+name: CI Builder Pi[3+] 
 
 on:
   # Trigger the workflow on push or pull request,
@@ -46,24 +46,28 @@ env:
 
 jobs:
   builder-buster_0:
-    name: BASE GCC-8.3.0 32-bit Buster Pi[0-1]
+    name: BASE GCC-8.3.0 32-bit Buster Pi[3+]
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 8.3.0  
       RPIOS_TYPE: buster 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+
+      COMPILER_TYPE: CROSS
+      BASE: true
     steps:
       - uses: actions/checkout@v2
       - name: before_install
         run: |
           sudo apt-get update -qq
           sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CLI/CLIBB_32b 
-          chmod +x build-scripts/CLI/CLIBB_32b 
+          dos2unix build-scripts/CI/CIBB_32b 
+          chmod +x build-scripts/CI/CIBB_32b 
           dos2unix patches/curl_stfp_patcher
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
+          dos2unix utils/SF_docs_deployer
+          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -73,7 +77,7 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CLI/CLIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
         if: success()
       - name: before_script
@@ -81,29 +85,36 @@ jobs:
         shell: bash
         if: success()
       - name: after_success
+        run: bash utils/SF_docs_deployer
+        shell: bash
+        if: success()
+      - name: deploy
         run: bash utils/SF_deployer
         shell: bash
         if: success()
   builder-buster_1:
-    name: Cross GCC-9.2.0 32-bit Buster Pi[0-1]
+    name: Cross GCC-9.2.0 32-bit Buster Pi[3+]
     needs: builder-buster_0
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 9.2.0  
       RPIOS_TYPE: buster 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+
+      COMPILER_TYPE: CROSS
     steps:
       - uses: actions/checkout@v2
       - name: before_install
         run: |
           sudo apt-get update -qq
           sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CLI/CLICTB_32b 
-          chmod +x build-scripts/CLI/CLICTB_32b 
+          dos2unix build-scripts/CI/CICTB_32b 
+          chmod +x build-scripts/CI/CICTB_32b 
           dos2unix patches/curl_stfp_patcher
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
+          dos2unix utils/SF_docs_deployer
+          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -113,7 +124,7 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CLI/CLICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        run: bash build-scripts/CI/CICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
         if: success()
       - name: before_script
@@ -121,29 +132,36 @@ jobs:
         shell: bash
         if: success()
       - name: after_success
+        run: bash utils/SF_docs_deployer
+        shell: bash
+        if: success()
+      - name: deploy
         run: bash utils/SF_deployer
         shell: bash
         if: success()
   builder-buster_2:
-    name: Native GCC-9.2.0 32-bit Buster Pi[0-1]
+    name: Native GCC-9.2.0 32-bit Buster Pi[3+]
     needs: [builder-buster_0, builder-buster_1]
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 9.2.0  
       RPIOS_TYPE: buster 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+ 
+      COMPILER_TYPE: NATIVE
     steps:
       - uses: actions/checkout@v2
       - name: before_install
         run: |
           sudo apt-get update -qq
           sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CLI/CLINTB_32b 
-          chmod +x build-scripts/CLI/CLINTB_32b 
+          dos2unix build-scripts/CI/CINTB_32b 
+          chmod +x build-scripts/CI/CINTB_32b 
           dos2unix patches/curl_stfp_patcher
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
+          dos2unix utils/SF_docs_deployer
+          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -153,7 +171,7 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CLI/CLINTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        run: bash build-scripts/CI/CINTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
         if: success()
       - name: before_script
@@ -161,29 +179,39 @@ jobs:
         shell: bash
         if: success()
       - name: after_success
+        run: |
+          cp docs/native-gcc-buster.md $HOME/README.md
+          bash utils/SF_docs_deployer
+        shell: bash
+        if: success()
+      - name: deploy
         run: bash utils/SF_deployer
         shell: bash
         if: success()
 
   builder-stretch_0:
-    name: BASE GCC-6.3.0 32-bit Stretch Pi[0-1]
+    name: BASE GCC-6.3.0 32-bit Stretch Pi[3+]
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 6.3.0  
       RPIOS_TYPE: stretch 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+
+      COMPILER_TYPE: CROSS
+      BASE: true
     steps:
       - uses: actions/checkout@v2
       - name: before_install
         run: |
           sudo apt-get update -qq
           sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CLI/CLIBB_32b 
-          chmod +x build-scripts/CLI/CLIBB_32b 
+          dos2unix build-scripts/CI/CIBB_32b 
+          chmod +x build-scripts/CI/CIBB_32b 
           dos2unix patches/curl_stfp_patcher
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
+          dos2unix utils/SF_docs_deployer
+          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -193,7 +221,7 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CLI/CLIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
         if: success()
       - name: before_script
@@ -201,29 +229,36 @@ jobs:
         shell: bash
         if: success()
       - name: after_success
+        run: bash utils/SF_docs_deployer
+        shell: bash
+        if: success()
+      - name: deploy
         run: bash utils/SF_deployer
         shell: bash
         if: success()
   builder-stretch_1:
-    name: Cross GCC-9.2.0 32-bit Stretch Pi[0-1]
+    name: Cross GCC-9.2.0 32-bit Stretch Pi[3+]
     needs: builder-stretch_0
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 9.2.0  
       RPIOS_TYPE: stretch 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+
+      COMPILER_TYPE: CROSS
     steps:
       - uses: actions/checkout@v2
       - name: before_install
         run: |
           sudo apt-get update -qq
           sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CLI/CLICTB_32b 
-          chmod +x build-scripts/CLI/CLICTB_32b 
+          dos2unix build-scripts/CI/CICTB_32b 
+          chmod +x build-scripts/CI/CICTB_32b 
           dos2unix patches/curl_stfp_patcher
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
+          dos2unix utils/SF_docs_deployer
+          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -233,7 +268,7 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CLI/CLICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        run: bash build-scripts/CI/CICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
         if: success()
       - name: before_script
@@ -241,29 +276,36 @@ jobs:
         shell: bash
         if: success()
       - name: after_success
+        run: bash utils/SF_docs_deployer
+        shell: bash
+        if: success()
+      - name: deploy
         run: bash utils/SF_deployer
         shell: bash
         if: success()
   builder-stretch_2:
-    name: Native GCC-9.2.0 32-bit Stretch Pi[0-1]
+    name: Native GCC-9.2.0 32-bit Stretch Pi[3+]
     needs: [builder-stretch_0, builder-stretch_1]
     runs-on: ubuntu-latest
     env:
       GCC_VERSION: 9.2.0  
       RPIOS_TYPE: stretch 
-      RPI_TYPE: 0-1 
+      RPI_TYPE: 3+ 
+      COMPILER_TYPE: NATIVE
     steps:
       - uses: actions/checkout@v2
       - name: before_install
         run: |
           sudo apt-get update -qq
           sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CLI/CLINTB_32b 
-          chmod +x build-scripts/CLI/CLINTB_32b 
+          dos2unix build-scripts/CI/CINTB_32b 
+          chmod +x build-scripts/CI/CINTB_32b 
           dos2unix patches/curl_stfp_patcher
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
+          dos2unix utils/SF_docs_deployer
+          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -273,7 +315,7 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CLI/CLINTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        run: bash build-scripts/CI/CINTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
         if: success()
       - name: before_script
@@ -281,126 +323,12 @@ jobs:
         shell: bash
         if: success()
       - name: after_success
-        run: bash utils/SF_deployer
-        shell: bash
-        if: success()
-        
-  builder-64_0:
-    name: BASE GCC-6.3.0 64-bit Pi[0-1]
-    runs-on: ubuntu-latest
-    env:
-      GCC_VERSION: 6.3.0  
-      RPI_TYPE: 64
-      OS_TYPE: 1
-    steps:
-      - uses: actions/checkout@v2
-      - name: before_install
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CLI/CLIBB_64b 
-          chmod +x build-scripts/CLI/CLIBB_64b 
-          dos2unix patches/curl_stfp_patcher
-          chmod +x patches/curl_stfp_patcher
-          dos2unix utils/SF_deployer
-          chmod +x utils/SF_deployer
-        if: success()
-      - name: install
-        run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
-          sudo /usr/sbin/update-ccache-symlinks
-          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
-          source ~/.bashrc && echo $PATH
-        if: success()
-      - name: script
-        run: bash build-scripts/CLI/CLIBB_64b -g $GCC_VERSION -t $OS_TYPE
+          cp docs/native-gcc-stretch.md $HOME/README.md
+          bash utils/SF_docs_deployer
         shell: bash
         if: success()
-      - name: before_script
-        run: bash patches/curl_stfp_patcher
-        shell: bash
-        if: success()
-      - name: after_success
-        run: bash utils/SF_deployer
-        shell: bash
-        if: success()
-  builder-64_1:
-    name: Cross GCC-9.2.0 64-bit Pi[0-1]
-    needs: builder-64_0
-    runs-on: ubuntu-latest
-    env:
-      GCC_VERSION: 9.2.0
-      RPI_TYPE: 64
-      OS_TYPE: 1
-    steps:
-      - uses: actions/checkout@v2
-      - name: before_install
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CLI/CLICTB_64b 
-          chmod +x build-scripts/CLI/CLICTB_64b 
-          dos2unix patches/curl_stfp_patcher
-          chmod +x patches/curl_stfp_patcher
-          dos2unix utils/SF_deployer
-          chmod +x utils/SF_deployer
-        if: success()
-      - name: install
-        run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
-          sudo /usr/sbin/update-ccache-symlinks
-          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
-          source ~/.bashrc && echo $PATH
-        if: success()
-      - name: script
-        run: bash build-scripts/CLI/CLICTB_64b -g $GCC_VERSION -t $OS_TYPE
-        shell: bash
-        if: success()
-      - name: before_script
-        run: bash patches/curl_stfp_patcher
-        shell: bash
-        if: success()
-      - name: after_success
-        run: bash utils/SF_deployer
-        shell: bash
-        if: success()
-  builder-64_2:
-    name: Native GCC-9.2.0 64-bit Pi[0-1]
-    needs: [builder-64_0, builder-64_1]
-    runs-on: ubuntu-latest
-    env:
-      GCC_VERSION: 9.2.0
-      RPI_TYPE: 64
-      OS_TYPE: 1
-    steps:
-      - uses: actions/checkout@v2
-      - name: before_install
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CLI/CLINTB_64b 
-          chmod +x build-scripts/CLI/CLINTB_64b 
-          dos2unix patches/curl_stfp_patcher
-          chmod +x patches/curl_stfp_patcher
-          dos2unix utils/SF_deployer
-          chmod +x utils/SF_deployer
-        if: success()
-      - name: install
-        run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
-          sudo /usr/sbin/update-ccache-symlinks
-          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
-          source ~/.bashrc && echo $PATH
-        if: success()
-      - name: script
-        run: bash build-scripts/CLI/CLINTB_64b -g $GCC_VERSION -t $OS_TYPE
-        shell: bash
-        if: success()
-      - name: before_script
-        run: bash patches/curl_stfp_patcher
-        shell: bash
-        if: success()
-      - name: after_success
+      - name: deploy
         run: bash utils/SF_deployer
         shell: bash
         if: success()

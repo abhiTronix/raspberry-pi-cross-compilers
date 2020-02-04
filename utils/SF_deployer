@@ -25,7 +25,7 @@
 
 
 
-# This script auto-deploys CLI compiled Cross & Native GCC Toolchain binaries to Sourceforge secured server
+# This script auto-deploys CI compiled Cross & Native GCC Toolchain binaries to Sourceforge secured server
 
 
 #Deploy Cross-compiler Toolchain binaries
