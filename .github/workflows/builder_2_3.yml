@@ -56,7 +56,6 @@ jobs:
       RPI_TYPE: 2-3
       COMPILER_TYPE: CROSS
       BASE: true
-    if: github.event_name == 'pull_request' && github.head_ref == 'base'
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -82,7 +81,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'pull_request' && github.head_ref == 'base'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -90,7 +89,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'pull_request' && github.head_ref == 'base'
   builder-buster_1:
     name: Cross GCC-9.2.0 32-bit Buster Pi[2-3]
     needs: builder-buster_0
@@ -139,7 +138,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: github.event_name == 'release' && github.event.action == 'published'
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
   builder-buster_1_1:
     name: Cross GCC-8.3.0 32-bit Buster Pi[2-3]
     needs: builder-buster_0
@@ -182,7 +181,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: github.event_name == 'release' && github.event.action == 'published'
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
   builder-buster_2:
     name: Native GCC-9.2.0 32-bit Buster Pi[2-3]
     needs: [builder-buster_0, builder-buster_1]
@@ -225,7 +224,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: github.event_name == 'release' && github.event.action == 'published'
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
 
   builder-stretch_0:
     name: BASE GCC-6.3.0 32-bit Stretch Pi[2-3]
@@ -236,7 +235,6 @@ jobs:
       RPI_TYPE: 2-3
       COMPILER_TYPE: CROSS
       BASE: true
-    if: github.event_name == 'pull_request' && github.head_ref == 'base'
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -262,7 +260,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'pull_request' && github.head_ref == 'base'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -270,7 +268,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'pull_request' && github.head_ref == 'base'
   builder-stretch_1:
     name: Cross GCC-9.2.0 32-bit Stretch Pi[2-3]
     needs: builder-stretch_0
@@ -319,7 +317,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: github.event_name == 'release' && github.event.action == 'published'
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
   builder-stretch_1_1:
     name: Cross GCC-6.3.0 32-bit Stretch Pi[2-3]
     needs: builder-stretch_0
@@ -362,7 +360,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: github.event_name == 'release' && github.event.action == 'published'
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
   builder-stretch_2:
     name: Native GCC-9.2.0 32-bit Stretch Pi[2-3]
     needs: [builder-stretch_0, builder-stretch_1]
@@ -405,4 +403,4 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: github.event_name == 'release' && github.event.action == 'published'
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
