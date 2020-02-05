@@ -26,11 +26,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <h1 align=center><img alt="Description" title="Toolchain Description" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/native-gcc-buster.png"></h1>
 
-**You can easily identify each pre-compiled toolchain binary by its name as follows:**
-
-<h3 align=center><img alt="Binary Description" title="Toolchain Binaries Description" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/gcc-large.png"></h3>
-
--------------------------
 
 
 ### TL'DR
@@ -45,7 +40,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
 
+<br>
+
 -------------------------
+
+<br>
 
 <h3 align=center><img alt="Raspberry Pi Toolchains Logo" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/GCC.png"></h3>
 
@@ -54,7 +53,11 @@ This project now utilizes powerful [**Github Actions**][git-action] CI(Continuou
 <h3 align=center><img alt="Workflow" title="Toolchain Builder Workflow" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/workflow.png"></h3>
 
 
+<br>
+
 -------------------------
+
+<br>
 
 ## Toolchain Binaries description table:
 
@@ -67,7 +70,7 @@ This project now utilizes powerful [**Github Actions**][git-action] CI(Continuou
 <br>
 
 | Toolchains | Host OS | Target OS | Current Status | Precompiled GCC versions available |
-| ---------- | -------- | ------- | -------- | --------------------------------- |
+| ---------- | -------- | ------- | -------- | ------------------------ |
 | **Raspberry Pi GCC Cross-Compiler Toolchains(Stretch)** | any x64/x86 Linux machine | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 6.3.0,  9.2.0 |
 | **Raspberry Pi GCC Cross-Compiler Toolchains(Buster)** | any x64/x86 Linux machine | Raspbian Buster OS (Debian Version 10) only | Stable/Production | 8.3.0, 9.2.0 |
 | **Raspberry Pi GCC Native-Compiler Toolchains(Stretch)** | Raspbian Stretch OS (Debian Version 9) only | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 9.2.0 |
@@ -80,7 +83,11 @@ This project now utilizes powerful [**Github Actions**][git-action] CI(Continuou
 **Tip:** _To get the location of each Binary of this project on SourceForge, you can also check out [this Reference Tree](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree)._
 
 
+<br>
+
 -------------------------
+
+<br>
 
 
 ## Toolchain Setup Documentation:
@@ -89,7 +96,11 @@ These precompiled toolchains setup requires just three easy steps - **Downloadin
 
 * #### [WIKI-Documentation (en-English)](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki)
 
+<br>
+
 -------------------------
+
+<br>
 
 ## Supported Toolchains Programming Languages:
 - C++
@@ -97,7 +108,11 @@ These precompiled toolchains setup requires just three easy steps - **Downloadin
 - C
 - Any other language support can be easily [compiled](#scroll-build-scripts).
  
+<br>
+
 -------------------------
+
+<br>
 
 
 ## Supporting this Project
@@ -108,7 +123,11 @@ These precompiled toolchains setup requires just three easy steps - **Downloadin
 
 ***You can also share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers). Thank you.***
 
+<br>
+
 -------------------------
+
+<br>
 
 
 # Additional Information
@@ -132,7 +151,11 @@ These precompiled toolchains setup requires just three easy steps - **Downloadin
 | Raspberry Pi - *3 & 4 Model A+/B+ & Compute 3/3-lite/3+ (64-Bit)* | `-march=armv8-a+fp+simd` |
 
 
-------------------------- 
+<br>
+
+-------------------------
+
+<br> 
 
 
 ## Citing
@@ -148,7 +171,11 @@ These precompiled toolchains setup requires just three easy steps - **Downloadin
 ```
 
 
-------------------------- 
+<br>
+
+-------------------------
+
+<br> 
 
 
 ## Copyright License
@@ -157,7 +184,11 @@ These precompiled toolchains setup requires just three easy steps - **Downloadin
 
 This Project source-code and its precompiled binaries are licensed under the [**GPLv3**][license] license.
 
-------------------------- 
+<br>
+
+-------------------------
+
+<br> 
  
 
 ## Acknowledgments
