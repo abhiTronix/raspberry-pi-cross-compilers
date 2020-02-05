@@ -34,8 +34,9 @@ on:
   pull_request:
     branches:
       - master
-    paths-ignore:
-      - '**.md'
+  release:
+    branches:
+      - master
 
 env:
   CURL_VERSION: 7.68.0
@@ -48,6 +49,7 @@ jobs:
   builder-64_0:
     name: BASE GCC-6.3.0 Pi[64]
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.head_ref == 'base'
     env:
       GCC_VERSION: 6.3.0
       RPI_TYPE: 64 
@@ -83,10 +85,17 @@ jobs:
         run: bash patches/curl_stfp_patcher
         shell: bash
         if: success()
+      - name: after_success
+        run: |
+          mkdir -p $HOME/root
+          cp docs/gcc64.md $HOME/root/README.md
+          bash utils/SF_docs_deployer
+        shell: bash
+        if: success()
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success()
+        if: github.event_name == 'release' && github.event.action == 'published'
   builder-64_1:
     name: Cross GCC-9.2.0 Pi[64]
     needs: builder-64_0
@@ -127,15 +136,14 @@ jobs:
         if: success()
       - name: after_success
         run: |
-          mkdir -p $HOME/root
-          cp docs/cross-gcc64.md $HOME/root/README.md
+          cp docs/cross-gcc64.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
         if: success()
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success()
+        if: github.event_name == 'release' && github.event.action == 'published'
   builder-64_1_0:
     name: Cross GCC-6.3.0 Pi[64]
     needs: builder-64_0
@@ -177,7 +185,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success()
+        if: github.event_name == 'release' && github.event.action == 'published'
   builder-64_1_1:
     name: Cross GCC-8.3.0 Pi[64]
     needs: builder-64_0
@@ -219,7 +227,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success()
+        if: github.event_name == 'release' && github.event.action == 'published'
   builder-64_2:
     name: Native GCC-9.2.0 Pi[64]
     needs: [builder-64_0, builder-64_1]
@@ -260,15 +268,14 @@ jobs:
         if: success()
       - name: after_success
         run: |
-          mkdir -p $HOME/root
-          cp docs/native-gcc64.md $HOME/root/README.md
+          cp docs/native-gcc64.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
         if: success()
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success()
+        if: github.event_name == 'release' && github.event.action == 'published'
   builder-64_2_1:
     name: Native GCC-8.3.0 Pi[64]
     needs: [builder-64_0, builder-64_1_1]
@@ -310,4 +317,4 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success()
+        if: github.event_name == 'release' && github.event.action == 'published'
