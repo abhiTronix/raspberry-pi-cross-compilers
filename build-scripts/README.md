@@ -45,7 +45,17 @@ This project now provides user-friendly open-sourced bash build-scripts that aut
 
 You can run these bash scripts to manually compile any GCC toolchains version through your system terminal:
 
-***:warning: These scripts are Linux-system specific only.***
+
+-----
+
+**Important :warning:**
+
+* For downloading artifacts these build-scripts requires an active Internet connection.
+
+* These build-scripts are Linux-system specific only.
+
+-----
+
 
 1. **Update environment & Install prerequisites:**
 

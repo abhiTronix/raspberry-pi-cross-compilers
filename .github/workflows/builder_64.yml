@@ -131,6 +131,7 @@ jobs:
         if: success()
       - name: after_success
         run: |
+          mkdir -p $HOME/root
           cp docs/cross-gcc64.md $HOME/root/README.md
           bash utils/SF_docs_deployer
         shell: bash
@@ -225,6 +226,7 @@ jobs:
         if: success()
       - name: after_success
         run: |
+          mkdir -p $HOME/root
           cp docs/native-gcc64.md $HOME/root/README.md
           bash utils/SF_docs_deployer
         shell: bash

@@ -78,7 +78,7 @@ This project now utilizes powerful [**Github Actions**][git-action] CI(Continuou
  
 
 
-**Tip:** _To get the location of each Binary of this project on SourceForge, you can also check out <a href = https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree>this Reference Tree</a>._
+**Tip:** _To get the location of each Binary of this project on SourceForge, you can also check out [this Reference Tree](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree)._
 
 
 -------------------------
