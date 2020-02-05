@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# ===============================================
+# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project 
+# provides latest automated GCC Cross Compiler & Native (ARM & ARM64) 
+# build-scripts and precompiled standalone toolchains for Raspberry Pi.
+
+
+# Copyright (C) 2020 Abhishek Thakur(@abhiTronix) <abhi.una12@gmail.com>
+
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# ===============================================
+
+
+#This script patches curl to enable native sftp support
+
+sudo apt-get purge curl -y; 
+wget -q https://curl.haxx.se/download/curl-"$CURL_VERSION".tar.gz
+tar xf curl-7.68.0.tar.gz
+cd curl-7.68.0 || exit
+./configure --with-libssh2
+make -s -j$(getconf _NPROCESSORS_ONLN)
+sudo -s make install
+sudo ldconfig
