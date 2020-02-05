@@ -184,7 +184,10 @@ jobs:
         shell: bash
         if: success()
       - name: after_success
-        run: bash utils/SF_docs_deployer
+        run: |
+          mkdir -p $HOME/root
+          cp docs/native-gcc.md $HOME/root/README.md
+          bash utils/SF_docs_deployer
         shell: bash
         if: success()
       - name: deploy
@@ -232,10 +235,7 @@ jobs:
         shell: bash
         if: success()
       - name: after_success
-        run: |
-          mkdir -p $HOME/root
-          cp docs/native-gcc.md $HOME/root/README.md
-          bash utils/SF_docs_deployer
+        run: bash utils/SF_docs_deployer
         shell: bash
         if: success()
       - name: deploy

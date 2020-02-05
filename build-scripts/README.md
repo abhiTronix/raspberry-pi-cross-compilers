@@ -52,7 +52,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
 * For downloading artifacts these build-scripts requires an active Internet connection.
 
-* These build-scripts are Linux-system specific only.
+* These build-scripts supports Linux-machines only.
 
 -----
 

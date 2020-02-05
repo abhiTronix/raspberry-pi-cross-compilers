@@ -307,7 +307,7 @@ echo "Done Building Cross GDB Binaries..."
 mv "$BUILDDIR"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 > cross-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz 
+tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 > cross-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz 
 echo "Done Building Cross GCC $GCC_VERSION Binaries..."
 rm -rf "$HOME"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 
