@@ -59,19 +59,19 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
 1. **Update environment & Install prerequisites:**
 
-    ```sh
-    # update your system
-    sudo apt update && sudo apt dist-upgrade
+    ```shellsession
+     # update your system
+     sudo apt update && sudo apt dist-upgrade
 
-    # install prerequisites
-    sudo apt-get -y install gcc g++ gperf flex texinfo gawk gfortran texinfo bison \
+     # install prerequisites
+     sudo apt-get -y install gcc g++ gperf flex texinfo gawk gfortran texinfo bison \
 		build-essential openssl unzip wget git pigz \
 		libncurses-dev autoconf automake tar figlet
-	```	
+	```
 
 	**Optional:** Install `ccache` for speeding up build time:
 	
-	```sh
+	```shellsession
 	# Install package
 	sudo apt install -y ccache
 
@@ -92,7 +92,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
 2. **Clone this repository:**
 
-   ```bash
+   ```shellsession
    git clone https://github.com/abhiTronix/raspberry-pi-cross-compilers.git
    cd raspberry-pi-cross-compilers/build-scripts
 
@@ -105,7 +105,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
   	* **Usage parameters:** This script requires a few command-line parameters, just run `./RTBuilder_32b` on terminal:
   
-	    ```bash
+	    ```shellsession
 		Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type]
 			-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)
 			-r What's yours Raspberry Pi type?: (0-1|2-3|3+)
@@ -119,7 +119,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
   		***:warning: You must NOT compile GCC version less than GCC 8.3.0 for Buster OS, otherwise script will automatically switch to build for Stretch OS.***
 
-        ```bash
+        ```shellsession
         chmod +x RTBuilder_32b
         ./RTBuilder_32b -g "9.2.0" -r "2-3" -o "buster"
 
@@ -134,7 +134,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
 	* **Usage parameters:** This script requires few command-line parameters, just run `./RTBuilder_64b`:
 	  
-	    ```bash
+	    ```shellsession
 		Usage: ./RTBuilder_64b -g [GCC version] -t [OS Type]
 			-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)
 			-t What's yours Raspberry Pi OS type?: (1|2) [default:1]
@@ -144,7 +144,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
 	* **Usage:** Just pass _targeted [GCC version](#supported-gcc-versions)_ to `-g` parameter of this script:
 
-        ```bash
+        ```shellsession
         chmod +x RTBuilder_64b
         ./RTBuilder_64b -g "9.2.0"
 
@@ -163,14 +163,14 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 
 	***:warning: Make sure assigned directory has read/write permission.***
 
-	```bash
+	```shellsession
 	BUILDDIR="/home/foo/foo1"
 	``` 
 * `LANGUAGES`: To change supported programming languages for your Toolchains. Its default value is `c,c++,fortran`. Its usage is as follows:
 	
 	***:warning: Make sure to install additional dependency manually according to your assigned supported languages.*** 
 
-	```bash
+	```shellsession
 	LANGUAGES="c,go,brig,d"
 	```
 
