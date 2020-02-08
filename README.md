@@ -123,7 +123,7 @@ This project now utilizes powerful [**Github Actions**][git-action] CI(Continuou
 <br>
 
 | Toolchains | Host OS | Target OS | Current Status | Precompiled GCC versions available |
-| ---------- | -------- | ------- | -------- | --------------------------------- |
+| :----------: | :--------: | :-------: | -------- | :---------------------------------: |
 | **Raspberry Pi GCC Cross-Compiler Toolchains(Stretch)** | any x64/x86 Linux machine | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 6.3.0,  9.2.0 |
 | **Raspberry Pi GCC Cross-Compiler Toolchains(Buster)** | any x64/x86 Linux machine | Raspbian Buster OS (Debian Version 10) only | Stable/Production | 8.3.0, 9.2.0 |
 | **Raspberry Pi GCC Native-Compiler Toolchains(Stretch)** | Raspbian Stretch OS (Debian Version 9) only | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 9.2.0 |
@@ -149,7 +149,7 @@ You can easily identify each pre-compiled toolchain binary by its name as follow
 **[TAR][tar]-[PIGZ][pigz] Compressed** pre-compiled GCC Toolchain binaries can be easily be downloaded from the project's [**SourceForge Repository**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/) or by clicking links given in the following table:
 
 | Toolchains Binaries | Status | GCC versions |
-| ---------- | -------- | ------ |
+| ---------- | -------- | :------: |
 | **Raspberry Pi GCC Cross-Compiler Toolchains(Stretch)**  | Stable/Production | [6.3.0][cc-stretch-630],  [9.2.0][cc-stretch-920] |
 | **Raspberry Pi GCC Cross-Compiler Toolchains(Buster)** | Stable/Production | [8.3.0][cc-buster-830], [9.2.0][cc-buster-920] |
 | **Raspberry Pi GCC Native-Compiler Toolchains(Stretch)** | Stable/Production | [9.2.0][nc-stretch-920] |

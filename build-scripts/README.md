@@ -60,64 +60,64 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 1. **Update environment & Install prerequisites:**
 
     ```shellsession
-     # update your system
-     sudo apt update && sudo apt dist-upgrade
+    # update your system
+    sudo apt update && sudo apt dist-upgrade
 
-     # install prerequisites
-     sudo apt-get -y install gcc g++ gperf flex texinfo gawk gfortran texinfo bison \
-		build-essential openssl unzip wget git pigz \
-		libncurses-dev autoconf automake tar figlet
-	```
+    # install prerequisites
+    sudo apt-get -y install gcc g++ gperf flex texinfo gawk gfortran texinfo bison \
+        build-essential openssl unzip wget git pigz \
+        libncurses-dev autoconf automake tar figlet
+    ```
 
-	**Optional:** Install `ccache` for speeding up build time:
-	
-	```shellsession
-	# Install package
-	sudo apt install -y ccache
+    **Optional:** Install `ccache` for speeding up build time:
+    
+    ```shellsession
+    # Install package
+    sudo apt install -y ccache
 
-	# Update symlinks
-	sudo /usr/sbin/update-ccache-symlinks
+    # Update symlinks
+    sudo /usr/sbin/update-ccache-symlinks
 
-	# Perpend ccache into the PATH
-	echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+    # Perpend ccache into the PATH
+    echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
 
-	# Added related env variables
-	export CCACHE_COMPRESS=1
-  	export CCACHE_DIR=$HOME/.ccache
+    # Added related env variables
+    export CCACHE_COMPRESS=1
+    export CCACHE_DIR=$HOME/.ccache
 
-	# Source .bashrc to test the new PATH
-	source ~/.bashrc && echo $PATH
+    # Source .bashrc to test the new PATH
+    source ~/.bashrc && echo $PATH
 
-	```
+    ```
 
 2. **Clone this repository:**
 
-   ```shellsession
-   git clone https://github.com/abhiTronix/raspberry-pi-cross-compilers.git
-   cd raspberry-pi-cross-compilers/build-scripts
+    ```shellsession
+    # clone repository
+    git clone https://github.com/abhiTronix/raspberry-pi-cross-compilers.git
+   
+    # call directory
+    cd raspberry-pi-cross-compilers/build-scripts
 
-   ```
+    ```
 
 3. **Run scripts:**
 
-	### `RTBuilder_32b`: Raspberry Pi Toolchains Builder 32-bit
+    ### `RTBuilder_32b`: Raspberry Pi Toolchains Builder 32-bit
 
 
-  	* **Usage parameters:** This script requires a few command-line parameters, just run `./RTBuilder_32b` on terminal:
+    * **Usage parameters:** This script requires a few command-line parameters, just run `./RTBuilder_32b` on terminal:
   
-	    ```shellsession
-		Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type]
-			-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)
-			-r What's yours Raspberry Pi type?: (0-1|2-3|3+)
-			-o What's yours Raspberry Pi OS type?: (stretch|buster)
+        ```shellsession
+        Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type]
+            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)
+            -r What's yours Raspberry Pi type?: (0-1|2-3|3+)
+            -o What's yours Raspberry Pi OS type?: (stretch|buster)
+        ```
 
-	    ``` 
+    * **Usage:** Just pass _targeted [GCC version](#supported-gcc-versions)_ to `-g` parameter,  _targeted raspberry pi type_ to `-r` parameter, and _targeted raspberry pi OS type_ to `-o` parameter of this script:
 
-
-
-  	* **Usage:** Just pass _targeted [GCC version](#supported-gcc-versions)_ to `-g` parameter,  _targeted raspberry pi type_ to `-r` parameter, and _targeted raspberry pi OS type_ to `-o` parameter of this script:
-
-  		***:warning: You must NOT compile GCC version less than GCC 8.3.0 for Buster OS, otherwise script will automatically switch to build for Stretch OS.***
+        ***:warning: You must NOT compile GCC version [less than GCC 8.3.0 for Buster OS](#supported-gcc-versions), otherwise script will automatically switch to build for Stretch OS.***
 
         ```shellsession
         chmod +x RTBuilder_32b
@@ -125,24 +125,24 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
         ```
 
-    	*This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` at your `$HOME` directory.*
+        *This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` at your `$HOME` directory.*
 
 
 
-	### `RTBuilder_64b`: Raspberry Pi Toolchains Builder 64-bit
+    ### `RTBuilder_64b`: Raspberry Pi Toolchains Builder 64-bit
 
 
-	* **Usage parameters:** This script requires few command-line parameters, just run `./RTBuilder_64b`:
-	  
-	    ```shellsession
-		Usage: ./RTBuilder_64b -g [GCC version] -t [OS Type]
-			-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)
-			-t What's yours Raspberry Pi OS type?: (1|2) [default:1]
+    * **Usage parameters:** This script requires few command-line parameters, just run `./RTBuilder_64b`:
+      
+        ```shellsession
+        Usage: ./RTBuilder_64b -g [GCC version] -t [OS Type]
+            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)
+            -t What's yours Raspberry Pi OS type?: (1|2) [default:1]
 
-	    ``` 
+        ``` 
 
 
-	* **Usage:** Just pass _targeted [GCC version](#supported-gcc-versions)_ to `-g` parameter of this script:
+    * **Usage:** Just pass _targeted [GCC version](#supported-gcc-versions)_ to `-g` parameter of this script:
 
         ```shellsession
         chmod +x RTBuilder_64b
@@ -150,7 +150,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
         ```
 
-	    *This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_64.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_64.tar.gz` at your `$HOME` directory.*
+        *This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_64.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_64.tar.gz` at your `$HOME` directory.*
 
 &nbsp;
 
@@ -161,18 +161,18 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 
 * `BUILDDIR`: To change build directory. By default it is set to temp(`/tmp`) directory. Its usage is as follows:
 
-	***:warning: Make sure assigned directory has read/write permission.***
+    ***:warning: Make sure assigned directory has read/write permission.***
 
-	```shellsession
-	BUILDDIR="/home/foo/foo1"
-	``` 
+    ```shellsession
+    BUILDDIR="/home/foo/foo1"
+    ``` 
 * `LANGUAGES`: To change supported programming languages for your Toolchains. Its default value is `c,c++,fortran`. Its usage is as follows:
-	
-	***:warning: Make sure to install additional dependency manually according to your assigned supported languages.*** 
+    
+    ***:warning: Make sure to install additional dependency manually according to your assigned supported languages.*** 
 
-	```shellsession
-	LANGUAGES="c,go,brig,d"
-	```
+    ```shellsession
+    LANGUAGES="c,go,brig,d"
+    ```
 
 &nbsp;
 
@@ -180,18 +180,18 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 
 These scripts only support newer GCC versions, those are as follows:
 
-***:warning: You must NOT compile GCC version less than GCC 8.3.0 for Buster OS, otherwise script will automatically switch to build for Stretch OS.***
-
-- 7.1.0
-- 7.2.0
-- 7.3.0
-- 7.4.0
-- 7.5.0
-- 8.1.0
-- 8.2.0
-- 8.3.0
-- 9.1.0
-- 9.2.0
+| GCC Version | Stretch OS | Buster OS |
+| :-----------: | :----------: | :---------: |
+| 7.1.0 | supported | x |
+| 7.2.0 | supported | x |
+| 7.3.0 | supported | x |
+| 7.4.0 | supported | x |
+| 7.5.0 | supported | x |
+| 8.1.0 | supported | x |
+| 8.2.0 | supported | x |
+| 8.3.0 | supported | supported |
+| 9.1.0 | supported | supported |
+| 9.2.0 | supported | supported |
 
 
 &nbsp;
