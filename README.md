@@ -29,7 +29,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <a align="center"> **Latest automated Build-scripts and CI maintained Precompiled Standalone (ARM/ARM64) Toolchains for Raspberry Pi**</a>
 
-![CI Builder Pi[0-1]](https://github.com/abhiTronix/raspberry-pi-cross-compilers/workflows/CI%20Builder%20Pi%5B0-1%5D/badge.svg)
+![CI Builder Pi[0-1]](https://github.com/abhiTronix/raspberry-pi-cross-compilers/workflows/CI%20Builder%20Pi%5B0-1%5D/badge.svg)[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FabhiTronix%2Fraspberry-pi-cross-compilers.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FabhiTronix%2Fraspberry-pi-cross-compilers?ref=badge_shield)
+
 ![CI Builder Pi[2-3]](https://github.com/abhiTronix/raspberry-pi-cross-compilers/workflows/CI%20Builder%20Pi%5B2-3%5D/badge.svg)
 ![CI Builder Pi[3+]](https://github.com/abhiTronix/raspberry-pi-cross-compilers/workflows/CI%20Builder%20Pi%5B3+%5D/badge.svg)
 ![CI Builder Pi[64]](https://github.com/abhiTronix/raspberry-pi-cross-compilers/workflows/CI%20Builder%20Pi%5B64%5D/badge.svg)
@@ -262,6 +263,9 @@ This Project source-code and its precompiled binaries are licensed under the [**
 
 &nbsp; 
  
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FabhiTronix%2Fraspberry-pi-cross-compilers.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FabhiTronix%2Fraspberry-pi-cross-compilers?ref=badge_large)
 
 # Acknowledgments
 
