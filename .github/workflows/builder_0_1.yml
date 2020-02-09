@@ -106,7 +106,7 @@ jobs:
       RPIOS_TYPE: buster 
       RPI_TYPE: 0-1
       COMPILER_TYPE: CROSS
-    steps:'release' && github.ref
+    steps:
       - uses: actions/checkout@v2
       - name: before_install
         run: |
