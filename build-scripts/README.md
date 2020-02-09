@@ -180,18 +180,18 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 
 These scripts only support newer GCC versions, those are as follows:
 
-| GCC Version | Stretch OS | Buster OS |
-| :-----------: | :----------: | :---------: |
-| 7.1.0 | supported | x |
-| 7.2.0 | supported | x |
-| 7.3.0 | supported | x |
-| 7.4.0 | supported | x |
-| 7.5.0 | supported | x |
-| 8.1.0 | supported | x |
-| 8.2.0 | supported | x |
-| 8.3.0 | supported | supported |
-| 9.1.0 | supported | supported |
-| 9.2.0 | supported | supported |
+| GCC Version | Stretch OS build | Buster OS build | 64-bit OS build |
+| :-----------: | :----------: | :---------: | :---------: |
+| 7.1.0 | supported | x | supported |
+| 7.2.0 | supported | x | supported |
+| 7.3.0 | supported | x | supported |
+| 7.4.0 | supported | x | supported |
+| 7.5.0 | supported | x | supported |
+| 8.1.0 | supported | x | supported |
+| 8.2.0 | supported | x | supported |
+| 8.3.0 | supported | supported | supported |
+| 9.1.0 | supported | supported | supported |
+| 9.2.0 | supported | supported | supported |
 
 
 &nbsp;
