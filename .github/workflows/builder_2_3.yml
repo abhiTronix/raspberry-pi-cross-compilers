@@ -29,11 +29,11 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - '**.md'
   pull_request:
     branches:
       - master
+    paths-ignore:
+      - '**.md'
   release:
     branches:
       - master
@@ -68,8 +68,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -81,7 +79,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
-        if: success() && github.event_name == 'pull_request' && github.head_ref == 'base'
+        if: success() && github.event_name == 'release' && github.ref == 'BASE'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -89,7 +87,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success() && github.event_name == 'pull_request' && github.head_ref == 'base'
+        if: success() && github.event_name == 'release' && github.ref == 'BASE'
   builder-buster_1:
     name: Cross GCC-9.2.0 32-bit Buster Pi[2-3]
     needs: builder-buster_0
@@ -134,7 +132,7 @@ jobs:
           cp docs/cross-gcc-buster.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -160,8 +158,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -203,8 +199,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -247,8 +241,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -260,7 +252,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
-        if: success() && github.event_name == 'pull_request' && github.head_ref == 'base'
+        if: success() && github.event_name == 'release' && github.ref == 'BASE'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -268,7 +260,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success() && github.event_name == 'pull_request' && github.head_ref == 'base'
+        if: success() && github.event_name == 'release' && github.ref == 'BASE'
   builder-stretch_1:
     name: Cross GCC-9.2.0 32-bit Stretch Pi[2-3]
     needs: builder-stretch_0
@@ -313,7 +305,7 @@ jobs:
           cp docs/cross-gcc-stretch.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -339,8 +331,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -382,8 +372,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |

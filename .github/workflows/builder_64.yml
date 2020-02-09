@@ -29,11 +29,11 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - '**.md'
   pull_request:
     branches:
       - master
+    paths-ignore:
+      - '**.md'
   release:
     branches:
       - master
@@ -79,7 +79,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_64b -g $GCC_VERSION
         shell: bash
-        if: success() && github.event_name == 'pull_request' && github.head_ref == 'base'
+        if: success() && github.event_name == 'release' && github.ref == 'BASE'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -90,11 +90,11 @@ jobs:
           cp docs/gcc64.md $HOME/root/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success() && github.event_name == 'pull_request' && github.head_ref == 'base'
+        if: success() && github.event_name == 'release' && github.ref == 'BASE'
   builder-64_1:
     name: Cross GCC-9.2.0 Pi[64]
     needs: builder-64_0
@@ -138,7 +138,7 @@ jobs:
           cp docs/cross-gcc64.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -163,8 +163,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -205,8 +203,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -270,7 +266,7 @@ jobs:
           cp docs/native-gcc64.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -295,8 +291,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
