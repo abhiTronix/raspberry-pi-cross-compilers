@@ -96,11 +96,11 @@ jobs:
         shell: bash
         if: success() && github.event_name == 'release' && github.ref == 'BASE'
   builder-64_1:
-    name: Cross GCC-9.2.0 Pi[64]
+    name: Cross GCC-9.3.0 Pi[64]
     needs: builder-64_0
     runs-on: ubuntu-latest
     env:
-      GCC_VERSION: 9.2.0  
+      GCC_VERSION: 9.3.0  
       RPI_TYPE: 64 
       COMPILER_TYPE: CROSS
     steps:
@@ -224,11 +224,11 @@ jobs:
         shell: bash
         if: success() && github.event_name == 'release' && github.event.action == 'published'
   builder-64_2:
-    name: Native GCC-9.2.0 Pi[64]
+    name: Native GCC-9.3.0 Pi[64]
     needs: [builder-64_0, builder-64_1]
     runs-on: ubuntu-latest
     env:
-      GCC_VERSION: 9.2.0  
+      GCC_VERSION: 9.3.0  
       RPI_TYPE: 64
       COMPILER_TYPE: NATIVE
     steps:

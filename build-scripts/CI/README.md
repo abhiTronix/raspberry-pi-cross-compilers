@@ -85,7 +85,7 @@ These CI build-scripts only support newer GCC versions, those are as follows:
 
 - 6.3.0
 - 8.3.0
-- 9.2.0
+- 9.3.0
 
 
 &nbsp;

@@ -110,7 +110,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
   
         ```shellsession
         Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type]
-            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)
+            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0)
             -r What's yours Raspberry Pi type?: (0-1|2-3|3+)
             -o What's yours Raspberry Pi OS type?: (stretch|buster)
         ```
@@ -136,7 +136,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
       
         ```shellsession
         Usage: ./RTBuilder_64b -g [GCC version] -t [OS Type]
-            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)
+            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0)
             -t What's yours Raspberry Pi OS type?: (1|2) [default:1]
 
         ``` 
@@ -180,7 +180,7 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 
 These scripts only support newer GCC versions, those are as follows:
 
-| GCC Version | Stretch OS build | Buster OS build | 64-bit OS build |
+| GCC Version | Stretch OS build (32-bit) | Buster OS build (32-bit) | 64-bit OS build |
 | :-----------: | :----------: | :---------: | :---------: |
 | 7.1.0 | supported | x | supported |
 | 7.2.0 | supported | x | supported |
@@ -192,6 +192,7 @@ These scripts only support newer GCC versions, those are as follows:
 | 8.3.0 | supported | supported | supported |
 | 9.1.0 | supported | supported | supported |
 | 9.2.0 | supported | supported | supported |
+| 9.3.0 | supported | supported | supported |
 
 
 &nbsp;
