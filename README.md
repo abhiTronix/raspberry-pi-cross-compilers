@@ -123,7 +123,7 @@ This project now utilizes powerful [**Github Actions**][git-action] CI(Continuou
 <br>
 
 | Toolchains | Host OS | Target OS | Current Status | Precompiled GCC versions available |
-| ---------- | -------- | ------- | -------- | ------------------------ |
+| :---------- | :--------: | :-------: | :--------: | :------------------------: |
 | **Raspberry Pi GCC Cross-Compiler Toolchains(Stretch)** | any x64/x86 Linux machine | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 6.3.0,  9.2.0, 9.3.0 |
 | **Raspberry Pi GCC Cross-Compiler Toolchains(Buster)** | any x64/x86 Linux machine | Raspbian Buster OS (Debian Version 10) only | Stable/Production | 8.3.0, 9.2.0, 9.3.0 |
 | **Raspberry Pi GCC Native-Compiler Toolchains(Stretch)** | Raspbian Stretch OS (Debian Version 9) only | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 9.2.0, 9.3.0 |
@@ -204,11 +204,11 @@ Open source is awesome :heart:
 
 # Supporting this Project
 
-**If these binaries helped you big time, please consider supporting it through any size donations. Thank you :heart:.**
+**If these binaries helped you big time, please consider supporting it through any size donations.:heart:.**
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)&nbsp;
 
-***You can also share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star :star:](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers). Thank you.***
+***Also please share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star :star:](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
 
 &nbsp;
 
