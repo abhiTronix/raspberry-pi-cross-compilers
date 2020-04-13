@@ -23,6 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ===============================================
 -->
 
+<br>
 
 <h1 align=center><img alt="Description" title="Toolchain Description" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/native-gcc64.png"></h1>
 
@@ -31,11 +32,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 **What is this project?**
 
-> _This project provides the latest, automated, CI maintained, precompiled [**Raspberry Pi CPU optimized**](#optimization-flags-involved) GCC Cross & Native (ARM & ARM64) Compressed Standalone Toolchains & Build-Scripts, that is [**fastest to setup**](#e-toolchain-setup-documentation) and saves you tons of time and thereby helps you to get quickly started with software development with Pi._
+> _This project provides the latest, CI maintained, precompiled [**Raspberry Pi CPU optimized**](#optimization-flags-involved) GCC Cross & Native (ARM & ARM64) Compressed Standalone Toolchains, that is [**fastest to setup**](#e-toolchain-setup-documentation) and saves you tons of time and thereby helps you to get quickly started with software development with Pi._
 
 **Who will benefit from the project?**
 
-> _This project benefits everyone, from a professional Developer to a small Hobbyist to a college student, who's looking for latest easy-to-use precompiled GCC toolchains and build-scripts for there Raspberry Pi project(s)._ 
+> _This project benefits everyone, from a professional Developer to a small Hobbyist to a research Student, who's looking for latest easy-to-use precompiled GCC toolchains and build-scripts for there Raspberry Pi project(s)._ 
 
 
 
@@ -44,8 +45,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -------------------------
 
 <br>
-
-<h3 align=center><img alt="Raspberry Pi Toolchains Logo" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/GCC.png"></h3>
 
 This project now utilizes powerful [**Github Actions**][git-action] CI(Continuous Integration) to auto-compile Compressed GCC Cross & Native ARM/ARM64 Toolchain binaries and thereby auto-deploy them to SourceForge repository.
 
@@ -68,15 +67,16 @@ This project now utilizes powerful [**Github Actions**][git-action] CI(Continuou
 
 <br>
 
+
 | Toolchains | Host OS | Target OS | Current Status | Precompiled GCC versions available |
-| ---------- | -------- | ------- | -------- | ------------------------ |
-| **Raspberry Pi GCC Cross-Compiler Toolchains(Stretch)** | any x64/x86 Linux machine | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 6.3.0,  9.2.0 |
-| **Raspberry Pi GCC Cross-Compiler Toolchains(Buster)** | any x64/x86 Linux machine | Raspbian Buster OS (Debian Version 10) only | Stable/Production | 8.3.0, 9.2.0 |
-| **Raspberry Pi GCC Native-Compiler Toolchains(Stretch)** | Raspbian Stretch OS (Debian Version 9) only | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 9.2.0 |
-| **Raspberry Pi GCC Native-Compiler Toolchains(Buster)** | Raspbian Buster OS (Debian Version 10) only | Raspbian Buster OS (Debian Version 10) only | Stable/Production | 9.2.0 |
-| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains** | any x64/x86 Linux machine | any x64 Raspberry Pi OS(like Pi64) | Stable/Production | 6.3.0, 8.3.0, 9.2.0 |
-| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains** | any x64 Raspberry Pi OS(like Pi64) | any x64 Raspbian OS(like Pi64) | Stable/Production | 8.3.0, 9.2.0 |
-| **Exclusive/Experimental Toolchains** |  None | None | Beta/Experimental | None |
+| :---------- | :--------: | :-------: | :--------: | :------------------------: |
+| **Raspberry Pi GCC Cross-Compiler Toolchains(Stretch)** | any x64/x86 Linux machine | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 6.3.0,  9.2.0, 9.3.0 |
+| **Raspberry Pi GCC Cross-Compiler Toolchains(Buster)** | any x64/x86 Linux machine | Raspbian Buster OS (Debian Version 10) only | Stable/Production | 8.3.0, 9.2.0, 9.3.0 |
+| **Raspberry Pi GCC Native-Compiler Toolchains(Stretch)** | Raspbian Stretch OS (Debian Version 9) only | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 9.2.0, 9.3.0 |
+| **Raspberry Pi GCC Native-Compiler Toolchains(Buster)** | Raspbian Buster OS (Debian Version 10) only | Raspbian Buster OS (Debian Version 10) only | Stable/Production | 9.2.0, 9.3.0 |
+| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains** | any x64/x86 Linux machine | any x64 Raspberry Pi OS(like Pi64) | Stable/Production | 6.3.0, 8.3.0, 9.2.0, 9.3.0 |
+| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains** | any x64 Raspberry Pi OS(like Pi64) | any x64 Raspbian OS(like Pi64) | Stable/Production | 8.3.0, 9.2.0, 9.3.0 |
+| **Exclusive/Experimental Toolchains** |  None | None | Beta/Experimental | None | 
 
 
 **Tip:** _To get the location of each Binary of this project on SourceForge, you can also check out [this Reference Tree](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree)._
@@ -116,11 +116,11 @@ These precompiled toolchains setup requires just three easy steps - **Downloadin
 
 ## Supporting this Project
 
-**If these binaries helped you big time, please consider supporting it through any size donations. Thank you.**
+**If these binaries helped you big time, please consider supporting it through any size donations.**
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)
 
-***You can also share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers). Thank you.***
+***You can also share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
 
 <br>
 

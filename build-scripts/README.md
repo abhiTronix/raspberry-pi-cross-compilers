@@ -110,7 +110,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
   
         ```shellsession
         Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type]
-            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)
+            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0)
             -r What's yours Raspberry Pi type?: (0-1|2-3|3+)
             -o What's yours Raspberry Pi OS type?: (stretch|buster)
         ```
@@ -121,7 +121,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
         ```shellsession
         chmod +x RTBuilder_32b
-        ./RTBuilder_32b -g "9.2.0" -r "2-3" -o "buster"
+        ./RTBuilder_32b -g "9.3.0" -r "2-3" -o "buster"
 
         ```
 
@@ -136,7 +136,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
       
         ```shellsession
         Usage: ./RTBuilder_64b -g [GCC version] -t [OS Type]
-            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)
+            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0)
             -t What's yours Raspberry Pi OS type?: (1|2) [default:1]
 
         ``` 
@@ -146,7 +146,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
         ```shellsession
         chmod +x RTBuilder_64b
-        ./RTBuilder_64b -g "9.2.0"
+        ./RTBuilder_64b -g "9.3.0"
 
         ```
 
@@ -180,7 +180,7 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 
 These scripts only support newer GCC versions, those are as follows:
 
-| GCC Version | Stretch OS build | Buster OS build | 64-bit OS build |
+| GCC Version | Stretch OS build (32-bit) | Buster OS build (32-bit) | any 64-bit OS build |
 | :-----------: | :----------: | :---------: | :---------: |
 | 7.1.0 | supported | x | supported |
 | 7.2.0 | supported | x | supported |
@@ -192,16 +192,18 @@ These scripts only support newer GCC versions, those are as follows:
 | 8.3.0 | supported | supported | supported |
 | 9.1.0 | supported | supported | supported |
 | 9.2.0 | supported | supported | supported |
+| 9.3.0 | supported | supported | supported |
 
 
 &nbsp;
 
-## Support this Project
-***If these binaries helped you big time, please consider supporting it through any size donations. Thank you :heart:.***
+## Supporting this Project
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)&nbsp;
+**If these binaries helped you big time, please consider supporting it through any size donations.**
 
-***You can also share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star :star:](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers). Thank you.***
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)
+
+***You can also share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
 
 &nbsp;
 

@@ -41,7 +41,7 @@ helpfunction()
    echo ""
    echo ""
    echo "Usage: $0 -g [GCC version] -t [Target OS type]"
-   echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0)"
+   echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0)"
    echo -e "\t-t What's yours Target OS type?: (1|2) [default:1]"
    echo ""
    echo ""
@@ -100,7 +100,7 @@ fi
 FOLDER_VERSION=64
 ARCH=armv8-a+fp+simd
 TARGET=aarch64-linux-gnu
-GDB_VERSION=8.3.1
+GDB_VERSION=9.1
 
 
 #validate env variables
@@ -177,7 +177,7 @@ cat gcc/limitx.h gcc/glimits.h gcc/limity.h > $(dirname $($TARGET-gcc -print-lib
 echo "Building Cross GDB Binaries..."
 cd "$DOWNLOADDIR"/gdb-$GDB_VERSION/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
-../configure --prefix= --target=$TARGET --with-arch=$ARCH  --with-float=hard
+../configure --prefix= --target=$TARGET --with-arch=$ARCH  --with-float=hard -with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR"
 make -s -j$(nproc)
 make -s install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi

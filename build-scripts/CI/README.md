@@ -85,17 +85,18 @@ These CI build-scripts only support newer GCC versions, those are as follows:
 
 - 6.3.0
 - 8.3.0
-- 9.2.0
+- 9.3.0
 
 
 &nbsp;
 
 ## Supporting this Project
-**If these binaries helped you big time, please consider supporting it through any size donations. Thank you :heart:.**
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)&nbsp;
+**If these binaries helped you big time, please consider supporting it through any size donations.**
 
-***You can also share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star :star:](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers). Thank you.***
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)
+
+***You can also share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
 
 &nbsp;
 

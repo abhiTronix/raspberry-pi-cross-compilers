@@ -79,7 +79,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
-        if: success() && github.event_name == 'release' && github.ref == 'BASE'
+        if: success() && github.event_name == 'pull_request'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -87,13 +87,13 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success() && github.event_name == 'release' && github.ref == 'BASE'
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
   builder-buster_1:
-    name: Cross GCC-9.2.0 32-bit Buster Pi[2-3]
+    name: Cross GCC-9.3.0 32-bit Buster Pi[2-3]
     needs: builder-buster_0
     runs-on: ubuntu-latest
     env:
-      GCC_VERSION: 9.2.0  
+      GCC_VERSION: 9.3.0  
       RPIOS_TYPE: buster 
       RPI_TYPE: 2-3
       COMPILER_TYPE: CROSS
@@ -179,11 +179,11 @@ jobs:
         shell: bash
         if: success() && github.event_name == 'release' && github.event.action == 'published'
   builder-buster_2:
-    name: Native GCC-9.2.0 32-bit Buster Pi[2-3]
+    name: Native GCC-9.3.0 32-bit Buster Pi[2-3]
     needs: [builder-buster_0, builder-buster_1]
     runs-on: ubuntu-latest
     env:
-      GCC_VERSION: 9.2.0  
+      GCC_VERSION: 9.3.0  
       RPIOS_TYPE: buster 
       RPI_TYPE: 2-3 
       COMPILER_TYPE: NATIVE
@@ -252,7 +252,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
-        if: success() && github.event_name == 'release' && github.ref == 'BASE'
+        if: success() && github.event_name == 'pull_request'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -260,13 +260,13 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success() && github.event_name == 'release' && github.ref == 'BASE'
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
   builder-stretch_1:
-    name: Cross GCC-9.2.0 32-bit Stretch Pi[2-3]
+    name: Cross GCC-9.3.0 32-bit Stretch Pi[2-3]
     needs: builder-stretch_0
     runs-on: ubuntu-latest
     env:
-      GCC_VERSION: 9.2.0  
+      GCC_VERSION: 9.3.0  
       RPIOS_TYPE: stretch 
       RPI_TYPE: 2-3 
       COMPILER_TYPE: CROSS
@@ -352,11 +352,11 @@ jobs:
         shell: bash
         if: success() && github.event_name == 'release' && github.event.action == 'published'
   builder-stretch_2:
-    name: Native GCC-9.2.0 32-bit Stretch Pi[2-3]
+    name: Native GCC-9.3.0 32-bit Stretch Pi[2-3]
     needs: [builder-stretch_0, builder-stretch_1]
     runs-on: ubuntu-latest
     env:
-      GCC_VERSION: 9.2.0  
+      GCC_VERSION: 9.3.0  
       RPIOS_TYPE: stretch 
       RPI_TYPE: 2-3 
       COMPILER_TYPE: NATIVE
