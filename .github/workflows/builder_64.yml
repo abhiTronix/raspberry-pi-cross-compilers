@@ -79,7 +79,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_64b -g $GCC_VERSION
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'pull_request'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -94,7 +94,7 @@ jobs:
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success() && github.event_name == 'release' && github.ref == 'BASE'
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
   builder-64_1:
     name: Cross GCC-9.3.0 Pi[64]
     needs: builder-64_0
