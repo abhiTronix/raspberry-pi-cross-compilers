@@ -110,7 +110,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
   
         ```shellsession
         Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type]
-            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0)
+            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|10.1.0)
             -r What's yours Raspberry Pi type?: (0-1|2-3|3+)
             -o What's yours Raspberry Pi OS type?: (stretch|buster)
         ```
@@ -136,7 +136,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
       
         ```shellsession
         Usage: ./RTBuilder_64b -g [GCC version] -t [OS Type]
-            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0)
+            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|10.1.0)
             -t What's yours Raspberry Pi OS type?: (1|2) [default:1]
 
         ``` 
@@ -190,10 +190,11 @@ These scripts only support newer GCC versions, those are as follows:
 | 8.1.0 | supported | x | supported |
 | 8.2.0 | supported | x | supported |
 | 8.3.0 | supported | supported | supported |
+| 8.4.0 | supported | supported | supported |
 | 9.1.0 | supported | supported | supported |
 | 9.2.0 | supported | supported | supported |
 | 9.3.0 | supported | supported | supported |
-
+| 10.1.0 | supported | supported | supported |
 
 &nbsp;
 
@@ -212,11 +213,12 @@ These scripts only support newer GCC versions, those are as follows:
 
 **Here is a Bibtex entry you can use to cite this project in a publication:**
 
-```tex
+```BibTeX
 @misc{raspberry-pi-cross-compilers,
     Title = {Raspberry Pi Toolchains},
     Author = {Abhishek Thakur},
-    howpublished = {\url{https://github.com/abhiTronix/raspberry-pi-cross-compilers}}   
+    howpublished = {\url{https://github.com/abhiTronix/raspberry-pi-cross-compilers}},
+    year = {2020}  
   }
 ```
 

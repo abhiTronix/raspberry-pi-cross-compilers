@@ -38,9 +38,8 @@ on:
     branches:
       - master
 
-
-
 env:
+  RPI_TYPE: 0-1
   CURL_VERSION: 7.68.0
   CCACHE_COMPRESS: 1
   CCACHE_DIR: $HOME/.ccache
@@ -48,13 +47,14 @@ env:
   PASSWORD_SFTP: ${{ secrets.PASSWORD_SFTP }}
 
 jobs:
-  builder-buster_0:
-    name: BASE GCC-8.3.0 32-bit Buster Pi[0-1]
+  builder-base:
+    name: Base GCC 32-bit Builder Pi[0-1]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rpios_types: [stretch, buster]
     env:
-      GCC_VERSION: 8.3.0  
-      RPIOS_TYPE: buster 
-      RPI_TYPE: 0-1
+      RPIOS_TYPE: ${{ matrix.rpios_types }}
       COMPILER_TYPE: CROSS
       BASE: true
     steps:
@@ -80,7 +80,7 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
+        run: bash build-scripts/CI/CIBB_32b -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
         if: success() && github.event_name == 'pull_request'
       - name: before_script
@@ -97,14 +97,18 @@ jobs:
         run: bash utils/SF_deployer
         shell: bash
         if: success() && github.event_name == 'release' && github.event.action == 'published'
-  builder-buster_1:
-    name: Cross GCC-9.3.0 32-bit Buster Pi[0-1]
-    needs: builder-buster_0
+
+  builder-cross:
+    name: Cross GCC 32-bit Builder Pi[0-1]
+    needs: builder-base
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        gcc_versions: [6.3.0, 8.3.0, 9.2.0, 9.3.0, 10.1.0]
+        rpios_types: [stretch, buster]
     env:
-      GCC_VERSION: 9.3.0  
-      RPIOS_TYPE: buster 
-      RPI_TYPE: 0-1
+      GCC_VERSION: ${{ matrix.gcc_versions }}  
+      RPIOS_TYPE: ${{ matrix.rpios_types }} 
       COMPILER_TYPE: CROSS
     steps:
       - uses: actions/checkout@v2
@@ -147,55 +151,18 @@ jobs:
         run: bash utils/SF_deployer
         shell: bash
         if: success() && github.event_name == 'release' && github.event.action == 'published'
-  builder-buster_1_1:
-    name: Cross GCC-8.3.0 32-bit Buster Pi[0-1]
-    needs: builder-buster_0
+
+  builder-native:
+    name: Native GCC 32-bit Builder Pi[0-1]
+    needs: [builder-base, builder-cross]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        gcc_versions: [9.3.0, 10.1.0]
+        rpios_types: [stretch, buster]
     env:
-      GCC_VERSION: 8.3.0  
-      RPIOS_TYPE: buster 
-      RPI_TYPE: 0-1
-      COMPILER_TYPE: CROSS
-    steps:
-      - uses: actions/checkout@v2
-      - name: before_install
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CI/CICTB_32b 
-          chmod +x build-scripts/CI/CICTB_32b 
-          dos2unix patches/curl_stfp_patcher
-          chmod +x patches/curl_stfp_patcher
-          dos2unix utils/SF_deployer
-          chmod +x utils/SF_deployer
-        if: success()
-      - name: install
-        run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
-          sudo /usr/sbin/update-ccache-symlinks
-          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
-          source ~/.bashrc && echo $PATH
-        if: success()
-      - name: script
-        run: bash build-scripts/CI/CICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
-        shell: bash
-        if: success()
-      - name: before_script
-        run: bash patches/curl_stfp_patcher
-        shell: bash
-        if: success()
-      - name: deploy
-        run: bash utils/SF_deployer
-        shell: bash
-        if: success() && github.event_name == 'release' && github.event.action == 'published'
-  builder-buster_2:
-    name: Native GCC-9.3.0 32-bit Buster Pi[0-1]
-    needs: [builder-buster_0, builder-buster_1]
-    runs-on: ubuntu-latest
-    env:
-      GCC_VERSION: 9.3.0  
-      RPIOS_TYPE: buster 
-      RPI_TYPE: 0-1
+      GCC_VERSION: ${{ matrix.gcc_versions }}  
+      RPIOS_TYPE: ${{ matrix.rpios_types }}  
       COMPILER_TYPE: NATIVE
     steps:
       - uses: actions/checkout@v2
@@ -234,171 +201,6 @@ jobs:
           bash utils/SF_docs_deployer
         shell: bash
         if: success() && github.event_name == 'push'
-      - name: deploy
-        run: bash utils/SF_deployer
-        shell: bash
-        if: success() && github.event_name == 'release' && github.event.action == 'published'
-
-  builder-stretch_0:
-    name: BASE GCC-6.3.0 32-bit Stretch Pi[0-1]
-    runs-on: ubuntu-latest
-    env:
-      GCC_VERSION: 6.3.0  
-      RPIOS_TYPE: stretch 
-      RPI_TYPE: 0-1
-      COMPILER_TYPE: CROSS
-      BASE: true
-    steps:
-      - uses: actions/checkout@v2
-      - name: before_install
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CI/CIBB_32b 
-          chmod +x build-scripts/CI/CIBB_32b 
-          dos2unix patches/curl_stfp_patcher
-          chmod +x patches/curl_stfp_patcher
-          dos2unix utils/SF_deployer
-          chmod +x utils/SF_deployer
-        if: success()
-      - name: install
-        run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
-          sudo /usr/sbin/update-ccache-symlinks
-          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
-          source ~/.bashrc && echo $PATH
-        if: success()
-      - name: script
-        run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
-        shell: bash
-        if: success() && github.event_name == 'pull_request'
-      - name: before_script
-        run: bash patches/curl_stfp_patcher
-        shell: bash
-        if: success()
-      - name: deploy
-        run: bash utils/SF_deployer
-        shell: bash
-        if: success() && github.event_name == 'release' && github.event.action == 'published'
-  builder-stretch_1:
-    name: Cross GCC-9.3.0 32-bit Stretch Pi[0-1]
-    needs: builder-stretch_0
-    runs-on: ubuntu-latest
-    env:
-      GCC_VERSION: 9.3.0  
-      RPIOS_TYPE: stretch 
-      RPI_TYPE: 0-1
-      COMPILER_TYPE: CROSS
-    steps:
-      - uses: actions/checkout@v2
-      - name: before_install
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CI/CICTB_32b 
-          chmod +x build-scripts/CI/CICTB_32b 
-          dos2unix patches/curl_stfp_patcher
-          chmod +x patches/curl_stfp_patcher
-          dos2unix utils/SF_deployer
-          chmod +x utils/SF_deployer
-        if: success()
-      - name: install
-        run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
-          sudo /usr/sbin/update-ccache-symlinks
-          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
-          source ~/.bashrc && echo $PATH
-        if: success()
-      - name: script
-        run: bash build-scripts/CI/CICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
-        shell: bash
-        if: success()
-      - name: before_script
-        run: bash patches/curl_stfp_patcher
-        shell: bash
-        if: success()
-      - name: deploy
-        run: bash utils/SF_deployer
-        shell: bash
-        if: success() && github.event_name == 'release' && github.event.action == 'published'
-  builder-stretch_1_1:
-    name: Cross GCC-6.3.0 32-bit Stretch Pi[0-1]
-    needs: builder-stretch_0
-    runs-on: ubuntu-latest
-    env:
-      GCC_VERSION: 6.3.0  
-      RPIOS_TYPE: stretch 
-      RPI_TYPE: 0-1
-      COMPILER_TYPE: CROSS
-    steps:
-      - uses: actions/checkout@v2
-      - name: before_install
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CI/CICTB_32b 
-          chmod +x build-scripts/CI/CICTB_32b 
-          dos2unix patches/curl_stfp_patcher
-          chmod +x patches/curl_stfp_patcher
-          dos2unix utils/SF_deployer
-          chmod +x utils/SF_deployer
-        if: success()
-      - name: install
-        run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
-          sudo /usr/sbin/update-ccache-symlinks
-          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
-          source ~/.bashrc && echo $PATH
-        if: success()
-      - name: script
-        run: bash build-scripts/CI/CICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
-        shell: bash
-        if: success()
-      - name: before_script
-        run: bash patches/curl_stfp_patcher
-        shell: bash
-        if: success()
-      - name: deploy
-        run: bash utils/SF_deployer
-        shell: bash
-        if: success() && github.event_name == 'release' && github.event.action == 'published'
-  builder-stretch_2:
-    name: Native GCC-9.3.0 32-bit Stretch Pi[0-1]
-    needs: [builder-stretch_0, builder-stretch_1]
-    runs-on: ubuntu-latest
-    env:
-      GCC_VERSION: 9.3.0  
-      RPIOS_TYPE: stretch 
-      RPI_TYPE: 0-1 
-      COMPILER_TYPE: NATIVE
-    steps:
-      - uses: actions/checkout@v2
-      - name: before_install
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CI/CINTB_32b 
-          chmod +x build-scripts/CI/CINTB_32b 
-          dos2unix patches/curl_stfp_patcher
-          chmod +x patches/curl_stfp_patcher
-          dos2unix utils/SF_deployer
-          chmod +x utils/SF_deployer
-        if: success()
-      - name: install
-        run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
-          sudo /usr/sbin/update-ccache-symlinks
-          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
-          source ~/.bashrc && echo $PATH
-        if: success()
-      - name: script
-        run: bash build-scripts/CI/CINTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
-        shell: bash
-        if: success()
-      - name: before_script
-        run: bash patches/curl_stfp_patcher
-        shell: bash
-        if: success()
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash

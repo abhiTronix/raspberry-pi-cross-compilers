@@ -39,6 +39,7 @@ on:
       - master
 
 env:
+  RPI_TYPE: 64
   CURL_VERSION: 7.68.0
   CCACHE_COMPRESS: 1
   CCACHE_DIR: $HOME/.ccache
@@ -46,12 +47,14 @@ env:
   PASSWORD_SFTP: ${{ secrets.PASSWORD_SFTP }}
 
 jobs:
-  builder-64_0:
-    name: BASE GCC-6.3.0 Pi[64]
+  builder-base:
+    name: Base GCC 64-bit Builder Pi[64]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        gcc_versions: [6.3.0, 8.3.0]
     env:
-      GCC_VERSION: 6.3.0
-      RPI_TYPE: 64 
+      GCC_VERSION: ${{ matrix.gcc_versions }}
       COMPILER_TYPE: CROSS
       BASE: true
     steps:
@@ -95,13 +98,16 @@ jobs:
         run: bash utils/SF_deployer
         shell: bash
         if: success() && github.event_name == 'release' && github.event.action == 'published'
-  builder-64_1:
-    name: Cross GCC-9.3.0 Pi[64]
-    needs: builder-64_0
+
+  builder-cross:
+    name: Cross GCC 64-bit Builder Pi[64]
+    needs: builder-base
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        gcc_versions: [6.3.0, 8.3.0, 9.3.0, 10.1.0]
     env:
-      GCC_VERSION: 9.3.0  
-      RPI_TYPE: 64 
+      GCC_VERSION: ${{ matrix.gcc_versions }}  
       COMPILER_TYPE: CROSS
     steps:
       - uses: actions/checkout@v2
@@ -143,93 +149,16 @@ jobs:
         run: bash utils/SF_deployer
         shell: bash
         if: success() && github.event_name == 'release' && github.event.action == 'published'
-  builder-64_1_0:
-    name: Cross GCC-6.3.0 Pi[64]
-    needs: builder-64_0
+
+  builder-native:
+    name: Native GCC 64-bit Builder Pi[64]
+    needs: [builder-base, builder-cross]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        gcc_versions: [8.3.0, 9.3.0, 10.1.0]
     env:
-      GCC_VERSION: 6.3.0  
-      RPI_TYPE: 64 
-      COMPILER_TYPE: CROSS
-    steps:
-      - uses: actions/checkout@v2
-      - name: before_install
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CI/CICTB_64b 
-          chmod +x build-scripts/CI/CICTB_64b 
-          dos2unix patches/curl_stfp_patcher
-          chmod +x patches/curl_stfp_patcher
-          dos2unix utils/SF_deployer
-          chmod +x utils/SF_deployer
-        if: success()
-      - name: install
-        run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
-          sudo /usr/sbin/update-ccache-symlinks
-          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
-          source ~/.bashrc && echo $PATH
-        if: success()
-      - name: script
-        run: bash build-scripts/CI/CICTB_64b -g $GCC_VERSION
-        shell: bash
-        if: success()
-      - name: before_script
-        run: bash patches/curl_stfp_patcher
-        shell: bash
-        if: success()
-      - name: deploy
-        run: bash utils/SF_deployer
-        shell: bash
-        if: success() && github.event_name == 'release' && github.event.action == 'published'
-  builder-64_1_1:
-    name: Cross GCC-8.3.0 Pi[64]
-    needs: builder-64_0
-    runs-on: ubuntu-latest
-    env:
-      GCC_VERSION: 8.3.0  
-      RPI_TYPE: 64 
-      COMPILER_TYPE: CROSS
-    steps:
-      - uses: actions/checkout@v2
-      - name: before_install
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CI/CICTB_64b 
-          chmod +x build-scripts/CI/CICTB_64b 
-          dos2unix patches/curl_stfp_patcher
-          chmod +x patches/curl_stfp_patcher
-          dos2unix utils/SF_deployer
-          chmod +x utils/SF_deployer
-        if: success()
-      - name: install
-        run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
-          sudo /usr/sbin/update-ccache-symlinks
-          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
-          source ~/.bashrc && echo $PATH
-        if: success()
-      - name: script
-        run: bash build-scripts/CI/CICTB_64b -g $GCC_VERSION
-        shell: bash
-        if: success()
-      - name: before_script
-        run: bash patches/curl_stfp_patcher
-        shell: bash
-        if: success()
-      - name: deploy
-        run: bash utils/SF_deployer
-        shell: bash
-        if: success() && github.event_name == 'release' && github.event.action == 'published'
-  builder-64_2:
-    name: Native GCC-9.3.0 Pi[64]
-    needs: [builder-64_0, builder-64_1]
-    runs-on: ubuntu-latest
-    env:
-      GCC_VERSION: 9.3.0  
-      RPI_TYPE: 64
+      GCC_VERSION: ${{ matrix.gcc_versions }}  
       COMPILER_TYPE: NATIVE
     steps:
       - uses: actions/checkout@v2
@@ -267,46 +196,6 @@ jobs:
           bash utils/SF_docs_deployer
         shell: bash
         if: success() && github.event_name == 'push'
-      - name: deploy
-        run: bash utils/SF_deployer
-        shell: bash
-        if: success() && github.event_name == 'release' && github.event.action == 'published'
-  builder-64_2_1:
-    name: Native GCC-8.3.0 Pi[64]
-    needs: [builder-64_0, builder-64_1_1]
-    runs-on: ubuntu-latest
-    env:
-      GCC_VERSION: 8.3.0  
-      RPI_TYPE: 64 
-      COMPILER_TYPE: NATIVE
-    steps:
-      - uses: actions/checkout@v2
-      - name: before_install
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CI/CINTB_64b 
-          chmod +x build-scripts/CI/CINTB_64b 
-          dos2unix patches/curl_stfp_patcher
-          chmod +x patches/curl_stfp_patcher
-          dos2unix utils/SF_deployer
-          chmod +x utils/SF_deployer
-        if: success()
-      - name: install
-        run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
-          sudo /usr/sbin/update-ccache-symlinks
-          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
-          source ~/.bashrc && echo $PATH
-        if: success()
-      - name: script
-        run: bash build-scripts/CI/CINTB_64b -g $GCC_VERSION
-        shell: bash
-        if: success()
-      - name: before_script
-        run: bash patches/curl_stfp_patcher
-        shell: bash
-        if: success()
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
