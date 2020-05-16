@@ -182,13 +182,13 @@ jobs:
           cp docs/native-gcc-buster.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success() && github.event_name == 'push' && ${{ matrix.rpios_types }} == "buster"
+        if: success() && github.event_name == 'release' && ${{ matrix.rpios_types }} == "buster"
       - name: after_success_stretch
         run: |
           cp docs/native-gcc-stretch.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success() && github.event_name == 'push' && ${{ matrix.rpios_types }} == "stretch"
+        if: success() && github.event_name == 'release' && ${{ matrix.rpios_types }} == "stretch"
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash

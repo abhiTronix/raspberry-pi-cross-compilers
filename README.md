@@ -49,7 +49,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ## Table of Contents
 
 * [**TL'DR**](#tldr)
-* [**New-Release SneekPeak: v3.0**](#new-release-sneekpeak-v30)
+* [**New v3.0+ Release SneekPeak**](#new-release-sneekpeak-v30)
 * **Precompiled Toolchains: Easy-to-Use**
   * [**A. Automated Toolchain Builder Workflow**](#a-automated-toolchain-builder-workflow)
   * [**B. Toolchain Binaries description table**](#b-toolchain-binaries-description-table)
@@ -69,6 +69,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 &nbsp;
 
+&nbsp;
+
 
 ### TL'DR
 
@@ -81,9 +83,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 > _This project benefits everyone, from a professional Developer to a small Hobbyist to a research Student, who's looking for latest easy-to-use precompiled GCC toolchains for their Raspberry Pi project(s)._ 
 
 
+&nbsp;
+
 &nbsp; 
 
-### New-Release SneekPeak: v3.0
+### New v3.0+ Release SneekPeak
 
 - *Automated CI maintained GCC standalone ARM/ARM64 toolchains.*
 - *Latest [**GCC 10.1.0**](https://gcc.gnu.org/gcc-10/) toolchains available.*<img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif"/>
@@ -185,7 +189,7 @@ These precompiled toolchains setup requires just three easy steps - **Downloadin
 
 # <img alt="Banner" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/banners-f.png">
 
-Open source is awesome :heart: 
+_Open-Source is awesome :heart:_
 
 - This project now provides user-friendly open-sourced bash build-scripts that auto-generates Compressed Cross & Native GCC ARM/ARM64 Toolchain binaries targeting Raspberry Pi 32-bit & 64-bit OSes.
 
@@ -222,9 +226,8 @@ Open source is awesome :heart:
 
 ### Optimization Flags Involved:
 
-**These toolchains are built with these following system-specific LTO _(Link Time Optimization)_ flags, therefore you can easily take advantage of your Raspberry Pi's CPU specific features with these Toolchains while compiling your programs:**
+These toolchains are built with these following system-specific LTO _(Link Time Optimization)_ flags, therefore you can easily take advantage of your Raspberry Pi's CPU specific features with these Toolchains while compiling your programs:
 
-**Important:** The latest Raspberry Pi 4 uses a Broadcom BCM2711 SoC with a 1.5 GHz 64-bit quad-core ARM Cortex-A72 processor, that also have armv8-a architecture similar to Raspberry Pi 3B+, therefore it is also officially supported!
 
 | Raspberry Pi Board | Link Time Optimization Flags |
 |---|---|
@@ -234,8 +237,11 @@ Open source is awesome :heart:
 | Raspberry Pi - *3 & 4 Model A+/B+ & Compute 3/3-lite/3+ (64-Bit)* | `-march=armv8-a+fp+simd` |
 
 
+**Important: :bulb:** _The latest Raspberry Pi 4 uses a Broadcom BCM2711 SoC with a 1.5 GHz 64-bit quad-core ARM Cortex-A72 processor, that also have armv8-a architecture similar to Raspberry Pi 3B+, therefore it is also officially supported!_
+
 &nbsp; 
 
+&nbsp;
 
 # Citing
 
@@ -253,12 +259,16 @@ Open source is awesome :heart:
 
 &nbsp; 
 
+&nbsp;
+
 
 # Copyright License
 
 **Copyright © 2020 abhiTronix**
 
 This Project source-code and its precompiled binaries are licensed under the [**GPLv3**][license] license.
+
+&nbsp;
 
 &nbsp; 
  

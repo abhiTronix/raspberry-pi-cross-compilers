@@ -93,7 +93,7 @@ jobs:
           cp docs/gcc64.md $HOME/root/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success() && github.event_name == 'push'
+        if: success() && github.event_name == 'release'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -144,7 +144,7 @@ jobs:
           cp docs/cross-gcc64.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success() && github.event_name == 'push'
+        if: success() && github.event_name == 'release'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -195,7 +195,7 @@ jobs:
           cp docs/native-gcc64.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success() && github.event_name == 'push'
+        if: success() && github.event_name == 'release'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
