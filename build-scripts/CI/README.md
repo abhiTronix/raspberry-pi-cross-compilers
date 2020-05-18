@@ -81,12 +81,13 @@ These CI build-scripts only support specific Programming Languages, those are as
 
 ## Supported GCC Versions:
 
-These CI build-scripts only support newer GCC versions, those are as follows:
+These CI build-scripts supports newer as well as base GCC versions, those are as follows:
 
 - 6.3.0
 - 8.3.0
+- 9.2.0
 - 9.3.0
-
+- 10.1.0
 
 &nbsp;
 
