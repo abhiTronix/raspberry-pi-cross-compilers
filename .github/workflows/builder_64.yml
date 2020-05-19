@@ -82,7 +82,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_64b -g $GCC_VERSION
         shell: bash
-        if: success() && github.event_name == 'pull_request'
+        if: success() && (github.event_name == 'pull_request' || github.event_name == 'release')
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
