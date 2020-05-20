@@ -72,7 +72,7 @@ fi
 
 
 if [ "$RPIOS_TYPE" = "buster" ]; then
-	if echo $GCC_VERSION "8.3.0" | awk '{exit !( $1 > $2)}'; then
+	if echo ${GCC_VERSION%.*} "8.3" | awk '{exit ( $1 >= $2 )}'; then
         echo "$GCC_VERSION is not supported on buster!"
 		exit 0
 	fi

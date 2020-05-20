@@ -91,9 +91,14 @@ fi
 
 #collect dependencies versions from raspberry pi os
 if [ "$RPIOS_TYPE" = "stretch" ]; then
-	GCCBASE_VERSION=6.3.0
+	if [ "$GCC_VERSION" == "8.3.0" ];then
+		echo "$GCC_VERSION is not supported on stretch!"
+		exit 0
+	else
+		GCCBASE_VERSION=6.3.0
+	fi
 elif [ "$RPIOS_TYPE" = "buster" ]; then
-	if echo $GCC_VERSION "8.3.0" | awk '{exit !( $1 > $2)}'; then
+	if echo ${GCC_VERSION%.*} "8.3" | awk '{exit ( $1 >= $2 )}'; then
         echo "$GCC_VERSION is not supported on buster!"
 		exit 0
 	else
