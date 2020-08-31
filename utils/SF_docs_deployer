@@ -38,6 +38,9 @@ if [ -f "$HOME/root/README.md" ]; then
     if [ "$RPI_TYPE" = "64" ]; then
         FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains"
         curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/root/README.md" --ftp-create-dirs
+    elif [[ "$OS_TYPE" =~ ^("x86"|"x86_64")$ ]]; then
+        FOLDER="Exclusive-Experimental Toolchains/Desktop"
+        curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/root/README.md" --ftp-create-dirs
     else
         if [ "$COMPILER_TYPE" = "CROSS" ]; then
             FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains"
@@ -88,5 +91,10 @@ elif [ "$COMPILER_TYPE" = "NATIVE" ]; then
         fi
     fi
 else
-    exit 1
+    if [[ "$OS_TYPE" =~ ^("x86"|"x86_64")$ ]]; then
+        FOLDER="Exclusive-Experimental Toolchains/Desktop/$OS_TYPE"
+        curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/README.md" --ftp-create-dirs
+    else
+        exit 0
+    fi
 fi

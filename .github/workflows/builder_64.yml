@@ -40,7 +40,7 @@ on:
 
 env:
   RPI_TYPE: 64
-  CURL_VERSION: 7.68.0
+  CURL_VERSION: 7.72.0
   CCACHE_COMPRESS: 1
   CCACHE_DIR: $HOME/.ccache
   USER_SFTP: ${{ secrets.USER_SFTP }}

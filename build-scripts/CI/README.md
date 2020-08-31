@@ -65,6 +65,10 @@ A generalized workflow used to generate and deploy these CI maintained toolchain
 
 * This build-script is used in CI to generate Compressed Native ARM64 Toolchain binaries targeting Raspberry Pi 64-bit OSes from respective Cross-Compiler Toolchain Binaries builds.
 
+### G. `x86_64TB`: Raspberry Pi CI Toolchains x86_64-Compiler Builder
+
+* This build-script is used in CI to generate Compressed x86_64/x86 Toolchain binaries targeting Raspberry Pi Desktop OSes from scratch.
+
 
 &nbsp;
 
@@ -88,6 +92,7 @@ These CI build-scripts supports newer as well as base GCC versions, those are as
 - 9.2.0
 - 9.3.0
 - 10.1.0
+- 10.2.0
 
 &nbsp;
 
