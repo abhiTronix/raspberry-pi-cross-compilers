@@ -112,8 +112,8 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -qq dos2unix -y
-          dos2unix build-scripts/CI/CINTB_64b 
-          chmod +x build-scripts/CI/CINTB_64b 
+          dos2unix build-scripts/CI/x86_64TB 
+          chmod +x build-scripts/CI/x86_64TB 
           dos2unix patches/curl_stfp_patcher
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
@@ -129,7 +129,7 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CI/CINTB_64b -g $GCC_VERSION -t $OS_TYPE
+        run: bash build-scripts/CI/x86_64TB -g $GCC_VERSION -t $OS_TYPE
         shell: bash
         if: success()
       - name: before_script

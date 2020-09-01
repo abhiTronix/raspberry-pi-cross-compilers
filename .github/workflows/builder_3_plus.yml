@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        gcc_versions: [6.3.0, 8.3.0, 9.2.0, 9.3.0, 10.1.0]
+        gcc_versions: [6.3.0, 8.3.0, 9.3.0, 10.2.0]
         rpios_types: [stretch, buster]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
@@ -141,7 +141,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        gcc_versions: [9.3.0, 10.1.0]
+        gcc_versions: [9.3.0, 10.2.0]
         rpios_types: [stretch, buster]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  

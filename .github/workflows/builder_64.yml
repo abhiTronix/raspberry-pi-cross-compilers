@@ -105,7 +105,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        gcc_versions: [6.3.0, 8.3.0, 9.3.0, 10.1.0]
+        gcc_versions: [6.3.0, 8.3.0, 9.3.0, 10.2.0]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       COMPILER_TYPE: CROSS
@@ -156,7 +156,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        gcc_versions: [8.3.0, 9.3.0, 10.1.0]
+        gcc_versions: [8.3.0, 9.3.0, 10.2.0]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       COMPILER_TYPE: NATIVE
