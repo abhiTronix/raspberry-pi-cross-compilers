@@ -41,7 +41,7 @@ helpfunction()
    echo ""
    echo ""
    echo "Usage: $0 -g [GCC version] -t [Target OS type]"
-   echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)"
+   echo -e "\t-g GCC version you want to compile?: (8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)"
    echo -e "\t-t What's yours Target OS type?: (x86|x86_64) [default:x86_64]"
    echo ""
    echo ""
@@ -85,8 +85,10 @@ fi
 if ! [[ "$OS_TYPE" =~ ^("x86"|"x86_64")$ ]]; then exit 1 ; fi
 
 if [ "$OS_TYPE" = "x86_64" ]; then
-	ARCH=x86_64
+	ARCH_LINUX=x86_64
+	ARCH=x86-64
 else
+	ARCH_LINUX=i386
 	ARCH=i386
 fi
 
@@ -96,7 +98,7 @@ if echo ${GCC_VERSION%.*} "8.3" | awk '{exit ( $1 >= $2 )}'; then
 fi
 
 #pre-defined params
-TARGET=$ARCH-debian-linux
+TARGET=$ARCH_LINUX-pc-linux
 FOLDER_VERSION=$OS_TYPE
 GLIBC_VERSION=2.28
 BINUTILS_VERSION=2.31
@@ -180,9 +182,8 @@ unset LD_LIBRARY_PATH #patch
 
 echo "Building Kernel Headers..."
 cd "$DOWNLOADDIR"/linux || exit
-make -s ARCH=$ARCH INSTALL_HDR_PATH="$SYSROOTDIR"/usr headers_install
+make -s ARCH=$ARCH_LINUX INSTALL_HDR_PATH="$SYSROOTDIR"/usr headers_install
 mkdir -p "$SYSROOTDIR"/usr/lib
-
 
 echo "Building binutils..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
