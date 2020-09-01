@@ -117,7 +117,7 @@ fi
 
 #pre-defined params
 TARGET=arm-linux-gnueabihf
-GDB_VERSION=9.1
+GDB_VERSION=9.2
 
 #validate env variables
 if ! [[ "$GCC_VERSION" =~ ^(6.3.0|8.3.0)$ ]]; then exit 1 ; fi

@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        gcc_versions: [8.3.0, 9.3.0, 10.2.0]
+        gcc_versions: [10.2.0]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       OS_TYPE: x86_64
@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        gcc_versions: [8.3.0, 9.3.0, 10.2.0]
+        gcc_versions: [10.2.0]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       OS_TYPE: x86

@@ -89,7 +89,7 @@ fi
 FOLDER_VERSION=64
 ARCH=armv8-a+fp+simd
 TARGET=aarch64-linux-gnu
-GDB_VERSION=9.1
+GDB_VERSION=9.2
 
 
 #validate env variables
