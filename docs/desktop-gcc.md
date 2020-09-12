@@ -25,7 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <br>
 
-<h1 align=center><img alt="Description" title="Toolchain Description" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/cross-gcc64.png"></h1>
+<h1 align=center><img alt="Description" title="Toolchain Description" src="https://github.com/abhiTronix/Imbakup/raw/master/Images/gcc/gcc_desktop.png"></h1>
 
 
 ### TL'DR
@@ -37,6 +37,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **Who will benefit from the project?**
 
 > _This project benefits everyone, from a professional Developer to a small Hobbyist to a research Student, who's looking for latest easy-to-use precompiled GCC toolchains and build-scripts for there Raspberry Pi project(s)._ 
+
 
 
 <br>
@@ -75,7 +76,7 @@ This project now utilizes powerful [**Github Actions**][git-action] CI(Continuou
 | **Raspberry Pi GCC Native-Compiler Toolchains(Buster)** | Raspbian Buster OS (Debian Version 10) only | Raspbian Buster OS (Debian Version 10) only | Stable/Production | 9.3.0, 10.2.0 |
 | **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains** | any x64/x86 Linux machine | any x64 Raspberry Pi OS(like Pi64) | Stable/Production | 6.3.0, 8.3.0, 9.3.0, 10.2.0 |
 | **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains** | any x64 Raspberry Pi OS(like Pi64) | any x64 Raspbian OS(like Pi64) | Stable/Production | 8.3.0, 9.3.0, 10.2.0 |
-| **Exclusive/Experimental Toolchains** |  x86/x86_64 Pi Desktop | x86/x86_64 Pi Desktop | Beta/Experimental | 10.2.0 |  
+| **Exclusive/Experimental Toolchains** |  x86/x86_64 Pi Desktop | x86/x86_64 Pi Desktop | Beta/Experimental | 10.2.0 | 
 
 
 **Tip:** _To get the location of each Binary of this project on SourceForge, you can also check out [this Reference Tree](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree)._
