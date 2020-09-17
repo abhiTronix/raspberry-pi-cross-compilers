@@ -87,6 +87,7 @@ jobs:
         if: success()
       - name: after_success
         run: |
+          mkdir -p $HOME/root
           cp docs/desktop-gcc.md $HOME/root/README.md
           cp docs/desktop-gcc-x86_64.md $HOME/README.md
           bash utils/SF_docs_deployer
