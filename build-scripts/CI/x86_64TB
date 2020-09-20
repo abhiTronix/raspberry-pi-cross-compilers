@@ -89,8 +89,8 @@ if [ "$OS_TYPE" = "x86_64" ]; then
 	ARCH=x86-64
 	C_FLAGS="-Wno-zero-length-bounds -g -O2 -m64"
 else
-	ARCH_LINUX=i386
-	ARCH=i386
+	ARCH_LINUX=i686
+	ARCH=i686
 	C_FLAGS="-Wno-zero-length-bounds -g -O2 -m32"
 fi
 
