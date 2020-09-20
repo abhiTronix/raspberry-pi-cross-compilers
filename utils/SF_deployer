@@ -109,10 +109,10 @@ if [ -f "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 	fi
 fi
 
-if [ -f "$HOME/gcc-$GCC_VERSION-pi_$OS_TYPE.tar.gz" ]; then
+if [ -f "$HOME/desktop-gcc-$GCC_VERSION-pi_$OS_TYPE.tar.gz" ]; then
 	FOLDER="Exclusive-Experimental Toolchains/Desktop/$OS_TYPE/GCC $GCC_VERSION"
 	if [ "$FOLDER" != "" ]; then
-		curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/gcc-$GCC_VERSION-pi_$OS_TYPE.tar.gz" --ftp-create-dirs
+		curl -k  "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/desktop-gcc-$GCC_VERSION-pi_$OS_TYPE.tar.gz" --ftp-create-dirs
 	else
 		exit 1
 	fi
