@@ -87,9 +87,11 @@ if ! [[ "$OS_TYPE" =~ ^("x86"|"x86_64")$ ]]; then exit 1 ; fi
 if [ "$OS_TYPE" = "x86_64" ]; then
 	ARCH_LINUX=x86_64
 	ARCH=x86-64
+	C_FLAGS="-Wno-zero-length-bounds -g -O2 -m64 -march=x86-64"
 else
 	ARCH_LINUX=i686
 	ARCH=i686
+	C_FLAGS="-Wno-zero-length-bounds -g -O2 -m32 -march=i686"
 fi
 
 if echo ${GCC_VERSION%.*} "8.3" | awk '{exit ( $1 >= $2 )}'; then
@@ -189,8 +191,8 @@ echo "Building binutils..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build || exit
 ../configure --target=$TARGET --prefix= --with-arch=$ARCH --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --disable-multilib
-make -s -j$(getconf _NPROCESSORS_ONLN)
-make -s install DESTDIR="$INSTALLDIR"
+make -s CFLAGS="$C_FLAGS" -j$(getconf _NPROCESSORS_ONLN)
+make -s CFLAGS="$C_FLAGS" install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 
 
@@ -198,26 +200,26 @@ echo "Building Desktop GCC $GCC_VERSION Binaries..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
 ../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH  --disable-multilib
-make -s CFLAGS=-Wno-zero-length-bounds -j$(getconf _NPROCESSORS_ONLN) all-gcc
-make -s CFLAGS=-Wno-zero-length-bounds install-gcc DESTDIR="$INSTALLDIR"
+make -s CFLAGS="$C_FLAGS" -j$(getconf _NPROCESSORS_ONLN) all-gcc
+make -s CFLAGS="$C_FLAGS" install-gcc DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
 ../configure --prefix=/usr --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-headers="$SYSROOTDIR"/usr/include --with-lib="$SYSROOTDIR"/usr/lib --disable-multilib libc_cv_forced_unwind=yes
-make -s CFLAGS=-Wno-zero-length-bounds install-bootstrap-headers=yes install-headers DESTDIR="$SYSROOTDIR"
-make -s CFLAGS=-Wno-zero-length-bounds -j$(getconf _NPROCESSORS_ONLN) csu/subdir_lib
+make -s CFLAGS="$C_FLAGS" install-bootstrap-headers=yes install-headers DESTDIR="$SYSROOTDIR"
+make -s CFLAGS="$C_FLAGS" -j$(getconf _NPROCESSORS_ONLN) csu/subdir_lib
 install csu/crt1.o csu/crti.o csu/crtn.o "$SYSROOTDIR"/usr/lib
 $TARGET-gcc -nostdlib -nostartfiles -shared -x c /dev/null -o "$SYSROOTDIR"/usr/lib/libc.so
 touch "$SYSROOTDIR"/usr/include/gnu/stubs.h "$SYSROOTDIR"/usr/include/bits/stdio_lim.h
 cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
-make -s CFLAGS=-Wno-zero-length-bounds -j$(getconf _NPROCESSORS_ONLN) all-target-libgcc
-make -s CFLAGS=-Wno-zero-length-bounds install-target-libgcc DESTDIR="$INSTALLDIR"
+make -s CFLAGS="$C_FLAGS" -j$(getconf _NPROCESSORS_ONLN) all-target-libgcc
+make -s CFLAGS="$C_FLAGS" install-target-libgcc DESTDIR="$INSTALLDIR"
 cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
-make -s CFLAGS=-Wno-zero-length-bounds -j$(getconf _NPROCESSORS_ONLN)
-make -s CFLAGS=-Wno-zero-length-bounds install DESTDIR="$SYSROOTDIR"
+make -s CFLAGS="$C_FLAGS" -j$(getconf _NPROCESSORS_ONLN)
+make -s CFLAGS="$C_FLAGS" install DESTDIR="$SYSROOTDIR"
 cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
-make -s CFLAGS=-Wno-zero-length-bounds -j$(getconf _NPROCESSORS_ONLN)
-make -s CFLAGS=-Wno-zero-length-bounds install DESTDIR="$INSTALLDIR"
+make -s CFLAGS="$C_FLAGS" -j$(getconf _NPROCESSORS_ONLN)
+make -s CFLAGS="$C_FLAGS" install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCC_VERSION/build/*; fi
 cd  "$DOWNLOADDIR"/gcc-"$GCC_VERSION" || exit
 cat gcc/limitx.h gcc/glimits.h gcc/limity.h > $(dirname $($TARGET-gcc -print-libgcc-file-name))/include-fixed/limits.h
@@ -226,8 +228,8 @@ echo "Building Desktop GDB Binaries..."
 cd "$DOWNLOADDIR"/gdb-$GDB_VERSION/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
 ../configure --prefix= --target=$TARGET --with-arch=$ARCH  --with-float=hard -with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR"
-make -s -j$(nproc)
-make -s install DESTDIR="$INSTALLDIR"
+make -s CFLAGS="$C_FLAGS" -j$(nproc)
+make -s CFLAGS="$C_FLAGS" install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
 echo "Done Building Desktop GDB Binaries..."
 
