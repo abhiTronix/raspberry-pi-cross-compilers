@@ -124,7 +124,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf gcc-multilib libc6-i386 libc6-dev-i386 flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo apt-get -y install -qq gcc g++ gperf gcc-multilib g++-multilib libc6-i386 libc6-dev-i386 flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
