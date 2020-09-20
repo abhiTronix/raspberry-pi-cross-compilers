@@ -87,11 +87,11 @@ if ! [[ "$OS_TYPE" =~ ^("x86"|"x86_64")$ ]]; then exit 1 ; fi
 if [ "$OS_TYPE" = "x86_64" ]; then
 	ARCH_LINUX=x86_64
 	ARCH=x86-64
-	C_FLAGS="-Wno-zero-length-bounds -g -O2 -m64 -march=x86-64"
+	C_FLAGS="-Wno-zero-length-bounds -O2"
 else
-	ARCH_LINUX=i686
-	ARCH=i686
-	C_FLAGS="-Wno-zero-length-bounds -g -O2 -m32 -march=i686"
+	ARCH_LINUX=x86
+	ARCH=x86
+	C_FLAGS="-Wno-zero-length-bounds -O2 -m32"
 fi
 
 if echo ${GCC_VERSION%.*} "8.3" | awk '{exit ( $1 >= $2 )}'; then
