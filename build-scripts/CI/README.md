@@ -91,7 +91,7 @@ These CI build-scripts supports newer as well as base GCC versions, those are as
 - 8.3.0
 - 9.2.0
 - 9.3.0
-- 10.2.0
+- 10.1.0
 - 10.2.0
 
 &nbsp;

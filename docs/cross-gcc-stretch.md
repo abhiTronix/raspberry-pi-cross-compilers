@@ -32,11 +32,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 **What is this project?**
 
-> _This project provides the latest, CI maintained, precompiled [**Raspberry Pi CPU optimized**](#optimization-flags-involved) GCC Cross & Native (ARM & ARM64) Compressed Standalone Toolchains, that is [**fastest to setup**](#e-toolchain-setup-documentation) and saves you tons of time and thereby helps you to get quickly started with software development with Pi._
+> _This project provides the Latest, CI maintained, Precompiled [**Raspberry Pi CPU optimized**](#optimization-flags-involved) GCC Cross & Native (ARM & ARM64) Compressed Standalone Toolchains, that is [**fastest to setup**](#e-toolchain-setup-documentation) and saves you tons of time and helps you to get quickly started with software development on Pi._
 
 **Who will benefit from the project?**
 
-> _This project benefits everyone, from a professional Developer to a small Hobbyist to a research Student, who's looking for latest easy-to-use precompiled GCC toolchains and build-scripts for there Raspberry Pi project(s)._ 
+> _This project benefits everyone, from Professional Devs to a college research Student, looking for latest easy-to-use precompiled GCC toolchains for their Hobby Raspberry Pi project(s)._ 
 
 
 

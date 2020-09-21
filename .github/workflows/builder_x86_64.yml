@@ -92,11 +92,11 @@ jobs:
           cp docs/desktop-gcc-x86_64.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success() && github.event_name == 'push'
+        if: success() && github.event_name == 'release'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success() && github.event_name == 'push'
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
 
   builder-x86:
     name: GCC x86 Builder Pi[Desktop]
@@ -142,8 +142,8 @@ jobs:
           cp docs/desktop-gcc-x86.md $HOME/README.md
           bash utils/SF_docs_deployer
         shell: bash
-        if: success() && github.event_name == 'push'
+        if: success() && github.event_name == 'release'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success() && github.event_name == 'push'
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
