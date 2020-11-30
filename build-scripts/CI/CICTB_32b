@@ -165,14 +165,14 @@ mkdir -p "$INSTALLDIR"
 cd "$DOWNLOADDIR" || exit
 
 if [ ! -f "cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
-	wget -q "${URL}cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz"
+	wget "${URL}cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz"
 	tar xf cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz
 	mv -v cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION/* $INSTALLDIR
 	rm -rf cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION
 	rm ./*.tar.*
 fi
 if [ ! -d "gdb-$GDB_VERSION" ]; then
-	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then wget -q https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz; fi
+	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then wget https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz; fi
 	tar xf gdb-$GDB_VERSION.tar.xz
 	cd gdb-$GDB_VERSION || exit
 	mkdir -p build
@@ -180,7 +180,7 @@ if [ ! -d "gdb-$GDB_VERSION" ]; then
 	rm ./*.tar.*
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
-	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then wget -q https://ftpmirror.gnu.org/gcc/gcc-"$GCC_VERSION"/gcc-"$GCC_VERSION".tar.gz; fi
+	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then wget https://ftpmirror.gnu.org/gcc/gcc-"$GCC_VERSION"/gcc-"$GCC_VERSION".tar.gz; fi
 	tar xf gcc-"$GCC_VERSION".tar.gz
 	cd gcc-"$GCC_VERSION" || exit
 	mkdir -p build

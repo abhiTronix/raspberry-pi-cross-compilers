@@ -1,14 +1,11 @@
 #!/bin/bash
 
-
 # ===============================================
-# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project 
-# provides latest automated GCC Cross Compiler & Native (ARM & ARM64) 
+# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project
+# provides latest automated GCC Cross Compiler & Native (ARM & ARM64)
 # build-scripts and precompiled standalone toolchains for Raspberry Pi.
 
-
 # Copyright (C) 2020 Abhishek Thakur(@abhiTronix) <abhi.una12@gmail.com>
-
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,51 +21,43 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ===============================================
 
-
-
-# This script aauto downloads, compiles, and compresses Cross & Native GCC ARM64 Toolchain 
+# This script aauto downloads, compiles, and compresses Cross & Native GCC ARM64 Toolchain
 # binaries targeting any Raspberry Pi 64-bit (like Pi64) OSes.
 
-
-helpfunction()
-{	
-   #helper function that prints custom usage help menu
-   echo ""
-   echo ""
-   figlet -t -k -f /usr/share/figlet/standard.flf "CLI Raspberry Pi Native Toolchains Builder 64-bit"
-   echo ""
-   figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
-   echo ""
-   echo ""
-   echo "Usage: $0 -g [GCC version] -t [Target OS type]"
-   echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)"
-   echo -e "\t-t What's yours Target OS type?: (1|2) [default:1]"
-   echo ""
-   echo ""
-   exit 1 # Exits script after printing help
+helpfunction() {
+	#helper function that prints custom usage help menu
+	echo ""
+	echo ""
+	figlet -t -k -f /usr/share/figlet/standard.flf "CLI Raspberry Pi Native Toolchains Builder 64-bit"
+	echo ""
+	figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
+	echo ""
+	echo ""
+	echo "Usage: $0 -g [GCC version] -t [Target OS type]"
+	echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)"
+	echo -e "\t-t What's yours Target OS type?: (1|2) [default:1]"
+	echo ""
+	echo ""
+	exit 1 # Exits script after printing help
 }
 
-
-
 #input arguments handler
-while getopts "g:t:" opt
-do
-   case "$opt" in
-   	  g ) GCC_VERSION="$OPTARG" ;;
-      t ) OS_TYPE="$OPTARG" ;;
-      ? ) helpfunction ;; #prints help function for invalid parameter
-   esac
+while getopts "g:t:" opt; do
+	case "$opt" in
+	g) GCC_VERSION="$OPTARG" ;;
+	t) OS_TYPE="$OPTARG" ;;
+	?) helpfunction ;; #prints help function for invalid parameter
+	esac
 done
 #validates parameters and print usage helper function in case parameters are missing
 if [ -z "$GCC_VERSION" ]; then
-   echo "Error: Required parameter is missing!";
-   helpfunction
+	echo "Error: Required parameter is missing!"
+	helpfunction
 elif [ -z "$OS_TYPE" ]; then
 	OS_TYPE=1
 else
-	echo "Parameters configured!";
+	echo "Parameters configured!"
 fi
-
 
 #collect build directory if not defined
 if [ "$BUILDDIR" = "" ]; then
@@ -84,19 +73,17 @@ if [ "$LANGUAGES" = "" ]; then
 	LANGUAGES=c,c++,fortran
 fi
 
-
 #pre-defined params
 FOLDER_VERSION=64
 ARCH=armv8-a+fp+simd
 TARGET=aarch64-linux-gnu
 GDB_VERSION=9.2
 
-
 #validate env variables
-if [ "$ARCH" != "armv8-a+fp+simd" ]; then exit 1 ; fi
-if [ "$FOLDER_VERSION" != "64" ]; then exit 1 ; fi
-if [ "$BUILDDIR" = "" ]; then exit 1 ; fi
-if [ "$LANGUAGES" = "" ]; then exit 1 ; fi
+if [ "$ARCH" != "armv8-a+fp+simd" ]; then exit 1; fi
+if [ "$FOLDER_VERSION" != "64" ]; then exit 1; fi
+if [ "$BUILDDIR" = "" ]; then exit 1; fi
+if [ "$LANGUAGES" = "" ]; then exit 1; fi
 
 URL="https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains"
 if [ "$RPI_TYPE" = "64" ]; then URL="$URL/GCC%20$GCC_VERSION/"; fi
@@ -109,29 +96,29 @@ mkdir -p "$DOWNLOADDIR"
 cd "$DOWNLOADDIR" || exit
 
 #download binaries if not found
-if [ ! -f "cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then 
-	wget -q "${URL}cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz"
+if [ ! -f "cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
+	wget "${URL}cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz"
 	tar xf cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz
 	mv cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION $BUILDDIR
 	rm ./*.tar.*
 fi
 if [ ! -d "gdb-$GDB_VERSION" ]; then
-	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then 
-		wget -q https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz; 
+	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then
+		wget https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz
 	fi
-	tar xf  gdb-$GDB_VERSION.tar.xz
+	tar xf gdb-$GDB_VERSION.tar.xz
 	cd gdb-$GDB_VERSION || exit
-	mkdir -p build 
+	mkdir -p build
 	cd "$DOWNLOADDIR" || exit
 	rm ./*.tar.*
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
-	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then 
-		wget -q  https://ftpmirror.gnu.org/gcc/gcc-"$GCC_VERSION"/gcc-"$GCC_VERSION".tar.gz; 
+	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then
+		wget https://ftpmirror.gnu.org/gcc/gcc-"$GCC_VERSION"/gcc-"$GCC_VERSION".tar.gz
 	fi
 	tar xf gcc-"$GCC_VERSION".tar.gz
 	cd gcc-"$GCC_VERSION" || exit
-	mkdir -p build 
+	mkdir -p build
 	sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
 	contrib/download_prerequisites
 	rm ./*.tar.*
@@ -147,17 +134,17 @@ echo "Building GCC Native GCC $GCC_VERSION Binaries..."
 mkdir -p "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
-../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --enable-languages=$LANGUAGES --with-arch=$ARCH    --disable-multilib --program-suffix=-"$GCC_VERSION"
+../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --enable-languages=$LANGUAGES --with-arch=$ARCH --disable-multilib --program-suffix=-"$GCC_VERSION"
 make -s -j$(nproc)
 make -s install-strip DESTDIR="$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION" || exit
-cat gcc/limitx.h gcc/glimits.h gcc/limity.h > "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION/lib/gcc/$TARGET/"$GCC_VERSION"/include-fixed/limits.h
+cat gcc/limitx.h gcc/glimits.h gcc/limity.h >"$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION/lib/gcc/$TARGET/"$GCC_VERSION"/include-fixed/limits.h
 
 echo "Building Native GDB Binaries..."
 cd "$DOWNLOADDIR"/gdb-$GDB_VERSION/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
-../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH  --program-suffix=-"$GCC_VERSION"
+../configure --prefix= --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH --program-suffix=-"$GCC_VERSION"
 make -s -j$(nproc)
 make -s install DESTDIR="$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
@@ -166,7 +153,7 @@ echo "Done Building Native GDB Binaries..."
 mv "$BUILDDIR"/native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-tar cf - native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 > native-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz
+tar cf - native-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 >native-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz
 echo "Done Building Native GCC $GCC_VERSION Binaries..."
 
 #clean path

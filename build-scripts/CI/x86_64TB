@@ -109,7 +109,7 @@ mkdir -p "$DOWNLOADDIR"
 cd "$DOWNLOADDIR" || exit
 if [ ! -d "gcc-$GCC_VERSION" ]; then
 	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then
-		wget -q https://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
+		wget https://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
 	fi
 	tar xf gcc-$GCC_VERSION.tar.gz
 	cd gcc-$GCC_VERSION || exit
@@ -127,7 +127,7 @@ if [ ! -d "gcc-$GCC_VERSION" ]; then
 fi
 if [ ! -d "gdb-$GDB_VERSION" ]; then
 	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then
-		wget -q https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz
+		wget https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz
 	fi
 	tar xf gdb-$GDB_VERSION.tar.xz
 	cd gdb-$GDB_VERSION || exit

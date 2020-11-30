@@ -68,6 +68,8 @@ if ! [[ "$FOLDER_TYPE" =~ ^("root"|"main"|"base"|"experimental")$ ]]; then
     exit 1
 fi
 
+echo "Doing $TOOLCHAIN with Folder: $FOLDER, RASPBERRY: $RPI_TYPE AND OS: $RPIOS_TYPE!"
+
 # deploy root folder docs
 if [ "$FOLDER_TYPE" = "root" ]; then
     if [ -f "$HOME/root/README.md" ]; then
