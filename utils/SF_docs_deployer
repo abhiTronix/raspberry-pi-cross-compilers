@@ -68,7 +68,7 @@ if ! [[ "$FOLDER_TYPE" =~ ^("root"|"main"|"base"|"experimental")$ ]]; then
     exit 1
 fi
 
-echo "Doing $TOOLCHAIN with Folder: $FOLDER, RASPBERRY: $RPI_TYPE AND OS: $RPIOS_TYPE!"
+echo "Doing $TOOLCHAIN with Folder: $FOLDER_TYPE, RASPBERRY: $RPI_TYPE AND OS: $RPIOS_TYPE!"
 
 # deploy root folder docs
 if [ "$FOLDER_TYPE" = "root" ]; then
