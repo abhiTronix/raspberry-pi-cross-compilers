@@ -34,6 +34,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ![CI Builder Pi[3+]](https://github.com/abhiTronix/raspberry-pi-cross-compilers/workflows/CI%20Builder%20Pi%5B3+%5D/badge.svg)
 ![CI Builder Pi[64]](https://github.com/abhiTronix/raspberry-pi-cross-compilers/workflows/CI%20Builder%20Pi%5B64%5D/badge.svg)
 ![CI Builder Pi[Desktop]](https://github.com/abhiTronix/raspberry-pi-cross-compilers/workflows/CI%20Builder%20Pi%5BDesktop%5D/badge.svg)
+![CI Docs Deployer](https://github.com/abhiTronix/raspberry-pi-cross-compilers/workflows/CI%20Docs%20Deployer/badge.svg)
 
 [![ko-fi][kofi-badge]][kofi]
 

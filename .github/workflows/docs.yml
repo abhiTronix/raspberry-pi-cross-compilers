@@ -244,7 +244,7 @@ jobs:
       - name: move_x86
         run: |
           mkdir -p $HOME/experiment
-          cp docs/desktop-x86.md $HOME/experiment/README.md
+          cp docs/desktop-gcc-x86.md $HOME/experiment/README.md
         shell: bash
         if: success() && ${{ matrix.rpi_type }} == "x86"
       - name: move_x86_64

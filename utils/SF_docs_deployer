@@ -92,7 +92,7 @@ if [ "$FOLDER_TYPE" = "base" ] && [ -f "$HOME/base/README.md" ]; then
             curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
         else
             echo "Error: Invalid Raspberry Compiler Type!"
-            exit 1
+            exit 0
         fi
     fi
     exit 0
@@ -120,7 +120,7 @@ if [ "$FOLDER_TYPE" = "main" ] && [ -f "$HOME/main/README.md" ]; then
             curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
         else
             echo "Error: Invalid Raspberry OS Type!"
-            exit 1
+            exit 0
         fi
     elif [ "$TOOLCHAIN" = "cross_64" ]; then
         FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains"
