@@ -112,25 +112,25 @@ jobs:
           mkdir -p $HOME/base
           cp docs/cross-gcc.md $HOME/base/README.md
         shell: bash
-        if: success() && $TOOLCHAIN == "cross"
+        if: success() && ${{ matrix.toolchain_type }} == "cross"
       - name: move_native
         run: |
           mkdir -p $HOME/base
           cp docs/native-gcc.md $HOME/base/README.md
         shell: bash
-        if: success() && $TOOLCHAIN == "native"
+        if: success() && ${{ matrix.toolchain_type }} == "native"
       - name: move_cross_64
         run: |
           mkdir -p $HOME/base
           cp docs/gcc64.md $HOME/base/README.md
         shell: bash
-        if: success() && $TOOLCHAIN == "cross_64"
+        if: success() && ${{ matrix.toolchain_type }} == "cross_64"
       - name: move_cli
         run: |
           mkdir -p $HOME/base
           cp docs/base-gcc.md $HOME/base/README.md
         shell: bash
-        if: success() && $TOOLCHAIN == "CLI"
+        if: success() && ${{ matrix.toolchain_type }} == "CLI"
       - name: deploy
         run: |
           bash utils/SF_docs_deployer -t $TOOLCHAIN -f "base"
@@ -174,37 +174,37 @@ jobs:
           mkdir -p $HOME/main
           cp docs/cross-gcc-buster.md $HOME/main/README.md
         shell: bash
-        if: success() && $TOOLCHAIN == "cross" && $RPIOS_TYPE == "buster"
+        if: success() && ${{ matrix.toolchain_type }} == "cross" && ${{ matrix.rpios_type }} == "buster"
       - name: move_cross_stretch
         run: |
           mkdir -p $HOME/main
           cp docs/cross-gcc-stretch.md $HOME/main/README.md
         shell: bash
-        if: success() && $TOOLCHAIN == "cross" && $RPIOS_TYPE == "stretch"
+        if: success() && ${{ matrix.toolchain_type }} == "cross" && ${{ matrix.rpios_type }} == "stretch"
       - name: move_native_buster
         run: |
           mkdir -p $HOME/main
           cp docs/native-gcc-buster.md $HOME/main/README.md
         shell: bash
-        if: success() && $TOOLCHAIN == "native" && $RPIOS_TYPE == "buster"
+        if: success() && ${{ matrix.toolchain_type }} == "native" && ${{ matrix.rpios_type }} == "buster"
       - name: move_native_stretch
         run: |
           mkdir -p $HOME/main
           cp docs/native-gcc-stretch.md $HOME/main/README.md
         shell: bash
-        if: success() && $TOOLCHAIN == "native" && $RPIOS_TYPE == "stretch"
+        if: success() && ${{ matrix.toolchain_type }} == "native" && ${{ matrix.rpios_type }} == "stretch"
       - name: move_cross_64
         run: |
           mkdir -p $HOME/main
           cp docs/cross-gcc64.md $HOME/main/README.md
         shell: bash
-        if: success() && $TOOLCHAIN == "cross_64" && $RPIOS_TYPE == "buster"
+        if: success() && ${{ matrix.toolchain_type }} == "cross_64" && ${{ matrix.rpios_type }} == "buster"
       - name: move_native_64
         run: |
           mkdir -p $HOME/main
           cp docs/native-gcc64.md $HOME/main/README.md
         shell: bash
-        if: success() && $TOOLCHAIN == "native_64" && $RPIOS_TYPE == "buster"
+        if: success() && ${{ matrix.toolchain_type }} == "native_64" && ${{ matrix.rpios_type }} == "buster"
       - name: deploy
         run: |
           bash utils/SF_docs_deployer -t $TOOLCHAIN -f "base" -o $RPIOS_TYPE
@@ -246,25 +246,25 @@ jobs:
           mkdir -p $HOME/experiment
           cp docs/desktop-x86.md $HOME/experiment/README.md
         shell: bash
-        if: success() && $RPI_TYPE == "x86"
+        if: success() && ${{ matrix.rpi_type }} == "x86"
       - name: move_x86_64
         run: |
           mkdir -p $HOME/experiment
           cp docs/desktop-gcc-x86_64.md $HOME/experiment/README.md
         shell: bash
-        if: success() && $RPI_TYPE == "x86_64"
+        if: success() && ${{ matrix.rpi_type }} == "x86_64"
       - name: move_main
         run: |
           mkdir -p $HOME/main
           cp docs/desktop-gcc.md $HOME/main/README.md
         shell: bash
-        if: success() && $RPI_TYPE == "main"
+        if: success() && ${{ matrix.rpi_type }} == "main"
       - name: move_base
         run: |
           mkdir -p $HOME/base
           cp docs/exp-gcc.md $HOME/base/README.md
         shell: bash
-        if: success() && $RPI_TYPE == "base"
+        if: success() && ${{ matrix.rpi_type }} == "base"
       - name: deploy_experimental
         run: |
           bash utils/SF_docs_deployer -f "experimental" -r $RPI_TYPE
