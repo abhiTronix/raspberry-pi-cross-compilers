@@ -78,7 +78,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
@@ -91,12 +91,6 @@ jobs:
         run: bash patches/curl_stfp_patcher
         shell: bash
         if: success()
-      - name: after_success
-        run: |
-          cp docs/base-gcc.md $HOME/README.md
-          bash utils/SF_docs_deployer
-        shell: bash
-        if: success() && github.event_name == 'release'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -131,7 +125,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
@@ -144,13 +138,6 @@ jobs:
         run: bash patches/curl_stfp_patcher
         shell: bash
         if: success()
-      - name: after_success
-        run: |
-          mkdir -p $HOME/root
-          cp docs/cross-gcc.md $HOME/root/README.md
-          bash utils/SF_docs_deployer
-        shell: bash
-        if: success() && github.event_name == 'release'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -185,7 +172,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
@@ -198,13 +185,6 @@ jobs:
         run: bash patches/curl_stfp_patcher
         shell: bash
         if: success()
-      - name: after_success
-        run: |
-          mkdir -p $HOME/root
-          cp docs/native-gcc.md $HOME/root/README.md
-          bash utils/SF_docs_deployer
-        shell: bash
-        if: success() && github.event_name == 'release'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
