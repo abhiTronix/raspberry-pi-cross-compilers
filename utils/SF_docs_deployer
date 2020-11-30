@@ -80,7 +80,10 @@ if [ "$FOLDER_TYPE" = "root" ]; then
 fi
 
 if [ "$FOLDER_TYPE" = "base" ] && [ -f "$HOME/base/README.md" ]; then
-    if [[ "$TOOLCHAIN" =~ ^("cross_64"|"native_64")$ ]]; then
+    if [ "$TOOLCHAIN" = "CLI" ]; then
+        FOLDER="CLI Base"
+        curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
+    elif [[ "$TOOLCHAIN" =~ ^("cross_64"|"native_64")$ ]]; then
         FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains"
         curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
     else
@@ -127,9 +130,6 @@ if [ "$FOLDER_TYPE" = "main" ] && [ -f "$HOME/main/README.md" ]; then
         curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
     elif [ "$TOOLCHAIN" = "native_64" ]; then
         FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains"
-        curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
-    elif [ "$TOOLCHAIN" = "CLI" ]; then
-        FOLDER="CLI Base"
         curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
     else
         echo "Error: Invalid Main toolchain!"
