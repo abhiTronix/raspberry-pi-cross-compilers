@@ -1,14 +1,11 @@
 #!/bin/bash
 
-
 # ===============================================
-# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project 
-# provides latest automated GCC Desktop Compiler & (ARM & ARM64) 
+# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project
+# provides latest automated GCC Desktop Compiler & (ARM & ARM64)
 # build-scripts and precompiled standalone toolchains for Raspberry Pi.
 
-
 # Copyright (C) 2020 Abhishek Thakur(@abhiTronix) <abhi.una12@gmail.com>
-
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,49 +21,43 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ===============================================
 
-
-
-# This script aauto downloads, compiles, and compresses Desktop & GCC ARM64 Toolchain 
+# This script aauto downloads, compiles, and compresses Desktop & GCC ARM64 Toolchain
 # binaries targeting any Raspberry Pi 64-bit (like Pi64) OSes.
 
-
-helpfunction()
-{	
-   #helper function that prints custom usage help menu
-   echo ""
-   echo ""
-   figlet -t -k -f /usr/share/figlet/standard.flf "CLI Raspberry Pi x86_64 Toolchains Builder"
-   echo ""
-   figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
-   echo ""
-   echo ""
-   echo "Usage: $0 -g [GCC version] -t [Target OS type]"
-   echo -e "\t-g GCC version you want to compile?: (8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)"
-   echo -e "\t-t What's yours Target OS type?: (x86|x86_64) [default:x86_64]"
-   echo ""
-   echo ""
-   exit 1 # Exits script after printing help
+helpfunction() {
+	#helper function that prints custom usage help menu
+	echo ""
+	echo ""
+	figlet -t -k -f /usr/share/figlet/standard.flf "CLI Raspberry Pi x86_64 Toolchains Builder"
+	echo ""
+	figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
+	echo ""
+	echo ""
+	echo "Usage: $0 -g [GCC version] -t [Target OS type]"
+	echo -e "\t-g GCC version you want to compile?: (8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)"
+	echo -e "\t-t What's yours Target OS type?: (x86|x86_64) [default:x86_64]"
+	echo ""
+	echo ""
+	exit 1 # Exits script after printing help
 }
 
 #input arguments handler
-while getopts "g:t:" opt
-do
-   case "$opt" in
-   	  g ) GCC_VERSION="$OPTARG" ;;
-      t ) OS_TYPE="$OPTARG" ;;
-      ? ) helpfunction ;; #prints help function for invalid parameter
-   esac
+while getopts "g:t:" opt; do
+	case "$opt" in
+	g) GCC_VERSION="$OPTARG" ;;
+	t) OS_TYPE="$OPTARG" ;;
+	?) helpfunction ;; #prints help function for invalid parameter
+	esac
 done
 #validates parameters and print usage helper function in case parameters are missing
 if [ -z "$GCC_VERSION" ]; then
-   echo "Error: Required parameter is missing!";
-   helpfunction
+	echo "Error: Required parameter is missing!"
+	helpfunction
 elif [ -z "$OS_TYPE" ]; then
 	OS_TYPE=x86_64
 else
-	echo "Parameters configured!";
+	echo "Parameters configured!"
 fi
-
 
 #collect build directory if not defined
 if [ "$BUILDDIR" = "" ]; then
@@ -82,7 +73,7 @@ if [ "$LANGUAGES" = "" ]; then
 	LANGUAGES=c,c++,fortran
 fi
 
-if ! [[ "$OS_TYPE" =~ ^("x86"|"x86_64")$ ]]; then exit 1 ; fi
+if ! [[ "$OS_TYPE" =~ ^("x86"|"x86_64")$ ]]; then exit 1; fi
 
 if [ "$OS_TYPE" = "x86_64" ]; then
 	ARCH_LINUX=x86_64
@@ -95,7 +86,7 @@ else
 fi
 
 if echo ${GCC_VERSION%.*} "8.3" | awk '{exit ( $1 >= $2 )}'; then
-    echo "$GCC_VERSION is not supported!"
+	echo "$GCC_VERSION is not supported!"
 	exit 0
 fi
 
@@ -105,8 +96,8 @@ FOLDER_VERSION=$OS_TYPE
 GDB_VERSION=9.2
 
 #validate env variables
-if [ "$BUILDDIR" = "" ]; then exit 1 ; fi
-if [ "$LANGUAGES" = "" ]; then exit 1 ; fi
+if [ "$BUILDDIR" = "" ]; then exit 1; fi
+if [ "$LANGUAGES" = "" ]; then exit 1; fi
 
 echo "Downloading and Setting up build directories"
 #setup paths
@@ -117,16 +108,16 @@ mkdir -p "$DOWNLOADDIR"
 
 cd "$DOWNLOADDIR" || exit
 if [ ! -d "gcc-$GCC_VERSION" ]; then
-	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then 
-		wget -q https://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz; 
+	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then
+		wget -q https://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
 	fi
 	tar xf gcc-$GCC_VERSION.tar.gz
 	cd gcc-$GCC_VERSION || exit
-	mkdir -p build 
+	mkdir -p build
 	if [ "$GCC_VERSION" = "6.3.0" ]; then
-		sed -i contrib/download_prerequisites -e 's/ftp/http/';
+		sed -i contrib/download_prerequisites -e 's/ftp/http/'
 	else
-		sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/';
+		sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
 	fi
 	contrib/download_prerequisites
 	rm ./*.tar.*
@@ -135,12 +126,12 @@ if [ ! -d "gcc-$GCC_VERSION" ]; then
 	rm ./*.tar.*
 fi
 if [ ! -d "gdb-$GDB_VERSION" ]; then
-	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then 
-		wget -q https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz; 
+	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then
+		wget -q https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz
 	fi
-	tar xf  gdb-$GDB_VERSION.tar.xz
+	tar xf gdb-$GDB_VERSION.tar.xz
 	cd gdb-$GDB_VERSION || exit
-	mkdir -p build 
+	mkdir -p build
 	cd "$DOWNLOADDIR" || exit
 	rm ./*.tar.*
 fi
@@ -154,12 +145,12 @@ make -s -j$(nproc)
 make -s install-strip DESTDIR="$BUILDDIR"/pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 cd "$DOWNLOADDIR"/gcc-"$GCC_VERSION" || exit
-cat gcc/limitx.h gcc/glimits.h gcc/limity.h > "$BUILDDIR"/pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION/lib/gcc/$TARGET/"$GCC_VERSION"/include-fixed/limits.h
+cat gcc/limitx.h gcc/glimits.h gcc/limity.h >"$BUILDDIR"/pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION/lib/gcc/$TARGET/"$GCC_VERSION"/include-fixed/limits.h
 
 echo "Building Desktop GDB Binaries..."
 cd "$DOWNLOADDIR"/gdb-$GDB_VERSION/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
-../configure CFLAGS="$C_FLAGS"  CXXFLAGS="$C_FLAGS" --prefix= --build="$MACHTYPE" --host="$MACHTYPE" --target=$TARGET --with-arch=$ARCH  --program-suffix=-"$GCC_VERSION"
+../configure CFLAGS="$C_FLAGS" CXXFLAGS="$C_FLAGS" --prefix= --build="$MACHTYPE" --host="$MACHTYPE" --target=$TARGET --with-arch=$ARCH --program-suffix=-"$GCC_VERSION"
 make -s -j$(nproc)
 make -s install DESTDIR="$BUILDDIR"/pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 if [ -n "$(ls -A "$DOWNLOADDIR"/gdb-$GDB_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gdb-$GDB_VERSION/build/*; fi
@@ -168,5 +159,5 @@ echo "Done Building Desktop GDB Binaries..."
 mv "$BUILDDIR"/pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-tar cf - pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 > desktop-gcc-"$GCC_VERSION"-pi_"$OS_TYPE".tar.gz
+tar cf - pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 >desktop-gcc-"$GCC_VERSION"-pi_"$OS_TYPE".tar.gz
 echo "Done Building Desktop GCC $GCC_VERSION Binaries..."

@@ -1,14 +1,11 @@
 #!/bin/bash
 
-
 # ===============================================
-# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project 
-# provides latest automated GCC Cross Compiler & Native (ARM & ARM64) 
+# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project
+# provides latest automated GCC Cross Compiler & Native (ARM & ARM64)
 # build-scripts and precompiled standalone toolchains for Raspberry Pi.
 
-
 # Copyright (C) 2020 Abhishek Thakur(@abhiTronix) <abhi.una12@gmail.com>
-
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,49 +21,42 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ===============================================
 
-
-
-# This script aauto downloads, compiles, and compresses Cross & Native GCC ARM64 Toolchain 
+# This script aauto downloads, compiles, and compresses Cross & Native GCC ARM64 Toolchain
 # binaries targeting any Raspberry Pi 64-bit (like Pi64) OSes.
 
-
-helpfunction()
-{	
-   #helper function that prints custom usage help menu
-   echo ""
-   echo ""
-   figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi CLI Toolchains Base Builder 64-bit"
-   echo ""
-   figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
-   echo ""
-   echo ""
-   echo "Usage: $0 -g [GCC version] -t [OS Type]"
-   echo -e "\t-g GCC base version?: (6.3.0|8.3.0)"
-   echo -e "\t-t What's yours Raspberry Pi OS type?: (1|2) [default:1]"
-   echo ""
-   echo ""
-   exit 1 # Exits script after printing help
+helpfunction() {
+	#helper function that prints custom usage help menu
+	echo ""
+	echo ""
+	figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi CLI Toolchains Base Builder 64-bit"
+	echo ""
+	figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
+	echo ""
+	echo ""
+	echo "Usage: $0 -g [GCC version] -t [OS Type]"
+	echo -e "\t-g GCC base version?: (6.3.0|8.3.0)"
+	echo -e "\t-t What's yours Raspberry Pi OS type?: (1|2) [default:1]"
+	echo ""
+	echo ""
+	exit 1 # Exits script after printing help
 }
 
-
-
 #input arguments handler
-while getopts "g:t:" opt
-do
-   case "$opt" in
-   	  g ) GCC_VERSION="$OPTARG" ;;
-      t ) OS_TYPE="$OPTARG" ;;
-      ? ) helpfunction ;; #prints help function for invalid parameter
-   esac
+while getopts "g:t:" opt; do
+	case "$opt" in
+	g) GCC_VERSION="$OPTARG" ;;
+	t) OS_TYPE="$OPTARG" ;;
+	?) helpfunction ;; #prints help function for invalid parameter
+	esac
 done
 #validates parameters and print usage helper function in case parameters are missing
 if [ -z "$GCC_VERSION" ]; then
-   echo "Required parameter is missing!";
-   helpfunction
+	echo "Required parameter is missing!"
+	helpfunction
 elif [ -z "$OS_TYPE" ]; then
 	OS_TYPE=1
 else
-	echo "Parameters configured!";
+	echo "Parameters configured!"
 fi
 
 #collect dependencies versions from raspberry pi os
@@ -80,7 +70,6 @@ else
 	echo "Invalid argument value: $OS_TYPE"
 	exit
 fi
-
 
 #collect build directory if not defined
 if [ "$BUILDDIR" = "" ]; then
@@ -96,7 +85,6 @@ if [ "$LANGUAGES" = "" ]; then
 	LANGUAGES=c,c++,fortran
 fi
 
-
 #pre-defined params
 FOLDER_VERSION=64
 KERNEL=kernel7
@@ -104,17 +92,15 @@ ARCH=armv8-a+fp+simd
 TARGET=aarch64-linux-gnu
 GDB_VERSION=9.2
 
-
 #validate env variables
-if ! [[ "$GCC_VERSION" =~ ^(6.3.0|8.3.0)$ ]]; then exit 1 ; fi
-if ! [[ "$GLIBC_VERSION" =~ ^(2.24|2.28)$ ]]; then exit 1 ; fi
-if ! [[ "$BINUTILS_VERSION" =~ ^(2.28|2.31)$ ]]; then exit 1 ; fi
-if [ "$KERNEL" != "kernel7" ]; then exit 1 ; fi
-if [ "$ARCH" != "armv8-a+fp+simd" ]; then exit 1 ; fi
-if [ "$FOLDER_VERSION" != "64" ]; then exit 1 ; fi
-if [ "$BUILDDIR" = "" ]; then exit 1 ; fi
-if [ "$LANGUAGES" = "" ]; then exit 1 ; fi
-
+if ! [[ "$GCC_VERSION" =~ ^(6.3.0|8.3.0)$ ]]; then exit 1; fi
+if ! [[ "$GLIBC_VERSION" =~ ^(2.24|2.28)$ ]]; then exit 1; fi
+if ! [[ "$BINUTILS_VERSION" =~ ^(2.28|2.31)$ ]]; then exit 1; fi
+if [ "$KERNEL" != "kernel7" ]; then exit 1; fi
+if [ "$ARCH" != "armv8-a+fp+simd" ]; then exit 1; fi
+if [ "$FOLDER_VERSION" != "64" ]; then exit 1; fi
+if [ "$BUILDDIR" = "" ]; then exit 1; fi
+if [ "$LANGUAGES" = "" ]; then exit 1; fi
 
 echo "Downloading and Setting up build directories"
 #setup paths
@@ -135,16 +121,16 @@ if [ ! -d "linux" ]; then
 	rm ./*.tar.*
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
-	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then 
-		wget -q https://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz; 
+	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then
+		wget -q https://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
 	fi
 	tar xf gcc-$GCC_VERSION.tar.gz
 	cd gcc-$GCC_VERSION || exit
-	mkdir -p build 
+	mkdir -p build
 	if [ "$GCC_VERSION" = "6.3.0" ]; then
-		sed -i contrib/download_prerequisites -e 's/ftp/http/';
+		sed -i contrib/download_prerequisites -e 's/ftp/http/'
 	else
-		sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/';
+		sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
 	fi
 	contrib/download_prerequisites
 	rm ./*.tar.*
@@ -153,22 +139,22 @@ if [ ! -d "gcc-$GCC_VERSION" ]; then
 	rm ./*.tar.*
 fi
 if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
-	if [ ! -f "binutils-$BINUTILS_VERSION.tar.bz2" ]; then 
-		wget -q https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.bz2; 
+	if [ ! -f "binutils-$BINUTILS_VERSION.tar.bz2" ]; then
+		wget -q https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.bz2
 	fi
 	tar xf binutils-$BINUTILS_VERSION.tar.bz2
 	cd binutils-$BINUTILS_VERSION || exit
-	mkdir -p build 
+	mkdir -p build
 	cd "$DOWNLOADDIR" || exit
 	rm ./*.tar.*
 fi
 if [ ! -d "glibc-$GLIBC_VERSION" ]; then
-	if [ ! -f "glibc-$GLIBC_VERSION.tar.bz2" ]; then 
-		wget -q https://ftpmirror.gnu.org/glibc/glibc-$GLIBC_VERSION.tar.bz2; 
+	if [ ! -f "glibc-$GLIBC_VERSION.tar.bz2" ]; then
+		wget -q https://ftpmirror.gnu.org/glibc/glibc-$GLIBC_VERSION.tar.bz2
 	fi
-	tar xf  glibc-$GLIBC_VERSION.tar.bz2
+	tar xf glibc-$GLIBC_VERSION.tar.bz2
 	cd glibc-$GLIBC_VERSION || exit
-	mkdir -p build 
+	mkdir -p build
 	cd "$DOWNLOADDIR" || exit
 	rm ./*.tar.*
 fi
@@ -177,13 +163,11 @@ echo "Setting up paths..."
 PATH=$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/bin:$PATH
 unset LD_LIBRARY_PATH #patch
 
-
 echo "Building Kernel Headers..."
 cd "$DOWNLOADDIR"/linux || exit
 KERNEL=$KERNEL
 make -s ARCH=arm64 INSTALL_HDR_PATH="$SYSROOTDIR"/usr headers_install
 mkdir -p "$SYSROOTDIR"/usr/lib
-
 
 echo "Building binutils..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
@@ -193,11 +177,10 @@ make -s -j$(getconf _NPROCESSORS_ONLN)
 make -s install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 
-
 echo "Building Cross GCC $GCC_VERSION BASE Binaries..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
-../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH  --disable-multilib
+../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH --disable-multilib
 make -s -j$(getconf _NPROCESSORS_ONLN) all-gcc
 make -s install-gcc DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
@@ -223,7 +206,7 @@ if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLO
 mv "$BUILDDIR"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 > cross-gcc-"$GCC_VERSION"-pi_"$FOLDER_VERSION".tar.gz
+tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 >cross-gcc-"$GCC_VERSION"-pi_"$FOLDER_VERSION".tar.gz
 echo "Done Building Cross GCC $GCC_VERSION BASE Binaries..."
 
 #clean path

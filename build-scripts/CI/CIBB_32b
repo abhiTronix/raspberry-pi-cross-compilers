@@ -1,14 +1,11 @@
 #!/bin/bash
 
-
 # ===============================================
-# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project 
-# provides latest automated GCC Cross Compiler & Native (ARM & ARM64) 
+# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project
+# provides latest automated GCC Cross Compiler & Native (ARM & ARM64)
 # build-scripts and precompiled standalone toolchains for Raspberry Pi.
 
-
 # Copyright (C) 2020 Abhishek Thakur(@abhiTronix) <abhi.una12@gmail.com>
-
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,46 +21,38 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ===============================================
 
-
-
-# This script auto downloads, compiles, and compresses Cross & Native GCC ARM Toolchain binaries 
+# This script auto downloads, compiles, and compresses Cross & Native GCC ARM Toolchain binaries
 # targeting Raspberry Pi 32-bit Stretch(Debian 9) and Buster(Debian 10) OSes only.
 
-
-
-helpfunction()
-{	
-   #helper function that prints custom usage help menu
-   echo ""
-   echo ""
-   figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi CLI Toolchains Base Builder 32-bit"
-   echo ""
-   figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
-   echo ""
-   echo ""
-   echo "Usage: $0 -g [GCC version] -r [Target Pi type] -o [Target Pi OS type]"
-   echo -e "\t-r What's yours Raspberry Pi type?: (0-1|2-3|3+)"
-   echo -e "\t-o What's yours Raspberry Pi OS type?: (stretch|buster)"
-   echo ""
-   echo ""
-   exit 1 # Exit script after printing help
+helpfunction() {
+	#helper function that prints custom usage help menu
+	echo ""
+	echo ""
+	figlet -t -k -f /usr/share/figlet/standard.flf "Raspberry Pi CLI Toolchains Base Builder 32-bit"
+	echo ""
+	figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
+	echo ""
+	echo ""
+	echo "Usage: $0 -g [GCC version] -r [Target Pi type] -o [Target Pi OS type]"
+	echo -e "\t-r What's yours Raspberry Pi type?: (0-1|2-3|3+)"
+	echo -e "\t-o What's yours Raspberry Pi OS type?: (stretch|buster)"
+	echo ""
+	echo ""
+	exit 1 # Exit script after printing help
 }
 
-
 #input arguments handler
-while getopts "r:o:" opt
-do
-   case "$opt" in
-      r ) RPI_TYPE="$OPTARG" ;;
-      o ) RPIOS_TYPE="$OPTARG" ;;
-      ? ) helpfunction ;; #prints help function for invalid parameter
-   esac
+while getopts "r:o:" opt; do
+	case "$opt" in
+	r) RPI_TYPE="$OPTARG" ;;
+	o) RPIOS_TYPE="$OPTARG" ;;
+	?) helpfunction ;; #prints help function for invalid parameter
+	esac
 done
 #validates parameters and print usage helper function in case parameters are missing
-if [ -z "$RPI_TYPE" ] || [ -z "$RPIOS_TYPE" ]
-then
-   echo "Required parameters are missing!";
-   helpfunction
+if [ -z "$RPI_TYPE" ] || [ -z "$RPIOS_TYPE" ]; then
+	echo "Required parameters are missing!"
+	helpfunction
 fi
 
 #collect parameters from raspbery pi type
@@ -71,7 +60,7 @@ if [ "$RPI_TYPE" = "2-3" ]; then
 	FOLDER_VERSION=1
 	KERNEL=kernel7
 	ARCH=armv7-a
-	FPU=neon-vfpv4;
+	FPU=neon-vfpv4
 elif [ "$RPI_TYPE" = "3+" ]; then
 	FOLDER_VERSION=2
 	KERNEL=kernel7
@@ -120,15 +109,15 @@ TARGET=arm-linux-gnueabihf
 GDB_VERSION=9.2
 
 #validate env variables
-if ! [[ "$GCC_VERSION" =~ ^(6.3.0|8.3.0)$ ]]; then exit 1 ; fi
-if ! [[ "$GLIBC_VERSION" =~ ^(2.24|2.28)$ ]]; then exit 1 ; fi
-if ! [[ "$BINUTILS_VERSION" =~ ^(2.28|2.31)$ ]]; then exit 1 ; fi
-if ! [[ "$FOLDER_VERSION" =~ ^(0|1|2)$ ]]; then exit 1 ; fi
-if ! [[ "$KERNEL" =~ ^(kernel|kernel7)$ ]]; then exit 1 ; fi
-if ! [[ "$ARCH" =~ ^(armv6|armv7-a|armv8-a)$ ]]; then exit 1 ; fi
-if ! [[ "$FPU" =~ ^(vfp|neon-vfpv4|neon-fp-armv8)$ ]]; then exit 1 ; fi
-if [ "$BUILDDIR" = "" ]; then exit 1 ; fi
-if [ "$LANGUAGES" = "" ]; then exit 1 ; fi
+if ! [[ "$GCC_VERSION" =~ ^(6.3.0|8.3.0)$ ]]; then exit 1; fi
+if ! [[ "$GLIBC_VERSION" =~ ^(2.24|2.28)$ ]]; then exit 1; fi
+if ! [[ "$BINUTILS_VERSION" =~ ^(2.28|2.31)$ ]]; then exit 1; fi
+if ! [[ "$FOLDER_VERSION" =~ ^(0|1|2)$ ]]; then exit 1; fi
+if ! [[ "$KERNEL" =~ ^(kernel|kernel7)$ ]]; then exit 1; fi
+if ! [[ "$ARCH" =~ ^(armv6|armv7-a|armv8-a)$ ]]; then exit 1; fi
+if ! [[ "$FPU" =~ ^(vfp|neon-vfpv4|neon-fp-armv8)$ ]]; then exit 1; fi
+if [ "$BUILDDIR" = "" ]; then exit 1; fi
+if [ "$LANGUAGES" = "" ]; then exit 1; fi
 
 #download binaries if not found
 echo "Downloading and Setting up build directories"
@@ -154,9 +143,9 @@ if [ ! -d "gcc-$GCC_VERSION" ]; then
 	cd gcc-$GCC_VERSION || exit
 	mkdir -p build
 	if [ "$GCC_VERSION" = "6.3.0" ]; then
-		sed -i contrib/download_prerequisites -e 's/ftp/http/';
+		sed -i contrib/download_prerequisites -e 's/ftp/http/'
 	else
-		sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/';
+		sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
 	fi
 	contrib/download_prerequisites
 	rm ./*.tar.*
@@ -168,24 +157,22 @@ if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
 	if [ ! -f "binutils-$BINUTILS_VERSION.tar.bz2" ]; then wget -q https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.bz2; fi
 	tar xf binutils-$BINUTILS_VERSION.tar.bz2
 	cd binutils-$BINUTILS_VERSION || exit
-	mkdir -p build 
+	mkdir -p build
 	cd "$DOWNLOADDIR" || exit
 	rm ./*.tar.*
 fi
 if [ ! -d "glibc-$GLIBC_VERSION" ]; then
 	if [ ! -f "glibc-$GLIBC_VERSION.tar.bz2" ]; then wget -q https://ftpmirror.gnu.org/glibc/glibc-$GLIBC_VERSION.tar.bz2; fi
-	tar xf  glibc-$GLIBC_VERSION.tar.bz2
+	tar xf glibc-$GLIBC_VERSION.tar.bz2
 	cd glibc-$GLIBC_VERSION || exit
-	mkdir -p build 
+	mkdir -p build
 	cd "$DOWNLOADDIR" || exit
 	rm ./*.tar.*
 fi
 
-
 echo "Setting up paths..."
 PATH=$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/bin:$PATH
 unset LD_LIBRARY_PATH #patch
-
 
 echo "Building Kernel Headers..."
 cd "$DOWNLOADDIR"/linux || exit
@@ -193,25 +180,23 @@ KERNEL=$KERNEL
 make -s ARCH=arm INSTALL_HDR_PATH="$SYSROOTDIR"/usr headers_install
 mkdir -p "$SYSROOTDIR"/usr/lib
 
-
 echo "Building binutils..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build || exit
-../configure --target=$TARGET --prefix= --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --disable-multilib
+../configure --target=$TARGET --prefix= --with-arch=$ARCH --with-fpu=$FPU --with-float=hard --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --disable-multilib
 make -s -j$(getconf _NPROCESSORS_ONLN)
 make -s install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 
-
 echo "Building Cross GCC $GCC_VERSION BASE Binaries..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
-../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --disable-multilib
+../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH --with-fpu=$FPU --with-float=hard --disable-multilib
 make -s -j$(getconf _NPROCESSORS_ONLN) all-gcc
 make -s install-gcc DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
-../configure --prefix=/usr --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH  --with-fpu=$FPU --with-float=hard --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-headers="$SYSROOTDIR"/usr/include --with-lib="$SYSROOTDIR"/usr/lib --disable-multilib libc_cv_forced_unwind=yes
+../configure --prefix=/usr --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH --with-fpu=$FPU --with-float=hard --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-headers="$SYSROOTDIR"/usr/include --with-lib="$SYSROOTDIR"/usr/lib --disable-multilib libc_cv_forced_unwind=yes
 make -s install-bootstrap-headers=yes install-headers DESTDIR="$SYSROOTDIR"
 make -s -j$(getconf _NPROCESSORS_ONLN) csu/subdir_lib
 install csu/crt1.o csu/crti.o csu/crtn.o "$SYSROOTDIR"/usr/lib
@@ -231,7 +216,7 @@ make -s install DESTDIR="$INSTALLDIR"
 mv "$BUILDDIR"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 > cross-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz
+tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 >cross-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz
 echo "Done Building Cross GCC $GCC_VERSION BASE Binaries..."
 
 #clean path

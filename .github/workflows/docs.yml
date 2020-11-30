@@ -1,0 +1,273 @@
+# ===============================================
+# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project 
+# provides latest automated GCC Cross Compiler & Native (ARM & ARM64) 
+# build-scripts and precompiled standalone toolchains for Raspberry Pi.
+
+
+# Copyright (C) 2020 Abhishek Thakur(@abhiTronix) <abhi.una12@gmail.com>
+
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# ===============================================
+
+name: CI Docs Deployer
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  release:
+    branches:
+      - master
+
+env:
+  CURL_VERSION: 7.72.0
+  CCACHE_COMPRESS: 1
+  CCACHE_DIR: $HOME/.ccache
+  USER_SFTP: ${{ secrets.USER_SFTP }}
+  PASSWORD_SFTP: ${{ secrets.PASSWORD_SFTP }}
+
+jobs:
+  builder-docs_root:
+    name: Docs Root Deployer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_docs_deployer
+          chmod +x utils/SF_docs_deployer
+        if: success()
+      - name: install
+        run: |
+          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: move_deploy_root
+        run: |
+          mkdir -p $HOME/root
+          cp docs/root-gcc.md $HOME/root/README.md
+          bash utils/SF_docs_deployer -f "root"
+        shell: bash
+        if: success()
+
+  builder-docs_base:
+    name: Docs Base Deployer
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain_type: ["cross", "native", "cross_64","CLI"]
+    env:
+      TOOLCHAIN: ${{ matrix.toolchain_type }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_docs_deployer
+          chmod +x utils/SF_docs_deployer
+        if: success()
+      - name: install
+        run: |
+          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: move_cross
+        run: |
+          mkdir -p $HOME/base
+          cp docs/cross-gcc.md $HOME/base/README.md
+        shell: bash
+        if: success() && $TOOLCHAIN == "cross"
+      - name: move_native
+        run: |
+          mkdir -p $HOME/base
+          cp docs/native-gcc.md $HOME/base/README.md
+        shell: bash
+        if: success() && $TOOLCHAIN == "native"
+      - name: move_cross_64
+        run: |
+          mkdir -p $HOME/base
+          cp docs/gcc64.md $HOME/base/README.md
+        shell: bash
+        if: success() && $TOOLCHAIN == "cross_64"
+      - name: move_cli
+        run: |
+          mkdir -p $HOME/base
+          cp docs/base-gcc.md $HOME/base/README.md
+        shell: bash
+        if: success() && $TOOLCHAIN == "CLI"
+      - name: deploy
+        run: |
+          bash utils/SF_docs_deployer -t $TOOLCHAIN -f "base"
+        shell: bash
+        if: success()
+
+  builder-docs_main:
+    name: Docs Main Deployer
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain_type: ["cross", "native", "cross_64", "native_64"]
+        rpios_type: ["buster", "stretch"]
+    env:
+      TOOLCHAIN: ${{ matrix.toolchain_type }}
+      RPIOS_TYPE: ${{ matrix.rpios_type }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_docs_deployer
+          chmod +x utils/SF_docs_deployer
+        if: success()
+      - name: install
+        run: |
+          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: move_cross_buster
+        run: |
+          mkdir -p $HOME/main
+          cp docs/cross-gcc-buster.md $HOME/main/README.md
+        shell: bash
+        if: success() && $TOOLCHAIN == "cross" && $RPIOS_TYPE == "buster"
+      - name: move_cross_stretch
+        run: |
+          mkdir -p $HOME/main
+          cp docs/cross-gcc-stretch.md $HOME/main/README.md
+        shell: bash
+        if: success() && $TOOLCHAIN == "cross" && $RPIOS_TYPE == "stretch"
+      - name: move_native_buster
+        run: |
+          mkdir -p $HOME/main
+          cp docs/native-gcc-buster.md $HOME/main/README.md
+        shell: bash
+        if: success() && $TOOLCHAIN == "native" && $RPIOS_TYPE == "buster"
+      - name: move_native_stretch
+        run: |
+          mkdir -p $HOME/main
+          cp docs/native-gcc-stretch.md $HOME/main/README.md
+        shell: bash
+        if: success() && $TOOLCHAIN == "native" && $RPIOS_TYPE == "stretch"
+      - name: move_cross_64
+        run: |
+          mkdir -p $HOME/main
+          cp docs/cross-gcc64.md $HOME/main/README.md
+        shell: bash
+        if: success() && $TOOLCHAIN == "cross_64" && $RPIOS_TYPE == "buster"
+      - name: move_native_64
+        run: |
+          mkdir -p $HOME/main
+          cp docs/native-gcc64.md $HOME/main/README.md
+        shell: bash
+        if: success() && $TOOLCHAIN == "native_64" && $RPIOS_TYPE == "buster"
+      - name: deploy
+        run: |
+          bash utils/SF_docs_deployer -t $TOOLCHAIN -f "base" -o $RPIOS_TYPE
+        shell: bash
+        if: success()
+
+  builder-docs_experimental:
+    name: Docs Root Deployer
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rpi_type: ["x86", "x86_64", "base", "main"]
+    env:
+      RPI_TYPE: ${{ matrix.rpi_type }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq dos2unix -y
+          dos2unix patches/curl_stfp_patcher
+          chmod +x patches/curl_stfp_patcher
+          dos2unix utils/SF_docs_deployer
+          chmod +x utils/SF_docs_deployer
+        if: success()
+      - name: install
+        run: |
+          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo /usr/sbin/update-ccache-symlinks
+          echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
+          source ~/.bashrc && echo $PATH
+        if: success()
+      - name: before_script
+        run: bash patches/curl_stfp_patcher
+        shell: bash
+        if: success()
+      - name: move_x86
+        run: |
+          mkdir -p $HOME/experiment
+          cp docs/desktop-x86.md $HOME/experiment/README.md
+        shell: bash
+        if: success() && $RPI_TYPE == "x86"
+      - name: move_x86_64
+        run: |
+          mkdir -p $HOME/experiment
+          cp docs/desktop-gcc-x86_64.md $HOME/experiment/README.md
+        shell: bash
+        if: success() && $RPI_TYPE == "x86_64"
+      - name: move_main
+        run: |
+          mkdir -p $HOME/main
+          cp docs/desktop-gcc.md $HOME/main/README.md
+        shell: bash
+        if: success() && $RPI_TYPE == "main"
+      - name: move_base
+        run: |
+          mkdir -p $HOME/base
+          cp docs/exp-gcc.md $HOME/base/README.md
+        shell: bash
+        if: success() && $RPI_TYPE == "base"
+      - name: deploy_experimental
+        run: |
+          bash utils/SF_docs_deployer -f "experimental" -r $RPI_TYPE
+        shell: bash
+        if: success()
+        

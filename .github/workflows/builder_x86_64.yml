@@ -29,6 +29,8 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - '**.md'  
   pull_request:
     branches:
       - master
@@ -37,6 +39,8 @@ on:
   release:
     branches:
       - master
+    paths-ignore:
+      - '**.md'
 
 env:
   CURL_VERSION: 7.72.0
