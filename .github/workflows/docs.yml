@@ -29,13 +29,18 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '**.md'  
   pull_request:
     branches:
       - master
+    paths:
+      - '**.md'
   release:
     branches:
       - master
-
+    paths:
+      - '**.md'
 env:
   CURL_VERSION: 7.72.0
   CCACHE_COMPRESS: 1
@@ -160,42 +165,42 @@ jobs:
         run: |
           mkdir -p $HOME/main
           cp docs/cross-gcc-buster.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "cross" -f "base" -o "buster"
+          bash utils/SF_docs_deployer -t "cross" -f "main" -o "buster"
         shell: bash
         if: success()
       - name: move_deploy_cross_stretch
         run: |
           mkdir -p $HOME/main
           cp docs/cross-gcc-stretch.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "cross" -f "base" -o "stretch"
+          bash utils/SF_docs_deployer -t "cross" -f "main" -o "stretch"
         shell: bash
         if: success()
       - name: move_deploy_native_buster
         run: |
           mkdir -p $HOME/main
           cp docs/native-gcc-buster.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "native" -f "base" -o "buster"
+          bash utils/SF_docs_deployer -t "native" -f "main" -o "buster"
         shell: bash
         if: success()
       - name: move_deploy_native_stretch
         run: |
           mkdir -p $HOME/main
           cp docs/native-gcc-stretch.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "native" -f "base" -o "stretch"
+          bash utils/SF_docs_deployer -t "native" -f "main" -o "stretch"
         shell: bash
         if: success()
       - name: move_deploy_cross_64
         run: |
           mkdir -p $HOME/main
           cp docs/cross-gcc64.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "cross_64" -f "base"
+          bash utils/SF_docs_deployer -t "cross_64" -f "main"
         shell: bash
         if: success()
       - name: move_deploy_native_64
         run: |
           mkdir -p $HOME/main
           cp docs/native-gcc64.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "native_64" -f "base"
+          bash utils/SF_docs_deployer -t "native_64" -f "main"
         shell: bash
         if: success()
 
