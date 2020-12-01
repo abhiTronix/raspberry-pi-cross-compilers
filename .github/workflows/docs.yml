@@ -28,19 +28,14 @@ on:
   # but only for the master branch
   push:
     branches:
-      - master
-    paths:
-      - '**.md'  
+      - master 
   pull_request:
     branches:
       - master
-    paths:
-      - '**.md'
   release:
     branches:
       - master
-    paths:
-      - '**.md'
+
 env:
   CURL_VERSION: 7.72.0
   CCACHE_COMPRESS: 1
