@@ -114,7 +114,7 @@ if [ ! -d "gdb-$GDB_VERSION" ]; then
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
 	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then
-		wget -q --no-check-certificate https://ftpmirror.gnu.org/gnu/gcc/gcc-"$GCC_VERSION"/gcc-"$GCC_VERSION".tar.gz
+		wget -q --no-check-certificate https://ftp.gnu.org/gnu/gcc/gcc-"$GCC_VERSION"/gcc-"$GCC_VERSION".tar.gz
 	fi
 	tar xf gcc-"$GCC_VERSION".tar.gz
 	cd gcc-"$GCC_VERSION" || exit

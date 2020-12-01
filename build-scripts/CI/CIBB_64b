@@ -122,7 +122,7 @@ if [ ! -d "linux" ]; then
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
 	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then
-		wget -q --no-check-certificate https://ftpmirror.gnu.org/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
+		wget -q --no-check-certificate https://ftp.gnu.org/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
 	fi
 	tar xf gcc-$GCC_VERSION.tar.gz
 	cd gcc-$GCC_VERSION || exit
@@ -150,7 +150,7 @@ if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
 fi
 if [ ! -d "glibc-$GLIBC_VERSION" ]; then
 	if [ ! -f "glibc-$GLIBC_VERSION.tar.bz2" ]; then
-		wget -q --no-check-certificate https://ftpmirror.gnu.org/gnu/glibc/glibc-$GLIBC_VERSION.tar.bz2
+		wget -q --no-check-certificate https://ftp.gnu.org/gnu/glibc/glibc-$GLIBC_VERSION.tar.bz2
 	fi
 	tar xf glibc-$GLIBC_VERSION.tar.bz2
 	cd glibc-$GLIBC_VERSION || exit
