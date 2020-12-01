@@ -138,7 +138,9 @@ if [ ! -d "linux" ]; then
 	rm ./*.tar.*
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
-	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then wget https://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz; fi
+	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then
+		wget --no-check-certificate https://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
+	fi
 	tar xf gcc-$GCC_VERSION.tar.gz
 	cd gcc-$GCC_VERSION || exit
 	mkdir -p build
@@ -154,7 +156,9 @@ if [ ! -d "gcc-$GCC_VERSION" ]; then
 	rm ./*.tar.*
 fi
 if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
-	if [ ! -f "binutils-$BINUTILS_VERSION.tar.bz2" ]; then wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.bz2; fi
+	if [ ! -f "binutils-$BINUTILS_VERSION.tar.bz2" ]; then
+		wget --no-check-certificate https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.bz2
+	fi
 	tar xf binutils-$BINUTILS_VERSION.tar.bz2
 	cd binutils-$BINUTILS_VERSION || exit
 	mkdir -p build
@@ -162,7 +166,9 @@ if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
 	rm ./*.tar.*
 fi
 if [ ! -d "glibc-$GLIBC_VERSION" ]; then
-	if [ ! -f "glibc-$GLIBC_VERSION.tar.bz2" ]; then wget https://ftpmirror.gnu.org/glibc/glibc-$GLIBC_VERSION.tar.bz2; fi
+	if [ ! -f "glibc-$GLIBC_VERSION.tar.bz2" ]; then
+		wget --no-check-certificate https://ftpmirror.gnu.org/glibc/glibc-$GLIBC_VERSION.tar.bz2
+	fi
 	tar xf glibc-$GLIBC_VERSION.tar.bz2
 	cd glibc-$GLIBC_VERSION || exit
 	mkdir -p build

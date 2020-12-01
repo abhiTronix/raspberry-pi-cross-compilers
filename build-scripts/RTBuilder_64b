@@ -125,7 +125,7 @@ if [ ! -d "linux" ]; then
 fi
 if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
 	if [ ! -f "gcc-$GCCBASE_VERSION.tar.gz" ]; then
-		wget -q https://ftpmirror.gnu.org/gcc/gcc-$GCCBASE_VERSION/gcc-$GCCBASE_VERSION.tar.gz
+		wget -q --no-check-certificate https://ftpmirror.gnu.org/gcc/gcc-$GCCBASE_VERSION/gcc-$GCCBASE_VERSION.tar.gz
 	fi
 	tar xf gcc-$GCCBASE_VERSION.tar.gz
 	cd gcc-$GCCBASE_VERSION || exit
@@ -143,7 +143,7 @@ if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
 fi
 if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
 	if [ ! -f "binutils-$BINUTILS_VERSION.tar.bz2" ]; then
-		wget -q https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.bz2
+		wget -q --no-check-certificate https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.bz2
 	fi
 	tar xf binutils-$BINUTILS_VERSION.tar.bz2
 	cd binutils-$BINUTILS_VERSION || exit
@@ -153,7 +153,7 @@ if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
 fi
 if [ ! -d "glibc-$GLIBC_VERSION" ]; then
 	if [ ! -f "glibc-$GLIBC_VERSION.tar.bz2" ]; then
-		wget -q https://ftpmirror.gnu.org/glibc/glibc-$GLIBC_VERSION.tar.bz2
+		wget -q --no-check-certificate https://ftpmirror.gnu.org/glibc/glibc-$GLIBC_VERSION.tar.bz2
 	fi
 	tar xf glibc-$GLIBC_VERSION.tar.bz2
 	cd glibc-$GLIBC_VERSION || exit
@@ -163,7 +163,7 @@ if [ ! -d "glibc-$GLIBC_VERSION" ]; then
 fi
 if [ ! -d "gdb-$GDB_VERSION" ]; then
 	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then
-		wget -q https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz
+		wget -q --no-check-certificate https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz
 	fi
 	tar xf gdb-$GDB_VERSION.tar.xz
 	cd gdb-$GDB_VERSION || exit
@@ -173,7 +173,7 @@ if [ ! -d "gdb-$GDB_VERSION" ]; then
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
 	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then
-		wget -q https://ftpmirror.gnu.org/gcc/gcc-"$GCC_VERSION"/gcc-"$GCC_VERSION".tar.gz
+		wget -q --no-check-certificate https://ftpmirror.gnu.org/gcc/gcc-"$GCC_VERSION"/gcc-"$GCC_VERSION".tar.gz
 	fi
 	tar xf gcc-"$GCC_VERSION".tar.gz
 	cd gcc-"$GCC_VERSION" || exit
