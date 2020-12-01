@@ -28,14 +28,23 @@ on:
   # but only for the master branch
   push:
     branches:
-      - master 
+      - master
+    paths:
+      - '**.md'
+      - '**.yml'
   pull_request:
     branches:
       - master
+    paths:
+      - '**.md'
+      - '**.yml'
   release:
     branches:
       - master
-
+    paths:
+      - '**.md'
+      - '**.yml'
+      
 env:
   CURL_VERSION: 7.72.0
   CCACHE_COMPRESS: 1
