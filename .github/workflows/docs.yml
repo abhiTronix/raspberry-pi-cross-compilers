@@ -111,18 +111,11 @@ jobs:
         run: bash patches/curl_stfp_patcher
         shell: bash
         if: success()
-      - name: move_deploy_cross
+      - name: move_deploy_cli
         run: |
           mkdir -p $HOME/base
-          cp docs/cross-gcc.md $HOME/base/README.md
-          bash utils/SF_docs_deployer -t "cross" -f "base"
-        shell: bash
-        if: success()
-      - name: move_deploy_native
-        run: |
-          mkdir -p $HOME/base
-          cp docs/native-gcc.md $HOME/base/README.md
-          bash utils/SF_docs_deployer -t "native" -f "base"
+          cp docs/base-gcc.md $HOME/base/README.md
+          bash utils/SF_docs_deployer -t "CLI" -f "base"
         shell: bash
         if: success()
       - name: move_deploy_cross_64
@@ -132,14 +125,22 @@ jobs:
           bash utils/SF_docs_deployer -t "cross_64" -f "base"
         shell: bash
         if: success()
-      - name: move_deploy_cli
+      - name: move_deploy_native
         run: |
           mkdir -p $HOME/base
-          cp docs/base-gcc.md $HOME/base/README.md
-          bash utils/SF_docs_deployer -t "CLI" -f "base"
+          cp docs/native-gcc.md $HOME/base/README.md
+          bash utils/SF_docs_deployer -t "native" -f "base"
         shell: bash
         if: success()
-
+      - name: move_deploy_cross
+        run: |
+          mkdir -p $HOME/base
+          cp docs/cross-gcc.md $HOME/base/README.md
+          bash utils/SF_docs_deployer -t "cross" -f "base"
+        shell: bash
+        if: success()
+      
+      
   builder-docs_main:
     name: Docs Main Deployer
     runs-on: ubuntu-latest
