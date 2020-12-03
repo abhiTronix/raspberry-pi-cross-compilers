@@ -26,19 +26,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <table align="center"><tr><td align="center">
 
-<img alt="Raspberry Pi Toolchains Logo" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/GCC.png">
-
-<h1>Cross-Compiling Latest QT Framework for Raspberry Pi</h1> 
-
-<h3>(Using Precompiled Toolchains available with this Project)</h3>
-
-<br>
+<img alt="QT" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/qt-comp.png">
 
 </td></tr></table>
 
-&nbsp;
-
-_Since many finding it difficult to cross-compile QT library for their Raspberry Pi with this project binaries, I decided to make this document. **This guide documents the every steps to follow to cross-compile Latest available [Qt-5.15.2](https://doc.qt.io/qt-5/whatsnew515.html) for any Raspberry Pi variant/model available, using the Raspberry Pi Toolchains available with this project only.**_
+Since many finding it difficult to cross-compile QT library for their Raspberry Pi with this project binaries, I decided to make this document. **This guide documents the every steps to follow to cross-compile Latest available [Qt-5.15.2](https://doc.qt.io/qt-5/whatsnew515.html) for any Raspberry Pi variant/model available, using the Raspberry Pi Toolchains available with this project only.**
 
 &nbsp;
 
@@ -123,7 +115,7 @@ _Since many finding it difficult to cross-compile QT library for their Raspberry
 - You will be needing an image writer to write the downloaded OS into the SD card _(micro SD card in our case)_. So download the open-source **"win32 disk imager"** from [here](https://sourceforge.net/projects/win32diskimager/files/Archive/), OR you can also use [Balena Etcher](https://www.balena.io/etcher/) instead.
 - Insert the SD card into the laptop/pc and run the image writer. Once open, browse and select the downloaded Raspbian image file. Select the correct device, that is the drive representing the SD card. _**Note:** If the drive (or device) selected is different from the SD card then the other selected drive will become corrupted. **SO BE CAREFUL!**_
 - Once the write is complete, eject the SD card and insert it into the Raspberry Pi and turn it on. It should start booting up.
-- Please remember that after booting the Pi, there might be situations when the user credentials like the "username" and password will be asked. Raspberry Pi comes with a default username `pi` and password `raspberry` and so always use it whenever it is being asked.
+- Please remember that after booting the Pi, there might be situations when the user credentials like the "username" and password will be asked. Raspberry Pi comes with a default username `pi` and password `raspberry` and so use it whenever it is being asked.
 
 
 #### 1.2 Set up Network

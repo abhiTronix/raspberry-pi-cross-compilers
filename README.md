@@ -60,7 +60,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   * [**E. Toolchain Setup Documentation**](#e-toolchain-setup-documentation)
   * [**F. Supported Toolchains Programming Languages**](#f-supported-toolchains-programming-languages)
 * [**Build-Script for Developers**](#build-script-for-developers-do-it-yourself-muscle)
-* [**Cross-Compiling Latest QT Framework for Raspberry Pi**](#cross-compiling-latest-qt-framework-for-raspberry-pi)
+* [**Cross-Compiling Latest QT Framework for Pi**](#cross-compiling-latest-qt-framework-for-pi)
 * [**Supporting this Project :heart:**](#supporting-this-project)
 * [**Additional Information**](#additional-information)
   * [**Supported ARM Devices**](#supported-arm-devices)
@@ -206,9 +206,11 @@ Open-Source is awesome :heart:
 
 &nbsp;
 
-# Cross-Compiling Latest QT Framework for Raspberry Pi
+# Cross-Compiling Latest QT Framework for Pi
 
-Now, there's a [dedicated guide](QT_build_instructions.md), that documents the every steps to follow to cross-compile Latest available [Qt-5.15.2](https://doc.qt.io/qt-5/whatsnew515.html) for any Raspberry Pi variant/model available, using the Raspberry Pi Toolchains available with this project only.
+Now, there's a steps-by-step instructions to follow to cross-compile Latest QT for any Raspberry Pi variant/model available, using the Raspberry Pi Toolchains available with this project only.
+
+[Step-by-Step Instruction for Cross-Compiling Latest QT Framework for Raspberry Pi](QT_build_instructions.md)
 
 
 &nbsp;
