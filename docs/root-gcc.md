@@ -58,25 +58,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <br> 
 
-### New v3.0+ Release SneekPeak
-
-- *Automated CI maintained GCC standalone ARM & ARM64 toolchains.*
-- *Latest [**GCC 10.2.0**](https://gcc.gnu.org/gcc-10/) toolchains available.*
-- *Hardcoded paths free both Cross & Native **Raspbian Buster (Debian 10)** toolchains available.*
-- *Separate binaries for each Raspberry Pi variant (including latest Compute modules and Raspberry Pi 4).*
-- *PIGZ-TAR Compressed Binaries avaliable with maximum possible compression.*
-- *Exclusive **ARM64|AARCH64** Binaries for Raspberry Pi 64-Bit kernel OS flavors.*
-- *Open-sourced Toolchains build-scripts are also available.*
-- *Latest [**GDB Debugger v9.2**](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) included in all binaries.*
-
-
-<br>
-
--------------------------
-
-<br>
-
-
 # Precompiled Toolchains: Easy-to-Use
 
 This project now utilizes powerful [**Github Actions**][git-action] CI(Continuous Integration) to auto-compile Compressed GCC Cross & Native ARM & ARM64 Toolchain binaries and thereby auto-deploy them to SourceForge repository.
@@ -154,6 +135,17 @@ Open-Source is awesome
 
 - **You can find complete information about these build-scripts [here](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/build-scripts)**
 
+<br>
+
+-------------------------
+
+<br>
+
+# Cross-Compiling Latest QT Framework for Pi
+
+Now, there's a steps-by-step guide available to cross-compile Latest QT for any Raspberry Pi variant/model available, using the Raspberry Pi Toolchains available with this project:
+
+[Step-by-Step Instruction for Cross-Compiling Latest QT Framework for Raspberry Pi >>>](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/QT_build_instructions.md)
 
 <br>
 

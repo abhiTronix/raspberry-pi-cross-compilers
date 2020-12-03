@@ -60,7 +60,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   * [**E. Toolchain Setup Documentation**](#e-toolchain-setup-documentation)
   * [**F. Supported Toolchains Programming Languages**](#f-supported-toolchains-programming-languages)
 * [**Build-Script for Developers**](#build-script-for-developers-do-it-yourself-muscle)
-* [**Cross-Compiling Latest QT Framework for Pi**](#cross-compiling-latest-qt-framework-for-pi)
+* [**Cross-Compiling Latest QT Framework for Pi** <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif" />](#cross-compiling-latest-qt-framework-for-pi)
 * [**Supporting this Project :heart:**](#supporting-this-project)
 * [**Additional Information**](#additional-information)
   * [**Supported ARM Devices**](#supported-arm-devices)
@@ -95,9 +95,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 - *Latest [**GCC 10.2.0**](https://gcc.gnu.org/gcc-10/) toolchains available.*
 - *Hardcoded paths free both Cross & Native **Raspbian Buster (Debian 10)** toolchains available.*
 - *Separate binaries for each Raspberry Pi variant (including latest Compute modules and Raspberry Pi 4).*
-- *PIGZ-TAR Compressed Binaries avaliable with maximum possible compression.*
+- *PIGZ-TAR Compressed Binaries available with maximum possible compression.*
 - *Exclusive **ARM64|AARCH64** Binaries for Raspberry Pi 64-Bit kernel OS flavors.*
 - *Open-sourced Toolchains build-scripts are also available.*
+- *[**Comprehensive Guide**](QT_build_instructions.md) for Cross-compile Latest QT for any Raspberry Pi variant/model available*
 - *Latest [**GDB Debugger v9.2**](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) included in all binaries.*
 
 
@@ -208,7 +209,7 @@ Open-Source is awesome :heart:
 
 # Cross-Compiling Latest QT Framework for Pi
 
-Now, there's a steps-by-step instructions to follow to cross-compile Latest QT for any Raspberry Pi variant/model available, using the Raspberry Pi Toolchains available with this project only.
+Now, there's a steps-by-step guide available to cross-compile Latest QT for any Raspberry Pi variant/model available, using the Raspberry Pi Toolchains available with this project:
 
 [Step-by-Step Instruction for Cross-Compiling Latest QT Framework for Raspberry Pi](QT_build_instructions.md)
 
