@@ -110,8 +110,9 @@ You can run these bash scripts to manually compile any GCC toolchains version th
   
         ```shellsession
 
-        Usage: ./RTBuilder_64b -g [GCC version] -o [Target Pi OS type] -V
+        Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type] -V
             -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)
+            -r What's yours Target Raspberry Pi type?: (0-1|2-3|3+)
             -o What's yours Target Raspberry Pi OS type?: (stretch|buster)
             -V Verbose output for debugging?
 
