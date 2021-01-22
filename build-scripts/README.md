@@ -188,7 +188,7 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 These scripts only support newer GCC versions, those are as follows:
 
 | GCC Version | Stretch OS build (32/64-bit) | Buster OS build (32/64-bit) |
-| :-----------: | :----------: | :---------: | :---------: |
+| :-----------: | :----------: | :---------: |
 | 7.1.0 | supported | x |
 | 7.2.0 | supported | x |
 | 7.3.0 | supported | x |
