@@ -33,23 +33,34 @@ helpfunction() {
 	figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
 	echo ""
 	echo ""
-	echo "Usage: $0 -g [GCC version] -o [Target Pi OS type]"
+	echo "Usage: $0 -g [GCC version] -o [Target Pi OS type] -V"
 	echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)"
 	echo -e "\t-o What's yours Target Raspberry Pi OS type?: (stretch|buster)"
+	echo -e "\t-V Verbose output for debugging?"
 	echo ""
 	echo ""
 	exit 1 # Exits script after printing help
 }
 
 #input arguments handler
-while getopts "g:o:" opt; do
+while getopts "g:o:V" opt; do
 	case "$opt" in
 	g) GCC_VERSION="$OPTARG" ;;
 	o) RPIOS_TYPE="$OPTARG" ;;
+	V)
+		VERBOSE=1
+		echo "Info: Activated verbose output!"
+		echo ""
+		set -eov pipefail # Set verbose mode.
+		;;
 	?) helpfunction ;; #prints help function for invalid parameter
 	esac
 done
 #validates parameters and print usage helper function in case parameters are missing
+if [ -z "$VERBOSE" ]; then
+	VERBOSE=0
+	set -eo pipefail # stop the script and exit with return code != 0 if errored
+fi
 if [ -z "$GCC_VERSION" ] || [ -z "$RPIOS_TYPE" ]; then
 	echo "Error: Required parameters are missing!"
 	helpfunction
