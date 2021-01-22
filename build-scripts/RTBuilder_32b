@@ -215,7 +215,7 @@ mkdir -p "$SYSROOTDIR"/usr/lib
 echo "Building binutils..."
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build || exit
-../configure --target=$TARGET --prefix= --with-arch=$ARCH --with-fpu=$FPU --with-float=hard --disable-multilib
+../configure --target=$TARGET --prefix= --with-arch=$ARCH --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-fpu=$FPU --with-float=hard --disable-multilib
 make -s -j$(nproc)
 make -s install DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
@@ -228,7 +228,7 @@ make -s -j$(nproc) all-gcc
 make -s install-gcc DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
-../configure --prefix=/usr --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH --with-fpu=$FPU --with-float=hard --with-headers="$SYSROOTDIR"/usr/include --with-lib="$SYSROOTDIR"/usr/lib --disable-multilib libc_cv_forced_unwind=yes
+../configure --prefix=/usr --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-fpu=$FPU --with-float=hard --with-headers="$SYSROOTDIR"/usr/include --with-lib="$SYSROOTDIR"/usr/lib --disable-multilib libc_cv_forced_unwind=yes
 make -s install-bootstrap-headers=yes install-headers DESTDIR="$SYSROOTDIR"
 make -s -j$(nproc) csu/subdir_lib
 install csu/crt1.o csu/crti.o csu/crtn.o "$SYSROOTDIR"/usr/lib
