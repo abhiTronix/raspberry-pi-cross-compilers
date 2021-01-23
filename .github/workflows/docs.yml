@@ -194,18 +194,32 @@ jobs:
           bash utils/SF_docs_deployer -t "native" -f "main" -o "stretch"
         shell: bash
         if: success()
-      - name: move_deploy_cross_64
+      - name: move_deploy_cross_64_buster
         run: |
           mkdir -p $HOME/main
-          cp docs/cross-gcc64.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "cross_64" -f "main"
+          cp docs/cross-gcc64-buster.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "cross_64" -f "main" -o "buster"
         shell: bash
         if: success()
-      - name: move_deploy_native_64
+      - name: move_deploy_cross_64_stretch
         run: |
           mkdir -p $HOME/main
-          cp docs/native-gcc64.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "native_64" -f "main"
+          cp docs/cross-gcc64-stretch.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "cross_64" -f "main" -o "stretch"
+        shell: bash
+        if: success()
+      - name: move_deploy_native_64_buster
+        run: |
+          mkdir -p $HOME/main
+          cp docs/native-gcc64-buster.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "native_64" -f "main" -o "buster"
+        shell: bash
+        if: success()
+      - name: move_deploy_native_64_stretch
+        run: |
+          mkdir -p $HOME/main
+          cp docs/native-gcc64-stretch.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "native_64" -f "main" -o "stretch"
         shell: bash
         if: success()
 
