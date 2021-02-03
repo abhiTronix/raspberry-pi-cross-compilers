@@ -24,6 +24,8 @@
 # This script aauto downloads, compiles, and compresses Cross & Native GCC ARM64 Toolchain
 # binaries targeting any Raspberry Pi 64-bit (like Pi64) OSes.
 
+set -eo pipefail
+
 helpfunction() {
 	#helper function that prints custom usage help menu
 	echo ""
@@ -51,7 +53,7 @@ while getopts "g:o:V" opt; do
 		VERBOSE=1
 		echo "Info: Activated verbose output!"
 		echo ""
-		set -eov pipefail # Set verbose mode.
+		set -v # Set verbose mode.
 		;;
 	?) helpfunction ;; #prints help function for invalid parameter
 	esac
@@ -135,7 +137,7 @@ mkdir -p "$INSTALLDIR"
 cd "$DOWNLOADDIR" || exit
 #download binaries if not found
 if [ ! -d "linux" ]; then
-	wget -q https://github.com/$(wget -q https://github.com/raspberrypi/linux/releases/latest -O - | egrep '/.*/.*/.*.tar.gz' -o)
+	wget -q https://github.com/$(wget -q https://github.com/raspberrypi/linux/releases/latest -O - | egrep '/.*/.*/.*.tar.gz' -o | head -n1)
 	tar xf raspberrypi*.tar.gz
 	mv linux* linux
 	rm ./*.tar.*
@@ -217,7 +219,7 @@ if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -r
 cd "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build || exit
 ../configure --target=$TARGET --prefix= --with-arch=$ARCH --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --disable-multilib
 make -s -j$(nproc)
-make -s install DESTDIR="$INSTALLDIR"
+make -s install-strip DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 
 echo "Building Cross GCC $GCCBASE_VERSION Binaries..."
@@ -225,7 +227,7 @@ if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build)" ]; then rm -rf "$DO
 cd "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build || exit
 ../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH --disable-multilib
 make -s -j$(nproc) all-gcc
-make -s install-gcc DESTDIR="$INSTALLDIR"
+make -s install-strip-gcc DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
 ../configure --prefix=/usr --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-headers="$SYSROOTDIR"/usr/include --with-lib="$SYSROOTDIR"/usr/lib --disable-multilib libc_cv_forced_unwind=yes
@@ -243,7 +245,7 @@ make -s install DESTDIR="$SYSROOTDIR"
 cd "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
 make -s -j$(nproc)
-make -s install DESTDIR="$INSTALLDIR"
+make -s install-strip DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCCBASE_VERSION/build/*; fi
 
 if [ "$GCC_VERSION" != "$GCCBASE_VERSION" ]; then
@@ -251,7 +253,7 @@ if [ "$GCC_VERSION" != "$GCCBASE_VERSION" ]; then
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 	../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH --disable-multilib
 	make -s -j$(nproc)
-	make -s install DESTDIR="$INSTALLDIR"
+	make -s install-strip DESTDIR="$INSTALLDIR"
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 
 	echo "Building GCC Native GCC $GCC_VERSION Binaries..."
