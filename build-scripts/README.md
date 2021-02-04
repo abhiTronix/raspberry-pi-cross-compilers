@@ -23,9 +23,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ===============================================
 -->
 
-# <img alt="Banner" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/banners-a.png">
+# <img alt="Banner" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/build-script.png">
 
-### Open source is awesome [![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)
+&nbsp;
 
 This project now provides user-friendly open-sourced bash build-scripts that auto-generates Compressed Cross & Native GCC ARM/ARM64 Toolchain binaries targeting Raspberry Pi 32-bit & 64-bit OSes. If you need additional language support or need to compile another suitable GCC version toolchains for your Raspberry Pi, then you can manually compile any GCC toolchains by running suitable build-scripts yourself through your system terminal.
 
@@ -35,7 +35,7 @@ This project now provides user-friendly open-sourced bash build-scripts that aut
 
 ### RTBuilder_64b: Raspberry Pi Toolchains Builder 64-bit
 
-* This script auto-generates Compressed Cross & Native GCC ARM64 Toolchain binaries targeting any Raspberry Pi 64-bit (like Pi64) OSes.
+* This script auto-generates Compressed Cross & Native GCC ARM64 Toolchain binaries targeting any Raspberry Pi 64-bit Stretch(Debian 9) & Buster(Debian 10) OSes.
 
 
 
@@ -103,7 +103,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
 3. **Run scripts:**
 
-    ### `RTBuilder_32b`: Raspberry Pi Toolchains Builder 32-bit
+    ### [`RTBuilder_32b`](#): Raspberry Pi Toolchains Builder 32-bit
 
 
     * **Usage parameters:** This script requires a few command-line parameters, just run `./RTBuilder_32b` on terminal:
@@ -129,11 +129,13 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
         ```
 
-        *This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` at your `$HOME` directory.*
+        This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` at your `$HOME` directory.
 
 
+    &emsp;
 
-    ### `RTBuilder_64b`: Raspberry Pi Toolchains Builder 64-bit
+
+    ### [`RTBuilder_64b`](#): Raspberry Pi Toolchains Builder 64-bit
 
 
     * **Usage parameters:** This script requires few command-line parameters, just run `./RTBuilder_64b`:
@@ -157,7 +159,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
         ```
 
-        *This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_64.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_64.tar.gz` at your `$HOME` directory.*
+        This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_64.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_64.tar.gz` at your `$HOME` directory.
 
 &nbsp;
 

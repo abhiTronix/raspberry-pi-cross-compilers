@@ -152,7 +152,7 @@ if [ "$GCC_VERSION" != "$GCCBASE_VERSION" ]; then
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 	../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH --disable-multilib
 	make -s -j$(nproc)
-	make -s install DESTDIR="$INSTALLDIR"
+	make -s install-strip DESTDIR="$INSTALLDIR"
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 fi
 
