@@ -61,7 +61,6 @@ done
 #validates parameters and print usage helper function in case parameters are missing
 if [ -z "$VERBOSE" ]; then
 	VERBOSE=0
-	set -eo pipefail # stop the script and exit with return code != 0 if errored
 fi
 if [ -z "$GCC_VERSION" ] || [ -z "$RPIOS_TYPE" ]; then
 	echo "Error: Required parameters are missing!"
