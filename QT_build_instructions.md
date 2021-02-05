@@ -26,7 +26,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <table align="center"><tr><td align="center">
 
-<img alt="QT" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/qt-comp.png">
+<img alt="QT" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/qt.png">
 
 </td></tr></table>
 
@@ -815,10 +815,8 @@ This Project source-code and its precompiled binaries are licensed under the [**
 
 # Acknowledgments
 
-Thank you,
-
 - This document is insipired by [Qt-Instructions for Raspberry Pi 4](https://github.com/UvinduW/Cross-Compiling-Qt-for-Raspberry-Pi-4). Huge thanks to @UvinduW.
-- [QT framework](https://www.qt.io/), for providing the source files
+- Thank you [QT framework](https://www.qt.io/), for providing the source files
 
 [downloads]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files
 [license]:https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/LICENSE

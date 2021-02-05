@@ -128,10 +128,18 @@ if [ "$FOLDER_TYPE" = "main" ] && [ -f "$HOME/main/README.md" ]; then
             exit 0
         fi
     elif [ "$TOOLCHAIN" = "cross_64" ]; then
-        FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains"
+        if [ "$RPIOS_TYPE" = "buster" ]; then
+            FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains/Buster"
+        else
+            FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains/Stretch"
+        fi
         curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
     elif [ "$TOOLCHAIN" = "native_64" ]; then
-        FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains"
+        if [ "$RPIOS_TYPE" = "buster" ]; then
+            FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/Buster"
+        else
+            FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/Stretch"
+        fi
         curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
     else
         echo "Error: Invalid Main toolchain!"

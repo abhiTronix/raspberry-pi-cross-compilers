@@ -57,7 +57,9 @@ jobs:
     strategy:
       matrix:
         gcc_versions: [6.3.0, 8.3.0]
+        rpios_types: [stretch, buster]
     env:
+      RPIOS_TYPE: ${{ matrix.rpios_types }}
       GCC_VERSION: ${{ matrix.gcc_versions }}
       COMPILER_TYPE: CROSS
       BASE: true
@@ -84,7 +86,7 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CI/CIBB_64b -g $GCC_VERSION
+        run: bash build-scripts/CI/CIBB_64b -g $GCC_VERSION -o $RPIOS_TYPE
         shell: bash
         if: success() && (github.event_name == 'pull_request' || github.event_name == 'release')
       - name: before_script
@@ -103,7 +105,9 @@ jobs:
     strategy:
       matrix:
         gcc_versions: [6.3.0, 8.3.0, 9.3.0, 10.2.0]
+        rpios_types: [stretch, buster]
     env:
+      RPIOS_TYPE: ${{ matrix.rpios_types }}
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       COMPILER_TYPE: CROSS
     steps:
@@ -129,7 +133,7 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CI/CICTB_64b -g $GCC_VERSION
+        run: bash build-scripts/CI/CICTB_64b -g $GCC_VERSION -o $RPIOS_TYPE
         shell: bash
         if: success()
       - name: before_script
@@ -148,7 +152,9 @@ jobs:
     strategy:
       matrix:
         gcc_versions: [8.3.0, 9.3.0, 10.2.0]
+        rpios_types: [stretch, buster]
     env:
+      RPIOS_TYPE: ${{ matrix.rpios_types }}
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       COMPILER_TYPE: NATIVE
     steps:
@@ -174,7 +180,7 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CI/CINTB_64b -g $GCC_VERSION
+        run: bash build-scripts/CI/CINTB_64b -g $GCC_VERSION -o $RPIOS_TYPE
         shell: bash
         if: success()
       - name: before_script

@@ -33,19 +33,19 @@ helpfunction() {
 	figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
 	echo ""
 	echo ""
-	echo "Usage: $0 -g [GCC version] -t [OS Type]"
+	echo "Usage: $0 -g [GCC version] -o [Target Pi OS type]"
 	echo -e "\t-g GCC base version?: (6.3.0|8.3.0)"
-	echo -e "\t-t What's yours Raspberry Pi OS type?: (1|2) [default:1]"
+	echo -e "\t-o What's yours Target Raspberry Pi OS type?: (stretch|buster)"
 	echo ""
 	echo ""
 	exit 1 # Exits script after printing help
 }
 
 #input arguments handler
-while getopts "g:t:" opt; do
+while getopts "g:o:" opt; do
 	case "$opt" in
 	g) GCC_VERSION="$OPTARG" ;;
-	t) OS_TYPE="$OPTARG" ;;
+	o) RPIOS_TYPE="$OPTARG" ;;
 	?) helpfunction ;; #prints help function for invalid parameter
 	esac
 done
@@ -53,21 +53,21 @@ done
 if [ -z "$GCC_VERSION" ]; then
 	echo "Required parameter is missing!"
 	helpfunction
-elif [ -z "$OS_TYPE" ]; then
-	OS_TYPE=1
+elif [ -z "$RPIOS_TYPE" ]; then
+	RPIOS_TYPE="stretch"
 else
 	echo "Parameters configured!"
 fi
 
 #collect dependencies versions from raspberry pi os
-if [ "$OS_TYPE" = "1" ]; then
+if [ "$RPIOS_TYPE" = "stretch" ]; then
 	GLIBC_VERSION=2.24
 	BINUTILS_VERSION=2.28
-elif [ "$OS_TYPE" = "2" ]; then
+elif [ "$RPIOS_TYPE" = "buster" ]; then
 	GLIBC_VERSION=2.28
 	BINUTILS_VERSION=2.31
 else
-	echo "Invalid argument value: $OS_TYPE"
+	echo "Invalid argument value: $RPIOS_TYPE"
 	exit
 fi
 
@@ -174,7 +174,7 @@ if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -r
 cd "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build || exit
 ../configure --target=$TARGET --prefix= --with-arch=$ARCH --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --disable-multilib
 make -s -j$(getconf _NPROCESSORS_ONLN)
-make -s install DESTDIR="$INSTALLDIR"
+make -s install-strip DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/binutils-$BINUTILS_VERSION/build/*; fi
 
 echo "Building Cross GCC $GCC_VERSION BASE Binaries..."
@@ -182,7 +182,7 @@ if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLO
 cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
 ../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH --disable-multilib
 make -s -j$(getconf _NPROCESSORS_ONLN) all-gcc
-make -s install-gcc DESTDIR="$INSTALLDIR"
+make -s install-strip-gcc DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
 cd "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build || exit
 ../configure --prefix=/usr --build="$MACHTYPE" --host=$TARGET --target=$TARGET --with-arch=$ARCH --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-headers="$SYSROOTDIR"/usr/include --with-lib="$SYSROOTDIR"/usr/lib --disable-multilib libc_cv_forced_unwind=yes
@@ -200,7 +200,7 @@ make -s install DESTDIR="$SYSROOTDIR"
 cd "$DOWNLOADDIR"/gcc-$GCC_VERSION/build || exit
 if [ -n "$(ls -A "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/build/*; fi
 make -s -j$(getconf _NPROCESSORS_ONLN)
-make -s install DESTDIR="$INSTALLDIR"
+make -s install-strip DESTDIR="$INSTALLDIR"
 if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-$GCC_VERSION/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-$GCC_VERSION/build/*; fi
 
 mv "$BUILDDIR"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"

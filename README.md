@@ -48,58 +48,56 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 &nbsp;
 
-## Table of Contents
+## Table of Contents 📑
 
 * [**TL'DR**](#tldr)
-* [**New v3.0+ Release SneekPeak**](#new-release-sneekpeak-v30)
-* [**Precompiled Toolchains: Easy-to-Use**](#precompiled-toolchains-easy-to-use)
-  * [**A. Automated Toolchain Builder Workflow**](#a-automated-toolchain-builder-workflow)
-  * [**B. Toolchain Binaries description table**](#b-toolchain-binaries-description-table)
-  * [**C. Identifying Toolchain Binaries by Name**](#c-identifying-toolchain-binaries-by-name)
-  * [**D. Toolchain Binaries Downloads**](#d-toolchain-binaries-downloads)
-  * [**E. Toolchain Setup Documentation**](#e-toolchain-setup-documentation)
-  * [**F. Supported Toolchains Programming Languages**](#f-supported-toolchains-programming-languages)
-* [**Build-Script for Developers**](#build-script-for-developers-do-it-yourself-muscle)
-* [**Cross-Compiling Latest QT Framework for Pi** <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif" />](#cross-compiling-latest-qt-framework-for-pi)
-* [**Supporting this Project :heart:**](#supporting-this-project)
-* [**Additional Information**](#additional-information)
-  * [**Supported ARM Devices**](#supported-arm-devices)
+* [**Latest v3.0+ Release SneekPeak**](#latest-v30-release-sneekpeak-)
+* [**A. Precompiled Toolchains: Easy-to-Use**](#a-precompiled-toolchains-easy-to-use)
+  * [**Toolchain Downloads**](#-toolchain-downloads)
+  * [**Toolchain Setup Documentation**](#-toolchain-setup-documentation)
+* [**B. Build-Script for Developers**](#b-build-script-for-developers-do-it-yourself)
+* [**C. Cross-Compiling Latest QT Framework for Pi** <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif" />](#c-cross-compiling-latest-qt-framework-for-pi)
+* [**D. Supporting this Project :heart:**](#d-supporting-this-project)
+* [**E. Additional Information**](#e-bonus-additional-toolchains-information)
+  * [**Supported Hardwares**](#supported-hardwares)
+  * [**Supported Programming Languages**](#supported-programming-languages)
   * [**Optimization Flags Involved**](#optimization-flags-involved)
-* [**Citing**](#citing)
-* [**Copyright License**](#copyright-license)
-* [**Acknowledgments**](#acknowledgments)
+* [**F. Citation**](#f-citation)
+* [**G. License**](#g-licensee)
+* [**H. Acknowledgments**](#h-acknowledgments)
 
 &nbsp;
 
 &nbsp;
 
 
-### TL'DR
+## TL'DR 🕵️
 
-**What is this project?**
+### What is this project?
 
-> _This project provides the Latest, CI maintained, Precompiled [**Raspberry Pi CPU optimized**](#optimization-flags-involved) GCC Cross & Native (ARM & ARM64) Compressed Standalone Toolchains, that is [**fastest to setup**](#e-toolchain-setup-documentation) and saves you tons of time and helps you to get quickly started with software development on Pi._
+> This project provides the Latest, CI maintained, Precompiled [**Raspberry Pi CPU optimized**](#optimization-flags-involved) GCC Cross & Native (ARM & ARM64) Compressed Standalone Toolchains, that is [**fastest to setup**](#e-toolchain-setup-documentation) and saves you tons of time and helps you to get quickly started with software development on Pi.
 
-**Who will benefit from the project?**
+### Who will benefit from the project?
 
-> _This project benefits everyone, from Professional Devs to a college research Student, looking for latest easy-to-use precompiled GCC toolchains for their Hobby Raspberry Pi project(s)._ 
+> This project benefits everyone, from Professional Devs to a college research Student, looking for latest easy-to-use precompiled GCC toolchains for their Hobby Raspberry Pi project(s). 
 
 
 &nbsp;
 
 &nbsp; 
 
-### New v3.0+ Release SneekPeak
+## Latest v3.0+ Release SneekPeak 🍩
 
-- *Automated CI maintained GCC standalone ARM & ARM64 toolchains.*
-- *Latest [**GCC 10.2.0**](https://gcc.gnu.org/gcc-10/) toolchains available.*
-- *Hardcoded paths free both Cross & Native **Raspbian Buster (Debian 10)** toolchains available.*
-- *Separate binaries for each Raspberry Pi variant (including latest Compute modules and Raspberry Pi 4).*
-- *PIGZ-TAR Compressed Binaries available with maximum possible compression.*
-- *Exclusive **ARM64|AARCH64** Binaries for Raspberry Pi 64-Bit kernel OS flavors.*
-- *Open-sourced Toolchains build-scripts are also available.*
-- *[**Comprehensive Guide**](QT_build_instructions.md) for Cross-compile Latest QT for any Raspberry Pi variant/model available*
-- *Latest [**GDB Debugger v9.2**](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) included in all binaries.*
+
+* ☑️ *Latest [**GCC 10.2.0**](https://gcc.gnu.org/gcc-10/) toolchains available.*
+* ☑️ *Automated CI maintained GCC standalone ARM & ARM64 toolchains.*
+* ☑️ *Hardcoded paths free both Cross & Native **Raspbian Buster (Debian 10)** toolchains available.*
+* ☑️ *Separate binaries for each Raspberry Pi variant (including latest Compute modules and Raspberry Pi 4).*
+* ☑️ *PIGZ-TAR Compressed Binaries available with maximum possible compression.*
+* ☑️ *Exclusive **ARM64|AARCH64** Binaries for Raspberry Pi 64-Bit kernel OS flavors.*
+* ☑️ *Open-sourced Toolchains build-scripts are also available.*
+* ☑️ *[**Comprehensive Guide**](QT_build_instructions.md) for Cross-compile Latest QT for any Raspberry Pi variant/model available*
+* ☑️ *Latest [**GDB Debugger v9.2**](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) included in all binaries.*
 
 
 &nbsp;
@@ -108,64 +106,40 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
 
-# Precompiled Toolchains: Easy-to-Use
+# A. Precompiled Toolchains: Easy-to-Use
 
 This project now utilizes powerful [**Github Actions**][git-action] CI(Continuous Integration) to auto-compile Compressed GCC Cross & Native ARM & ARM64 Toolchain binaries and thereby auto-deploy them to SourceForge repository.
 
-
-### A. Automated Toolchain Builder Workflow:
 
 <h3 align=center><img alt="Workflow" title="Toolchain Builder Workflow" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/workflow.png"></h3>
 
 
 &nbsp;
 
-### B. Toolchain Binaries description table:
+### 📥 Toolchain Downloads:
 
-Here's a reference table for various CI generated OS targetted precompiled Toolchain Binaries available with this project:
-
-<br>
+Following is the table for various CI generated OS targetted precompiled Toolchain Binaries available with this project:
 
 **References:**
 * **Host OS:** on which the toolchain is executed/used.
 * **Target OS:** for which the toolchain generates code.
 
+**📝 Note:** [TAR][tar]-[PIGZ][pigz] Compressed pre-compiled GCC Toolchain binaries can be easily be downloaded from the project's [**SourceForge Repository**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/) or by clicking links given in the following table.
+
+<a href="https://sourceforge.net/p/raspberry-pi-cross-compilers/"><img alt="Download Raspberry Pi GCC Toolchains" src="https://sourceforge.net/sflogo.php?type=17&group_id=3021982" width=200></a>
+
 
 | Toolchains | Host OS | Target OS | Current Status | Precompiled GCC versions available |
 | :---------- | :--------: | :-------: | :--------: | :------------------------: |
-| **Raspberry Pi GCC Cross-Compiler Toolchains(Stretch)** | any x64/x86 Linux machine | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 6.3.0,  9.3.0, 10.2.0 |
-| **Raspberry Pi GCC Cross-Compiler Toolchains(Buster)** | any x64/x86 Linux machine | Raspbian Buster OS (Debian Version 10) only | Stable/Production | 8.3.0, 9.3.0, 10.2.0 |
-| **Raspberry Pi GCC Native-Compiler Toolchains(Stretch)** | Raspbian Stretch OS (Debian Version 9) only | Raspbian Stretch OS (Debian Version 9) only | Stable/Production | 9.3.0, 10.2.0 |
-| **Raspberry Pi GCC Native-Compiler Toolchains(Buster)** | Raspbian Buster OS (Debian Version 10) only | Raspbian Buster OS (Debian Version 10) only | Stable/Production | 9.3.0, 10.2.0 |
-| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains** | any x64/x86 Linux machine | any x64 Raspberry Pi OS(like Pi64) | Stable/Production | 6.3.0, 8.3.0, 9.3.0, 10.2.0 |
-| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains** | any x64 Raspberry Pi OS(like Pi64) | any x64 Raspbian OS(like Pi64) | Stable/Production | 8.3.0, 9.3.0, 10.2.0 |
-| **Exclusive/Experimental Toolchains** |  x86/x86_64 Pi Desktop | x86/x86_64 Pi Desktop | Beta/Experimental | 10.2.0 | 
-
-
-&nbsp;
-
-### C. Identifying Toolchain Binaries by Name:
-
-You can easily identify each pre-compiled toolchain binary by its name as follows:
-
-<h3 align=center><img alt="Binary Description" title="Toolchain Binaries Description" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/gcc-large.png"></h3>
-
-
-### D. Toolchain Binaries Downloads:
-
-
-**[TAR][tar]-[PIGZ][pigz] Compressed** pre-compiled GCC Toolchain binaries can be easily be downloaded from the project's [**SourceForge Repository**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/) or by clicking links given in the following table:
-
-| Toolchains Binaries | Status | GCC versions |
-| ---------- | -------- | :------: |
-| **Raspberry Pi GCC Cross-Compiler Toolchains(Stretch)**  | Stable/Production | [6.3.0][cc-stretch-630], [9.3.0][cc-stretch-930], [10.2.0][cc-stretch-1020] |
-| **Raspberry Pi GCC Cross-Compiler Toolchains(Buster)** | Stable/Production | [8.3.0][cc-buster-830], [9.3.0][cc-buster-930], [10.2.0][cc-buster-1020] |
-| **Raspberry Pi GCC Native-Compiler Toolchains(Stretch)** | Stable/Production | [9.3.0][nc-stretch-930], [10.2.0][nc-stretch-1020] |
-| **Raspberry Pi GCC Native-Compiler Toolchains(Buster)** | Stable/Production | [9.3.0][nc-buster-930], [10.2.0][nc-buster-1020] |
-| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains** | Stable/Production | [6.3.0][cc-64-630], [8.3.0][cc-64-830], [9.3.0][cc-64-930], [10.2.0][cc-64-1020]|
-| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains** | Stable/Production | [8.3.0][nc-64-830], [9.3.0][nc-64-930], [10.2.0][nc-64-1020] |
-| **Exclusive/Experimental Toolchains** |  Beta/Experimental | [10.2.0 (x86)][dc-x86-1020], [10.2.0 (x86_64)][dc-x86_64-1020] |  
-
+| **Raspberry Pi GCC Cross-Compiler Toolchains (Stretch)** | any x64/x86 Linux machine | Stretch **32-bit OS** (Debian Version 9) only | Stable/Production | [6.3.0][cc-stretch-630], [9.3.0][cc-stretch-930], [10.2.0][cc-stretch-1020] |
+| **Raspberry Pi GCC Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **32-bit OS** (Debian Version 10) only | Stable/Production | [8.3.0][cc-buster-830], [9.3.0][cc-buster-930], [10.2.0][cc-buster-1020] |
+| **Raspberry Pi GCC Native-Compiler Toolchains (Stretch)** | Stretch **32-bit OS** (Debian Version 9) only | Stretch **32-bit OS** (Debian Version 9) only | Stable/Production | [9.3.0][nc-stretch-930], [10.2.0][nc-stretch-1020] |
+| **Raspberry Pi GCC Native-Compiler Toolchains (Buster)** | Buster **32-bit OS** (Debian Version 10) only | Buster **32-bit OS** (Debian Version 10) only | Stable/Production | [9.3.0][nc-buster-930], [10.2.0][nc-buster-1020] |
+| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Stretch)** | any x64/x86 Linux machine | Stretch **64-bit OS** (Debian Version 9) only | Stable/Production | [6.3.0][cc-64-630], [9.3.0][cc-64-930], [10.2.0][cc-64-1020]|
+| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **64-bit OS** (Debian Version 10) only | Stable/Production | [8.3.0][cc-64-830], [9.3.0][cc-64-930], [10.2.0][cc-64-1020]|
+| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Stretch)** | Stretch **64-bit OS** (Debian Version 9) only | Stretch **64-bit OS** (Debian Version 9) only | Stable/Production | [9.3.0][nc-64-930], [10.2.0][nc-64-1020] |
+| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Buster)** | Buster **64-bit OS** (Debian Version 10) only | Buster **64-bit OS** (Debian Version 10) only | Stable/Production | [9.3.0][nc-64-930], [10.2.0][nc-64-1020] |
+| **Exclusive/Experimental Toolchains** |  x86/x86_64 Pi Desktop | x86/x86_64 Pi Desktop | Beta/Experimental | [10.2.0 (x86)][dc-x86-1020], [10.2.0 (x86_64)][dc-x86_64-1020] | 
 
 **Tip::bulb:** _To get the location of each Binary of this project on SourceForge, you can also check out [this Reference Tree](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree)._
 
@@ -173,45 +147,36 @@ You can easily identify each pre-compiled toolchain binary by its name as follow
 &nbsp;
 
 
-### E. Toolchain Setup Documentation:
+### 📒 Toolchain Setup Documentation:
 
 These precompiled toolchains setup requires just three easy steps - **Downloading, Extracting and Linking**:
 
-* #### [WIKI-Documentation (en-English)](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki)
+**[➡️ WIKI-Documentation (en-English)](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki)**
 
-&nbsp;
-
-### F. Supported Toolchains Programming Languages:
-- C++
-- Fortran
-- C
-- Any other language support can be easily [compiled](#build-script-for-developers-do-it-yourself-muscle).
  
 &nbsp;
 
 &nbsp;
 
 
-# Build-Script for Developers: Do It Yourself :muscle:
-
-Open-Source is awesome :heart:
+# B. Build-Script for Developers: Do It Yourself
 
 - This project now provides user-friendly open-sourced bash build-scripts that auto-generates Compressed Cross & Native GCC ARM & ARM64 Toolchain binaries targeting Raspberry Pi 32-bit & 64-bit OSes.
 
 - If you need additional language support or need to compile another suitable GCC version toolchains for your Raspberry Pi, then you can use these scripts to manually compile any GCC toolchains by running suitable build-scripts yourself through your system terminal.
 
-- **You can find complete information about these build-scripts [here](/build-scripts)**
+**[➡️ All Build-scripts are here](/build-scripts)**
 
 
 &nbsp;
 
 &nbsp;
 
-# Cross-Compiling Latest QT Framework for Pi
+# C. Cross-Compiling Latest QT Framework for Pi
 
 Now, there's a steps-by-step guide available to cross-compile Latest QT for any Raspberry Pi variant/model available, using the Raspberry Pi Toolchains available with this project:
 
-[Step-by-Step Instruction for Cross-Compiling Latest QT Framework for Raspberry Pi](QT_build_instructions.md)
+**[➡️ Step-by-Step Instruction for Cross-Compiling Latest QT Framework for Raspberry Pi](QT_build_instructions.md)**
 
 
 &nbsp;
@@ -219,7 +184,7 @@ Now, there's a steps-by-step guide available to cross-compile Latest QT for any 
 &nbsp;
 
 
-# Supporting this Project
+# D. Supporting this Project
 
 **If these binaries helped you big time, please consider supporting it through any size donations.:heart:.**
 
@@ -233,14 +198,24 @@ Now, there's a steps-by-step guide available to cross-compile Latest QT for any 
 
 &nbsp;
 
-# Additional Information
+# E. Bonus: Additional Toolchains Information
 
-### A. Supported Devices:
+### Supported Hardwares:
 
 - All Raspberry Pi hardware/versions/models are currently supported. 
 - Any other ARM & ARM64 Device _(such as Android, other SBCs, IoT etc.)_ with similar or compatible Hardware architecture(see [Optimization Flags](#optimization-flags-involved)), should also work.
 
-### B. Optimization Flags Involved:
+&nbsp;
+
+### Supported Programming Languages:
+- C++
+- Fortran
+- C
+- Any other language support can be easily [compiled](#b-build-script-for-developers-do-it-yourself).
+
+&nbsp;
+
+### Optimization Flags Involved:
 
 These toolchains are built with these following system-specific LTO _(Link Time Optimization)_ flags, therefore you can easily take advantage of your Raspberry Pi's CPU specific features with these Toolchains while compiling your programs:
 
@@ -259,7 +234,7 @@ These toolchains are built with these following system-specific LTO _(Link Time 
 
 &nbsp;
 
-# Citing
+# F. Citation
 
 **Here is a Bibtex entry you can use to cite this project in a publication:**
 
@@ -278,7 +253,7 @@ These toolchains are built with these following system-specific LTO _(Link Time 
 &nbsp;
 
 
-# Copyright License
+# G. License
 
 **Copyright © 2020 abhiTronix**
 
@@ -289,7 +264,7 @@ This Project source-code and its precompiled binaries are licensed under the [**
 &nbsp; 
  
 
-# Acknowledgments
+# H. Acknowledgments
 
 Thank you,
 

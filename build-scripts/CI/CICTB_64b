@@ -33,19 +33,19 @@ helpfunction() {
 	figlet -t -k -f /usr/share/figlet/term.flf "Copyright (c) 2020 abhiTronix"
 	echo ""
 	echo ""
-	echo "Usage: $0 -g [GCC version] -t [Target OS type]"
-	echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0)"
-	echo -e "\t-t What's yours Target OS type?: (1|2) [default:1]"
+	echo "Usage: $0 -g [GCC version] -o [Target OS type]"
+	echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)"
+	echo -e "\t-o What's yours Target Raspberry Pi OS type?: (stretch|buster)"
 	echo ""
 	echo ""
 	exit 1 # Exits script after printing help
 }
 
 #input arguments handler
-while getopts "g:t:" opt; do
+while getopts "g:o:" opt; do
 	case "$opt" in
 	g) GCC_VERSION="$OPTARG" ;;
-	t) OS_TYPE="$OPTARG" ;;
+	o) RPIOS_TYPE="$OPTARG" ;;
 	?) helpfunction ;; #prints help function for invalid parameter
 	esac
 done
@@ -53,19 +53,19 @@ done
 if [ -z "$GCC_VERSION" ]; then
 	echo "Error: Required parameter is missing!"
 	helpfunction
-elif [ -z "$OS_TYPE" ]; then
-	OS_TYPE=1
+elif [ -z "$RPIOS_TYPE" ]; then
+	RPIOS_TYPE="stretch"
 else
 	echo "Parameters configured!"
 fi
 
 #collect dependencies versions from raspberry pi os
-if [ "$OS_TYPE" = "1" ] || [ "$GCC_VERSION" \< "8.3.0" ]; then
+if [ "$RPIOS_TYPE" = "stretch" ] || [ "$GCC_VERSION" \< "8.3.0" ]; then
 	GCCBASE_VERSION=6.3.0
-elif [ "$OS_TYPE" = "2" ]; then
+elif [ "$RPIOS_TYPE" = "buster" ]; then
 	GCCBASE_VERSION=8.3.0
 else
-	echo "Invalid argument value: $OS_TYPE"
+	echo "Invalid argument value: $RPIOS_TYPE"
 	exit
 fi
 
@@ -152,7 +152,7 @@ if [ "$GCC_VERSION" != "$GCCBASE_VERSION" ]; then
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 	../configure --prefix= --target=$TARGET --enable-languages=$LANGUAGES --with-sysroot=/$TARGET/libc --with-build-sysroot="$SYSROOTDIR" --with-arch=$ARCH --disable-multilib
 	make -s -j$(nproc)
-	make -s install DESTDIR="$INSTALLDIR"
+	make -s install-strip DESTDIR="$INSTALLDIR"
 	if [ -n "$(ls -A "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build)" ]; then rm -rf "$DOWNLOADDIR"/gcc-"$GCC_VERSION"/build/*; fi
 fi
 

@@ -27,9 +27,17 @@
 if [ -f "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 	if [ "$RPI_TYPE" = "64" ]; then
 		if [ "$BASE" = "true" ]; then
-			FOLDER="CLI Base/64/GCC $GCC_VERSION"
+			if [ "$RPIOS_TYPE" = "buster" ]; then
+				FOLDER="CLI Base/64/Buster/GCC $GCC_VERSION"
+			else
+				FOLDER="CLI Base/64/Stretch/GCC $GCC_VERSION"
+			fi
 		else
-			FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains/GCC $GCC_VERSION"
+			if [ "$RPIOS_TYPE" = "buster" ]; then
+				FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains/Buster/GCC $GCC_VERSION"
+			else
+				FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains/Stretch/GCC $GCC_VERSION"
+			fi
 		fi
 		if [ "$FOLDER" != "" ]; then
 			curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
@@ -73,7 +81,11 @@ fi
 #Deploy Native-compiler Toolchain binaries
 if [ -f "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 	if [ "$RPI_TYPE" = "64" ]; then
-		FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/GCC $GCC_VERSION"
+		if [ "$RPIOS_TYPE" = "buster" ]; then
+			FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/Buster/GCC $GCC_VERSION"
+		else
+			FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/Stretch/GCC $GCC_VERSION"
+		fi
 		curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 	else
 		if [ "$RPIOS_TYPE" = "buster" ]; then

@@ -23,9 +23,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ===============================================
 -->
 
-# <img alt="Banner" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/banners-a.png">
+# <img alt="Banner" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/build-script.png">
 
-### Open source is awesome [![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/abhiTronix/raspberry-pi-cross-compilers)
+&nbsp;
 
 This project now provides user-friendly open-sourced bash build-scripts that auto-generates Compressed Cross & Native GCC ARM/ARM64 Toolchain binaries targeting Raspberry Pi 32-bit & 64-bit OSes. If you need additional language support or need to compile another suitable GCC version toolchains for your Raspberry Pi, then you can manually compile any GCC toolchains by running suitable build-scripts yourself through your system terminal.
 
@@ -35,7 +35,7 @@ This project now provides user-friendly open-sourced bash build-scripts that aut
 
 ### RTBuilder_64b: Raspberry Pi Toolchains Builder 64-bit
 
-* This script auto-generates Compressed Cross & Native GCC ARM64 Toolchain binaries targeting any Raspberry Pi 64-bit (like Pi64) OSes.
+* This script auto-generates Compressed Cross & Native GCC ARM64 Toolchain binaries targeting any Raspberry Pi 64-bit Stretch(Debian 9) & Buster(Debian 10) OSes.
 
 
 
@@ -103,16 +103,19 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
 3. **Run scripts:**
 
-    ### `RTBuilder_32b`: Raspberry Pi Toolchains Builder 32-bit
+    ### [`RTBuilder_32b`](#): Raspberry Pi Toolchains Builder 32-bit
 
 
     * **Usage parameters:** This script requires a few command-line parameters, just run `./RTBuilder_32b` on terminal:
   
         ```shellsession
-        Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type]
-            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)
-            -r What's yours Raspberry Pi type?: (0-1|2-3|3+)
-            -o What's yours Raspberry Pi OS type?: (stretch|buster)
+
+        Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type] -V
+            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)
+            -r What's yours Target Raspberry Pi type?: (0-1|2-3|3+)
+            -o What's yours Target Raspberry Pi OS type?: (stretch|buster)
+            -V Verbose output for debugging?
+
         ```
 
     * **Usage:** Just pass _targeted [GCC version](#supported-gcc-versions)_ to `-g` parameter,  _targeted raspberry pi type_ to `-r` parameter, and _targeted raspberry pi OS type_ to `-o` parameter of this script:
@@ -120,24 +123,29 @@ You can run these bash scripts to manually compile any GCC toolchains version th
         ***:warning: You must NOT compile GCC version [less than GCC 8.3.0 for Buster OS](#supported-gcc-versions), otherwise script will automatically switch to build for Stretch OS.***
 
         ```shellsession
+
         chmod +x RTBuilder_32b
-        ./RTBuilder_32b -g "9.3.0" -r "2-3" -o "buster"
+        ./RTBuilder_32b -g "9.3.0" -r "2-3" -o "buster" -V
 
         ```
 
-        *This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` at your `$HOME` directory.*
+        This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` at your `$HOME` directory.
 
 
+    &emsp;
 
-    ### `RTBuilder_64b`: Raspberry Pi Toolchains Builder 64-bit
+
+    ### [`RTBuilder_64b`](#): Raspberry Pi Toolchains Builder 64-bit
 
 
     * **Usage parameters:** This script requires few command-line parameters, just run `./RTBuilder_64b`:
       
         ```shellsession
-        Usage: ./RTBuilder_64b -g [GCC version] -t [OS Type]
-            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)
-            -t What's yours Raspberry Pi OS type?: (1|2) [default:1]
+
+        Usage: ./RTBuilder_64b -g [GCC version] -o [Target Pi OS type] -V
+            -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)
+            -o What's yours Target Raspberry Pi OS type?: (stretch|buster)
+            -V Verbose output for debugging?
 
         ``` 
 
@@ -145,12 +153,13 @@ You can run these bash scripts to manually compile any GCC toolchains version th
     * **Usage:** Just pass _targeted [GCC version](#supported-gcc-versions)_ to `-g` parameter of this script:
 
         ```shellsession
+
         chmod +x RTBuilder_64b
-        ./RTBuilder_64b -g "9.3.0"
+        ./RTBuilder_64b -g "9.3.0" -V
 
         ```
 
-        *This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_64.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_64.tar.gz` at your `$HOME` directory.*
+        This will take some time _(approximately 55mins on 8cores)_, so grab a coffee :coffee:. On returning you will find `native-gcc-{GCC_VERSION}-pi_64.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_64.tar.gz` at your `$HOME` directory.
 
 &nbsp;
 
@@ -180,22 +189,22 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 
 These scripts only support newer GCC versions, those are as follows:
 
-| GCC Version | Stretch OS build (32-bit) | Buster OS build (32-bit) | any 64-bit OS build |
-| :-----------: | :----------: | :---------: | :---------: |
-| 7.1.0 | supported | x | supported |
-| 7.2.0 | supported | x | supported |
-| 7.3.0 | supported | x | supported |
-| 7.4.0 | supported | x | supported |
-| 7.5.0 | supported | x | supported |
-| 8.1.0 | supported | x | supported |
-| 8.2.0 | supported | x | supported |
-| 8.3.0 | supported | supported | supported |
-| 8.4.0 | supported | supported | supported |
-| 9.1.0 | supported | supported | supported |
-| 9.2.0 | supported | supported | supported |
-| 9.3.0 | supported | supported | supported |
-| 10.1.0 | supported | supported | supported |
-| 10.2.0 | supported | supported | supported |
+| GCC Version | Stretch OS build (32/64-bit) | Buster OS build (32/64-bit) |
+| :-----------: | :----------: | :---------: |
+| 7.1.0 | supported | x |
+| 7.2.0 | supported | x |
+| 7.3.0 | supported | x |
+| 7.4.0 | supported | x |
+| 7.5.0 | supported | x |
+| 8.1.0 | supported | x |
+| 8.2.0 | supported | x |
+| 8.3.0 | supported | supported |
+| 8.4.0 | supported | supported |
+| 9.1.0 | supported | supported |
+| 9.2.0 | supported | supported |
+| 9.3.0 | supported | supported |
+| 10.1.0 | supported | supported |
+| 10.2.0 | supported | supported |
 
 &nbsp;
 
