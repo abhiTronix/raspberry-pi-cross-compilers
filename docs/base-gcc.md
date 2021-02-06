@@ -72,12 +72,12 @@ This project now utilizes powerful [**Github Actions**][git-action] CI(Continuou
 
 | Toolchains | Host OS | Target OS | Current Status | Precompiled GCC versions available |
 | :---------- | :--------: | :-------: | :--------: | :------------------------: |
-| **Raspberry Pi GCC Cross-Compiler Toolchains (Stretch)** | any x64/x86 Linux machine | Stretch **32-bit OS** (Debian Version 9) only | Stable/Production | 6.3.0-630], 9.3.0, 10.2.0 |
-| **Raspberry Pi GCC Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **32-bit OS** (Debian Version 10) only | Stable/Production | 8.3.0-830], 9.3.0, 10.2.0 |
+| **Raspberry Pi GCC Cross-Compiler Toolchains (Stretch)** | any x64/x86 Linux machine | Stretch **32-bit OS** (Debian Version 9) only | Stable/Production | 6.3.0, 9.3.0, 10.2.0 |
+| **Raspberry Pi GCC Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **32-bit OS** (Debian Version 10) only | Stable/Production | 8.3.0, 9.3.0, 10.2.0 |
 | **Raspberry Pi GCC Native-Compiler Toolchains (Stretch)** | Stretch **32-bit OS** (Debian Version 9) only | Stretch **32-bit OS** (Debian Version 9) only | Stable/Production | 9.3.0, 10.2.0 |
 | **Raspberry Pi GCC Native-Compiler Toolchains (Buster)** | Buster **32-bit OS** (Debian Version 10) only | Buster **32-bit OS** (Debian Version 10) only | Stable/Production | 9.3.0, 10.2.0 |
-| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Stretch)** | any x64/x86 Linux machine | Stretch **64-bit OS** (Debian Version 9) only | Stable/Production | 6.3.0-630], 9.3.0, 10.2.0|
-| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **64-bit OS** (Debian Version 10) only | Stable/Production | 8.3.0-830], 9.3.0, 10.2.0|
+| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Stretch)** | any x64/x86 Linux machine | Stretch **64-bit OS** (Debian Version 9) only | Stable/Production | 6.3.0, 9.3.0, 10.2.0|
+| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **64-bit OS** (Debian Version 10) only | Stable/Production | 8.3.0, 9.3.0, 10.2.0|
 | **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Stretch)** | Stretch **64-bit OS** (Debian Version 9) only | Stretch **64-bit OS** (Debian Version 9) only | Stable/Production | 9.3.0, 10.2.0 |
 | **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Buster)** | Buster **64-bit OS** (Debian Version 10) only | Buster **64-bit OS** (Debian Version 10) only | Stable/Production | 9.3.0, 10.2.0 |
 | **Exclusive/Experimental Toolchains** |  x86/x86_64 Pi Desktop | x86/x86_64 Pi Desktop | Beta/Experimental | 10.2.0 (x86), 10.2.0 (x86_64) | 
