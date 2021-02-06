@@ -71,6 +71,12 @@ else
 	exit
 fi
 
+# exit if GCC < 8.3.0 for buster
+if [ "$RPIOS_TYPE" = "buster" ] && [ "$GCC_VERSION" \< "8.3.0" ]; then
+	echo "Invalid GCC for buster: $GCC_VERSION!"
+	exit
+fi
+
 #collect build directory if not defined
 if [ "$BUILDDIR" = "" ]; then
 	#select temp directory

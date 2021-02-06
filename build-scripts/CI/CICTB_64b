@@ -69,6 +69,12 @@ else
 	exit
 fi
 
+# exit if GCC < 8.3.0 for buster
+if [ "$RPIOS_TYPE" = "buster" ] && [ "$GCC_VERSION" \< "8.3.0" ]; then
+	echo "Invalid GCC for buster: $GCC_VERSION!"
+	exit
+fi
+
 #collect build directory if not defined
 if [ "$BUILDDIR" = "" ]; then
 	#select temp directory
@@ -96,8 +102,16 @@ if [ "$FOLDER_VERSION" != "64" ]; then exit 1; fi
 if [ "$BUILDDIR" = "" ]; then exit 1; fi
 if [ "$LANGUAGES" = "" ]; then exit 1; fi
 
-URL="https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/CLI%20Base"
-if [ "$RPI_TYPE" = "64" ]; then URL="$URL/64/GCC%20$GCCBASE_VERSION/"; fi
+URL="https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/CLI%20Base/64"
+
+if [ "$RPIOS_TYPE" = "buster" ]; then
+	URL="$URL/Buster/GCC%20$GCCBASE_VERSION/"
+elif [ "$RPIOS_TYPE" = "stretch" ]; then
+	URL="$URL/Stretch/GCC%20$GCCBASE_VERSION/"
+else
+	echo "Missing RPIOS_TYPE parameter!"
+	exit 1
+fi
 
 echo "Downloading and Setting up build directories"
 #setup paths
@@ -112,9 +126,9 @@ mkdir -p "$INSTALLDIR"
 cd "$DOWNLOADDIR" || exit
 
 #download binaries if not found
-if [ ! -f "cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
-	wget -q --no-check-certificate "${URL}cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz"
-	tar xf cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz
+if [ ! -f "cross-gcc-$GCCBASE_VERSION-pi_$FOLDER_VERSION.tar.gz" ]; then
+	wget -q --no-check-certificate "${URL}cross-gcc-$GCCBASE_VERSION-pi_$FOLDER_VERSION.tar.gz"
+	tar xf cross-gcc-$GCCBASE_VERSION-pi_$FOLDER_VERSION.tar.gz
 	mv -v cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION/* $INSTALLDIR
 	rm -rf cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION
 	rm ./*.tar.*
@@ -171,7 +185,7 @@ echo "Done Building Cross GDB Binaries..."
 mv "$BUILDDIR"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION "$HOME"
 cd "$HOME" || exit
 #compress with maximum possible compression level.
-tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 >cross-gcc-"$GCC_VERSION"-pi_"$RPI_TYPE".tar.gz
+tar cf - cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION | pigz -9 -p 32 >cross-gcc-"$GCC_VERSION"-pi_"$FOLDER_VERSION".tar.gz
 echo "Done Building Cross GCC $GCC_VERSION Binaries..."
 rm -rf "$HOME"/cross-pi-gcc-"$GCC_VERSION"-$FOLDER_VERSION
 

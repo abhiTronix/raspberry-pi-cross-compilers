@@ -151,7 +151,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        gcc_versions: [8.3.0, 9.3.0, 10.2.0]
+        gcc_versions: [9.3.0, 10.2.0]
         rpios_types: [stretch, buster]
     env:
       RPIOS_TYPE: ${{ matrix.rpios_types }}
