@@ -229,7 +229,7 @@ sudo mkdir /usr/local/qt5.15
 sudo chown -R pi:pi /usr/local/qt5.15
 ```
 
-Also don't forget to setup Important Symlinks as follows:
+Also don't forget to setup Important Symlinks as follows: **(Important)**
   
  ```sh
  sudo ln -sf -r /usr/include/arm-linux-gnueabihf/asm /usr/include
