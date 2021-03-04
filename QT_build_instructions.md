@@ -229,6 +229,19 @@ sudo mkdir /usr/local/qt5.15
 sudo chown -R pi:pi /usr/local/qt5.15
 ```
 
+Also don't forget to setup Important Symlinks as follows:
+  
+ ```sh
+ sudo ln -sf -r /usr/include/arm-linux-gnueabihf/asm /usr/include
+ sudo ln -sf -r /usr/include/arm-linux-gnueabihf/gnu /usr/include
+ sudo ln -sf -r /usr/include/arm-linux-gnueabihf/bits /usr/include
+ sudo ln -sf -r /usr/include/arm-linux-gnueabihf/sys /usr/include
+ sudo ln -sf -r /usr/include/arm-linux-gnueabihf/openssl /usr/include
+ sudo ln -sf /usr/lib/arm-linux-gnueabihf/crtn.o /usr/lib/crtn.o
+ sudo ln -sf /usr/lib/arm-linux-gnueabihf/crt1.o /usr/lib/crt1.o
+ sudo ln -sf /usr/lib/arm-linux-gnueabihf/crti.o /usr/lib/crti.o
+```
+
 That's it for Raspberry Pi setup.
 
 &nbsp;
