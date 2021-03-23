@@ -52,7 +52,7 @@ env:
 jobs:
   builder-x86_64:
     name: GCC x86_64 Builder Pi[Desktop]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
         gcc_versions: [10.2.0]
@@ -96,7 +96,7 @@ jobs:
 
   builder-x86:
     name: GCC x86 Builder Pi[Desktop]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
         gcc_versions: [10.2.0]
