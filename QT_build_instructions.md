@@ -372,17 +372,17 @@ To do this, enter the following commands one by one into your terminal _(change 
 
 ### 7. Fix symbolic links
 
-The files we copied in the previous step still have symbolic links pointing to the file system on the Raspberry Pi. We need to alter this so that they become relative links from the new sysroot directory on the host machine. We can do this with a python script by @riscv, which we can download as follows:
+The files we copied in the previous step still have symbolic links pointing to the file system on the Raspberry Pi. We need to alter this so that they become relative links from the new sysroot directory on the host machine. We can do this with a python script, which we can download as follows:
 
 ```sh
-wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py
+wget https://raw.githubusercontent.com/abhiTronix/rpi_rootfs/master/scripts/sysroot-relativelinks.py
 ```
 
 Once it is downloaded, you just need to make it executable and run it, using the following commands:
 
 ```sh
 sudo chmod +x sysroot-relativelinks.py
-./sysroot-relativelinks.py sysroot
+./sysroot-relativelinks.py rootfs
 ```
 
 ### 8. Configure QT Build
