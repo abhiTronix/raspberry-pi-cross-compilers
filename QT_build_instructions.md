@@ -382,7 +382,7 @@ Once it is downloaded, you just need to make it executable and run it, using the
 
 ```sh
 sudo chmod +x sysroot-relativelinks.py
-./sysroot-relativelinks.py rootfs
+./sysroot-relativelinks.py sysroot
 ```
 
 ### 8. Configure QT Build
