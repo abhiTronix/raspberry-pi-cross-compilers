@@ -209,7 +209,7 @@ You can install these packages if you want additional multimedia and bluetooth c
 # additional (multimedia) packages
 sudo apt install libjpeg-dev libpng-dev libtiff-dev
 sudo apt install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
-sudo apt install libxvidcore-dev libx264-dev
+sudo apt install libxvidcore-dev libx264-dev openjdk-8-jre-headless
 # audio packages
 sudo apt install libopenal-data libsndio7.0 libopenal1 libopenal-dev pulseaudio
 # bluetooth packages
