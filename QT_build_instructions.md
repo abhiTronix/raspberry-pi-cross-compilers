@@ -91,6 +91,10 @@ Since many finding it difficult to cross-compile QT library for their Raspberry 
 
 ### B. Software:
 - **Host:** Any Linux machine _(Linux Mint Tested)_
+
+  | 💡  **Note:** Our Cross-Compiler toolchains also works out-of-the-box on any Linux distro via [WSL2](https://docs.microsoft.com/en-in/windows/wsl/) on Windows 10 Machines.| 
+  | ----------- |
+
 - **Target:** [Any Raspberry Pi Linux 32-bit OS](https://www.raspberrypi.org/software/operating-systems/) _(Raspbian Buster Tested)_
 
 ### C. Others:
