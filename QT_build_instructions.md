@@ -53,6 +53,7 @@ Since many finding it difficult to cross-compile QT library for their Raspberry 
   - [Install the important Development Packages](#8-install-the-important-development-packages)
   - [Additional packages (Optional)](#9-additional-packages-optional)
   - [Create directory for QT Deployment](#10-create-directory-for-qt-deployment)
+  - [Setup Important Symlinks](#11-setup-important-symlinks-important)
 - [**Steps/Settings for Host Machine (PC/Laptop)**](#stepssettings-for-host-machine-pclaptop)
   - [Update the Host Machine](#1-update-the-host-machine)
   - [Setting up the directory structure](#2-setting-up-the-directory-structure)
@@ -233,7 +234,7 @@ sudo mkdir /usr/local/qt5.15
 sudo chown -R pi:pi /usr/local/qt5.15
 ```
 
-### 11. Setup Important Symlinks as follows: *(Important)*
+### 11. Setup Important Symlinks *(Important)*
 
 Our toolchains requires few additional symbolic links to work properly. Therefore, to create all required symbolic link reliably, we need to download `SSymlinker` bash script as follows:
 
