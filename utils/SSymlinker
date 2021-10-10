@@ -1,0 +1,101 @@
+#!/bin/bash
+
+# ===============================================
+# Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project
+# provides latest automated GCC Cross Compiler & Native (ARM & ARM64)
+# build-scripts and precompiled standalone toolchains for Raspberry Pi.
+
+# Copyright (C) 2020 Abhishek Thakur(@abhiTronix) <abhi.una12@gmail.com>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# ===============================================
+
+# This script will safely create symlinks on Linux machines.
+
+set -eo pipefail # abort on errors
+
+# help function
+helpFunction() {
+	echo ""
+	echo ""
+	figlet -t -k -f /usr/share/figlet/standard.flf "SSymlinker: easy and safe"
+	echo ""
+	echo "Usage: $0 -s SOURCE -d DESTINATION"
+	echo -e "\t-s Source directory/file."
+	echo -e "\t-d Destination directory/file."
+	exit 1 # Exit script after printing help
+}
+
+# get parameters
+while getopts "s:d:" opt; do
+	case "$opt" in
+	s) SOURCE="$OPTARG" ;;
+	d) DESTINATION="$OPTARG" ;;
+	?) helpFunction ;; # Print helpFunction in case parameter is non-existent
+	esac
+done
+
+#print helpFunction in case parameters are empty
+if [ -z "$SOURCE" ] || [ -z "$DESTINATION" ]; then
+	echo "Parameters are not valid. Aborting!"
+	helpFunction
+fi
+
+# get valid destination
+if [[ -d $DESTINATION && -L $DESTINATION ]]; then
+	# get parent directory
+	DESTINATION=$(cd -- "$DESTINATION" && pwd)
+else
+	DESTINATION=$(readlink -f "$DESTINATION")
+fi
+if [[ ! -d $DESTINATION && ! -w $DESTINATION ]]; then
+	echo "$DESTINATION is not valid destination directory. Aborting!"
+	exit 1
+fi
+
+# get valid source
+if [[ ! -d $SOURCE && ! -f $SOURCE ]]; then
+	echo "$SOURCE is not valid source file/directory. Aborting!"
+	exit 1
+else
+	SOURCE=$(readlink -f "$SOURCE")
+fi
+
+# check if symlink already present or
+# SOURCE path and DESTINATION path are same
+if [[ $DESTINATION == $SOURCE ]]; then
+	if [[ -f $DESTINATION ]]; then
+		echo "Symlink already present, Aborting!"
+		exit 0
+	else
+		echo "SOURCE path and DESTINATION path cannot be same. Aborting!"
+		exit 1
+	fi
+fi
+
+# handle symlink creation
+if [[ ! -L "$DESTINATION/$(basename $SOURCE)" && -d "$DESTINATION/$(basename $SOURCE)" ]]; then
+	# a similar named non-empty folder already present at destination
+	ln -s -f -v "$SOURCE/*" "$DESTINATION/$(basename $SOURCE)/*"
+	exit 0
+elif [[ -f $DESTINATION ]]; then
+	# a similar named file already present a destination
+	read -t 3 -n 1 -p "Overwrite $DESTINATION (y/n)? " answer
+	[ -z "$answer" ] && answer=y
+	echo " "
+else
+	answer=y
+fi
+# create symlink
+[[ "$answer" = @(y|Y) ]] && ln -s -n -f -v -- "$SOURCE" "$DESTINATION"

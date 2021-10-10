@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        gcc_versions: [10.2.0]
+        gcc_versions: [10.3.0]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       OS_TYPE: x86_64
@@ -99,7 +99,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        gcc_versions: [10.2.0]
+        gcc_versions: [10.3.0]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       OS_TYPE: x86

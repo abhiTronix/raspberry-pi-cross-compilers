@@ -83,7 +83,7 @@ if [ "$RPIOS_TYPE" = "stretch" ]; then
 	GCC_VERSION=6.3.0 #enforced
 elif [ "$RPIOS_TYPE" = "buster" ]; then
 	GLIBC_VERSION=2.28
-	BINUTILS_VERSION=2.31
+	BINUTILS_VERSION=2.31.1
 	GCC_VERSION=8.3.0 #enforced
 else
 	echo "Invalid argument value: $RPIOS_TYPE"
@@ -106,12 +106,12 @@ fi
 
 #pre-defined params
 TARGET=arm-linux-gnueabihf
-GDB_VERSION=9.2
+GDB_VERSION=10.2
 
 #validate env variables
 if ! [[ "$GCC_VERSION" =~ ^(6.3.0|8.3.0)$ ]]; then exit 1; fi
 if ! [[ "$GLIBC_VERSION" =~ ^(2.24|2.28)$ ]]; then exit 1; fi
-if ! [[ "$BINUTILS_VERSION" =~ ^(2.28|2.31)$ ]]; then exit 1; fi
+if ! [[ "$BINUTILS_VERSION" =~ ^(2.28|2.31.1)$ ]]; then exit 1; fi
 if ! [[ "$FOLDER_VERSION" =~ ^(0|1|2)$ ]]; then exit 1; fi
 if ! [[ "$KERNEL" =~ ^(kernel|kernel7)$ ]]; then exit 1; fi
 if ! [[ "$ARCH" =~ ^(armv6|armv7-a|armv8-a)$ ]]; then exit 1; fi

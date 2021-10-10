@@ -34,7 +34,7 @@ helpfunction() {
 	echo ""
 	echo ""
 	echo "Usage: $0 -g [GCC version] -t [Target OS type]"
-	echo -e "\t-g GCC version you want to compile?: (8.3.0|9.1.0|9.2.0|9.3.0|10.1.0|10.2.0)"
+	echo -e "\t-g GCC version you want to compile?: (8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0)"
 	echo -e "\t-t What's yours Target OS type?: (x86|x86_64) [default:x86_64]"
 	echo ""
 	echo ""
@@ -93,7 +93,7 @@ fi
 #pre-defined params
 TARGET=$ARCH_LINUX-pc-linux
 FOLDER_VERSION=$OS_TYPE
-GDB_VERSION=9.2
+GDB_VERSION=10.2
 
 #validate env variables
 if [ "$BUILDDIR" = "" ]; then exit 1; fi
