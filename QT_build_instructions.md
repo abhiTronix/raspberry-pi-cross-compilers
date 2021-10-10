@@ -233,17 +233,26 @@ sudo mkdir /usr/local/qt5.15
 sudo chown -R pi:pi /usr/local/qt5.15
 ```
 
-Also don't forget to setup Important Symlinks as follows: **(Important)**
-  
- ```sh
- sudo ln -sf -r /usr/include/arm-linux-gnueabihf/asm /usr/include
- sudo ln -sf -r /usr/include/arm-linux-gnueabihf/gnu /usr/include
- sudo ln -sf -r /usr/include/arm-linux-gnueabihf/bits /usr/include
- sudo ln -sf -r /usr/include/arm-linux-gnueabihf/sys /usr/include
- sudo ln -sf -r /usr/include/arm-linux-gnueabihf/openssl /usr/include
- sudo ln -sf /usr/lib/arm-linux-gnueabihf/crtn.o /usr/lib/crtn.o
- sudo ln -sf /usr/lib/arm-linux-gnueabihf/crt1.o /usr/lib/crt1.o
- sudo ln -sf /usr/lib/arm-linux-gnueabihf/crti.o /usr/lib/crti.o
+### 11. Setup Important Symlinks as follows: *(Important)*
+
+Our toolchains requires few additional symbolic links to work properly. Therefore, to create all required symbolic link reliably, we need to download `SSymlinker` bash script as follows:
+
+```sh
+wget https://raw.githubusercontent.com/abhiTronix/raspberry-pi-cross-compilers/master/utils/SSymlinker
+```
+
+Once it is downloaded, you just need to make it executable, and then run it for each path manually using the following commands:
+
+```sh
+sudo chmod +x SSymlinker
+./SSymlinker -s /usr/include/arm-linux-gnueabihf/asm -d /usr/include
+./SSymlinker -s /usr/include/arm-linux-gnueabihf/gnu -d /usr/include
+./SSymlinker -s /usr/include/arm-linux-gnueabihf/bits -d /usr/include
+./SSymlinker -s /usr/include/arm-linux-gnueabihf/sys -d /usr/include
+./SSymlinker -s /usr/include/arm-linux-gnueabihf/openssl -d /usr/include
+./SSymlinker -s /usr/lib/arm-linux-gnueabihf/crtn.o -d /usr/lib/crtn.o
+./SSymlinker -s /usr/lib/arm-linux-gnueabihf/crt1.o -d /usr/lib/crt1.o
+./SSymlinker -s /usr/lib/arm-linux-gnueabihf/crti.o -d /usr/lib/crti.o
 ```
 
 That's it for Raspberry Pi setup.

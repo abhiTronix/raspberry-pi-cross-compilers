@@ -29,7 +29,7 @@ set -eo pipefail # abort on errors
 helpFunction() {
 	echo ""
 	echo ""
-	figlet -t -k -f /usr/share/figlet/standard.flf "SSymlinker: easy and safe"
+	figlet -t -k -f /usr/share/figlet/standard.flf "SSymlinker: Safe Symlinker"
 	echo ""
 	echo "Usage: $0 -s SOURCE -d DESTINATION"
 	echo -e "\t-s Source directory/file."
@@ -46,21 +46,27 @@ while getopts "s:d:" opt; do
 	esac
 done
 
-#print helpFunction in case parameters are empty
+# print helpFunction in case parameters are empty
 if [ -z "$SOURCE" ] || [ -z "$DESTINATION" ]; then
 	echo "Parameters are not valid. Aborting!"
 	helpFunction
 fi
 
+# throw error if source doesn't exists
+if [[ ! -d "$SOURCE" && ! -f "$SOURCE" ]]; then
+	echo "Source $SOURCE doesn't exist. Aborting!"
+	exit 1
+fi
+
 # get valid destination
-if [[ -d $DESTINATION && -L $DESTINATION ]]; then
+if [[ -f $DESTINATION ]]; then
 	# get parent directory
-	DESTINATION=$(cd -- "$DESTINATION" && pwd)
+	DESTINATION=$(dirname $(readlink -f $DESTINATION))
 else
 	DESTINATION=$(readlink -f "$DESTINATION")
 fi
-if [[ ! -d $DESTINATION && ! -w $DESTINATION ]]; then
-	echo "$DESTINATION is not valid destination directory. Aborting!"
+if [[ ! -d $DESTINATION ]]; then
+	echo "$DESTINATION is not valid destination. Aborting!"
 	exit 1
 fi
 
@@ -74,8 +80,8 @@ fi
 
 # check if symlink already present or
 # SOURCE path and DESTINATION path are same
-if [[ $DESTINATION == $SOURCE ]]; then
-	if [[ -f $DESTINATION ]]; then
+if [[ $DESTINATION == $SOURCE || $DESTINATION == $(dirname $SOURCE) ]]; then
+	if [[ $DESTINATION == $(dirname $SOURCE) ]]; then
 		echo "Symlink already present, Aborting!"
 		exit 0
 	else
@@ -87,7 +93,7 @@ fi
 # handle symlink creation
 if [[ ! -L "$DESTINATION/$(basename $SOURCE)" && -d "$DESTINATION/$(basename $SOURCE)" ]]; then
 	# a similar named non-empty folder already present at destination
-	ln -s -f -v "$SOURCE/*" "$DESTINATION/$(basename $SOURCE)/*"
+	sudo ln -s -f -v "$SOURCE/*" "$DESTINATION/$(basename $SOURCE)/*"
 	exit 0
 elif [[ -f $DESTINATION ]]; then
 	# a similar named file already present a destination
@@ -98,4 +104,4 @@ else
 	answer=y
 fi
 # create symlink
-[[ "$answer" = @(y|Y) ]] && ln -s -n -f -v -- "$SOURCE" "$DESTINATION"
+[[ "$answer" = @(y|Y) ]] && sudo ln -s -n -f -v -- "$SOURCE" "$DESTINATION"
