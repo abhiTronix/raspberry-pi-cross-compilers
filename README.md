@@ -97,7 +97,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 * ☑️ *Exclusive **ARM64|AARCH64** Binaries for Raspberry Pi 64-Bit kernel OS flavors.*
 * ☑️ *Open-sourced Toolchains build-scripts are also available.*
 * ☑️ *[**Comprehensive Guide**](QT_build_instructions.md) for Cross-compile Latest QT for any Raspberry Pi variant/model available*
-* ☑️ *Latest [**GDB Debugger v9.2**](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) included in all binaries.*
+* ☑️ *Latest [**GDB Debugger v10.2**](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) included in all binaries.*
 
 
 &nbsp;

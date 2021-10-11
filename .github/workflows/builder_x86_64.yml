@@ -39,6 +39,7 @@ on:
   release:
     branches:
       - master
+    types: [published]
     paths-ignore:
       - '**.md'
 
@@ -76,7 +77,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz git gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
@@ -120,7 +121,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf gcc-multilib g++-multilib libc6-i386 libc6-dev-i386 flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo apt-get -y install -qq gcc g++ gperf git gcc-multilib g++-multilib libc6-i386 libc6-dev-i386 flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH

@@ -157,10 +157,7 @@ mkdir -p "$INSTALLDIR"
 cd "$DOWNLOADDIR" || exit
 
 if [ ! -d "linux" ]; then
-	wget -q https://github.com/$(wget -q https://github.com/raspberrypi/linux/releases/latest -O - | grep -E '/.*/.*/.*.tar.gz' -o | head -n1)
-	tar xf raspberrypi*.tar.gz
-	mv linux* linux
-	rm ./*.tar.*
+	git clone --depth=1 https://github.com/raspberrypi/linux
 fi
 if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
 	if [ ! -f "gcc-$GCCBASE_VERSION.tar.gz" ]; then wget -q --no-check-certificate https://ftp.gnu.org/gnu/gcc/gcc-$GCCBASE_VERSION/gcc-$GCCBASE_VERSION.tar.gz; fi

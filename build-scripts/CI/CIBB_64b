@@ -93,7 +93,7 @@ fi
 
 #pre-defined params
 FOLDER_VERSION=64
-KERNEL=kernel7
+KERNEL=kernel8
 ARCH=armv8-a+fp+simd
 TARGET=aarch64-linux-gnu
 GDB_VERSION=10.2
@@ -102,7 +102,7 @@ GDB_VERSION=10.2
 if ! [[ "$GCC_VERSION" =~ ^(6.3.0|8.3.0)$ ]]; then exit 1; fi
 if ! [[ "$GLIBC_VERSION" =~ ^(2.24|2.28)$ ]]; then exit 1; fi
 if ! [[ "$BINUTILS_VERSION" =~ ^(2.28|2.31.1)$ ]]; then exit 1; fi
-if [ "$KERNEL" != "kernel7" ]; then exit 1; fi
+if [ "$KERNEL" != "kernel8" ]; then exit 1; fi
 if [ "$ARCH" != "armv8-a+fp+simd" ]; then exit 1; fi
 if [ "$FOLDER_VERSION" != "64" ]; then exit 1; fi
 if [ "$BUILDDIR" = "" ]; then exit 1; fi
@@ -121,10 +121,7 @@ mkdir -p "$INSTALLDIR"
 cd "$DOWNLOADDIR" || exit
 #download binaries if not found
 if [ ! -d "linux" ]; then
-	wget https://github.com/$(wget https://github.com/raspberrypi/linux/releases/latest -O - | egrep '/.*/.*/.*.tar.gz' -o)
-	tar xf raspberrypi*.tar.gz
-	mv linux* linux
-	rm ./*.tar.*
+	git clone --depth=1 https://github.com/raspberrypi/linux
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
 	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then
