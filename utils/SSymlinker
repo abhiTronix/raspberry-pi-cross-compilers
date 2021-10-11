@@ -52,12 +52,6 @@ if [ -z "$SOURCE" ] || [ -z "$DESTINATION" ]; then
 	helpFunction
 fi
 
-# throw error if source doesn't exists
-if [[ ! -d "$SOURCE" && ! -f "$SOURCE" ]]; then
-	echo "Source $SOURCE doesn't exist. Aborting!"
-	exit 1
-fi
-
 # get valid destination
 if [[ -f $DESTINATION ]]; then
 	# get parent directory

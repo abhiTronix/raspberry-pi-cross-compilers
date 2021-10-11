@@ -224,3 +224,11 @@ echo "Done Building Cross GCC $GCC_VERSION BASE Binaries..."
 
 #clean path
 PATH=$(echo "$PATH" | sed -e 's;:\?$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/bin;;' -e 's;$BUILDDIR/cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION/bin:\?;;')
+
+# throw error if archieve doesn't exists
+if [[ ! -f "cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]]; then
+	echo "File cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz doesn't created. Aborting!"
+	exit 1
+else
+	echo "File cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz of size $(stat -c%s "cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz") created successfully."
+fi

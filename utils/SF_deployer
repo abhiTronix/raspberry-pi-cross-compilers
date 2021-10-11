@@ -76,6 +76,8 @@ if [ -f "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 			fi
 		fi
 	fi
+else
+	echo "Cannot find $HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz"
 fi
 
 #Deploy Native-compiler Toolchain binaries
@@ -113,6 +115,8 @@ if [ -f "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 			fi
 		fi
 	fi
+else
+	echo "Cannot find $HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz"
 fi
 
 if [ -f "$HOME/desktop-gcc-$GCC_VERSION-pi_$OS_TYPE.tar.gz" ]; then
