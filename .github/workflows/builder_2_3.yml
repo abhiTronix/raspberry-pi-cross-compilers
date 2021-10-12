@@ -58,8 +58,10 @@ jobs:
     strategy:
       matrix:
         rpios_types: [stretch, buster]
+        gcc_versions: [6.3.0, 8.3.0]
     env:
       RPIOS_TYPE: ${{ matrix.rpios_types }}
+      GCC_VERSION: ${{ matrix.gcc_versions }}
       COMPILER_TYPE: CROSS
       BASE: true
     steps:
@@ -83,13 +85,13 @@ jobs:
           source ~/.bashrc && echo $PATH
         if: success()
       - name: script
-        run: bash build-scripts/CI/CIBB_32b -r $RPI_TYPE -o $RPIOS_TYPE
+        run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
         if: success() && (github.event_name == 'pull_request' || github.event_name == 'release' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[DEBUG]')))
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -119,8 +121,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -136,7 +136,7 @@ jobs:
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -181,7 +181,7 @@ jobs:
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash

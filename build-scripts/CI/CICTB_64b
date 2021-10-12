@@ -60,19 +60,23 @@ else
 fi
 
 #collect dependencies versions from raspberry pi os
-if [ "$RPIOS_TYPE" = "stretch" ] || [ "$GCC_VERSION" \< "8.3.0" ]; then
-	GCCBASE_VERSION=6.3.0
+if [ "$RPIOS_TYPE" = "stretch" ]; then
+	if [ "$GCC_VERSION" == "8.3.0" ]; then
+		echo "$GCC_VERSION is not supported on stretch!"
+		exit 0
+	else
+		GCCBASE_VERSION=6.3.0
+	fi
 elif [ "$RPIOS_TYPE" = "buster" ]; then
-	GCCBASE_VERSION=8.3.0
+	if echo ${GCC_VERSION%.*} "8.3" | awk '{exit ( $1 >= $2 )}'; then
+		echo "$GCC_VERSION is not supported on buster!"
+		exit 0
+	else
+		GCCBASE_VERSION=8.3.0
+	fi
 else
 	echo "Invalid argument value: $RPIOS_TYPE"
-	exit
-fi
-
-# exit if GCC < 8.3.0 for buster
-if [ "$RPIOS_TYPE" = "buster" ] && [ "$GCC_VERSION" \< "8.3.0" ]; then
-	echo "Invalid GCC for buster: $GCC_VERSION!"
-	exit
+	exit 1
 fi
 
 #collect build directory if not defined

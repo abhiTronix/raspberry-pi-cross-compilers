@@ -111,7 +111,7 @@ elif [ "$RPIOS_TYPE" = "buster" ]; then
 	BINUTILS_VERSION=2.31.1
 else
 	echo "Invalid argument value: $RPIOS_TYPE"
-	exit
+	exit 1
 fi
 
 #collect build directory if not defined

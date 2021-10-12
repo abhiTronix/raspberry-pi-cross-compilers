@@ -71,13 +71,13 @@ else
 	exit
 fi
 
+if [ "$RPIOS_TYPE" = "stretch" ] && [ "$GCC_VERSION" != "6.3.0" ]; then
+	echo "Invalid GCC for stretch: $GCC_VERSION!"
+	exit
+fi
 # exit if not valid GCC
 if [ "$RPIOS_TYPE" = "buster" ] && [ "$GCC_VERSION" != "8.3.0" ]; then
 	echo "Invalid GCC for buster: $GCC_VERSION!"
-	exit
-fi
-if [ "$RPIOS_TYPE" = "stretch" ] && [ "$GCC_VERSION" != "6.3.0" ]; then
-	echo "Invalid GCC for stretch: $GCC_VERSION!"
 	exit
 fi
 

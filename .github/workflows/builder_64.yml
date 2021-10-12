@@ -76,8 +76,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -93,7 +91,7 @@ jobs:
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -123,8 +121,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -140,7 +136,7 @@ jobs:
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
@@ -170,8 +166,6 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-          dos2unix utils/SF_docs_deployer
-          chmod +x utils/SF_docs_deployer
         if: success()
       - name: install
         run: |
@@ -187,7 +181,7 @@ jobs:
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'release' && github.event.action == 'published'
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
