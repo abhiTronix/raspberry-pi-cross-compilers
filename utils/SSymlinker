@@ -53,9 +53,14 @@ if [ -z "$SOURCE" ] || [ -z "$DESTINATION" ]; then
 fi
 
 # get valid destination
-if [[ ! -z $(basename $DESTINATION)]]; then
-	# get parent directory
-	DESTINATION=$(dirname $(readlink -f $DESTINATION))
+if [[ ! -d $DESTINATION ]]; then
+	# get valid destination
+	if [[ ! -z $(basename $DESTINATION)]]; then
+		# get parent directory
+		DESTINATION=$(dirname $(readlink -f $DESTINATION))
+	else
+		DESTINATION=$(readlink -f "$DESTINATION")
+	fi
 else
 	DESTINATION=$(readlink -f "$DESTINATION")
 fi
@@ -97,5 +102,6 @@ elif [[ -f $DESTINATION ]]; then
 else
 	answer=y
 fi
+
 # create symlink
 [[ "$answer" = @(y|Y) ]] && sudo ln -s -n -f -v -- "$SOURCE" "$DESTINATION"
