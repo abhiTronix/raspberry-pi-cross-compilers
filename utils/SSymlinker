@@ -53,7 +53,7 @@ if [ -z "$SOURCE" ] || [ -z "$DESTINATION" ]; then
 fi
 
 # get valid destination
-if [[ -f $DESTINATION ]]; then
+if [[ ! -z $(basename $DESTINATION)]]; then
 	# get parent directory
 	DESTINATION=$(dirname $(readlink -f $DESTINATION))
 else
