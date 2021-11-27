@@ -91,7 +91,7 @@ fi
 # handle symlink creation
 if [[ ! -L "$DESTINATION/$(basename $SOURCE)" && -d "$DESTINATION/$(basename $SOURCE)" ]]; then
     # a similar named non-empty folder already present at destination
-    for f in $SOURCE/*; do ln -s -f $f $DESTINATION/$(basename $SOURCE); done
+    for f in $SOURCE/*; do ln -s -f -v $f $DESTINATION/$(basename $SOURCE); done
     exit 0
 elif [[ -f $DESTINATION ]]; then
     # a similar named file already present a destination
