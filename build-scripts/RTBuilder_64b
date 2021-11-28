@@ -36,7 +36,7 @@ helpfunction() {
 	echo ""
 	echo ""
 	echo "Usage: $0 -g [GCC version] -o [Target Pi OS type] -V"
-	echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0)"
+	echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0)"
 	echo -e "\t-o What's yours Target Raspberry Pi OS type?: (stretch|buster|bullseye)"
 	echo -e "\t-V Verbose output for debugging?"
 	echo ""
@@ -122,7 +122,7 @@ TARGET=aarch64-linux-gnu
 GDB_VERSION=10.2
 
 #validate env variables
-if ! [[ "$GCC_VERSION" =~ ^(7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0)$ ]]; then exit 1; fi
+if ! [[ "$GCC_VERSION" =~ ^(7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0)$ ]]; then exit 1; fi
 if ! [[ "$GCCBASE_VERSION" =~ ^(6.3.0|8.3.0|10.2.0)$ ]]; then exit 1; fi
 if ! [[ "$GLIBC_VERSION" =~ ^(2.24|2.28|2.31)$ ]]; then exit 1; fi
 if ! [[ "$BINUTILS_VERSION" =~ ^(2.28|2.31.1|2.35.2)$ ]]; then exit 1; fi
