@@ -113,14 +113,14 @@ You can run these bash scripts to manually compile any GCC toolchains version th
         Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type] -V
             -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0)
             -r What's yours Target Raspberry Pi type?: (0-1|2-3|3+)
-            -o What's yours Target Raspberry Pi OS type?: (stretch|buster)
+            -o What's yours Target Raspberry Pi OS type?: (stretch|buster|bullseye)
             -V Verbose output for debugging?
 
         ```
 
     * **Usage:** Just pass _targeted [GCC version](#supported-gcc-versions)_ to `-g` parameter,  _targeted raspberry pi type_ to `-r` parameter, and _targeted raspberry pi OS type_ to `-o` parameter of this script:
 
-        ***:warning: You must NOT compile GCC version [less than GCC 8.3.0 for Buster OS](#supported-gcc-versions), otherwise script will automatically switch to build for Stretch OS.***
+        ***:warning: You must NOT compile GCC version [less than GCC 8.3.0 for Buster OS or Bullseye OS](#supported-gcc-versions), otherwise script will automatically switch to build for Stretch OS.***
 
         ```shellsession
 
@@ -144,7 +144,7 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
         Usage: ./RTBuilder_64b -g [GCC version] -o [Target Pi OS type] -V
             -g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0)
-            -o What's yours Target Raspberry Pi OS type?: (stretch|buster)
+            -o What's yours Target Raspberry Pi OS type?: (stretch|buster|bullseye)
             -V Verbose output for debugging?
 
         ``` 
@@ -189,24 +189,24 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 
 These scripts only support newer GCC versions, those are as follows:
 
-| GCC Version | Stretch OS build (32/64-bit) | Buster OS build (32/64-bit) |
-| :-----------: | :----------: | :---------: |
-| 7.1.0 | supported | x |
-| 7.2.0 | supported | x |
-| 7.3.0 | supported | x |
-| 7.4.0 | supported | x |
-| 7.5.0 | supported | x |
-| 8.1.0 | supported | x |
-| 8.2.0 | supported | x |
-| 8.3.0 | supported | supported |
-| 8.4.0 | supported | supported |
-| 9.1.0 | supported | supported |
-| 9.2.0 | supported | supported |
-| 9.3.0 | supported | supported |
-| 9.4.0 | supported | supported |
-| 10.1.0 | supported | supported |
-| 10.2.0 | supported | supported |
-| 10.3.0 | supported | supported |
+| GCC Version | Stretch OS build (32/64-bit) | Buster OS build (32/64-bit) | Bullseye OS build (32/64-bit) |
+| :-----------: | :----------: | :---------: | :---------: |
+| 7.1.0 | supported | x | x |
+| 7.2.0 | supported | x | x |
+| 7.3.0 | supported | x | x |
+| 7.4.0 | supported | x | x |
+| 7.5.0 | supported | x | x |
+| 8.1.0 | supported | x | x |
+| 8.2.0 | supported | x | x |
+| 8.3.0 | supported | supported | x |
+| 8.4.0 | supported | supported | x |
+| 9.1.0 | supported | supported | x |
+| 9.2.0 | supported | supported | x |
+| 9.3.0 | supported | supported | x |
+| 9.4.0 | supported | supported | x |
+| 10.1.0 | supported | supported | x |
+| 10.2.0 | supported | supported |supported |
+| 10.3.0 | supported | supported |supported |
 
 &nbsp;
 

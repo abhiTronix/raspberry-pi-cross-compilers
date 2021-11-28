@@ -73,15 +73,19 @@ This project now utilizes powerful [**Github Actions**][git-action] CI(Continuou
 
 | Toolchains | Host OS | Target OS | Current Status | Precompiled GCC versions available |
 | :---------- | :--------: | :-------: | :--------: | :------------------------: |
-| Raspberry Pi GCC 32-Bit **Cross-Compiler** Toolchains (Stretch) | any x86_64/x86 Linux machine | Stretch **32-bit OS** (Debian Version 9) | Stable/Production | 6.3.0, 9.4.0, 10.3.0 |
-| Raspberry Pi GCC 32-Bit **Cross-Compiler** Toolchains (Buster) | any x86_64/x86 Linux machine | Buster **32-bit OS** (Debian Version 10) | Stable/Production | 8.3.0, 9.4.0, 10.3.0 |
-| Raspberry Pi GCC 64-Bit **Cross-Compiler** Toolchains (Stretch) | any x86_64/x86 Linux machine | Stretch **64-bit OS** (Debian Version 9) | Stable/Production | 6.3.0, 9.4.0, 10.3.0|
-| Raspberry Pi GCC 64-Bit **Cross-Compiler** Toolchains (Buster) | any x86_64/x86 Linux machine | Buster **64-bit OS** (Debian Version 10) | Stable/Production | 8.3.0, 9.4.0, 10.3.0|
-| Raspberry Pi GCC 32-Bit **Native-Compiler** Toolchains (Stretch) | Stretch **32-bit OS** (Debian Version 9) | Stretch **32-bit OS** (Debian Version 9) | Stable/Production | 9.4.0, 10.3.0 |
-| Raspberry Pi GCC 32-Bit **Native-Compiler** Toolchains (Buster) | Buster **32-bit OS** (Debian Version 10) | Buster **32-bit OS** (Debian Version 10) | Stable/Production | 9.4.0, 10.3.0 |
-| Raspberry Pi GCC 64-Bit **Native-Compiler** Toolchains (Stretch) | Stretch **64-bit OS** (Debian Version 9) | Stretch **64-bit OS** (Debian Version 9) | Stable/Production | 9.4.0, 10.3.0 |
-| Raspberry Pi GCC 64-Bit **Native-Compiler** Toolchains (Buster) | Buster **64-bit OS** (Debian Version 10) | Buster **64-bit OS** (Debian Version 10) | Stable/Production | 9.4.0, 10.3.0 |
-| Exclusive/Experimental **Desktop** Toolchains |  x86/x86_64 Pi **Desktop** OS | x86/x86_64 Pi **Desktop** OS | Beta/Experimental | 10.3.0 (x86), 10.3.0 (x86_64) | 
+| **Raspberry Pi GCC Cross-Compiler Toolchains (Stretch)** | any x64/x86 Linux machine | Stretch **32-bit OS** (Debian Version 9) only | Stable/Production |  6.3.0, 9.4.0, 10.3.0 |
+| **Raspberry Pi GCC Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **32-bit OS** (Debian Version 10) only | Stable/Production |  8.3.0, 9.4.0, 10.3.0 |
+| **Raspberry Pi GCC Cross-Compiler Toolchains (Bullseye)** | any x64/x86 Linux machine | Bullseye **32-bit OS** (Debian Version 11) only | Stable/Production | 10.2.0, 10.3.0 |
+| **Raspberry Pi GCC Native-Compiler Toolchains (Stretch)** | Stretch **32-bit OS** (Debian Version 9) only | Stretch **32-bit OS** (Debian Version 9) only | Stable/Production | 9.4.0, 10.3.0 |
+| **Raspberry Pi GCC Native-Compiler Toolchains (Buster)** | Buster **32-bit OS** (Debian Version 10) only | Buster **32-bit OS** (Debian Version 10) only | Stable/Production | 9.4.0, 10.3.0 |
+| **Raspberry Pi GCC Native-Compiler Toolchains (Bullseye)** | Bullseye **32-bit OS** (Debian Version 11) only | Bullseye **32-bit OS** (Debian Version 11) only | Stable/Production | 10.3.0 |
+| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Stretch)** | any x64/x86 Linux machine | Stretch **64-bit OS** (Debian Version 9) only | Stable/Production | 6.3.0, 9.4.0, 10.3.0 |
+| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **64-bit OS** (Debian Version 10) only | Stable/Production | 8.3.0, 9.4.0, 10.3.0 |
+| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Bullseye)** | any x64/x86 Linux machine | Bullseye **64-bit OS** (Debian Version 11) only | Stable/Production | 10.2.0, 10.3.0 |
+| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Stretch)** | Stretch **64-bit OS** (Debian Version 9) only | Stretch **64-bit OS** (Debian Version 9) only | Stable/Production | 9.4.0, 10.3.0 |
+| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Buster)** | Buster **64-bit OS** (Debian Version 10) only | Buster **64-bit OS** (Debian Version 10) only | Stable/Production | 9.4.0, 10.3.0 |
+| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Bullseye)** | Bullseye **64-bit OS** (Debian Version 11) only | Bullseye **64-bit OS** (Debian Version 11) only | Stable/Production | 10.3.0 |
+| **Exclusive/Experimental Toolchains** |  x86/x86_64 Pi Desktop | x86/x86_64 Pi Desktop | Beta/Experimental | 10.3.0 (x86), 10.3.0 (x86_64) | 
 
 
 **Tip:** _To get the location of each Binary of this project on SourceForge, you can also check out [this Reference Tree](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree)._
