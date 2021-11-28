@@ -57,6 +57,12 @@ if [ -z "$GCC_VERSION" ] || [ -z "$RPI_TYPE" ] || [ -z "$RPIOS_TYPE" ]; then
 	helpfunction
 fi
 
+# skip bullseye base
+if [ "$RPIOS_TYPE" != "bullseye" ] && [ "$GCC_VERSION" = "10.2.0" ]; then
+	echo "Invalid GCC: $GCC_VERSION!"
+	exit
+fi
+
 if [ "$RPIOS_TYPE" = "buster" ]; then
 	if echo ${GCC_VERSION%.*} "8.3" | awk '{exit ( $1 >= $2 )}'; then
 		echo "$GCC_VERSION is not supported on buster!"

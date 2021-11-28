@@ -57,8 +57,8 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        gcc_versions: [6.3.0, 8.3.0]
-        rpios_types: [stretch, buster]
+        gcc_versions: [6.3.0, 8.3.0, 10.2.0]
+        rpios_types: [stretch, buster, bullseye]
     env:
       RPIOS_TYPE: ${{ matrix.rpios_types }}
       GCC_VERSION: ${{ matrix.gcc_versions }}
@@ -103,8 +103,8 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        gcc_versions: [6.3.0, 8.3.0, 9.4.0, 10.3.0]
-        rpios_types: [stretch, buster]
+        gcc_versions: [6.3.0, 8.3.0, 9.4.0, 10.2.0, 10.3.0]
+        rpios_types: [stretch, buster, bullseye]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       RPIOS_TYPE: ${{ matrix.rpios_types }} 
@@ -148,8 +148,8 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        gcc_versions: [9.4.0, 10.3.0]
-        rpios_types: [stretch, buster]
+        gcc_versions: [9.4.0, 10.2.0, 10.3.0]
+        rpios_types: [stretch, buster, bullseye]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       RPIOS_TYPE: ${{ matrix.rpios_types }}  

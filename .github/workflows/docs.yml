@@ -173,6 +173,13 @@ jobs:
           bash utils/SF_docs_deployer -t "cross" -f "main" -o "buster"
         shell: bash
         if: success()
+      - name: move_deploy_cross_bullseye
+        run: |
+          mkdir -p $HOME/main
+          cp docs/cross-gcc-bullseye.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "cross" -f "main" -o "bullseye"
+        shell: bash
+        if: success()
       - name: move_deploy_cross_stretch
         run: |
           mkdir -p $HOME/main
@@ -185,6 +192,13 @@ jobs:
           mkdir -p $HOME/main
           cp docs/native-gcc-buster.md $HOME/main/README.md
           bash utils/SF_docs_deployer -t "native" -f "main" -o "buster"
+        shell: bash
+        if: success()
+      - name: move_deploy_native_bullseye
+        run: |
+          mkdir -p $HOME/main
+          cp docs/native-gcc-bullseye.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "native" -f "main" -o "bullseye"
         shell: bash
         if: success()
       - name: move_deploy_native_stretch
@@ -201,6 +215,13 @@ jobs:
           bash utils/SF_docs_deployer -t "cross_64" -f "main" -o "buster"
         shell: bash
         if: success()
+      - name: move_deploy_cross_64_bullseye
+        run: |
+          mkdir -p $HOME/main
+          cp docs/cross-gcc64-bullseye.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "cross_64" -f "main" -o "bullseye"
+        shell: bash
+        if: success()
       - name: move_deploy_cross_64_stretch
         run: |
           mkdir -p $HOME/main
@@ -213,6 +234,13 @@ jobs:
           mkdir -p $HOME/main
           cp docs/native-gcc64-buster.md $HOME/main/README.md
           bash utils/SF_docs_deployer -t "native_64" -f "main" -o "buster"
+        shell: bash
+        if: success()
+      - name: move_deploy_native_64_bullseye
+        run: |
+          mkdir -p $HOME/main
+          cp docs/native-gcc64-bullseye.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "native_64" -f "main" -o "bullseye"
         shell: bash
         if: success()
       - name: move_deploy_native_64_stretch

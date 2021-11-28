@@ -59,6 +59,12 @@ else
 	echo "Parameters configured!"
 fi
 
+# skip bullseye base
+if [ "$RPIOS_TYPE" != "bullseye" ] && [ "$GCC_VERSION" = "10.2.0" ]; then
+	echo "Invalid GCC: $GCC_VERSION!"
+	exit
+fi
+
 #collect dependencies versions from raspberry pi os
 if [ "$RPIOS_TYPE" = "stretch" ]; then
 	if [ "$GCC_VERSION" == "8.3.0" ]; then
