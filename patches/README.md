@@ -32,6 +32,11 @@ These scripts are used to patch any faults in Automated **Github Actions** CI(Co
  _This script patches system `curl` libs to enable the native SFTP support._
 
 
+### B. `Makefile.patch`: Patched Makefile
+
+ _This is a patched Makefile that contains critical bug-fix for Glibc `2.31` with [these changes](https://sourceware.org/git/?p=glibc.git;a=commitdiff;h=49348beafe9ba150c9bd48595b3f372299bddbb0;hp=cbd156990489568eb8c1b97ace3ad24fc784e049#patch1)._
+
+
 ### License
 
 **Copyright © 2020 abhiTronix**
