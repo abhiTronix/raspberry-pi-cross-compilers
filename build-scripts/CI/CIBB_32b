@@ -190,7 +190,7 @@ if [ ! -d "glibc-$GLIBC_VERSION" ]; then
 	cd glibc-$GLIBC_VERSION || exit
 	mkdir -p build
 	# apply critical patch if Glibc 2.31 and GCC 10 series are being built
-	if [[ "$GCCBASE_VERSION" =~ ^10.* ]] && [ "$GLIBC_VERSION" = "2.31" ]; then
+	if [[ "$GCC_VERSION" =~ ^10.* ]] && [ "$GLIBC_VERSION" = "2.31" ]; then
 		echo "Applying patch!"
 		curl -o Makefile.patch https://raw.githubusercontent.com/abhiTronix/raspberry-pi-cross-compilers/master/patches/Makefile.patch
 		mv Makefile.patch math/Makefile
