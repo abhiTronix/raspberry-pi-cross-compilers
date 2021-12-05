@@ -141,6 +141,10 @@ if [ ! -d "gcc-$GCC_VERSION" ]; then
 	fi
 	tar xf gcc-$GCC_VERSION.tar.gz
 	cd gcc-$GCC_VERSION || exit
+	if [ "$GCC_VERSION" = "10.2.0" ]; then
+		echo "Applying GCC patch!"
+		sed -i -e '66i#define PATH_MAX 4096\' libsanitizer/asan/asan_linux.cpp
+	fi
 	mkdir -p build
 	if [ "$GCC_VERSION" = "6.3.0" ]; then
 		sed -i contrib/download_prerequisites -e 's/ftp/http/'

@@ -172,6 +172,10 @@ if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
 	if [ ! -f "gcc-$GCCBASE_VERSION.tar.gz" ]; then wget -q --no-check-certificate https://ftp.gnu.org/gnu/gcc/gcc-$GCCBASE_VERSION/gcc-$GCCBASE_VERSION.tar.gz; fi
 	tar xf gcc-$GCCBASE_VERSION.tar.gz
 	cd gcc-$GCCBASE_VERSION || exit
+	if [ "$GCCBASE_VERSION" = "10.2.0" ]; then
+		echo "Applying GCC patch!"
+		sed -i -e '66i#define PATH_MAX 4096\' libsanitizer/asan/asan_linux.cpp
+	fi
 	mkdir -p build
 	if [ "$GCCBASE_VERSION" = "6.3.0" ]; then
 		sed -i contrib/download_prerequisites -e 's/ftp/http/'
