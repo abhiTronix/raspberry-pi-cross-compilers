@@ -195,7 +195,7 @@ fi
 if [ ! -d "glibc-$GLIBC_VERSION" ]; then
 	# Download patched Glibc 2.31 if GCC 10 series are being built
 	if [[ "$GCCBASE_VERSION" =~ ^10.* ]] && [ "$GLIBC_VERSION" = "2.31" ]; then
-		echo "Downloading patched Glibc!"
+		echo "Downloading patched Glibc v2.31!"
 		git clone https://sourceware.org/git/glibc.git --branch release/2.31/master
 		mv glibc glibc-$GLIBC_VERSION
 	else
