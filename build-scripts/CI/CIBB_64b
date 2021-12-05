@@ -164,18 +164,17 @@ if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
 	rm ./*.tar.*
 fi
 if [ ! -d "glibc-$GLIBC_VERSION" ]; then
-	if [ ! -f "glibc-$GLIBC_VERSION.tar.bz2" ]; then
-		wget -q --no-check-certificate https://ftp.gnu.org/gnu/glibc/glibc-$GLIBC_VERSION.tar.bz2
+	# Download patched Glibc 2.31 if GCC 10 series are being built
+	if [[ "$GCC_VERSION" =~ ^10.* ]] && [ "$GLIBC_VERSION" = "2.31" ]; then
+		echo "Downloading patched Glibc!"
+		git clone https://sourceware.org/git/glibc.git --branch release/2.31/master
+		mv glibc glibc-$GLIBC_VERSION
+	else
+		if [ ! -f "glibc-$GLIBC_VERSION.tar.bz2" ]; then wget -q --no-check-certificate https://ftp.gnu.org/gnu/glibc/glibc-$GLIBC_VERSION.tar.bz2; fi
+		tar xf glibc-$GLIBC_VERSION.tar.bz2
 	fi
-	tar xf glibc-$GLIBC_VERSION.tar.bz2
 	cd glibc-$GLIBC_VERSION || exit
 	mkdir -p build
-	# apply critical patch if Glibc 2.31 and GCC 10 series are being built
-	if [[ "$GCC_VERSION" =~ ^10.* ]] && [ "$GLIBC_VERSION" = "2.31" ]; then
-		echo "Applying patch!"
-		wget -O Makefile.patch https://raw.githubusercontent.com/abhiTronix/raspberry-pi-cross-compilers/master/patches/Makefile.patch
-		mv Makefile.patch "$DOWNLOADDIR"/glibc-$GLIBC_VERSION/math/Makefile
-	fi
 	cd "$DOWNLOADDIR" || exit
 	rm ./*.tar.*
 fi
