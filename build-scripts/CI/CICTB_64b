@@ -163,10 +163,15 @@ if [ ! -d "gdb-$GDB_VERSION" ]; then
 	rm ./*.tar.*
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
-	if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then
-		wget -q --no-check-certificate https://ftp.gnu.org/gnu/gcc/gcc-"$GCC_VERSION"/gcc-"$GCC_VERSION".tar.gz
+	# Download patched GCC 10 series for bullseye
+	if [ "$RPIOS_TYPE" = "bullseye" ] && [[ "$GCC_VERSION" =~ ^10.* ]] && [ "$GCC_VERSION" != "10.2.0" ]; then
+		echo "Downloading patched GCC-10!"
+		git clone https://sourceware.org/git/gcc.git --branch releases/gcc-10
+		mv gcc gcc-$GCC_VERSION
+	else
+		if [ ! -f "gcc-$GCC_VERSION.tar.gz" ]; then wget -q --no-check-certificate https://ftp.gnu.org/gnu/gcc/gcc-"$GCC_VERSION"/gcc-"$GCC_VERSION".tar.gz; fi
+		tar xf gcc-"$GCC_VERSION".tar.gz
 	fi
-	tar xf gcc-"$GCC_VERSION".tar.gz
 	cd gcc-"$GCC_VERSION" || exit
 	mkdir -p build
 	sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
