@@ -91,12 +91,12 @@ Since many finding it difficult to cross-compile QT library for their Raspberry 
 - **Target [Raspberry Pi]:** Raspberry Pi any variant/module
 
 ### B. Software:
-- **Host:** Any Linux machine _(Linux Mint Tested)_
+- **Host:** Any Linux machine _(Ubuntu/Linux Mint Tested)_
 
   | 💡  **Note:** Our Cross-Compiler toolchains also works out-of-the-box on any Linux distro via [WSL2](https://docs.microsoft.com/en-in/windows/wsl/) on Windows 10 Machines.| 
   | ----------- |
 
-- **Target:** [Any Raspberry Pi Linux 32-bit OS](https://www.raspberrypi.org/software/operating-systems/) _(Raspbian Buster Tested)_
+- **Target:** [Any Raspberry Pi Linux 32-bit OS](https://www.raspberrypi.org/software/operating-systems/) _(Raspbian Buster/Bullseye Tested)_
 
 ### C. Others:
 - **Storage and Time Requirements:** The build directory takes around ~10GB space and about 2-5 hours to complete _(based on dependencies & Host Machine Specifications)_.
@@ -112,11 +112,11 @@ Since many finding it difficult to cross-compile QT library for their Raspberry 
 
 **Important:** If you just brought a new Raspberry Pi or wanted to start from scratch just follow along. Otherwise, if you already has your Raspberry Pi setup, running, and Network Ready, then just skip to [step 2](#2-set-up-ssh).
 
-**Note:** This section assume you have atleast 10GB SDcard for installing Raspbian Buster OS and a Laptop/PC for uploading it.  
+**Note:** This section assume you have atleast 10GB SDcard for installing Raspbian (Stretch/Buster/Bullseye) OS and a Laptop/PC for uploading it.  
 
 #### 1.1. Download Softwares & Prepare the SD card
 
-- Download the latest version of Raspbian (Buster) from [here](https://www.raspberrypi.org/software/operating-systems/) on your laptop/pc.
+- Download the latest version of Raspbian (Stretch/Buster/Bullseye) from [here](https://www.raspberrypi.org/software/operating-systems/) on your laptop/pc.
 - You will be needing an image writer to write the downloaded OS into the SD card _(micro SD card in our case)_. So download the open-source **"win32 disk imager"** from [here](https://sourceforge.net/projects/win32diskimager/files/Archive/), OR you can also use [Balena Etcher](https://www.balena.io/etcher/) instead.
 - Insert the SD card into the laptop/pc and run the image writer. Once open, browse and select the downloaded Raspbian image file. Select the correct device, that is the drive representing the SD card. _**Note:** If the drive (or device) selected is different from the SD card then the other selected drive will become corrupted. **SO BE CAREFUL!**_
 - Once the write is complete, eject the SD card and insert it into the Raspberry Pi and turn it on. It should start booting up.
@@ -170,7 +170,7 @@ sudo nano /etc/apt/sources.list
 In the nano text editor, uncomment the following line by removing the `#` character from following line:
 
 ```sh
-deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi
+deb-src http://raspbian.raspberrypi.org/raspbian/ <stretch|buster|bullseye> main contrib non-free rpi
 ```
 When done, press `Ctrl+O` and then `ENTER` to quit.
 
