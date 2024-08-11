@@ -36,9 +36,9 @@ helpfunction() {
 	echo ""
 	echo ""
 	echo "Usage: $0 -g [GCC version] -r [Target Pi type] -o [Target Pi OS type] -V"
-	echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0)"
+	echo -e "\t-g GCC version you want to compile?: (8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0|11.3.0|12.1.0|12.2.0|12.3.0|12.4.0|13.1.0|13.2.0|13.3.0|14.1.0|14.2.0)"
 	echo -e "\t-r What's yours Target Raspberry Pi type?: (0-1|2-3|3+)"
-	echo -e "\t-o What's yours Target Raspberry Pi OS type?: (stretch|buster|bullseye)"
+	echo -e "\t-o What's yours Target Raspberry Pi OS type?: (buster|bullseye|bookworm)"
 	echo -e "\t-V Verbose output for debugging?"
 	echo ""
 	echo ""
@@ -91,15 +91,15 @@ else
 fi
 
 #collect dependencies versions from raspberry pi os
-if [ "$RPIOS_TYPE" = "stretch" ]; then
-	if echo ${GCC_VERSION%.*} "6.3" | awk '{exit ( $1 >= $2 )}'; then
+if [ "$RPIOS_TYPE" = "bookworm" ]; then
+	if echo ${GCC_VERSION%.*} "12.2" | awk '{exit ( $1 >= $2 )}'; then
 		echo "$GCC_VERSION is not supported on stretch!"
 		exit 0
 	else
-		GCCBASE_VERSION=6.3.0
+		GCCBASE_VERSION=12.2.0
 	fi
-	GLIBC_VERSION=2.24
-	BINUTILS_VERSION=2.28
+	GLIBC_VERSION=2.36.0
+	BINUTILS_VERSION=2.40.0
 elif [ "$RPIOS_TYPE" = "buster" ]; then
 	if echo ${GCC_VERSION%.*} "8.3" | awk '{exit ( $1 >= $2 )}'; then
 		echo "$GCC_VERSION is not supported on buster!"
@@ -114,7 +114,7 @@ elif [ "$RPIOS_TYPE" = "bullseye" ]; then
 		echo "$GCC_VERSION is not supported on bullseye!"
 		exit 0
 	else
-		GCCBASE_VERSION=10.2.0
+		GCCBASE_VERSION=10.2.1
 	fi
 	GLIBC_VERSION=2.31
 	BINUTILS_VERSION=2.35.2
@@ -142,10 +142,10 @@ TARGET=arm-linux-gnueabihf
 GDB_VERSION=10.2
 
 #validate env variables
-if ! [[ "$GCC_VERSION" =~ ^(6.3.0|7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0)$ ]]; then exit 1; fi
-if ! [[ "$GCCBASE_VERSION" =~ ^(6.3.0|8.3.0|10.2.0)$ ]]; then exit 1; fi
-if ! [[ "$GLIBC_VERSION" =~ ^(2.24|2.28|2.31)$ ]]; then exit 1; fi
-if ! [[ "$BINUTILS_VERSION" =~ ^(2.28|2.31.1|2.35.2)$ ]]; then exit 1; fi
+if ! [[ "$GCC_VERSION" =~ ^(8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0|11.3.0|12.1.0|12.2.0|12.3.0|12.4.0|13.1.0|13.2.0|13.3.0|14.1.0|14.2.0)$ ]]; then exit 1; fi
+if ! [[ "$GCCBASE_VERSION" =~ ^(8.3.0|10.2.1|12.2.0)$ ]]; then exit 1; fi
+if ! [[ "$GLIBC_VERSION" =~ ^(2.28|2.31|2.36.0)$ ]]; then exit 1; fi
+if ! [[ "$BINUTILS_VERSION" =~ ^(2.31.1|2.35.2|2.40.0)$ ]]; then exit 1; fi
 if ! [[ "$FOLDER_VERSION" =~ ^(0|1|2)$ ]]; then exit 1; fi
 if ! [[ "$KERNEL" =~ ^(kernel|kernel7)$ ]]; then exit 1; fi
 if ! [[ "$ARCH" =~ ^(armv6|armv7-a|armv8-a)$ ]]; then exit 1; fi
@@ -177,14 +177,9 @@ if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
 		sed -i -e '66i#define PATH_MAX 4096\' libsanitizer/asan/asan_linux.cpp
 	fi
 	mkdir -p build
-	if [ "$GCCBASE_VERSION" = "6.3.0" ]; then
-		sed -i contrib/download_prerequisites -e 's/ftp/http/'
-	else
-		sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
-	fi
+	sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
 	contrib/download_prerequisites
 	rm ./*.tar.*
-	if [ "$GCCBASE_VERSION" = "6.3.0" ]; then sed -i "1474s/.*/      || xloc.file[0] == '\\\0' || xloc.file[0] == '\\\xff'/" ./gcc/ubsan.c; fi #apply patch
 	cd "$DOWNLOADDIR" || exit
 	rm ./*.tar.*
 fi
