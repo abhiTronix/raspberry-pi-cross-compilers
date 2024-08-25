@@ -79,7 +79,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf git flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet libgmp-dev libmpfr-dev  
+          sudo apt-get -y install -qq gcc g++ gperf git flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet libgmp-dev libmpfr-dev  
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
@@ -124,7 +124,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo git pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet  libgmp-dev libmpfr-dev
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo git pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet  libgmp-dev libmpfr-dev
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
@@ -169,7 +169,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex git texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet  libgmp-dev libmpfr-dev
+          sudo apt-get -y install -qq gcc g++ gperf flex git texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet  libgmp-dev libmpfr-dev
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
