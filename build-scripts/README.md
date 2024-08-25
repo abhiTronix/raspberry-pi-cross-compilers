@@ -178,7 +178,7 @@ cd raspberry-pi-cross-compilers/build-scripts
 
 These scripts provide a few additional environment variables to tweak Toolchain Builds:
 
-`A. BUILDDIR`: To change build directory. By default it is set to `/tmp` directory. Its usage is as follows:
+A. `BUILDDIR`: To change build directory. By default it is set to `/tmp` directory. Its usage is as follows:
 
     ```sh
     BUILDDIR="/home/foo/foo1"
