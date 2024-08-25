@@ -32,7 +32,7 @@ if [ -f "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 			elif [ "$RPIOS_TYPE" = "bullseye" ]; then
 				FOLDER="CLI Base/64/Bullseye/GCC $GCC_VERSION"
 			else
-				FOLDER="CLI Base/64/Stretch/GCC $GCC_VERSION"
+				FOLDER="CLI Base/64/Bookworm/GCC $GCC_VERSION"
 			fi
 		else
 			if [ "$RPIOS_TYPE" = "buster" ]; then
@@ -40,7 +40,7 @@ if [ -f "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 			elif [ "$RPIOS_TYPE" = "bullseye" ]; then
 				FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains/Bullseye/GCC $GCC_VERSION"
 			else
-				FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains/Stretch/GCC $GCC_VERSION"
+				FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains/Bookworm/GCC $GCC_VERSION"
 			fi
 		fi
 		if [ "$FOLDER" != "" ]; then
@@ -79,11 +79,11 @@ if [ -f "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 				curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 3A+, 3B+, 4/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 		fi
-		if [ "$RPIOS_TYPE" = "stretch" ]; then
+		if [ "$RPIOS_TYPE" = "bookworm" ]; then
 			if [ "$BASE" = "true" ]; then
-				FOLDER="CLI Base/Stretch/GCC $GCC_VERSION"
+				FOLDER="CLI Base/Bookworm/GCC $GCC_VERSION"
 			else
-				FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains/Stretch/GCC $GCC_VERSION"
+				FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains/Bookworm/GCC $GCC_VERSION"
 			fi
 			if [ "$RPI_TYPE" = "0-1" ] && [ "$FOLDER" != "" ]; then
 				curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 1, Zero/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
@@ -108,7 +108,7 @@ if [ -f "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 		elif [ "$RPIOS_TYPE" = "bullseye" ]; then
 			FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/Bullseye/GCC $GCC_VERSION"
 		else
-			FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/Stretch/GCC $GCC_VERSION"
+			FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/Bookworm/GCC $GCC_VERSION"
 		fi
 		curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 	else
@@ -136,8 +136,8 @@ if [ -f "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
 				curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 3A+, 3B+, 4/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
 		fi
-		if [ "$RPIOS_TYPE" = "stretch" ]; then
-			FOLDER="Raspberry Pi GCC Native-Compiler Toolchains/Stretch/GCC $GCC_VERSION"
+		if [ "$RPIOS_TYPE" = "bookworm" ]; then
+			FOLDER="Raspberry Pi GCC Native-Compiler Toolchains/Bookworm/GCC $GCC_VERSION"
 			if [ "$RPI_TYPE" = "0-1" ]; then
 				curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/Raspberry Pi 1, Zero/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/native-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" --ftp-create-dirs
 			fi
