@@ -180,22 +180,23 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 
 `A. BUILDDIR`: To change build directory. By default it is set to `/tmp` directory. Its usage is as follows:
 
-    > [!IMPORTANT]
-    > Make sure assigned directory has read/write permission.
-
     ```sh
     BUILDDIR="/home/foo/foo1"
     ``` 
 
+> [!CAUTION]
+> Make sure assigned directory has read/write permission.
+
+
 
 B. `LANGUAGES`: To change supported programming languages for your Toolchains. Its default value is `c,c++,fortran`. Its usage is as follows:
-
-    > [!IMPORTANT]
-    > Make sure to install additional dependency manually according to your assigned supported languages.
         
     ```sh
     LANGUAGES="c,go,brig,d"
     ```
+
+> [!CAUTION]
+> Make sure to install additional dependency manually according to your assigned supported languages.
 
 &emsp;
 
