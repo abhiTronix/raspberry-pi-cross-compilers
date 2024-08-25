@@ -27,6 +27,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 &nbsp;
 
+> [!NOTE]
 > This project now provides user-friendly open-sourced bash build-scripts to automatically generate compressed cross and native GCC ARM/ARM64 toolchain binaries for Raspberry Pi 32-bit and 64-bit operating. If you need additional language support or want to compile other suitable GCC version toolchains for your Raspberry Pi, you can manually compile any GCC toolchains by running the appropriate build scripts through your system terminal.
 
 ### `RTBuilder_32b`: Raspberry Pi Toolchains 32-bit Builder Build Script
@@ -130,7 +131,7 @@ cd raspberry-pi-cross-compilers/build-scripts
     # Run the script with GCC version 14.2.0 for Raspberry 3+ versions running Bookworm OS
     ./RTBuilder_32b -g "14.2.0" -r "3+" -o "bookworm"
     ```
-    
+
 > [!TIP]
 > * You must **NOT** compile a GCC version other than the [Supported GCC Versions](#5-supported-gcc-versions-), otherwise the script will exit with an error.
 > * This process will take some time (approximately 55 minutes on 8 cores), so grab a coffee :coffee:. 
