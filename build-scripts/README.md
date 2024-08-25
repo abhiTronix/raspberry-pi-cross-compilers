@@ -121,15 +121,15 @@ cd raspberry-pi-cross-compilers/build-scripts
 
 * **Usage:** Just pass _targeted GCC version to `-g` parameter, targeted raspberry pi type to `-r` parameter, and targeted raspberry pi OS type to `-o` parameter of this script:
 
-
-    ***:warning: You must NOT compile a GCC version other than the [Supported GCC Versions](5-supported-gcc-versions-), otherwise the script will exit with an error.***
-
     ```sh
     chmod +x RTBuilder_32b
     ./RTBuilder_32b -g "14.2.0" -r "3+" -o "bookworm"
     ```
-
-    This process will take some time (approximately 55 minutes on 8 cores), so grab a coffee :coffee:. When you return, you will find `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` in your $HOME directory.
+    * :warning: You must NOT compile a GCC version other than the [Supported GCC Versions](#5-supported-gcc-versions-), otherwise the script will exit with an error.
+    * This process will take some time (approximately 55 minutes on 8 cores), so grab a coffee :coffee:. 
+    * The scripts generate two compressed files in your `$HOME` directory:
+        * `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz`
+        * `cross-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz`
 
 
 &emsp;
@@ -152,14 +152,16 @@ cd raspberry-pi-cross-compilers/build-scripts
 
 * **Usage:** Just pass targeted GCC version to `-g` parameter and targeted raspberry pi OS type to `-o` parameter of this script:
 
-    ***:warning: You must NOT compile a GCC version other than the [Supported GCC Versions](5-supported-gcc-versions-), otherwise the script will exit with an error.***
-
     ```sh
     chmod +x RTBuilder_64b
     ./RTBuilder_64b -g "14.2.0" -o "bookworm"
     ```
 
-    This process will take some time (approximately 55 minutes on 8 cores), so grab a coffee :coffee:. When you return, you will find `native-gcc-{GCC_VERSION}-pi_64.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_64.tar`.gz in your $HOME directory.
+    * :warning: You must NOT compile a GCC version other than the [Supported GCC Versions](#5-supported-gcc-versions-), otherwise the script will exit with an error.
+    * This process will take some time (approximately 55 minutes on 8 cores), so grab a coffee :coffee:. 
+    * The scripts generate two compressed files in your `$HOME` directory:
+        * `native-gcc-{GCC_VERSION}-pi_64.tar.gz`
+        * `cross-gcc-{GCC_VERSION}-pi_64.tar.gz`
 
 &emsp;
 
