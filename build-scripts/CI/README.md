@@ -25,7 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # <img alt="Banner" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/banners-d.png">
 
-This project now utilizes powerful **Github Actions** CI(Continuous Integration) to auto-compile Compressed GCC Cross & Native ARM/ARM64 Toolchain binaries by using these CI bash Build-Scripts. These CI Build-Scripts are derived from previous user-friendly build-scripts but further divided into smaller jobs to aid better build times with CI.
+This project now utilizes powerful **GitHub Actions** CI (Continuous Integration) to automatically compile compressed GCC Cross & Native ARM/ARM64 Toolchain binaries using these CI bash build scripts. These CI build scripts are derived from previous user-friendly build scripts but are further divided into smaller jobs to achieve better build times with CI.
 
 
 ## Automated Toolchain Builder Workflow:
@@ -50,7 +50,7 @@ A generalized workflow used to generate and deploy these CI maintained toolchain
 
 ### C. `CICTB_32b`: Raspberry Pi Toolchains CI Cross-Compiler Builder 32-bit
 
-* This build-script is used in CI to generate Compressed Cross ARM Toolchain binaries targeting Raspberry Pi 32-bit Stretch(Debian 9) & Buster(Debian 10) OSes from Base Bundles.
+* This build-script is used in CI to generate Compressed Cross ARM Toolchain binaries targeting Raspberry Pi 32-bit Buster(Debian 10), Bullseye(Debian 11), and Bookworm(Debian 12) OSes from Base Bundles.
 
 ### D. `CICTB_64b`: Raspberry Pi Toolchains CI Cross-Compiler Builder 64-bit
 
@@ -58,7 +58,7 @@ A generalized workflow used to generate and deploy these CI maintained toolchain
 
 ### E. `CINTB_32b`: Raspberry Pi Toolchains CI Native-Compiler Builder 32-bit
 
-* This build-script is used in CI to generate Compressed Native ARM Toolchain binaries targeting Raspberry Pi 32-bit Stretch(Debian 9) & Buster(Debian 10) OSes from respective Cross-Compiler Toolchain Binaries builds.
+* This build-script is used in CI to generate Compressed Native ARM Toolchain binaries targeting Raspberry Pi 32-bit Buster(Debian 10), Bullseye(Debian 11), and Bookworm(Debian 12) OSes from respective Cross-Compiler Toolchain Binaries builds.
 
 
 ### F. `CINTB_64b`: Raspberry Pi Toolchains CI Native-Compiler Builder 64-bit
@@ -87,10 +87,14 @@ These CI build-scripts only support specific Programming Languages, those are as
 
 These CI build-scripts supports newer as well as base GCC versions, those are as follows:
 
-- 6.3.0
-- 8.3.0
-- 9.4.0
-- 10.3.0
+- 8.3.0 _(Base Buster)_
+- 10.2.1 _(Base Bullseye)_
+- 11.3.0 _(New)_
+- 12.2.0 _(Base Bookworm)_
+- 13.3.0 _(New)_
+- 14.2.0 _(New)_
+
+
 
 &nbsp;
 
@@ -100,7 +104,7 @@ These CI build-scripts supports newer as well as base GCC versions, those are as
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)
 
-***You can also share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
+***You can also share your [thoughts](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [:star2:](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
 
 &nbsp;
 
@@ -109,4 +113,4 @@ These CI build-scripts supports newer as well as base GCC versions, those are as
 
 **Copyright © 2020 abhiTronix**
 
-This Project source-code and its precompiled binaries are licensed under the [**GPLv3**](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/LICENSE) license.
+This Project source-code and its precompiled binaries are released under the [**GPLv3**](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/LICENSE) license.

@@ -34,8 +34,8 @@ helpfunction() {
 	echo ""
 	echo ""
 	echo "Usage: $0 -g [GCC version] -o [Target OS type]"
-	echo -e "\t-g GCC version you want to compile?: (7.1.0|7.2.0|7.3.0|7.4.0|7.5.0|8.1.0|8.2.0|8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0)"
-	echo -e "\t-o What's yours Target Raspberry Pi OS type?: (stretch|buster|bullseye)"
+	echo -e "\t-g GCC version you want to compile?: (8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0|11.3.0|12.1.0|12.2.0|12.3.0|12.4.0|13.1.0|13.2.0|13.3.0|14.1.0|14.2.0)"
+	echo -e "\t-o What's yours Target Raspberry Pi OS type?: (buster|bullseye|bookworm)"
 	echo ""
 	echo ""
 	exit 1 # Exits script after printing help
@@ -59,23 +59,25 @@ else
 	echo "Parameters configured!"
 fi
 
-# skip bullseye base
-if [ "$RPIOS_TYPE" != "bullseye" ] && [ "$GCC_VERSION" = "10.2.0" ]; then
-	echo "Invalid GCC: $GCC_VERSION!"
-	exit
-fi
-
-if [ "$RPIOS_TYPE" = "buster" ]; then
-	if echo ${GCC_VERSION%.*} "8.3" | awk '{exit ( $1 >= $2 )}'; then
+#collect dependencies versions from raspberry pi os
+if [ "$RPIOS_TYPE" = "bookworm" ]; then
+	if echo ${GCC_VERSION%.*} "12.2" | awk '{exit ( $1 > $2 )}'; then
+		echo "$GCC_VERSION is not supported on bookworm!"
+		exit 0
+	fi
+elif [ "$RPIOS_TYPE" = "buster" ]; then
+	if echo ${GCC_VERSION%.*} "8.3" | awk '{exit ( $1 > $2 )}'; then
 		echo "$GCC_VERSION is not supported on buster!"
 		exit 0
 	fi
-fi
-if [ "$RPIOS_TYPE" = "bullseye" ]; then
-	if echo ${GCC_VERSION%.*} "10.2" | awk '{exit ( $1 >= $2 )}'; then
+elif [ "$RPIOS_TYPE" = "bullseye" ]; then
+	if echo ${GCC_VERSION%.*} "10.2" | awk '{exit ( $1 > $2 )}'; then
 		echo "$GCC_VERSION is not supported on bullseye!"
 		exit 0
 	fi
+else
+	echo "Invalid argument value: $RPIOS_TYPE"
+	exit 1
 fi
 
 #collect build directory if not defined
@@ -96,7 +98,7 @@ fi
 FOLDER_VERSION=64
 ARCH=armv8-a+fp+simd
 TARGET=aarch64-linux-gnu
-GDB_VERSION=10.2
+GDB_VERSION=15.1
 
 #validate env variables
 if [ "$ARCH" != "armv8-a+fp+simd" ]; then exit 1; fi
@@ -117,18 +119,6 @@ else
 	exit 1
 fi
 
-# exit if GCC < 9.0.0 for buster
-if [ "$RPIOS_TYPE" = "buster" ] && [ "$GCC_VERSION" \< "9.0.0" ]; then
-	echo "Invalid GCC for buster: $GCC_VERSION!"
-	exit
-fi
-
-# exit if GCC < 9.0.0 for bullseye
-if [ "$RPIOS_TYPE" = "bullseye" ] && [ "$GCC_VERSION" \< "10.2.0" ]; then
-	echo "Invalid GCC for bullseye: $GCC_VERSION!"
-	exit
-fi
-
 echo "Downloading and Setting up build directories"
 #setup paths
 DOWNLOADDIR=$BUILDDIR/build_toolchains
@@ -141,7 +131,7 @@ if [ ! -f "cross-gcc-$GCC_VERSION-pi_$FOLDER_VERSION.tar.gz" ]; then
 	wget "${URL}cross-gcc-$GCC_VERSION-pi_$FOLDER_VERSION.tar.gz"
 	tar xf cross-gcc-$GCC_VERSION-pi_$FOLDER_VERSION.tar.gz
 	mv cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION $BUILDDIR
-	rm ./*.tar.*
+	rm ./*.tar.* || true
 fi
 if [ ! -d "gdb-$GDB_VERSION" ]; then
 	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then
@@ -151,7 +141,7 @@ if [ ! -d "gdb-$GDB_VERSION" ]; then
 	cd gdb-$GDB_VERSION || exit
 	mkdir -p build
 	cd "$DOWNLOADDIR" || exit
-	rm ./*.tar.*
+	rm ./*.tar.* || true
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
 	# Download patched GCC 10 series for bullseye
@@ -167,9 +157,9 @@ if [ ! -d "gcc-$GCC_VERSION" ]; then
 	mkdir -p build
 	sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
 	contrib/download_prerequisites
-	rm ./*.tar.*
+	rm ./*.tar.* || true
 	cd "$DOWNLOADDIR" || exit
-	rm ./*.tar.*
+	rm ./*.tar.* || true
 fi
 
 echo "Setting up paths..."
