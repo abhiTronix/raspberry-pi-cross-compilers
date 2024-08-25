@@ -178,7 +178,7 @@ cd raspberry-pi-cross-compilers/build-scripts
 
 These scripts provide a few additional environment variables to tweak Toolchain Builds:
 
-A. `BUILDDIR`: To change build directory. By default it is set to `/tmp` directory. Its usage is as follows:
+* `BUILDDIR`: To change build directory. By default it is set to `/tmp` directory. Its usage is as follows:
 
     ```sh
     BUILDDIR="/home/foo/foo1"
@@ -189,7 +189,7 @@ A. `BUILDDIR`: To change build directory. By default it is set to `/tmp` directo
 
 
 
-B. `LANGUAGES`: To change supported programming languages for your Toolchains. Its default value is `c,c++,fortran`. Its usage is as follows:
+* `LANGUAGES`: To change supported programming languages for your Toolchains. Its default value is `c,c++,fortran`. Its usage is as follows:
         
     ```sh
     LANGUAGES="c,go,brig,d"
