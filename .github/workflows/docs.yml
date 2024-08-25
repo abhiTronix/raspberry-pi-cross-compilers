@@ -55,7 +55,7 @@ env:
 jobs:
   builder-docs_root:
     name: Docs Root Deployer
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -69,7 +69,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
@@ -88,7 +88,7 @@ jobs:
 
   builder-docs_base:
     name: Docs Base Deployer
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -102,7 +102,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
@@ -143,7 +143,7 @@ jobs:
       
   builder-docs_main:
     name: Docs Main Deployer
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -157,7 +157,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
@@ -180,11 +180,11 @@ jobs:
           bash utils/SF_docs_deployer -t "cross" -f "main" -o "bullseye"
         shell: bash
         if: success()
-      - name: move_deploy_cross_stretch
+      - name: move_deploy_cross_bookworm
         run: |
           mkdir -p $HOME/main
-          cp docs/cross-gcc-stretch.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "cross" -f "main" -o "stretch"
+          cp docs/cross-gcc-bookworm.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "cross" -f "main" -o "bookworm"
         shell: bash
         if: success()
       - name: move_deploy_native_buster
@@ -201,11 +201,11 @@ jobs:
           bash utils/SF_docs_deployer -t "native" -f "main" -o "bullseye"
         shell: bash
         if: success()
-      - name: move_deploy_native_stretch
+      - name: move_deploy_native_bookworm
         run: |
           mkdir -p $HOME/main
-          cp docs/native-gcc-stretch.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "native" -f "main" -o "stretch"
+          cp docs/native-gcc-bookworm.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "native" -f "main" -o "bookworm"
         shell: bash
         if: success()
       - name: move_deploy_cross_64_buster
@@ -222,11 +222,11 @@ jobs:
           bash utils/SF_docs_deployer -t "cross_64" -f "main" -o "bullseye"
         shell: bash
         if: success()
-      - name: move_deploy_cross_64_stretch
+      - name: move_deploy_cross_64_bookworm
         run: |
           mkdir -p $HOME/main
-          cp docs/cross-gcc64-stretch.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "cross_64" -f "main" -o "stretch"
+          cp docs/cross-gcc64-bookworm.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "cross_64" -f "main" -o "bookworm"
         shell: bash
         if: success()
       - name: move_deploy_native_64_buster
@@ -243,18 +243,18 @@ jobs:
           bash utils/SF_docs_deployer -t "native_64" -f "main" -o "bullseye"
         shell: bash
         if: success()
-      - name: move_deploy_native_64_stretch
+      - name: move_deploy_native_64_bookworm
         run: |
           mkdir -p $HOME/main
-          cp docs/native-gcc64-stretch.md $HOME/main/README.md
-          bash utils/SF_docs_deployer -t "native_64" -f "main" -o "stretch"
+          cp docs/native-gcc64-bookworm.md $HOME/main/README.md
+          bash utils/SF_docs_deployer -t "native_64" -f "main" -o "bookworm"
         shell: bash
         if: success()
 
 
   builder-docs_experimental:
     name: Docs Root Deployer
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: before_install
@@ -268,7 +268,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo apt-get -y install -qq ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
