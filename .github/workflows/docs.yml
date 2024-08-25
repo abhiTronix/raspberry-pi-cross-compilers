@@ -46,7 +46,7 @@ on:
       - '**.yml'
       
 env:
-  CURL_VERSION: 7.72.0
+  CURL_VERSION: 8.9.1
   CCACHE_COMPRESS: 1
   CCACHE_DIR: $HOME/.ccache
   USER_SFTP: ${{ secrets.USER_SFTP }}
