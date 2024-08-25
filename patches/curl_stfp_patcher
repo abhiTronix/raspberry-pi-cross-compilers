@@ -27,10 +27,11 @@
 #This script patches curl to enable native sftp support
 
 sudo apt-get purge curl -y; 
+sudo apt-get install openssl libssl-dev
 wget -q https://curl.haxx.se/download/curl-"$CURL_VERSION".tar.gz
 tar xf curl-"$CURL_VERSION".tar.gz
 cd curl-"$CURL_VERSION" || exit
-./configure --with-libssh2
+./configure --with-libssh2 --with-openssl
 make -s -j$(getconf _NPROCESSORS_ONLN)
 sudo -s make install
 sudo ldconfig

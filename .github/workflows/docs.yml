@@ -253,7 +253,7 @@ jobs:
 
 
   builder-docs_experimental:
-    name: Docs Root Deployer
+    name: Docs Experimental Deployer
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
