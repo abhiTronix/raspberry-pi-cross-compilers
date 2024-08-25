@@ -217,7 +217,7 @@ These scripts only support newer GCC versions, those are as follows:
 | 9.3.0 | supported | x | x |
 | 9.4.0 | supported | x | x |
 | 10.1.0 | supported | x | x |
-| 10.2.1 | supported | supported _(Base)_ |x |
+| 10.2.0 | supported | supported _(Base)_ |x |
 | 10.3.0 | supported | supported |x |
 | 11.1.0 | supported | supported |x |
 | 11.2.0 | supported | supported |x |

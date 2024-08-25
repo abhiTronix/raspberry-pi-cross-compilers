@@ -36,7 +36,7 @@ helpfunction() {
 	echo ""
 	echo ""
 	echo "Usage: $0 -g [GCC version] -o [Target Pi OS type] -V"
-	echo -e "\t-g GCC version you want to compile?: (8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.1|10.3.0|11.1.0|11.2.0|11.3.0|12.1.0|12.2.0|12.3.0|12.4.0|13.1.0|13.2.0|13.3.0|14.1.0|14.2.0)"
+	echo -e "\t-g GCC version you want to compile?: (8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0|11.3.0|12.1.0|12.2.0|12.3.0|12.4.0|13.1.0|13.2.0|13.3.0|14.1.0|14.2.0)"
 	echo -e "\t-o What's yours Target Raspberry Pi OS type?: (buster|bullseye|bookworm)"
 	echo -e "\t-V Verbose output for debugging?"
 	echo ""
@@ -91,7 +91,7 @@ elif [ "$RPIOS_TYPE" = "bullseye" ]; then
 		echo "$GCC_VERSION is not supported on bullseye!"
 		exit 0
 	else
-		GCCBASE_VERSION=10.2.1
+		GCCBASE_VERSION=10.2.0
 	fi
 	GLIBC_VERSION=2.31
 	BINUTILS_VERSION=2.35.2
@@ -123,7 +123,7 @@ GDB_VERSION=15.1
 
 #validate env variables
 if ! [[ "$GCC_VERSION" =~ ^(8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0|11.3.0|12.1.0|12.2.0|12.3.0|12.4.0|13.1.0|13.2.0|13.3.0|14.1.0|14.2.0)$ ]]; then exit 1; fi
-if ! [[ "$GCCBASE_VERSION" =~ ^(8.3.0|10.2.1|12.2.0)$ ]]; then exit 1; fi
+if ! [[ "$GCCBASE_VERSION" =~ ^(8.3.0|10.2.0|12.2.0)$ ]]; then exit 1; fi
 if ! [[ "$GLIBC_VERSION" =~ ^(2.28|2.31|2.36)$ ]]; then exit 1; fi
 if ! [[ "$BINUTILS_VERSION" =~ ^(2.31.1|2.35.2|2.40)$ ]]; then exit 1; fi
 if [ "$KERNEL" != "kernel8" ]; then exit 1; fi

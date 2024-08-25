@@ -34,7 +34,7 @@ helpfunction() {
 	echo ""
 	echo ""
 	echo "Usage: $0 -g [GCC version] -r [Target Pi type] -o [Target Pi OS type]"
-	echo -e "\t-g GCC base version?: (8.3.0|10.2.1|12.2.0)"
+	echo -e "\t-g GCC base version?: (8.3.0|10.2.0|12.2.0)"
 	echo -e "\t-r What's yours Raspberry Pi type?: (0-1|2-3|3+)"
 	echo -e "\t-o What's yours Raspberry Pi OS type?: (buster|bullseye|bookworm)"
 	echo ""
@@ -106,7 +106,7 @@ if [ "$RPIOS_TYPE" = "buster" ] && [ "$GCC_VERSION" != "8.3.0" ]; then
 	exit
 fi
 # exit if not valid GCC
-if [ "$RPIOS_TYPE" = "bullseye" ] && [ "$GCC_VERSION" != "10.2.1" ]; then
+if [ "$RPIOS_TYPE" = "bullseye" ] && [ "$GCC_VERSION" != "10.2.0" ]; then
 	echo "Invalid GCC for bullseye: $GCC_VERSION!"
 	exit
 fi
@@ -130,7 +130,7 @@ TARGET=arm-linux-gnueabihf
 GDB_VERSION=15.1
 
 #validate env variables
-if ! [[ "$GCC_VERSION" =~ ^(8.3.0|10.2.1|12.2.0)$ ]]; then exit 1; fi
+if ! [[ "$GCC_VERSION" =~ ^(8.3.0|10.2.0|12.2.0)$ ]]; then exit 1; fi
 if ! [[ "$GLIBC_VERSION" =~ ^(2.28|2.31|2.36)$ ]]; then exit 1; fi
 if ! [[ "$BINUTILS_VERSION" =~ ^(2.31.1|2.35.2|2.40)$ ]]; then exit 1; fi
 if ! [[ "$FOLDER_VERSION" =~ ^(0|1|2)$ ]]; then exit 1; fi

@@ -85,7 +85,7 @@ elif [ "$RPIOS_TYPE" = "bullseye" ]; then
 		echo "$GCC_VERSION is not supported on bullseye!"
 		exit 0
 	else
-		GCCBASE_VERSION=10.2.1
+		GCCBASE_VERSION=10.2.0
 	fi
 else
 	echo "Invalid argument value: $RPIOS_TYPE"
@@ -113,7 +113,7 @@ TARGET=aarch64-linux-gnu
 GDB_VERSION=15.1
 
 #validate env variables
-if ! [[ "$GCCBASE_VERSION" =~ ^(8.3.0|10.2.1|12.2.0)$ ]]; then exit 1; fi
+if ! [[ "$GCCBASE_VERSION" =~ ^(8.3.0|10.2.0|12.2.0)$ ]]; then exit 1; fi
 if [ "$ARCH" != "armv8-a+fp+simd" ]; then exit 1; fi
 if [ "$FOLDER_VERSION" != "64" ]; then exit 1; fi
 if [ "$BUILDDIR" = "" ]; then exit 1; fi
