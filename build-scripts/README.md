@@ -57,6 +57,8 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 - [x] Linux-OS based machine
 - [x] Active internet connection
 
+&emsp;
+
 ### 1. Update environment & Install prerequisites 🔧
 
 ```sh
@@ -176,7 +178,7 @@ cd raspberry-pi-cross-compilers/build-scripts
 
 These scripts provide a few additional environment variables to tweak Toolchain Builds:
 
-1. `BUILDDIR`: To change build directory. By default it is set to temp(`/tmp`) directory. Its usage is as follows:
+`BUILDDIR`: To change build directory. By default it is set to temp(`/tmp`) directory. Its usage is as follows:
 
 > [!IMPORTANT]
 > Make sure assigned directory has read/write permission.
@@ -185,7 +187,7 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 BUILDDIR="/home/foo/foo1"
 ``` 
 
-2. `LANGUAGES`: To change supported programming languages for your Toolchains. Its default value is `c,c++,fortran`. Its usage is as follows:
+`LANGUAGES`: To change supported programming languages for your Toolchains. Its default value is `c,c++,fortran`. Its usage is as follows:
 
 > [!IMPORTANT]
 > Make sure to install additional dependency manually according to your assigned supported languages.
