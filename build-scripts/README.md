@@ -59,19 +59,19 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
 ### 1. Update environment & Install prerequisites 🔧
 
-    ```shellsession
-    # update your system
-    sudo apt update && sudo apt dist-upgrade
+```sh
+# update your system
+sudo apt update && sudo apt dist-upgrade
 
-    # install prerequisites
-    sudo apt-get -y install gcc g++ gperf flex texinfo gawk gfortran texinfo bison \
-        build-essential openssl unzip wget git pigz libgmp-dev \
-        libncurses-dev autoconf automake tar figlet libmpfr-dev 
-    ```
+# install prerequisites
+sudo apt-get -y install gcc g++ gperf flex texinfo gawk gfortran texinfo bison \
+    build-essential openssl unzip wget git pigz libgmp-dev \
+    libncurses-dev autoconf automake tar figlet libmpfr-dev 
+```
 
-    **Optional:** Install `ccache` for speeding up build time: ⚡️
+- **Optional:** Install `ccache` for speeding up build time: ⚡️
     
-    ```shellsession
+    ```sh
     # Install package
     sudo apt install -y ccache
 
@@ -94,72 +94,72 @@ You can run these bash scripts to manually compile any GCC toolchains version th
 
 ### 2. Clone this repository 📦️
 
-    ```shellsession
-    # clone repository
-    git clone https://github.com/abhiTronix/raspberry-pi-cross-compilers.git
-   
-    # call directory
-    cd raspberry-pi-cross-compilers/build-scripts
-    ```
+```sh
+# clone repository
+git clone https://github.com/abhiTronix/raspberry-pi-cross-compilers.git
+
+# call directory
+cd raspberry-pi-cross-compilers/build-scripts
+```
 
 &emsp;
 
 ### 3. Run scripts 📝
 
-    #### [`RTBuilder_32b`](RTBuilder_32b): Raspberry Pi Toolchains 32-bit Builder Build Script
+#### [`RTBuilder_32b`](RTBuilder_32b): Raspberry Pi Toolchains 32-bit Builder Build Script
 
 
-    * **Usage parameters:** This script requires a few command-line parameters. To view them, simply run `./RTBuilder_32b` on terminal:
-  
-        ```shellsession
-        Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type] -V
-                -g GCC version you want to compile?: (8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0|11.3.0|12.1.0|12.2.0|12.3.0|12.4.0|13.1.0|13.2.0|13.3.0|14.1.0|14.2.0)
-                -r What's yours Target Raspberry Pi type?: (0-1|2-3|3+)
-                -o What's yours Target Raspberry Pi OS type?: (buster|bullseye|bookworm)
-                -V Verbose output for debugging?
-        ```
+* **Usage parameters:** This script requires a few command-line parameters. To view them, simply run `./RTBuilder_32b` on terminal:
 
-    * **Usage:** Just pass _targeted GCC version to `-g` parameter, targeted raspberry pi type to `-r` parameter, and targeted raspberry pi OS type to `-o` parameter of this script:
+    ```sh
+    Usage: ./RTBuilder_32b -g [GCC version] -r [Target Pi type] -o [Target Pi OS type] -V
+            -g GCC version you want to compile?: (8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0|11.3.0|12.1.0|12.2.0|12.3.0|12.4.0|13.1.0|13.2.0|13.3.0|14.1.0|14.2.0)
+            -r What's yours Target Raspberry Pi type?: (0-1|2-3|3+)
+            -o What's yours Target Raspberry Pi OS type?: (buster|bullseye|bookworm)
+            -V Verbose output for debugging?
+    ```
 
-
-        ***:warning: You must NOT compile a GCC version other than the [Supported GCC Versions](5-supported-gcc-versions-), otherwise the script will exit with an error.***
-
-        ```shellsession
-        chmod +x RTBuilder_32b
-        ./RTBuilder_32b -g "14.2.0" -r "3+" -o "bookworm"
-        ```
-
-        This process will take some time (approximately 55 minutes on 8 cores), so grab a coffee :coffee:. When you return, you will find `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` in your $HOME directory.
+* **Usage:** Just pass _targeted GCC version to `-g` parameter, targeted raspberry pi type to `-r` parameter, and targeted raspberry pi OS type to `-o` parameter of this script:
 
 
-    &emsp;
+    ***:warning: You must NOT compile a GCC version other than the [Supported GCC Versions](5-supported-gcc-versions-), otherwise the script will exit with an error.***
+
+    ```sh
+    chmod +x RTBuilder_32b
+    ./RTBuilder_32b -g "14.2.0" -r "3+" -o "bookworm"
+    ```
+
+    This process will take some time (approximately 55 minutes on 8 cores), so grab a coffee :coffee:. When you return, you will find `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz` in your $HOME directory.
 
 
-    ### [`RTBuilder_64b`](RTBuilder_64b): Raspberry Pi Toolchains 64-bit Builder Build Script
+&emsp;
 
 
-    * **Usage parameters:** This script requires a few command-line parameters. To view them, simply run `./RTBuilder_64b` on terminal:
-      
-        ```shellsession
-
-        Usage: ./RTBuilder_64b -g [GCC version] -o [Target Pi OS type] -V
-                -g GCC version you want to compile?: (8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0|11.3.0|12.1.0|12.2.0|12.3.0|12.4.0|13.1.0|13.2.0|13.3.0|14.1.0|14.2.0)
-                -o What's yours Target Raspberry Pi OS type?: (buster|bullseye|bookworm)
-                -V Verbose output for debugging?
-
-        ``` 
+### [`RTBuilder_64b`](RTBuilder_64b): Raspberry Pi Toolchains 64-bit Builder Build Script
 
 
-    * **Usage:** Just pass targeted GCC version to `-g` parameter and targeted raspberry pi OS type to `-o` parameter of this script:
+* **Usage parameters:** This script requires a few command-line parameters. To view them, simply run `./RTBuilder_64b` on terminal:
+    
+    ```sh
 
-        ***:warning: You must NOT compile a GCC version other than the [Supported GCC Versions](5-supported-gcc-versions-), otherwise the script will exit with an error.***
+    Usage: ./RTBuilder_64b -g [GCC version] -o [Target Pi OS type] -V
+            -g GCC version you want to compile?: (8.3.0|8.4.0|9.1.0|9.2.0|9.3.0|9.4.0|10.1.0|10.2.0|10.3.0|11.1.0|11.2.0|11.3.0|12.1.0|12.2.0|12.3.0|12.4.0|13.1.0|13.2.0|13.3.0|14.1.0|14.2.0)
+            -o What's yours Target Raspberry Pi OS type?: (buster|bullseye|bookworm)
+            -V Verbose output for debugging?
 
-        ```shellsession
-        chmod +x RTBuilder_64b
-        ./RTBuilder_64b -g "14.2.0" -o "bookworm"
-        ```
+    ``` 
 
-        This process will take some time (approximately 55 minutes on 8 cores), so grab a coffee :coffee:. When you return, you will find `native-gcc-{GCC_VERSION}-pi_64.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_64.tar`.gz in your $HOME directory.
+
+* **Usage:** Just pass targeted GCC version to `-g` parameter and targeted raspberry pi OS type to `-o` parameter of this script:
+
+    ***:warning: You must NOT compile a GCC version other than the [Supported GCC Versions](5-supported-gcc-versions-), otherwise the script will exit with an error.***
+
+    ```sh
+    chmod +x RTBuilder_64b
+    ./RTBuilder_64b -g "14.2.0" -o "bookworm"
+    ```
+
+    This process will take some time (approximately 55 minutes on 8 cores), so grab a coffee :coffee:. When you return, you will find `native-gcc-{GCC_VERSION}-pi_64.tar.gz` and `cross-gcc-{GCC_VERSION}-pi_64.tar`.gz in your $HOME directory.
 
 &emsp;
 
@@ -171,14 +171,14 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 
     ***:warning: Make sure assigned directory has read/write permission.***
 
-    ```shellsession
+    ```sh
     BUILDDIR="/home/foo/foo1"
     ``` 
 * `LANGUAGES`: To change supported programming languages for your Toolchains. Its default value is `c,c++,fortran`. Its usage is as follows:
     
     ***:warning: Make sure to install additional dependency manually according to your assigned supported languages.*** 
 
-    ```shellsession
+    ```sh
     LANGUAGES="c,go,brig,d"
     ```
 
