@@ -87,13 +87,21 @@ These CI build-scripts only support specific Programming Languages, those are as
 
 These CI build-scripts supports newer as well as base GCC versions, those are as follows:
 
-- 8.3.0 _(Base Buster)_
+- 8.3.0 _(Base Buster, )_
 - 10.2.1 _(Base Bullseye)_
 - 11.3.0 _(New)_
 - 12.2.0 _(Base Bookworm)_
 - 13.3.0 _(New)_
 - 14.2.0 _(New)_
 
+| GCC Version | Base | Cross-Compiler | Native-Compiler  |
+| :-----------: | :----------: | :---------: | :---------: |
+| 8.3.0 | Yes (Buster) | Yes | No |
+| 10.2.1 | Yes (Bullseye) | Yes | No |
+| 11.3.0 | x | Yes | Yes |
+| 12.2.0 | Yes (Bookworm) | Yes | No |
+| 13.3.0 | x | Yes | Yes |
+| 14.2.0 | x | Yes | Yes |
 
 
 &nbsp;

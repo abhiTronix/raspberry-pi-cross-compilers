@@ -106,7 +106,7 @@ cd raspberry-pi-cross-compilers/build-scripts
 
 ### 3. Run scripts 📝
 
-#### [`RTBuilder_32b`](RTBuilder_32b): Raspberry Pi Toolchains 32-bit Builder Build Script
+#### A. [`RTBuilder_32b`](RTBuilder_32b): Raspberry Pi Toolchains 32-bit Builder Build Script
 
 
 * **Usage parameters:** This script requires a few command-line parameters. To view them, simply run `./RTBuilder_32b` on terminal:
@@ -122,10 +122,14 @@ cd raspberry-pi-cross-compilers/build-scripts
 * **Usage:** Just pass _targeted GCC version to `-g` parameter, targeted raspberry pi type to `-r` parameter, and targeted raspberry pi OS type to `-o` parameter of this script:
 
     ```sh
-    chmod +x RTBuilder_32b
+    # Make the script executable
+    chmod +x RTBuilder_64b
+    
+    # Run the script with GCC version 14.2.0 for Raspberry 3+ versions running Bookworm OS
     ./RTBuilder_32b -g "14.2.0" -r "3+" -o "bookworm"
     ```
-    * :warning: You must NOT compile a GCC version other than the [Supported GCC Versions](#5-supported-gcc-versions-), otherwise the script will exit with an error.
+
+    * You must NOT compile a GCC version other than the [Supported GCC Versions](#5-supported-gcc-versions-), otherwise the script will exit with an error.
     * This process will take some time (approximately 55 minutes on 8 cores), so grab a coffee :coffee:. 
     * The scripts generate two compressed files in your `$HOME` directory:
         * `native-gcc-{GCC_VERSION}-pi_{PI_TYPE}.tar.gz`
@@ -135,7 +139,7 @@ cd raspberry-pi-cross-compilers/build-scripts
 &emsp;
 
 
-### [`RTBuilder_64b`](RTBuilder_64b): Raspberry Pi Toolchains 64-bit Builder Build Script
+### B. [`RTBuilder_64b`](RTBuilder_64b): Raspberry Pi Toolchains 64-bit Builder Build Script
 
 
 * **Usage parameters:** This script requires a few command-line parameters. To view them, simply run `./RTBuilder_64b` on terminal:
@@ -153,11 +157,14 @@ cd raspberry-pi-cross-compilers/build-scripts
 * **Usage:** Just pass targeted GCC version to `-g` parameter and targeted raspberry pi OS type to `-o` parameter of this script:
 
     ```sh
+    # Make the script executable
     chmod +x RTBuilder_64b
+    
+    # Run the script with GCC version 14.2.0 for Bookworm OS
     ./RTBuilder_64b -g "14.2.0" -o "bookworm"
     ```
 
-    * :warning: You must NOT compile a GCC version other than the [Supported GCC Versions](#5-supported-gcc-versions-), otherwise the script will exit with an error.
+    * You must **NOT** compile a GCC version other than the [Supported GCC Versions](#5-supported-gcc-versions-), otherwise the script will exit with an error.
     * This process will take some time (approximately 55 minutes on 8 cores), so grab a coffee :coffee:. 
     * The scripts generate two compressed files in your `$HOME` directory:
         * `native-gcc-{GCC_VERSION}-pi_64.tar.gz`
@@ -169,20 +176,23 @@ cd raspberry-pi-cross-compilers/build-scripts
 
 These scripts provide a few additional environment variables to tweak Toolchain Builds:
 
-* `BUILDDIR`: To change build directory. By default it is set to temp(`/tmp`) directory. Its usage is as follows:
+1. `BUILDDIR`: To change build directory. By default it is set to temp(`/tmp`) directory. Its usage is as follows:
 
-    ***:warning: Make sure assigned directory has read/write permission.***
+> [!IMPORTANT]
+> Make sure assigned directory has read/write permission.
 
-    ```sh
-    BUILDDIR="/home/foo/foo1"
-    ``` 
-* `LANGUAGES`: To change supported programming languages for your Toolchains. Its default value is `c,c++,fortran`. Its usage is as follows:
+```sh
+BUILDDIR="/home/foo/foo1"
+``` 
+
+2. `LANGUAGES`: To change supported programming languages for your Toolchains. Its default value is `c,c++,fortran`. Its usage is as follows:
+
+> [!IMPORTANT]
+> Make sure to install additional dependency manually according to your assigned supported languages.
     
-    ***:warning: Make sure to install additional dependency manually according to your assigned supported languages.*** 
-
-    ```sh
-    LANGUAGES="c,go,brig,d"
-    ```
+```sh
+LANGUAGES="c,go,brig,d"
+```
 
 &emsp;
 
@@ -190,22 +200,25 @@ These scripts provide a few additional environment variables to tweak Toolchain 
 
 These scripts only support newer GCC versions, those are as follows:
 
+> [!NOTE]
+> The Base GCC versions only generate cross-compilers and do not produce native compiler binaries.
+
 | GCC Version | Buster OS build (32/64-bit) | Bullseye OS  (32/64-bit) | Bookworm OS build (32/64-bit)  |
 | :-----------: | :----------: | :---------: | :---------: |
-| 8.3.0 | supported _(not native)_ | x | x |
+| 8.3.0 | supported _(Base)_ | x | x |
 | 8.4.0 | supported | x | x |
 | 9.1.0 | supported | x | x |
 | 9.2.0 | supported | x | x |
 | 9.3.0 | supported | x | x |
 | 9.4.0 | supported | x | x |
 | 10.1.0 | supported | x | x |
-| 10.2.1 | supported | supported _(not native)_ |x |
+| 10.2.1 | supported | supported _(Base)_ |x |
 | 10.3.0 | supported | supported |x |
 | 11.1.0 | supported | supported |x |
 | 11.2.0 | supported | supported |x |
 | 11.3.0 | supported | supported |x |
 | 12.1.0 | supported | supported |x |
-| 12.2.0 | supported | supported | supported _(not native)_ |
+| 12.2.0 | supported | supported | supported _(Base)_ |
 | 12.3.0 | supported | supported | supported |
 | 12.4.0 | supported | supported | supported |
 | 13.1.0 | supported | supported | supported |
