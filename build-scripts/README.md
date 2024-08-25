@@ -30,6 +30,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 > [!NOTE]
 > This project now provides user-friendly open-sourced bash build-scripts to automatically generate compressed cross and native GCC ARM/ARM64 toolchain binaries for Raspberry Pi 32-bit and 64-bit operating. If you need additional language support or want to compile other suitable GCC version toolchains for your Raspberry Pi, you can manually compile any GCC toolchains by running the appropriate build scripts through your system terminal.
 
+> [!WARNING]
+> The Stretch (Debian Version 9) 32-bit/64-bit toolchains are no longer supported!
+
 ### `RTBuilder_32b`: Raspberry Pi Toolchains 32-bit Builder Build Script
 
 * This script auto-generates Compressed Cross & Native GCC ARM Toolchain binaries targeting Raspberry Pi 32-bit Buster(Debian 10), Bullseye(Debian 11), and Bookworm(Debian 12) OSes.
