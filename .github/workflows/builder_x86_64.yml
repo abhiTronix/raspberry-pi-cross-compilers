@@ -61,7 +61,7 @@ jobs:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       OS_TYPE: x86_64
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq
@@ -103,7 +103,7 @@ jobs:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       OS_TYPE: x86
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq

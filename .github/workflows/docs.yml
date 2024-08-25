@@ -57,7 +57,7 @@ jobs:
     name: Docs Root Deployer
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq
@@ -90,7 +90,7 @@ jobs:
     name: Docs Base Deployer
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq
@@ -145,7 +145,7 @@ jobs:
     name: Docs Main Deployer
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq
@@ -256,7 +256,7 @@ jobs:
     name: Docs Root Deployer
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq

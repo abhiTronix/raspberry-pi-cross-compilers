@@ -65,7 +65,7 @@ jobs:
       COMPILER_TYPE: CROSS
       BASE: true
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq
@@ -110,7 +110,7 @@ jobs:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       COMPILER_TYPE: CROSS
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq
@@ -155,7 +155,7 @@ jobs:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       COMPILER_TYPE: NATIVE
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq
