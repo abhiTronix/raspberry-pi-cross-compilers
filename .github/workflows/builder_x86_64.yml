@@ -44,7 +44,7 @@ on:
       - '**.md'
 
 env:
-  CURL_VERSION: 7.72.0
+  CURL_VERSION: 8.9.1
   CCACHE_COMPRESS: 1
   CCACHE_DIR: $HOME/.ccache
   USER_SFTP: ${{ secrets.USER_SFTP }}
@@ -53,10 +53,10 @@ env:
 jobs:
   builder-x86_64:
     name: GCC x86_64 Builder Pi[Desktop]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
-        gcc_versions: [10.3.0]
+        gcc_versions: [14.2.0]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       OS_TYPE: x86_64
@@ -75,7 +75,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz git gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz git gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet libgmp-dev libmpfr-dev
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
@@ -95,10 +95,10 @@ jobs:
 
   builder-x86:
     name: GCC x86 Builder Pi[Desktop]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
-        gcc_versions: [10.3.0]
+        gcc_versions: [14.2.0]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       OS_TYPE: x86
@@ -117,7 +117,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf git gcc-multilib g++-multilib libc6-i386 libc6-dev-i386 flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo apt-get -y install -qq gcc g++ gperf git gcc-multilib g++-multilib libc6-i386 libc6-dev-i386 flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet libgmp-dev libmpfr-dev
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
