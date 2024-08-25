@@ -103,7 +103,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        gcc_versions: [8.3.0, 10.2.1, 11.3.0, 12.2.0, 13.3.0, 14.2.0]
+        gcc_versions: [8.3.0, 10.2.1, 12.2.0, 13.3.0, 14.2.0]
         rpios_types: [buster, bullseye, bookworm]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
@@ -148,7 +148,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        gcc_versions: [11.3.0, 13.3.0, 14.2.0]
+        gcc_versions: [13.3.0, 14.2.0]
         rpios_types: [buster, bullseye, bookworm]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
