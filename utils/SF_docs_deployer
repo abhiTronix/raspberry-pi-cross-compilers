@@ -73,7 +73,7 @@ echo "Doing $TOOLCHAIN with Folder: $FOLDER_TYPE, RASPBERRY: $RPI_TYPE AND OS: $
 # deploy root folder docs
 if [ "$FOLDER_TYPE" = "root" ]; then
     if [ -f "$HOME/root/README.md" ]; then
-        curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/root/README.md" --ftp-create-dirs
+        curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/root/README.md" --ftp-create-dirs
     else
         echo "Error: No valid Root docs found!"
         exit 1
@@ -84,17 +84,17 @@ fi
 if [ "$FOLDER_TYPE" = "base" ] && [ -f "$HOME/base/README.md" ]; then
     if [ "$TOOLCHAIN" = "CLI" ]; then
         FOLDER="CLI Base"
-        curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
+        curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
     elif [[ "$TOOLCHAIN" =~ ^("cross_64"|"native_64")$ ]]; then
         FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains"
-        curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
+        curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
     else
         if [ "$TOOLCHAIN" = "cross" ]; then
             FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains"
-            curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
+            curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
         elif [ "$TOOLCHAIN" = "native" ]; then
             FOLDER="Raspberry Pi GCC Native-Compiler Toolchains"
-            curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
+            curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
         else
             echo "Error: Invalid Raspberry Compiler Type!"
             exit 0
@@ -108,12 +108,12 @@ if [ "$FOLDER_TYPE" = "main" ] && [ -f "$HOME/main/README.md" ]; then
     if [ "$TOOLCHAIN" = "cross" ]; then
         if [ "$RPIOS_TYPE" = "buster" ]; then
             FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains/Buster"
-            curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
+            curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
         elif [ "$RPIOS_TYPE" = "bullseye" ]; then
             FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains/Bullseye"
         elif [ "$RPIOS_TYPE" = "bookworm" ]; then
             FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains/Bookworm"
-            curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
+            curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
         else
             echo "Error: Invalid Raspberry OS Type!"
             exit 1
@@ -121,13 +121,13 @@ if [ "$FOLDER_TYPE" = "main" ] && [ -f "$HOME/main/README.md" ]; then
     elif [ "$TOOLCHAIN" = "native" ]; then
         if [ "$RPIOS_TYPE" = "buster" ]; then
             FOLDER="Raspberry Pi GCC Native-Compiler Toolchains/Buster"
-            curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
+            curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
         elif [ "$RPIOS_TYPE" = "bullseye" ]; then
             FOLDER="Raspberry Pi GCC Native-Compiler Toolchains/Bullseye"
-            curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
+            curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
         elif [ "$RPIOS_TYPE" = "bookworm" ]; then
             FOLDER="Raspberry Pi GCC Native-Compiler Toolchains/Bookworm"
-            curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
+            curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
         else
             echo "Error: Invalid Raspberry OS Type!"
             exit 0
@@ -140,7 +140,7 @@ if [ "$FOLDER_TYPE" = "main" ] && [ -f "$HOME/main/README.md" ]; then
         else
             FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains/Bookworm"
         fi
-        curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
+        curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
     elif [ "$TOOLCHAIN" = "native_64" ]; then
         if [ "$RPIOS_TYPE" = "buster" ]; then
             FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/Buster"
@@ -149,7 +149,7 @@ if [ "$FOLDER_TYPE" = "main" ] && [ -f "$HOME/main/README.md" ]; then
         else
             FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/Bookworm"
         fi
-        curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
+        curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
     else
         echo "Error: Invalid Main toolchain!"
         exit 1
@@ -160,13 +160,13 @@ fi
 if [ "$FOLDER_TYPE" = "experimental" ]; then
     if [ -f "$HOME/experiment/README.md" ] && [[ "$RPI_TYPE" =~ ^("x86"|"x86_64")$ ]]; then
         FOLDER="Exclusive-Experimental Toolchains/Desktop/$RPI_TYPE"
-        curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/experiment/README.md" --ftp-create-dirs
+        curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/experiment/README.md" --ftp-create-dirs
     elif [ -f "$HOME/main/README.md" ]; then
         FOLDER="Exclusive-Experimental Toolchains/Desktop"
-        curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
+        curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/main/README.md" --ftp-create-dirs
     elif [ -f "$HOME/base/README.md" ]; then
         FOLDER="Exclusive-Experimental Toolchains"
-        curl -k "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
+        curl -k -v "sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers/$FOLDER/" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$HOME/base/README.md" --ftp-create-dirs
 
     else
         echo "Warning: No Experimental docs found!"
