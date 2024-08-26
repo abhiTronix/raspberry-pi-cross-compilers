@@ -152,3 +152,4 @@ if [ "$FOLDER_TYPE" = "experimental" ]; then
         echo "Warning: No Experimental docs found!"
         exit 1
     fi
+fi

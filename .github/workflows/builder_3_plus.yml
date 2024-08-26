@@ -87,7 +87,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
-        if: success() && (github.event_name == 'pull_request' || github.event_name == 'release' ||  github.event_name == 'push'))
+        if: success() && (github.event_name == 'pull_request' || github.event_name == 'release' ||  github.event_name == 'push')
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
