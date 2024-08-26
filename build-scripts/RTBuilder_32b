@@ -22,7 +22,7 @@
 # ===============================================
 
 # This script auto downloads, compiles, and compresses Cross & Native GCC ARM Toolchain binaries
-# targeting Raspberry Pi 32-bit Stretch(Debian 9) and Buster(Debian 10) OSes only.
+# targeting Raspberry Pi 32-bit Bookworm(Debian 12), Bullseye(Debian 11), and Buster(Debian 10) OSes only.
 
 set -eo pipefail
 
@@ -93,7 +93,7 @@ fi
 #collect dependencies versions from raspberry pi os
 if [ "$RPIOS_TYPE" = "bookworm" ]; then
 	if echo ${GCC_VERSION%.*} "12.2" | awk '{exit ( $1 >= $2 )}'; then
-		echo "$GCC_VERSION is not supported on stretch!"
+		echo "$GCC_VERSION is not supported on bookworm!"
 		exit 0
 	else
 		GCCBASE_VERSION=12.2.0

@@ -54,7 +54,7 @@ if [ -z "$GCC_VERSION" ]; then
 	echo "Error: Required parameter is missing!"
 	helpfunction
 elif [ -z "$RPIOS_TYPE" ]; then
-	RPIOS_TYPE="stretch"
+	RPIOS_TYPE="bookworm"
 else
 	echo "Parameters configured!"
 fi
@@ -123,8 +123,8 @@ URL="https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/CLI%20B
 
 if [ "$RPIOS_TYPE" = "buster" ]; then
 	URL="$URL/Buster/GCC%20$GCCBASE_VERSION/"
-elif [ "$RPIOS_TYPE" = "stretch" ]; then
-	URL="$URL/Stretch/GCC%20$GCCBASE_VERSION/"
+elif [ "$RPIOS_TYPE" = "bookworm" ]; then
+	URL="$URL/Bookworm/GCC%20$GCCBASE_VERSION/"
 elif [ "$RPIOS_TYPE" = "bullseye" ]; then
 	URL="$URL/Bullseye/GCC%20$GCCBASE_VERSION/"
 else

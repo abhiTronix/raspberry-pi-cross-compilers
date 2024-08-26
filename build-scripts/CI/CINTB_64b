@@ -54,7 +54,7 @@ if [ -z "$GCC_VERSION" ]; then
 	echo "Error: Required parameter is missing!"
 	helpfunction
 elif [ -z "$RPIOS_TYPE" ]; then
-	RPIOS_TYPE="stretch"
+	RPIOS_TYPE="bookworm"
 else
 	echo "Parameters configured!"
 fi
@@ -112,8 +112,8 @@ if [ "$RPIOS_TYPE" = "buster" ]; then
 	URL="$URL/Buster/GCC%20$GCC_VERSION/"
 elif [ "$RPIOS_TYPE" = "bullseye" ]; then
 	URL="$URL/Bullseye/GCC%20$GCC_VERSION/"
-elif [ "$RPIOS_TYPE" = "stretch" ]; then
-	URL="$URL/Stretch/GCC%20$GCC_VERSION/"
+elif [ "$RPIOS_TYPE" = "bookworm" ]; then
+	URL="$URL/Bookworm/GCC%20$GCC_VERSION/"
 else
 	echo "Missing RPIOS_TYPE parameter!"
 	exit 1

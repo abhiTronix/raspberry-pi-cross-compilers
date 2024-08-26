@@ -22,7 +22,7 @@
 # ===============================================
 
 # This script aauto downloads, compiles, and compresses Cross & Native GCC ARM64 Toolchain
-# binaries targeting any Raspberry Pi 64-bit (like Pi64) OSes.
+# binaries targeting any Raspberry Pi 64-bit Bookworm(Debian 12), Bullseye(Debian 11), and Buster(Debian 10) like OSes.
 
 set -eo pipefail
 
