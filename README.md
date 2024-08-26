@@ -50,21 +50,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## Table of Contents 📑
 
-* [**TL'DR**](#tldr)
-* [**Latest v3.0+ Release SneekPeak**](#latest-v30-release-sneekpeak-)
-* [**A. Precompiled Toolchains: Easy-to-Use**](#a-precompiled-toolchains-easy-to-use)
-  * [**Toolchain Downloads**](#-toolchain-downloads)
-  * [**Toolchain Setup Documentation**](#-toolchain-setup-documentation)
-* [**B. Build-Script for Developers**](#b-build-script-for-developers-do-it-yourself)
-* [**C. Cross-Compiling Latest QT Framework for Pi** <img src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/new.gif" />](#c-cross-compiling-latest-qt-framework-for-pi)
-* [**D. Supporting this Project :heart:**](#d-supporting-this-project)
-* [**E. Additional Information**](#e-bonus-additional-toolchains-information)
-  * [**Supported Hardwares**](#supported-hardwares)
-  * [**Supported Programming Languages**](#supported-programming-languages)
-  * [**Optimization Flags Involved**](#optimization-flags-involved)
-* [**F. Citation**](#f-citation)
-* [**G. License**](#g-licensee)
-* [**H. Acknowledgments**](#h-acknowledgments)
+- [A. Precompiled Toolchains: Easy-to-Deploy](#a-precompiled-toolchains-easy-to-deploy)
+    - [📥 Toolchain Downloads](#-toolchain-downloads)
+    - [📒 Toolchain Setup Documentation](#-toolchain-setup-documentation)
+- [B. Build-Script for Developers: Do It Yourself](#b-build-script-for-developers-do-it-yourself)
+- [C. Cross-Compiling Latest QT Framework for Pi](#c-cross-compiling-latest-qt-framework-for-pi)
+- [D. Supporting this Project](#d-supporting-this-project)
+- [E. Bonus: Additional Toolchains Information](#e-bonus-additional-toolchains-information)
+    - [Supported Hardwares](#supported-hardwares)
+    - [Supported Programming Languages](#supported-programming-languages)
+    - [Optimization Flags Involved](#optimization-flags-involved)
+- [F. Citation](#f-citation)
+- [G. License](#g-license)
+- [H. Acknowledgments](#h-acknowledgments)
 
 &nbsp;
 
@@ -79,7 +77,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ### Who will benefit from the project?
 
-> This project benefits everyone, from Professional Devs to a college research Student, looking for latest easy-to-use precompiled GCC toolchains for their Hobby Raspberry Pi project(s). 
+> This project benefits everyone, from Professional Devs to a college research Student, looking for latest Easy-to-Deploy precompiled GCC toolchains for their Hobby Raspberry Pi project(s). 
 
 
 &nbsp;
@@ -89,15 +87,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ## Latest v3.0+ Release SneekPeak 🍩
 
 
-* ☑️ *Latest [**GCC 10.3.0**](https://gcc.gnu.org/gcc-10/) toolchains available.*
+* ☑️ *Latest [**GCC 14.2.0**](https://gcc.gnu.org/gcc-14/) toolchains available.*
 * ☑️ *Automated CI maintained GCC standalone ARM & ARM64 toolchains.*
-* ☑️ *Hardcoded paths free both Cross & Native **Raspbian Bullseye (Debian 11)** toolchains available.*
-* ☑️ *Separate binaries for each Raspberry Pi variant (including latest Compute modules and Raspberry Pi 4).*
+* ☑️ *Hardcoded paths free both Cross & Native **Raspbian Bookworm (Debian 12)** toolchains available.*
+* ☑️ *Separate binaries for each Raspberry Pi variant (including latest Raspberry Pi 5).*
 * ☑️ *PIGZ-TAR Compressed Binaries available with maximum possible compression.*
 * ☑️ *Exclusive **ARM64|AARCH64** Binaries for Raspberry Pi 64-Bit kernel OS flavors.*
 * ☑️ *Open-sourced Toolchains build-scripts are also available.*
 * ☑️ *[**Comprehensive Guide**](QT_build_instructions.md) for Cross-compile Latest QT for any Raspberry Pi variant/model available*
-* ☑️ *Latest [**GDB Debugger v10.2**](https://www.gnu.org/software/gdb/download/ANNOUNCEMENT) included in all binaries.*
+* ☑️ *Latest [**GDB Debugger v15.1**](https://sourceware.org/gdb/) included in all binaries.*
 
 
 &nbsp;
@@ -106,52 +104,51 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
 
-# A. Precompiled Toolchains: Easy-to-Use
+# A. Precompiled Toolchains: Easy-to-Deploy
 
 This project now utilizes powerful [**Github Actions**][git-action] CI(Continuous Integration) to auto-compile Compressed GCC Cross & Native ARM & ARM64 Toolchain binaries and thereby auto-deploy them to SourceForge repository.
 
-
 <h3 align=center><img alt="Workflow" title="Toolchain Builder Workflow" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/workflow.png"></h3>
-
 
 &nbsp;
 
-### 📥 Toolchain Downloads:
+### 📥 Toolchain Downloads
 
-Following is the table for various CI generated OS targetted precompiled Toolchain Binaries available with this project:
-
-**References:**
-* **Host OS:** on which the toolchain is executed/used.
-* **Target OS:** for which the toolchain generates code.
-
-**📝 Note:** [TAR][tar]-[PIGZ][pigz] Compressed pre-compiled GCC Toolchain binaries can be easily be downloaded from the project's [**SourceForge Repository**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/) or by clicking links given in the following table.
+Our pre-compiled [TAR][tar]-[PIGZ][pigz] compressed and OS-targeted GCC Toolchain binaries can easily be downloaded from the project's [SourceForge Repository](https://sourceforge.net/p/raspberry-pi-cross-compilers/) or by clicking the links provided in the following table:
 
 <a href="https://sourceforge.net/p/raspberry-pi-cross-compilers/"><img alt="Download Raspberry Pi GCC Toolchains" src="https://sourceforge.net/sflogo.php?type=17&group_id=3021982" width=200></a>
 
+> [!NOTE]
+> * **Host OS:** on which the toolchain is executed/used.
+> * **Target OS:** for which the toolchain generates code.
+
+> [!WARNING]
+> The Stretch (Debian Version 9) 32-bit/64-bit toolchains are no longer supported!
 
 | Toolchains | Host OS | Target OS | Current Status | Precompiled GCC versions available |
 | :---------- | :--------: | :-------: | :--------: | :------------------------: |
-| **Raspberry Pi GCC Cross-Compiler Toolchains (Stretch)** | any x64/x86 Linux machine | Stretch **32-bit OS** (Debian Version 9) only | Stable/Production | [6.3.0][cc-stretch-630], [9.4.0][cc-stretch-940], [10.3.0][cc-stretch-1030] |
-| **Raspberry Pi GCC Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **32-bit OS** (Debian Version 10) only | Stable/Production | [8.3.0][cc-buster-830], [9.4.0][cc-buster-940], [10.3.0][cc-buster-1030] |
-| **Raspberry Pi GCC Cross-Compiler Toolchains (Bullseye)** | any x64/x86 Linux machine | Bullseye **32-bit OS** (Debian Version 11) only | Stable/Production | [10.2.0][cc-bullseye-1020], [10.3.0][cc-bullseye-1030] |
-| **Raspberry Pi GCC Native-Compiler Toolchains (Stretch)** | Stretch **32-bit OS** (Debian Version 9) only | Stretch **32-bit OS** (Debian Version 9) only | Stable/Production | [9.4.0][nc-stretch-940], [10.3.0][nc-stretch-1030] |
-| **Raspberry Pi GCC Native-Compiler Toolchains (Buster)** | Buster **32-bit OS** (Debian Version 10) only | Buster **32-bit OS** (Debian Version 10) only | Stable/Production | [9.4.0][nc-buster-940], [10.3.0][nc-buster-1030] |
-| **Raspberry Pi GCC Native-Compiler Toolchains (Bullseye)** | Bullseye **32-bit OS** (Debian Version 11) only | Bullseye **32-bit OS** (Debian Version 11) only | Stable/Production | [10.3.0][nc-bullseye-1030] |
-| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Stretch)** | any x64/x86 Linux machine | Stretch **64-bit OS** (Debian Version 9) only | Stable/Production | [6.3.0][cc-stretch64-630], [9.4.0][cc-stretch64-940], [10.3.0][cc-stretch64-1030]|
-| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **64-bit OS** (Debian Version 10) only | Stable/Production | [8.3.0][cc-buster64-830], [9.4.0][cc-buster64-940], [10.3.0][cc-buster64-1030]|
-| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Bullseye)** | any x64/x86 Linux machine | Bullseye **64-bit OS** (Debian Version 11) only | Stable/Production | [10.2.0][cc-bullseye64-1020], [10.3.0][cc-bullseye64-1030]|
-| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Stretch)** | Stretch **64-bit OS** (Debian Version 9) only | Stretch **64-bit OS** (Debian Version 9) only | Stable/Production | [9.4.0][nc-stretch64-940], [10.3.0][nc-stretch64-1030] |
-| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Buster)** | Buster **64-bit OS** (Debian Version 10) only | Buster **64-bit OS** (Debian Version 10) only | Stable/Production | [9.4.0][nc-buster64-940], [10.3.0][nc-buster64-1030] |
-| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Bullseye)** | Bullseye **64-bit OS** (Debian Version 11) only | Bullseye **64-bit OS** (Debian Version 11) only | Stable/Production | [10.3.0][nc-bullseye64-1030] |
-| **Exclusive/Experimental Toolchains** |  x86/x86_64 Pi Desktop | x86/x86_64 Pi Desktop | Beta/Experimental | [10.3.0 (x86)][dc-x86-1030], [10.3.0 (x86_64)][dc-x86_64-1030] | 
+| **Raspberry Pi GCC Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **32-bit OS** (Debian Version 10) only | Stable/Production | [8.3.0][cc-buster-830], [10.2.0][cc-buster-1020], [12.2.0][cc-buster-1220], [13.3.0][cc-buster-1330], [14.2.0][cc-buster-1420] |
+| **Raspberry Pi GCC Cross-Compiler Toolchains (Bullseye)** | any x64/x86 Linux machine | Bullseye **32-bit OS** (Debian Version 11) only | Stable/Production | [10.2.0][cc-bullseye-1020], [12.2.0][cc-bullseye-1220], [13.3.0][cc-bullseye-1330], [14.2.0][cc-bullseye-1420] |
+| **Raspberry Pi GCC Cross-Compiler Toolchains (Bookworm)** | any x64/x86 Linux machine | Bookworm **32-bit OS** (Debian Version 12) only | Stable/Production | [12.2.0][cc-bookworm-1220], [13.3.0][cc-bookworm-1330], [14.2.0][cc-bookworm-1420] |
+| **Raspberry Pi GCC Native-Compiler Toolchains (Buster)** | Buster **32-bit OS** (Debian Version 10) only | Buster **32-bit OS** (Debian Version 10) only | Stable/Production | [13.3.0][nc-buster-1330], [14.2.0][nc-buster-1420]  |
+| **Raspberry Pi GCC Native-Compiler Toolchains (Bullseye)** | Bullseye **32-bit OS** (Debian Version 11) only | Bullseye **32-bit OS** (Debian Version 11) only | Stable/Production | [13.3.0][nc-bullseye-1330], [14.2.0][nc-bullseye-1420] |
+| **Raspberry Pi GCC Native-Compiler Toolchains (Bookworm)** | Bookworm **32-bit OS** (Debian Version 12) only | Bookworm **32-bit OS** (Debian Version 12) only | Stable/Production | [13.3.0][nc-bookworm-1330], [14.2.0][nc-bookworm-1420] |
+| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Buster)** | any x64/x86 Linux machine | Buster **64-bit OS** (Debian Version 10) only | Stable/Production | [8.3.0][cc-buster64-830], [10.2.0][cc-buster64-1020], [12.2.0][cc-buster64-1220], [13.3.0][cc-buster64-1330], [14.2.0][cc-buster64-1420] |
+| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Bullseye)** | any x64/x86 Linux machine | Bullseye **64-bit OS** (Debian Version 11) only | Stable/Production | [10.2.0][cc-bullseye64-1020], [12.2.0][cc-bullseye64-1220], [13.3.0][cc-bullseye64-1330], [14.2.0][cc-bullseye64-1420] |
+| **Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains (Bookworm)** | any x64/x86 Linux machine | Bookworm **64-bit OS** (Debian Version 12) only | Stable/Production | [12.2.0][cc-bookworm64-1220], [13.3.0][cc-bookworm64-1330], [14.2.0][cc-bookworm64-1420] |
+| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Buster)** | Buster **64-bit OS** (Debian Version 10) only | Buster **64-bit OS** (Debian Version 10) only | Stable/Production | [13.3.0][nc-buster64-1330], [14.2.0][nc-buster64-1420] |
+| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Bullseye)** | Bullseye **64-bit OS** (Debian Version 11) only | Bullseye **64-bit OS** (Debian Version 11) only | Stable/Production | [13.3.0][nc-bullseye64-1330], [14.2.0][nc-bullseye64-1420] |
+| **Raspberry Pi GCC 64-Bit Native-Compiler Toolchains (Bookworm)** | Bookworm **64-bit OS** (Debian Version 12) only | Bookworm **64-bit OS** (Debian Version 12) only | Stable/Production | [13.3.0][nc-bookworm64-1330], [14.2.0][nc-bookworm64-1420] |
+| **Exclusive/Experimental Toolchains** |  x86/x86_64 Pi Desktop | x86/x86_64 Pi Desktop | Beta/Experimental | [14.2.0 (x86)][dc-x86-1420], [14.2.0 (x86_64)][dc-x86_64-1420] | 
 
-**Tip::bulb:** _To get the location of each Binary of this project on SourceForge, you can also check out [this Reference Tree](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree)._
+> [!TIP]
+> To get the location of each Binary of this project on SourceForge, you can also check out [this Reference Tree](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Toolchain-Binaries-Reference-Tree#toolchain-binaries-reference-tree).
 
 
 &nbsp;
 
 
-### 📒 Toolchain Setup Documentation:
+### 📒 Toolchain Setup Documentation
 
 These precompiled toolchains setup requires just three easy steps - **Downloading, Extracting and Linking**:
 
@@ -165,9 +162,7 @@ These precompiled toolchains setup requires just three easy steps - **Downloadin
 
 # B. Build-Script for Developers: Do It Yourself
 
-- This project now provides user-friendly open-sourced bash build-scripts that auto-generates Compressed Cross & Native GCC ARM & ARM64 Toolchain binaries targeting Raspberry Pi 32-bit & 64-bit OSes.
-
-- If you need additional language support or need to compile another suitable GCC version toolchains for your Raspberry Pi, then you can use these scripts to manually compile any GCC toolchains by running suitable build-scripts yourself through your system terminal.
+This project now provides user-friendly open-sourced bash build-scripts that auto-generates Compressed Cross & Native GCC ARM & ARM64 Toolchain binaries targeting Raspberry Pi 32-bit & 64-bit OSes. If you need additional language supportneed to compile another suitable GCC version toolchains for your Raspberry Pi, then you can use these scripts to manually compile any GCC toolchains by running suitable build-scripts yourself through your system terminal.
 
 **[➡️ All Build-scripts are here](/build-scripts)**
 
@@ -196,7 +191,7 @@ Now, there's a steps-by-step guide available to cross-compile Latest QT for any 
 
 [![ko-fi][kofi-badge]][kofi]
 
-***Also please share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star :star:](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
+***Also please share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [🌟](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
 
 &nbsp;
 
@@ -204,14 +199,14 @@ Now, there's a steps-by-step guide available to cross-compile Latest QT for any 
 
 # E. Bonus: Additional Toolchains Information
 
-### Supported Hardwares:
+### Supported Hardwares
 
 - All Raspberry Pi hardware/versions/models are currently supported. 
 - Any other ARM & ARM64 Device _(such as Android, other SBCs, IoT etc.)_ with similar or compatible Hardware architecture(see [Optimization Flags](#optimization-flags-involved)), should also work.
 
 &nbsp;
 
-### Supported Programming Languages:
+### Supported Programming Languages
 - C++
 - Fortran
 - C
@@ -219,20 +214,20 @@ Now, there's a steps-by-step guide available to cross-compile Latest QT for any 
 
 &nbsp;
 
-### Optimization Flags Involved:
+### Optimization Flags Involved
 
 These toolchains are built with these following system-specific LTO _(Link Time Optimization)_ flags, therefore you can easily take advantage of your Raspberry Pi's CPU specific features with these Toolchains while compiling your programs:
 
 
 | Raspberry Pi Board | Link Time Optimization Flags |
 |---|---|
-| Raspberry Pi - *Zero/W/WH & 1 Model A/B/A+/B+* | `-march=armv6 -mfloat-abi=hard -mfpu=vfp` |
-| Raspberry Pi - *2 & 3 Model A/B* | `-march=armv7-a -mfloat-abi=hard -mfpu=neon-vfpv4` |
-| Raspberry Pi - *3 & 4 Model A+/B+ & Compute 3/3-lite/3+ (32-Bit)* | `-march=armv8-a -mfloat-abi=hard -mfpu=neon-fp-armv8` |
-| Raspberry Pi - *3 & 4 Model A+/B+ & Compute 3/3-lite/3+ (64-Bit)* | `-march=armv8-a+fp+simd` |
+| Raspberry Pi - *Zero W/WH/2W & 1 Model A/B/A+/B+* | `-march=armv6 -mfloat-abi=hard -mfpu=vfp` |
+| Raspberry Pi - *2/3 Model A/B* | `-march=armv7-a -mfloat-abi=hard -mfpu=neon-vfpv4` |
+| Raspberry Pi - *3 Model A+/B+ & 4 Model 400/B & 5 & Compute 3/3-lite/3+/4 (32-Bit)* | `-march=armv8-a -mfloat-abi=hard -mfpu=neon-fp-armv8` |
+| Raspberry Pi - *3 Model A+/B+ & 4 Model B 400/B & 5 & Compute 3/3-lite/3+/4 (64-Bit)* | `-march=armv8-a+fp+simd` |
 
-
-**Raspberry Pi 4+:** _The latest Raspberry Pi 4 uses a Broadcom BCM2711 SoC with a 1.5 GHz 64-bit quad-core ARM Cortex-A72 processor, that also have armv8-a architecture similar to Raspberry Pi 3B+, therefore it is also officially supported!_
+> [!NOTE]
+> **Raspberry Pi 5:** _The latest Raspberry Pi 5 uses a Broadcom BCM2711 SoC with a 2.4GHz 64-bit Quad-core Arm Cortex-A76 processor, that also have armv8-a architecture similar to Raspberry Pi 4, therefore it is also officially supported!_
 
 &nbsp; 
 
@@ -292,40 +287,58 @@ Thank you,
 [tar]:https://www.gnu.org/software/tar/
 [pigz]:https://zlib.net/pigz/
 
-[cc-stretch-630]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Stretch/GCC%206.3.0/
-[cc-stretch-940]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Stretch/GCC%209.4.0/
-[cc-stretch-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Stretch/GCC%2010.3.0/
-[nc-stretch-940]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Stretch/GCC%209.4.0/
-[nc-stretch-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Stretch/GCC%2010.3.0/
-
 [cc-buster-830]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Buster/GCC%208.3.0/
-[cc-buster-940]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Buster/GCC%209.4.0/
-[cc-buster-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Buster/GCC%2010.3.0/
-[nc-buster-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Buster/GCC%2010.3.0/
-[nc-buster-940]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Buster/GCC%209.4.0/
+[cc-buster-1220]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Buster/GCC%2012.2.0/
+[cc-buster-1020]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Buster/GCC%2010.2.0/
+[cc-buster-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Buster/GCC%2013.3.0/
+[cc-buster-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Buster/GCC%2014.2.0/
 
+[nc-buster-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Buster/GCC%2013.3.0/
+[nc-buster-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Buster/GCC%2014.2.0/
 
-[cc-bullseye-830]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bullseye/GCC%208.3.0/
 [cc-bullseye-1020]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bullseye/GCC%2010.2.0/
-[cc-bullseye-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/
-[nc-bullseye-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/
+[cc-bullseye-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bullseye/GCC%2013.3.0/
+[cc-bullseye-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bullseye/GCC%2014.2.0/
+[cc-bullseye-1220]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bullseye/GCC%2012.2.0/
 
-[dc-x86-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Exclusive-Experimental%20Toolchains/Desktop/x86/GCC%2010.3.0/
-[dc-x86_64-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Exclusive-Experimental%20Toolchains/Desktop/x86_64/GCC%2010.3.0/
+[nc-bullseye-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/GCC%2013.3.0/
+[nc-bullseye-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/GCC%2014.2.0/
 
-[cc-stretch64-630]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Stretch/GCC%206.3.0/
-[cc-stretch64-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Stretch/GCC%2010.3.0/
-[cc-stretch64-940]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Stretch/GCC%209.4.0/
-[nc-stretch64-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Native-Compiler%20Toolchains/Stretch/GCC%2010.3.0/
-[nc-stretch64-940]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Native-Compiler%20Toolchains/Stretch/GCC%209.4.0/
+
+[cc-bookworm-1220]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bookworm/GCC%2012.2.0/
+[cc-bookworm-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bookworm/GCC%2013.3.0/
+[cc-bookworm-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bookworm/GCC%2014.2.0/
+
+[nc-bookworm-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bookworm/GCC%2014.2.0/
+[nc-bookworm-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bookworm/GCC%2013.3.0/
+
+
+[dc-x86-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Exclusive-Experimental%20Toolchains/Desktop/x86/GCC%2014.2.0/
+[dc-x86_64-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Exclusive-Experimental%20Toolchains/Desktop/x86_64/GCC%2014.2.0/
+
 
 [cc-buster64-830]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Buster/GCC%208.3.0/
-[cc-buster64-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Buster/GCC%2010.3.0/
-[cc-buster64-940]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Buster/GCC%209.4.0/
-[nc-buster64-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Native-Compiler%20Toolchains/Buster/GCC%2010.3.0/
-[nc-buster64-940]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Native-Compiler%20Toolchains/Buster/GCC%209.4.0/
+[cc-buster64-1020]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Buster/GCC%2010.2.0/
+[cc-buster64-1220]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Buster/GCC%2012.2.0/
+[cc-buster64-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Buster/GCC%2013.3.0/
+[cc-buster64-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Buster/GCC%2014.2.0/
 
-[cc-bullseye64-830]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Bullseye/GCC%208.3.0/
-[cc-bullseye64-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/
+[nc-buster64-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Native-Compiler%20Toolchains/Buster/GCC%2013.3.0/
+[nc-buster64-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Native-Compiler%20Toolchains/Buster/GCC%2014.2.0/
+
+
+[cc-bullseye64-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Bullseye/GCC%2013.3.0/
+[cc-bullseye64-1220]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Bullseye/GCC%2012.2.0/
 [cc-bullseye64-1020]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Bullseye/GCC%2010.2.0/
-[nc-bullseye64-1030]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Native-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/
+[cc-bullseye64-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Bullseye/GCC%2014.2.0/
+
+[nc-bullseye64-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Native-Compiler%20Toolchains/Bullseye/GCC%2013.3.0/
+[nc-bullseye64-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Native-Compiler%20Toolchains/Bullseye/GCC%2014.2.0/
+
+
+[cc-bookworm64-1220]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Bookworm/GCC%2012.2.0/
+[cc-bookworm64-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Bookworm/GCC%2013.3.0/
+[cc-bookworm64-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Cross-Compiler%20Toolchains/Bookworm/GCC%2014.2.0/
+
+[nc-bookworm64-1330]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Native-Compiler%20Toolchains/Bookworm/GCC%2013.3.0/
+[nc-bookworm64-1420]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Bonus%20Raspberry%20Pi%20GCC%2064-Bit%20Toolchains/Raspberry%20Pi%20GCC%2064-Bit%20Native-Compiler%20Toolchains/Bookworm/GCC%2014.2.0/

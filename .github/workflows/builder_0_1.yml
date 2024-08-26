@@ -45,7 +45,7 @@ on:
 
 env:
   RPI_TYPE: 0-1
-  CURL_VERSION: 7.72.0
+  CURL_VERSION: 8.9.1
   CCACHE_COMPRESS: 1
   CCACHE_DIR: $HOME/.ccache
   USER_SFTP: ${{ secrets.USER_SFTP }}
@@ -54,18 +54,18 @@ env:
 jobs:
   builder-base:
     name: Base GCC 32-bit Builder Pi[0-1]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
-        gcc_versions: [6.3.0, 8.3.0, 10.2.0]
-        rpios_types: [stretch, buster, bullseye]
+        gcc_versions: [8.3.0, 10.2.0, 12.2.0]
+        rpios_types: [buster, bullseye, bookworm]
     env:
       RPIOS_TYPE: ${{ matrix.rpios_types }}
       GCC_VERSION: ${{ matrix.gcc_versions }}
       COMPILER_TYPE: CROSS
       BASE: true
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq
@@ -79,7 +79,7 @@ jobs:
         if: success()
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf git flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo apt-get -y install -qq gcc g++ gperf git flex texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet libgmp-dev libmpfr-dev  
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
@@ -87,7 +87,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
-        if: success() && (github.event_name == 'pull_request' || github.event_name == 'release' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[DEBUG]')))
+        if: success() && (github.event_name == 'pull_request' || github.event_name == 'release' ||  github.event_name == 'push')
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -100,17 +100,17 @@ jobs:
   builder-cross:
     name: Cross GCC 32-bit Builder Pi[0-1]
     needs: builder-base
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
-        gcc_versions: [6.3.0, 8.3.0, 9.4.0, 10.2.0, 10.3.0]
-        rpios_types: [stretch, buster, bullseye]
+        gcc_versions: [8.3.0, 10.2.0, 12.2.0, 13.3.0, 14.2.0]
+        rpios_types: [buster, bullseye, bookworm]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       RPIOS_TYPE: ${{ matrix.rpios_types }} 
       COMPILER_TYPE: CROSS
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq
@@ -121,18 +121,18 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex texinfo git pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo apt-get -y install -qq gcc g++ gperf flex texinfo git pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet  libgmp-dev libmpfr-dev
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: script
         run: bash build-scripts/CI/CICTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -145,17 +145,17 @@ jobs:
   builder-native:
     name: Native GCC 32-bit Builder Pi[0-1]
     needs: [builder-base, builder-cross]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
-        gcc_versions: [9.4.0, 10.2.0, 10.3.0]
-        rpios_types: [stretch, buster, bullseye]
+        gcc_versions: [13.3.0, 14.2.0]
+        rpios_types: [buster, bullseye, bookworm]
     env:
       GCC_VERSION: ${{ matrix.gcc_versions }}  
       RPIOS_TYPE: ${{ matrix.rpios_types }}  
       COMPILER_TYPE: NATIVE
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: before_install
         run: |
           sudo apt-get update -qq
@@ -166,18 +166,18 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: install
         run: |
-          sudo apt-get -y install -qq gcc g++ gperf flex git texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl3 unzip wget figlet
+          sudo apt-get -y install -qq gcc g++ gperf flex git texinfo pigz gawk gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet  libgmp-dev libmpfr-dev
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: script
         run: bash build-scripts/CI/CINTB_32b -g $GCC_VERSION -r $RPI_TYPE -o $RPIOS_TYPE
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash

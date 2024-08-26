@@ -25,7 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <br>
 
-<h1 align=center><img alt="Description" title="Toolchain Description" src="https://github.com/abhiTronix/Imbakup/raw/master/Images/gcc/gcc_desktop.png"></h1>
+<h1 align=center><img alt="Description" title="Toolchain Description" src="https://raw.githubusercontent.com/abhiTronix/Imbakup/master/Images/gcc/cross-gcc-stretch.png"></h1>
 
 
 ### TL'DR
@@ -68,6 +68,7 @@ This project now utilizes powerful [**Github Actions**][git-action] CI(Continuou
   * **Target OS:** for which the toolchain generates code.
 
 <br>
+
 
 | Toolchains | Host OS | Target OS | Current Status | Precompiled GCC versions available |
 | :---------- | :--------: | :-------: | :--------: | :------------------------: |
