@@ -32,12 +32,6 @@ on:
     paths:
       - '**.md'
       - '**.yml'
-  pull_request:
-    branches:
-      - master
-    paths:
-      - '**.md'
-      - '**.yml'
   release:
     branches:
       - master

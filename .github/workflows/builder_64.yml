@@ -87,7 +87,7 @@ jobs:
       - name: script
         run: bash build-scripts/CI/CIBB_64b -g $GCC_VERSION -o $RPIOS_TYPE
         shell: bash
-        if: success() && (github.event_name == 'pull_request' || github.event_name == 'release' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[DEBUG]')))
+        if: success() && (github.event_name == 'pull_request' || github.event_name == 'release' ||  github.event_name == 'push'))
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -121,18 +121,18 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: install
         run: |
           sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk git gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet libgmp-dev libmpfr-dev
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: script
         run: bash build-scripts/CI/CICTB_64b -g $GCC_VERSION -o $RPIOS_TYPE
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
@@ -166,18 +166,18 @@ jobs:
           chmod +x patches/curl_stfp_patcher
           dos2unix utils/SF_deployer
           chmod +x utils/SF_deployer
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: install
         run: |
           sudo apt-get -y install -qq gcc g++ gperf flex texinfo pigz gawk git gfortran texinfo bison libncurses-dev ccache autoconf automake build-essential libssh2-1-dev openssl libcurl4 unzip wget figlet libgmp-dev libmpfr-dev
           sudo /usr/sbin/update-ccache-symlinks
           echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc
           source ~/.bashrc && echo $PATH
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: script
         run: bash build-scripts/CI/CINTB_64b -g $GCC_VERSION -o $RPIOS_TYPE
         shell: bash
-        if: success()
+        if: success() && github.event_name == 'push'
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
