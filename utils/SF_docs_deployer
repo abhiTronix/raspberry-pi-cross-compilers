@@ -70,67 +70,85 @@ fi
 
 echo "Doing $TOOLCHAIN with Folder: $FOLDER_TYPE, RASPBERRY: $RPI_TYPE AND OS: $RPIOS_TYPE!"
 
-# deploy root folder docs
+# deploy docs
 BASE_URL="sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers"
-FILEPATH=""
 
-set_folder_and_filepath() {
-    case "$FOLDER_TYPE" in
-        "root")
-            FOLDER=""
-            FILEPATH="$HOME/root/README.md"
-            ;;
-        "base")
-            case "$TOOLCHAIN" in
-                "CLI") FOLDER="CLI Base" ;;
-                "cross_64"|"native_64") FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains" ;;
-                "cross") FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains" ;;
-                "native") FOLDER="Raspberry Pi GCC Native-Compiler Toolchains" ;;
-                *) echo "Error: Invalid Raspberry Compiler Type!"; exit 1 ;;
-            esac
-            FILEPATH="$HOME/base/README.md"
-            ;;
-        "main")
-            case "$TOOLCHAIN" in
-                "cross"|"native")
-                    FOLDER="Raspberry Pi GCC ${TOOLCHAIN^}-Compiler Toolchains/${RPIOS_TYPE^}"
-                    ;;
-                "cross_64"|"native_64")
-                    FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit ${TOOLCHAIN%-64^}-Compiler Toolchains/${RPIOS_TYPE^}"
-                    ;;
-                *) echo "Error: Invalid Main toolchain!"; exit 1 ;;
-            esac
-            FILEPATH="$HOME/main/README.md"
-            ;;
-        "experimental")
-            if [[ "$RPI_TYPE" =~ ^("x86"|"x86_64")$ ]]; then
-                FOLDER="Exclusive-Experimental Toolchains/Desktop/$RPI_TYPE"
-                FILEPATH="$HOME/experiment/README.md"
-            elif [ -f "$HOME/main/README.md" ]; then
-                FOLDER="Exclusive-Experimental Toolchains/Desktop"
-                FILEPATH="$HOME/main/README.md"
-            elif [ -f "$HOME/base/README.md" ]; then
-                FOLDER="Exclusive-Experimental Toolchains"
-                FILEPATH="$HOME/base/README.md"
-            else
-                echo "Warning: No Experimental docs found!"
-                exit 1
-            fi
-            ;;
-        *) echo "Error: Wrong folder!"; exit 1 ;;
-    esac
+deploy_file() {
+    local FOLDER="$1"
+    local FILEPATH="$2"
+    
+    URL="$BASE_URL/$FOLDER/"
+    URL=$(printf "%s\n" "$URL" | sed 's/ /%20/g')
+    
+    if [ -f "$FILEPATH" ]; then
+        curl -k "$URL" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$FILEPATH" --ftp-create-dirs
+    else
+        echo "Error: File not found at $FILEPATH"
+        exit 1
+    fi
 }
 
-set_folder_and_filepath
-
-if [ ! -f "$FILEPATH" ]; then
-    echo "Error: No valid docs found at $FILEPATH!"
-    exit 1
+# deploy root folder docs
+if [ "$FOLDER_TYPE" = "root" ]; then
+    deploy_file "" "$HOME/root/README.md"
+    exit 0
 fi
 
-URL="$BASE_URL/$FOLDER/"
-URL=$(printf "%s\n" "$URL" | sed 's/ /%20/g')
+if [ "$FOLDER_TYPE" = "base" ]; then
+    case "$TOOLCHAIN" in
+        "CLI")
+            deploy_file "CLI Base" "$HOME/base/README.md"
+            ;;
+        "cross_64"|"native_64")
+            deploy_file "Bonus Raspberry Pi GCC 64-Bit Toolchains" "$HOME/base/README.md"
+            ;;
+        "cross")
+            deploy_file "Raspberry Pi GCC Cross-Compiler Toolchains" "$HOME/base/README.md"
+            ;;
+        "native")
+            deploy_file "Raspberry Pi GCC Native-Compiler Toolchains" "$HOME/base/README.md"
+            ;;
+        *)
+            echo "Error: Invalid Raspberry Compiler Type!"
+            exit 1
+            ;;
+    esac
+    exit 0
+fi
 
-curl -k "$URL" -u "$USER_SFTP":"$PASSWORD_SFTP" -T "$FILEPATH" --ftp-create-dirs
+# deploy Toolchain specific folder docs
+if [ "$FOLDER_TYPE" = "main" ]; then
+    case "$TOOLCHAIN" in
+        "cross")
+            FOLDER="Raspberry Pi GCC Cross-Compiler Toolchains/$RPIOS_TYPE"
+            ;;
+        "native")
+            FOLDER="Raspberry Pi GCC Native-Compiler Toolchains/$RPIOS_TYPE"
+            ;;
+        "cross_64")
+            FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains/$RPIOS_TYPE"
+            ;;
+        "native_64")
+            FOLDER="Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains/$RPIOS_TYPE"
+            ;;
+        *)
+            echo "Error: Invalid Main toolchain!"
+            exit 1
+            ;;
+    esac
+    deploy_file "$FOLDER" "$HOME/main/README.md"
+    exit 0
+fi
 
-exit 0
+# deploy experimental docs
+if [ "$FOLDER_TYPE" = "experimental" ]; then
+    if [[ "$RPI_TYPE" =~ ^("x86"|"x86_64")$ ]]; then
+        deploy_file "Exclusive-Experimental Toolchains/Desktop/$RPI_TYPE" "$HOME/experiment/README.md"
+    elif [ -f "$HOME/main/README.md" ]; then
+        deploy_file "Exclusive-Experimental Toolchains/Desktop" "$HOME/main/README.md"
+    elif [ -f "$HOME/base/README.md" ]; then
+        deploy_file "Exclusive-Experimental Toolchains" "$HOME/base/README.md"
+    else
+        echo "Warning: No Experimental docs found!"
+        exit 1
+    fi
