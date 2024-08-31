@@ -166,7 +166,7 @@ Now, there's a steps-by-step guide available to cross-compile Latest QT for any 
 
 # Supporting this Project
 
-**If these binaries helped you big time, please consider supporting it through any size donations.**
+**If these binaries helped you big time, please consider supporting it through any size donations. ❤️**
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)
 

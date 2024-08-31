@@ -123,7 +123,7 @@ These precompiled toolchains setup requires just three easy steps - **Downloadin
 
 ## Supporting this Project
 
-**If these binaries helped you big time, please consider supporting it through any size donations.**
+**If these binaries helped you big time, please consider supporting it through any size donations. ❤️**
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)
 

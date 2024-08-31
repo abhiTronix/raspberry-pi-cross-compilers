@@ -89,7 +89,6 @@ These CI build-scripts supports newer as well as base GCC versions, those are as
 
 - 8.3.0 _(Base Buster, )_
 - 10.2.0 _(Base Bullseye)_
-- 11.3.0 _(New)_
 - 12.2.0 _(Base Bookworm)_
 - 13.3.0 _(New)_
 - 14.2.0 _(New)_
@@ -98,7 +97,6 @@ These CI build-scripts supports newer as well as base GCC versions, those are as
 | :-----------: | :----------: | :---------: | :---------: |
 | 8.3.0 | Yes (Buster) | Yes | No |
 | 10.2.0 | Yes (Bullseye) | Yes | No |
-| 11.3.0 | x | Yes | Yes |
 | 12.2.0 | Yes (Bookworm) | Yes | No |
 | 13.3.0 | x | Yes | Yes |
 | 14.2.0 | x | Yes | Yes |
@@ -108,11 +106,11 @@ These CI build-scripts supports newer as well as base GCC versions, those are as
 
 ## Supporting this Project
 
-**If these binaries helped you big time, please consider supporting it through any size donations.**
+**If these binaries helped you big time, please consider supporting it through any size donations. ❤️**
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)
 
-***You can also share your [thoughts](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [:star2:](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
+***You can also share your [thoughts](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [🌟](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
 
 &nbsp;
 

@@ -236,11 +236,11 @@ These scripts only support newer GCC versions, those are as follows:
 
 ## Supporting this Project 💚
 
-**If these binaries helped you big time, please consider supporting it through any size donations.**
+**If these binaries helped you big time, please consider supporting it through any size donations. ❤️**
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)
 
-***You can also share your [thoughts](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [:star2:](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
+***You can also share your [thoughts](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [🌟](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
 
 &nbsp;
 

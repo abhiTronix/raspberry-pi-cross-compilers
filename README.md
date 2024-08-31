@@ -89,10 +89,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 * ☑️ *Latest [**GCC 14.2.0**](https://gcc.gnu.org/gcc-14/) toolchains available.*
 * ☑️ *Automated CI maintained GCC standalone ARM & ARM64 toolchains.*
-* ☑️ *Hardcoded paths free both Cross & Native **Raspbian Bookworm (Debian 12)** toolchains available.*
+* ☑️ *Hardcoded paths free both Cross & Native [**Raspbian Bookworm OS (Debian 12)**](https://www.raspberrypi.com/news/bookworm-the-new-version-of-raspberry-pi-os/) toolchains available.*
 * ☑️ *Separate binaries for each Raspberry Pi variant (including latest Raspberry Pi 5).*
 * ☑️ *PIGZ-TAR Compressed Binaries available with maximum possible compression.*
-* ☑️ *Exclusive **ARM64|AARCH64** Binaries for Raspberry Pi 64-Bit kernel OS flavors.*
+* ☑️ *Exclusive **ARM64 & AARCH64** Binaries for Raspberry Pi 64-Bit kernel OS flavors.*
 * ☑️ *Open-sourced Toolchains build-scripts are also available.*
 * ☑️ *[**Comprehensive Guide**](QT_build_instructions.md) for Cross-compile Latest QT for any Raspberry Pi variant/model available*
 * ☑️ *Latest [**GDB Debugger v15.1**](https://sourceware.org/gdb/) included in all binaries.*
@@ -185,7 +185,7 @@ Now, there's a steps-by-step guide available to cross-compile Latest QT for any 
 
 # D. Supporting this Project
 
-**If these binaries helped you big time, please consider supporting it through any size donations.:heart:.**
+**If these binaries helped you big time, please consider supporting it through any size donations. ❤️**
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)
 
