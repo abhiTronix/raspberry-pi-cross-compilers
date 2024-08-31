@@ -128,7 +128,9 @@ cd "$DOWNLOADDIR" || exit
 
 #download binaries if not found
 if [ ! -f "cross-gcc-$GCC_VERSION-pi_$FOLDER_VERSION.tar.gz" ]; then
-	wget "${URL}cross-gcc-$GCC_VERSION-pi_$FOLDER_VERSION.tar.gz"
+	FILEURL="${URL}cross-gcc-$GCC_VERSION-pi_$FOLDER_VERSION.tar.gz"
+	echo "Downloading File: $FILEURL"
+	wget -q --no-check-certificate "$FILEURL"
 	tar xf cross-gcc-$GCC_VERSION-pi_$FOLDER_VERSION.tar.gz
 	mv cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION $BUILDDIR
 	rm ./*.tar.* || true

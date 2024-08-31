@@ -173,7 +173,9 @@ mkdir -p "$DOWNLOADDIR"
 cd "$DOWNLOADDIR" || exit
 
 if [ ! -f "cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
-	wget "${URL}cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz"
+	FILEURL="${URL}cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz"
+	echo "Downloading File: $FILEURL"
+	wget -q --no-check-certificate "$FILEURL"
 	tar xf cross-gcc-$GCC_VERSION-pi_$RPI_TYPE.tar.gz
 	mv cross-pi-gcc-$GCC_VERSION-$FOLDER_VERSION $BUILDDIR
 	rm ./*.tar.* || true
