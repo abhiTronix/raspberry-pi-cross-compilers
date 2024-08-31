@@ -39,6 +39,12 @@ function deploy_file() {
     fi
 }
 
+TitleCaseConverter() {
+    echo "$1" | sed 's/./\L&/; s/^./\u&/'
+}
+
+RPIOS_TYPE="$(TitleCaseConverter "$RPIOS_TYPE")"
+
 # Set FOLDER based on conditions
 if [ "$RPI_TYPE" = "64" ]; then
     if [ "$BASE" = "true" ]; then
