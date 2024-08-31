@@ -130,7 +130,7 @@ if [ "$RPIOS_TYPE" = "buster" ]; then
 	elif [ "$RPI_TYPE" = "2-3" ]; then
 		URL="$URL/Raspberry%20Pi%202%2C%203/"
 	elif [ "$RPI_TYPE" = "3+" ]; then
-		URL="$URL/Raspberry%20Pi%203A%2B%2C%203B%2B%2C%204/"
+		URL="$URL/Raspberry%20Pi%203A%2B%2C%203B%2B%2C%204%2C%205/"
 	else
 		echo "Missing RPI_TYPE parameter!"
 		exit 1
@@ -142,7 +142,7 @@ elif [ "$RPIOS_TYPE" = "bullseye" ]; then
 	elif [ "$RPI_TYPE" = "2-3" ]; then
 		URL="$URL/Raspberry%20Pi%202%2C%203/"
 	elif [ "$RPI_TYPE" = "3+" ]; then
-		URL="$URL/Raspberry%20Pi%203A%2B%2C%203B%2B%2C%204/"
+		URL="$URL/Raspberry%20Pi%203A%2B%2C%203B%2B%2C%204%2C%205/"
 	else
 		echo "Missing RPI_TYPE parameter!"
 		exit 1
@@ -154,7 +154,7 @@ elif [ "$RPIOS_TYPE" = "bookworm" ]; then
 	elif [ "$RPI_TYPE" = "2-3" ]; then
 		URL="$URL/Raspberry%20Pi%202%2C%203/"
 	elif [ "$RPI_TYPE" = "3+" ]; then
-		URL="$URL/Raspberry%20Pi%203A%2B%2C%203B%2B%2C%204/"
+		URL="$URL/Raspberry%20Pi%203A%2B%2C%203B%2B%2C%204%2C%205/"
 	else
 		echo "Missing RPI_TYPE parameter!"
 		exit 1
