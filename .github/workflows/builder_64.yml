@@ -91,11 +91,11 @@ jobs:
       - name: before_script
         run: bash patches/curl_stfp_patcher
         shell: bash
-        if: success() && github.event_name == 'release' 
+        if: success() && (github.event_name == 'release' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[DEBUG]')))
       - name: deploy
         run: bash utils/SF_deployer
         shell: bash
-        if: success() && github.event_name == 'release' 
+        if: success() && (github.event_name == 'release' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[DEBUG]')))
 
   builder-cross:
     name: Cross GCC 64-bit Builder Pi[64]

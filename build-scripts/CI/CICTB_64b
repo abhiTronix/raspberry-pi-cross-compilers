@@ -146,7 +146,9 @@ cd "$DOWNLOADDIR" || exit
 
 #download binaries if not found
 if [ ! -f "cross-gcc-$GCCBASE_VERSION-pi_$FOLDER_VERSION.tar.gz" ]; then
-	wget -q --no-check-certificate "${URL}cross-gcc-$GCCBASE_VERSION-pi_$FOLDER_VERSION.tar.gz"
+	FILEURL = "${URL}cross-gcc-$GCCBASE_VERSION-pi_$FOLDER_VERSION.tar.gz"
+	echo "Downloading File: $FILEURL"
+	wget -q --no-check-certificate "$FILEURL"
 	tar xf cross-gcc-$GCCBASE_VERSION-pi_$FOLDER_VERSION.tar.gz
 	mv -v cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION/* $INSTALLDIR
 	rm -rf cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION

@@ -191,7 +191,9 @@ mkdir -p "$INSTALLDIR"
 cd "$DOWNLOADDIR" || exit
 
 if [ ! -f "cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz" ]; then
-	wget -q --no-check-certificate "${URL}cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz"
+	FILEURL = "${URL}cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz"
+	echo "Downloading File: $FILEURL"
+	wget -q --no-check-certificate "$FILEURL"
 	tar xf cross-gcc-$GCCBASE_VERSION-pi_$RPI_TYPE.tar.gz
 	mv -v cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION/* $INSTALLDIR
 	rm -rf cross-pi-gcc-$GCCBASE_VERSION-$FOLDER_VERSION
