@@ -32,6 +32,8 @@ on:
     paths:
       - 'docs/**.md'
       - '**.yml'
+      - 'utils/**'
+      - 'patches/**'
       
 env:
   CURL_VERSION: 8.9.1
