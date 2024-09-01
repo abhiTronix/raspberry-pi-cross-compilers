@@ -119,6 +119,8 @@ jobs:
         run: |
           mkdir -p $HOME/base
           cp docs/native-gcc.md $HOME/base/README.md
+          mkdir -p $HOME/base64
+          cp docs/native-gcc64.md $HOME/base64/README.md
           bash utils/SF_docs_deployer -t "native" -f "base"
         shell: bash
         if: success()
@@ -126,6 +128,8 @@ jobs:
         run: |
           mkdir -p $HOME/base
           cp docs/cross-gcc.md $HOME/base/README.md
+          mkdir -p $HOME/base64
+          cp docs/cross-gcc64.md $HOME/base64/README.md
           bash utils/SF_docs_deployer -t "cross" -f "base"
         shell: bash
         if: success()

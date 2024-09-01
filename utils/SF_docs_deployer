@@ -110,9 +110,11 @@ if [ "$FOLDER_TYPE" = "base" ]; then
             ;;
         "cross")
             deploy_file "Raspberry Pi GCC Cross-Compiler Toolchains" "$HOME/base/README.md"
+            deploy_file "Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Cross-Compiler Toolchains" "$HOME/base64/README.md"
             ;;
         "native")
             deploy_file "Raspberry Pi GCC Native-Compiler Toolchains" "$HOME/base/README.md"
+            deploy_file "Bonus Raspberry Pi GCC 64-Bit Toolchains/Raspberry Pi GCC 64-Bit Native-Compiler Toolchains" "$HOME/base64/README.md"
             ;;
         *)
             echo "Error: Invalid Raspberry Compiler Type!"
