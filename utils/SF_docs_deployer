@@ -68,7 +68,13 @@ if ! [[ "$FOLDER_TYPE" =~ ^("root"|"main"|"base"|"experimental")$ ]]; then
     exit 1
 fi
 
-echo "Doing $TOOLCHAIN with Folder: $FOLDER_TYPE, RASPBERRY: $RPI_TYPE AND OS: $RPIOS_TYPE!"
+TitleCaseConverter() {
+    echo "$1" | sed 's/./\L&/; s/^./\u&/'
+}
+
+RPIOS_TYPE="$(TitleCaseConverter "$RPIOS_TYPE")"
+
+echo "Deploying $TOOLCHAIN Docs with Folder: $FOLDER_TYPE, RASPBERRY: $RPI_TYPE AND OS: $RPIOS_TYPE!"
 
 # deploy docs
 BASE_URL="sftp://frs.sourceforge.net/home/pfs/project/raspberry-pi-cross-compilers"
